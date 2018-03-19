@@ -1,8 +1,7 @@
 /* eslint-env mocha */
 
 'use strict'
-
-const formscriptSchema = require('./../lib/index')
+const validator = require('./../lib/').validateForm
 const chai = require('chai')
 const expect = chai.expect
 
@@ -11,17 +10,17 @@ const simpleFormWithUnknownType = require('./fixtures/simple-form-with-basic-pro
 
 describe('Run some schema validation tests', function () {
   it('should prove a simple form validates correctly using default (simple) formatter', function () {
-    const result = formscriptSchema.validateForm(simpleForm)
+    const result = validator(simpleForm)
     expect(result.formContentValid).to.equal(true)
   })
 
   it('should prove a simple form validates correctly using raw jsonschema output', function () {
-    const result = formscriptSchema.validateForm(simpleForm, {format: 'jsonSchema'})
+    const result = validator(simpleForm, {format: 'jsonSchema'})
     expect(result.errors).to.have.length(0)
   })
 
   it('should fail validation with some basic problems', function () {
-    const result = formscriptSchema.validateForm(simpleFormWithUnknownType)
+    const result = validator(simpleFormWithUnknownType)
     expect(result.formContentValid).to.equal(false)
     expect(result.errors).to.have.length(6)
     expect(result.errors[0].widgetIndex).to.eql(0)
