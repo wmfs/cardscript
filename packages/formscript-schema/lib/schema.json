@@ -15,6 +15,31 @@
     },
 
     "widgets": {
+
+      "address": {
+        "properties": {
+          "type": {"enum": ["address"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "checkboxList": {
+        "properties": {
+          "type": {"enum": ["checkboxList"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "date": {
+        "properties": {
+          "type": {"enum": ["date"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
       "header": {
         "properties": {
           "type": {"enum": ["header"]},
@@ -30,6 +55,70 @@
           }
         },
         "required": ["type"]
+      },
+
+      "questionnaire": {
+        "properties": {
+          "type": {"enum": ["questionnaire"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "radio": {
+        "properties": {
+          "type": {"enum": ["radio"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "richtext": {
+        "properties": {
+          "type": {"enum": ["richtext"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "textarea": {
+        "properties": {
+          "type": {"enum": ["textarea"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "set": {
+        "properties": {
+          "type": {"enum": ["set"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "endSet": {
+        "properties": {
+          "type": {"enum": ["endSet"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "select": {
+        "properties": {
+          "type": {"enum": ["select"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "switch": {
+        "properties": {
+          "type": {"enum": ["switch"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
       },
 
       "text": {
@@ -70,8 +159,20 @@
       "items": {
         "type": "object",
         "oneOf": [
-          {"$ref": "#/definitions/widgets/text"},
+          {"$ref": "#/definitions/widgets/address"},
+          {"$ref": "#/definitions/widgets/checkboxList"},
+          {"$ref": "#/definitions/widgets/date"},
           {"$ref": "#/definitions/widgets/header"},
+          {"$ref": "#/definitions/widgets/questionnaire"},
+          {"$ref": "#/definitions/widgets/radio"},
+          {"$ref": "#/definitions/widgets/richtext"},
+          {"$ref": "#/definitions/widgets/textarea"},
+          {"$ref": "#/definitions/widgets/set"},
+          {"$ref": "#/definitions/widgets/endSet"},
+          {"$ref": "#/definitions/widgets/select"},
+          {"$ref": "#/definitions/widgets/switch"},
+          {"$ref": "#/definitions/widgets/text"},
+          {"$ref": "#/definitions/widgets/number"},
           {"$ref": "#/definitions/widgets/menuBar"}
         ]
       }
