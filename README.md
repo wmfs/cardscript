@@ -2,15 +2,14 @@
 
 ## <a name="goal"></a>Goal
 
-The goal of  __FormScript__ is to provide a simple-to-use specification that can describe the content of user-facing forms.
-We hope FormScript will be capable of describing the majority of forms out there in a sane and accessible way.  
+The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can anyone can use to describe content of a user-facing form. We hope FormScript will be capable of defining the majority of forms out there - in a sane and accessible way.  
 
 ## <a name="repo"></a>About this repo
 
 FormScript isn't tied to any language/implementation: it's a JSON-based language for _describing_ form content.
-There are no React/Angular/Vue form-renderers here.
+There's no CSS or React/Angular/Vue form-renderers here.
 
-* Instead, within `/packages` you can find various tools (such as a validator and a pure Javascript SDK) to help work with FormScript.
+* Instead, within `/packages` you can find various tools (such as a validato) to help work with FormScript.
 * Please note, this is a [Lerna](https://lernajs.io/)-powered monorepo... please consult each package's README.md within `/packages` for more specific information. 
 
 ## <a name="usage"></a>Typical usage
@@ -66,9 +65,10 @@ if (result.formContentValid) {
 
 As shown in the example above, a form definition in FormScript comprises mainly of a `formContent` array containing 1 or more objects. 
 
-* To avoid muddying things with common frontend-terms like 'component', FormScript refers to each object in the `formContent` array as a __widget__.
-* Widget objects should appear within `formContent` in the "top down" order that they need to be rendered in the UI.
-* Note widgets can be arranged into "sets" to help define a structure (perhaps into sections, or wizard-like pages).
+* To avoid muddying-things with common frontend-terms like 'component', FormScript refers to each object in the `formContent` array as a __widget__.
+* Think of a widget as an on-screen component that a user can be shown (not necessarily interact with - for example, `heading` and `stickyNote` widgets are non-interactive).
+* The order `Widget` objects appear within `formContent` is important... representing the logical order you want your users to encounter them.
+* Note that widgets can be arranged into "sets" to help define a structure (perhaps splitting a large form into sections, or wizard-like pages).
 
 ### <a name="widgets"></a>About widgets
 
@@ -77,7 +77,7 @@ Widget objects comprise of some common properties:
 | Property     | Mandatory? | Description |
 | --------     | ---------- | ----------- |
 | `id`         | Depends         | A string which uniquely identifies the widget amongst others found within this `formContent` array. Note a small set of widgets don't require an `id` value, but most do. | 
-| `type`       | Yes        | A string indicating the type of widget to render (e.g. `text`, `number`, `select` etc.) See the Reference section for a complete list. |
+| `type`       | Yes        | A string indicating the type of widget to render (e.g. `text`, `number`, `select` etc.) See the Reference section for  complete list. |
 | `showWhen`  | No         | A string containing an expression, that if truthy will cause the widget to appear within the UI, else it shouldn't be shown to the user. | 
 | `attributes` | No         | An object of key/value keys which help configure the widget - the exact keys supported will depend on the widget `type`. |
 
@@ -108,15 +108,17 @@ Ahead of the more detailed Reference section, here's a quick summary of all widg
 
 FormScript V0.1 supports a set of 30 attributes from which widgets can be configured. Not all widget-types support all attributes, attributes are often optional and some widget-types don't need attributes at all. Here is a list of the more common attributes you'll encounter:
  
-| Attribute Name | Description |
-| -------------- | ----------- |
-| `default` | Blah |
-| `defaultExpression` | Blah |
-| `label` | Blah |
-| `required` | Blah |
-| `description` | Blah |
-| `help` | Blah |
-| `validations` | Blah |
+| Attribute Name | Type | Description |
+| -------------- | -----| ----------- |
+| `default` | Depends | Blah |
+| `defaultExpression` | `String` | Blah |
+| `enabled` | `boolean` | Blah |
+| `label` | `String` | Blah |
+| `required` | `boolean` | Blah |
+| `description` | `String` | Blah |
+| `help` | `String` | Blah |
+| `validations` | `Object` | Blah |
+
 ## <a name="expressions"></a>Expressions
 
 FormScript uses __expressions__ to help bring things to life. Expressions are used to:
