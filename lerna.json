@@ -1,13 +1,13 @@
 {
-  "lerna": "2.0.0",
+  "lerna": "2.9.0",
   "packages": [
     "packages/*"
   ],
-  "version": "fixed",
   "hoist": true,
   "command": {
     "init": {
       "exact": false
     }
-  }
+  },
+  "version": "0.0.1"
 }
