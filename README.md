@@ -76,9 +76,9 @@ Widget objects comprise of some common properties:
 
 | Property     | Mandatory? | Description |
 | --------     | ---------- | ----------- |
-| `id`         | No         | A string which uniquely identifies the widget amongst others found within this `formContent` array. If no `id` value is provided, then a unique string will be assigned (though it's recommended to always provide an `id` for certain types of widget. | 
+| `id`         | Depends         | A string which uniquely identifies the widget amongst others found within this `formContent` array. Note a small set of widgets don't require an `id` value, but most do. | 
 | `type`       | Yes        | A string indicating the type of widget to render (e.g. `text`, `number`, `select` etc.) See the Reference section for a complete list. |
-| `showWhen`  | No         | A string containing an expression, that if truthy will cause the widget to appear within the UI, else it isn;t shown to the user. | 
+| `showWhen`  | No         | A string containing an expression, that if truthy will cause the widget to appear within the UI, else it shouldn't be shown to the user. | 
 | `attributes` | No         | An object of key/value keys which help configure the widget - the exact keys supported will depend on the widget `type`. |
 
 ##  <a name="summary"></a>Widget Summary 
@@ -97,7 +97,8 @@ Ahead of the more detailed Reference section, here's a quick summary of all widg
 | `radio`   | Blah        |
 | `richtext`   | Blah        |
 | `textarea`   | Blah        |
-| `section`   | Blah        |
+| `set`   | Blah        |
+| `endSet`   | Blah        |
 | `select`   | Blah        |
 | `switch`   | Blah        |
 | `text`   | Blah        |
@@ -120,10 +121,10 @@ FormScript V0.1 supports a set of 30 attributes from which widgets can be config
 
 FormScript uses __expressions__ to help bring things to life. Expressions are used to:
 
-* Conditionally showing/hiding widgets depending on values as they are entered
-* Validating form content based on more complex rules
-* Affecting the  contents of enumerations, based on 
-* Defaulting dynamic values
+* Conditionally show/hide widgets depending on values as they are entered
+* Validate form content based on more complex rules
+* Affect the contents of enumerations 
+* Default dynamic values
 
 ```json
 {
