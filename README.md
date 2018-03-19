@@ -2,7 +2,7 @@
 
 ## <a name="goal"></a>Goal
 
-The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can anyone can use to describe the content of a user-facing form. We hope FormScript will be capable of defining the majority of forms out there - in an expressive, sane and accessible way.  
+The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can be used to describe the content of any user-facing form. We hope FormScript will be capable of defining the majority of forms out there - but in an expressive, sane and accessible way.  
 
 ## <a name="repo"></a>About this repo
 
@@ -68,7 +68,7 @@ As shown in the example above, a form definition in FormScript comprises mainly 
 * To avoid muddying-things with common frontend-terms like 'component', FormScript refers to each object in the `formContent` array as a __widget__.
 * Think of a widget as an on-screen component that a user can be shown (not necessarily interact with - for example, `heading` and `stickyNote` widgets are non-interactive).
 * The order `Widget` objects appear within `formContent` is important... representing the logical order you want your users to encounter them.
-* FormSCript supplies a fixed set of configurable widgets. Need another widget-type entirely? Pull requests welcome!
+* FormScript supplies a fixed set of configurable widgets. Need another widget-type entirely? Pull requests are very welcome!
 * Note that widgets can be arranged into "sets" to help define a structure (perhaps splitting a large form into sections, or wizard-like pages). Sets can also be used to apply bulk behaviour to widgets... perhaps hiding great swathes of a form, depending on the responses given earlier by the user.
 
 ### <a name="widgets"></a>About widgets
