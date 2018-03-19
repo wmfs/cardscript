@@ -10,7 +10,7 @@ FormScript isn't tied to any language/implementation: it's a JSON-based language
 There's no CSS or React/Angular/Vue form-renderers here!
 
 * Instead, within `/packages` you can find various tools (such as a validator and template builder) to help work with FormScript.
-* Please note, this is a [Lerna](https://lernajs.io/)-powered monorepo... please consult each package's README.md within `/packages` for more specific information. 
+* Please note, this is a [Lerna](https://lernajs.io/)-powered monorepo... please consult each package's `README.md` within `/packages` for more specific information. 
 
 ## <a name="usage"></a>Typical usage
 
