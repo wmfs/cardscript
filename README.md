@@ -68,7 +68,8 @@ As shown in the example above, a form definition in FormScript comprises mainly 
 * To avoid muddying-things with common frontend-terms like 'component', FormScript refers to each object in the `formContent` array as a __widget__.
 * Think of a widget as an on-screen component that a user can be shown (not necessarily interact with - for example, `heading` and `stickyNote` widgets are non-interactive).
 * The order `Widget` objects appear within `formContent` is important... representing the logical order you want your users to encounter them.
-* Note that widgets can be arranged into "sets" to help define a structure (perhaps splitting a large form into sections, or wizard-like pages).
+* FormSCript supplies a fixed set of configurable widgets. Need another widget-type entirely? Pull requests welcome!
+* Note that widgets can be arranged into "sets" to help define a structure (perhaps splitting a large form into sections, or wizard-like pages). Sets can also be used to apply bulk behaviour to widgets... perhaps hiding great swathes of a form, depending on the responses given earlier by the user.
 
 ### <a name="widgets"></a>About widgets
 
@@ -76,10 +77,10 @@ Widget objects comprise of some common properties:
 
 | Property     | Mandatory? | Description |
 | --------     | ---------- | ----------- |
-| `id`         | Depends         | A string which uniquely identifies the widget amongst others found within this `formContent` array. Note a small set of widgets don't require an `id` value, but most do. | 
+| `id`         | Depends         | A string which uniquely identifies the widget amongst others found within this `formContent` array. Note a small set of widgets don't require an `id` value, but most will. | 
 | `type`       | Yes        | A string indicating the type of widget to render (e.g. `text`, `number`, `select` etc.) See the Reference section for  complete list. |
 | `showWhen`  | No         | A string containing an expression, that if truthy will cause the widget to appear within the UI, else it shouldn't be shown to the user. | 
-| `attributes` | No         | An object of key/value keys which help configure the widget - the exact keys supported will depend on the widget `type`. |
+| `attributes` | No         | An object of key/value keys which help configure the widget - the exact keys supported will depend on the widget's `type`. |
 
 ##  <a name="summary"></a>Widget Summary 
 
