@@ -7,7 +7,7 @@ The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can an
 ## <a name="repo"></a>About this repo
 
 FormScript isn't tied to any language/implementation: it's a JSON-based language (with YAML support) for _describing_ form content.
-There's no CSS or React/Angular/Vue form-renderers here.
+There's no CSS or React/Angular/Vue form-renderers here!
 
 * Instead, within `/packages` you can find various tools (such as a validato) to help work with FormScript.
 * Please note, this is a [Lerna](https://lernajs.io/)-powered monorepo... please consult each package's README.md within `/packages` for more specific information. 
