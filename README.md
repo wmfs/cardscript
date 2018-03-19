@@ -2,7 +2,7 @@
 
 ## <a name="goal"></a>Goal
 
-The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can anyone can use to describe the content of a user-facing form. We hope FormScript will be capable of defining the majority of forms out there - in a sane and accessible way.  
+The goal of  __FormScript__ is to provide a simple-to-use vocabulary that can anyone can use to describe the content of a user-facing form. We hope FormScript will be capable of defining the majority of forms out there - in an expressive, sane and accessible way.  
 
 ## <a name="repo"></a>About this repo
 
