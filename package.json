@@ -1,0 +1,22 @@
+{
+  "name": "formscript",
+  "description": "Experimental specification to define complex forms in a straightforward way",
+  "version": "0.0.1",
+  "author": "Tim Needham",
+  "devDependencies": {
+    "lerna": "^2.6.0"
+  },
+  "scripts": {
+    "bootstrap": "./node_modules/.bin/lerna bootstrap",
+    "test": "./node_modules/.bin/lerna run test --concurrency 1  --loglevel debug"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/formscript"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/formscript/issues"
+  },
+  "dependencies": {}
+}

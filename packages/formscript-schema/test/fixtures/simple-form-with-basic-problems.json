@@ -1,0 +1,60 @@
+{
+  "formContent": [
+    {
+      "type": "header",
+      "attributes": {
+        "heading": 1,
+        "description": "Let's get to know each other a bit better...",
+        "backgroundImage": "happyPeople.jpg",
+        "backgroundImageAltText": "Beautiful people smiling around a laptop"
+      }
+    },
+    {
+      "type": "text",
+      "attributes": {
+        "label": "First name",
+        "placeholder": "e.g. Lucy",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 100,
+        "help": "Enter your first name here"
+      }
+    },
+    {
+      "id": "secondName",
+      "type": "silly",
+      "attributes": {
+        "label": "Second name",
+        "placeholder": "e.g. Smith",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    {
+      "type": "number",
+      "attributes": {
+        "label": "Age",
+        "default": "NaN!"
+      }
+    },
+    {
+      "id": "numberOfPets",
+      "type": "number",
+      "attributes": {
+        "label": "Number of pets",
+        "default": "NaN!"
+      }
+    },
+    {
+      "type": "menuBar",
+      "attributes": {
+        "sticky": "true",
+        "placement": "top",
+        "saveButton": true,
+        "cancelButton": false,
+        "progressBar": false
+      }
+    }
+  ]
+}

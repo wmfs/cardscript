@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "FormScript Schema",
+  "description": "A simple way to define feature-rich web forms",
+  "version": "0.0.1",
+
+  "definitions": {
+
+    "id": {"type": "string"},
+
+    "attributes": {
+      "heading": {"type": "string"},
+      "defaultNumber": {"type": "number"}
+    },
+
+    "widgets": {
+      "header": {
+        "properties": {
+          "type": {"enum": ["header"]},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "description": {"type": "string"},
+              "backgroundImage": {"type": "string"},
+              "backgroundImageAltText": {"type": "string"}
+            },
+            "required": ["heading"]
+          }
+        },
+        "required": ["type"]
+      },
+
+      "text": {
+        "properties": {
+          "type": {"enum": ["text"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "number": {
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["number"]},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "default": {"$ref": "#/definitions/attributes/defaultNumber"}
+            }
+          }
+        },
+        "required": ["id", "type"]
+      },
+
+      "menuBar": {
+        "properties": {
+          "type": {"enum": ["menuBar"]}
+        },
+        "required": ["type"]
+      }
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "formContent": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {"$ref": "#/definitions/widgets/text"},
+          {"$ref": "#/definitions/widgets/header"},
+          {"$ref": "#/definitions/widgets/menuBar"}
+        ]
+      }
+    }
+  },
+  "required": ["formContent"]
+}

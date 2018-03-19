@@ -1,0 +1,35 @@
+{
+  "formContent": [
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "Register!",
+        "description": "Let's get to know each other a bit better...",
+        "backgroundImage": "happyPeople.jpg",
+        "backgroundImageAltText": "Beautiful people smiling around a laptop"
+      }
+    },
+    {
+      "id": "name",
+      "type": "text",
+      "attributes": {
+        "label": "Name",
+        "placeholder": "e.g. Lucy Smith",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 100,
+        "help": "Enter your full name here"
+      }
+    },
+    {
+      "type": "menuBar",
+      "attributes": {
+        "sticky": "true",
+        "placement": "top",
+        "saveButton": true,
+        "cancelButton": false,
+        "progressBar": false
+      }
+    }
+  ]
+}
