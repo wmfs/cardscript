@@ -1,6 +1,6 @@
 {
-  "name": "formscript-schema",
-  "description": "Tools to help work with the FormScript specification",
+  "name": "formscript-doc-generator",
+  "description": "Produces some markdown from the FormScript JSON Schema",
   "version": "0.0.2",
   "author": "Tim Needham",
   "main": "./lib/index.js",

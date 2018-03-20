@@ -7,16 +7,24 @@
 
   "definitions": {
 
-    "id": {"type": "string"},
+    "id": {"type": "string", "title": "A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model."},
+    "type": {"type": "string", "title": "Denotes the type of widget being defined (e.g. `text`, `number` etc.)"},
+
 
     "attributes": {
-      "heading": {"type": "string"},
-      "defaultNumber": {"type": "number"}
+      "heading": {"type": "string", "title": "Some big, strong, punchy text... a form title or similar."},
+      "defaultNumber": {"type": "number", "title": "A numeric value to default a widget to if not supplied by other mechanisms."},
+      "enabled": {"type": "boolean", "title": "Indicates if the user can use the widget to alter the underlying value - default to `true`."},
+      "label": {"type": "string", "title": "A short piece of text to help identify what content is required by the user."},
+      "required": {"type": "required", "title": "Indicates if a value needs to be supplied by the user, or if it's optional."},
+      "description": {"type": "string", "title": "Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user."},
+      "help": {"type": "string", "title": "More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user."}
     },
 
     "widgets": {
 
       "address": {
+        "title": "Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.",
         "properties": {
           "type": {"enum": ["address"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -25,6 +33,7 @@
       },
 
       "checkboxList": {
+        "title": "Offer a related set of checkboxes with accompanying labels for the user to switch on and off.",
         "properties": {
           "type": {"enum": ["checkboxList"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -33,6 +42,7 @@
       },
 
       "date": {
+        "title": "Allows the user to provide a specific date - without a time portion.",
         "properties": {
           "type": {"enum": ["date"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -40,7 +50,26 @@
         "required": ["id", "type"]
       },
 
+      "dateTime": {
+        "title": "Collects a specific date and time from the user.",
+        "properties": {
+          "type": {"enum": ["dateTime"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "time": {
+        "title": "Allows the user to provide a specific time (without being tied to a particular date)",
+        "properties": {
+          "type": {"enum": ["time"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
       "header": {
+        "title": "Displays a header for a form (with an optional background image and some text akin to a '[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)' component).",
         "properties": {
           "type": {"enum": ["header"]},
           "attributes": {
@@ -58,6 +87,7 @@
       },
 
       "questionnaire": {
+        "title": "Offers the user a question with two or more possible responses on an appropriate scale.",
         "properties": {
           "type": {"enum": ["questionnaire"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -65,7 +95,18 @@
         "required": ["id", "type"]
       },
 
+      "subForm": {
+        "title": "Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.)",
+        "properties": {
+          "type": {"enum": ["subForm"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+
       "radio": {
+        "title": "Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.",
         "properties": {
           "type": {"enum": ["radio"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -74,6 +115,7 @@
       },
 
       "richtext": {
+        "title": "Offers the user a text editor with functionality to format text.",
         "properties": {
           "type": {"enum": ["richtext"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -81,7 +123,17 @@
         "required": ["id", "type"]
       },
 
+      "image": {
+        "title": "Embeds a non-interactive image within the form.",
+        "properties": {
+          "type": {"enum": ["image"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
       "textarea": {
+        "title": "Collects simple multi-line text input from the user.",
         "properties": {
           "type": {"enum": ["textarea"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -89,7 +141,35 @@
         "required": ["id", "type"]
       },
 
+      "stickyNote": {
+        "title": "A panel for putting helpful text or other informative text",
+        "properties": {
+          "type": {"enum": ["stickyNote"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "map": {
+        "title": "Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)",
+        "properties": {
+          "type": {"enum": ["map"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
+      "fileUpload": {
+        "title": "Allows the user to upload a file.",
+        "properties": {
+          "type": {"enum": ["fileUpload"]},
+          "id": {"type": {"$ref": "#/definitions/id"} }
+        },
+        "required": ["id", "type"]
+      },
+
       "set": {
+        "title": "Marks the start of a set of related widgets - see the [Sets](#sets) section for more information.",
         "properties": {
           "type": {"enum": ["set"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -98,6 +178,7 @@
       },
 
       "endSet": {
+        "title": "Marks the end of a set of related widgets - see the [Sets](#sets) section for more information.",
         "properties": {
           "type": {"enum": ["endSet"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -106,6 +187,7 @@
       },
 
       "select": {
+        "title": "Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.",
         "properties": {
           "type": {"enum": ["select"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -114,6 +196,7 @@
       },
 
       "switch": {
+        "title": "Presents a on/off style switch to the user.",
         "properties": {
           "type": {"enum": ["switch"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -122,6 +205,7 @@
       },
 
       "text": {
+        "title": "A bread-and-butter box for collecting textual information from the user.",
         "properties": {
           "type": {"enum": ["text"]},
           "id": {"type": {"$ref": "#/definitions/id"} }
@@ -130,6 +214,7 @@
       },
 
       "number": {
+        "title": "Like a `text` widget, but specifically for collecting numeric content.",
         "properties": {
           "id": {"type": "string"},
           "type": {"enum": ["number"]},
@@ -144,6 +229,7 @@
       },
 
       "menuBar": {
+        "title": "An area of the screen (typically a horizontal bar) onto which buttons for saving/dismissing the form can be placed.",
         "properties": {
           "type": {"enum": ["menuBar"]}
         },
@@ -162,6 +248,8 @@
           {"$ref": "#/definitions/widgets/address"},
           {"$ref": "#/definitions/widgets/checkboxList"},
           {"$ref": "#/definitions/widgets/date"},
+          {"$ref": "#/definitions/widgets/dateTime"},
+          {"$ref": "#/definitions/widgets/time"},
           {"$ref": "#/definitions/widgets/header"},
           {"$ref": "#/definitions/widgets/questionnaire"},
           {"$ref": "#/definitions/widgets/radio"},
@@ -173,10 +261,17 @@
           {"$ref": "#/definitions/widgets/switch"},
           {"$ref": "#/definitions/widgets/text"},
           {"$ref": "#/definitions/widgets/number"},
-          {"$ref": "#/definitions/widgets/menuBar"}
+          {"$ref": "#/definitions/widgets/menuBar"},
+          {"$ref": "#/definitions/widgets/map"},
+          {"$ref": "#/definitions/widgets/fileUpload"},
+          {"$ref": "#/definitions/widgets/subForm"},
+          {"$ref": "#/definitions/widgets/stickyNote"},
+          {"$ref": "#/definitions/widgets/image"}
         ]
       }
     }
   },
   "required": ["formContent"]
 }
+
+
