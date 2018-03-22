@@ -6,6 +6,9 @@ node_js:
 sudo: false
 dist: trusty
 
-install: npm install
+install:
+  - npm install
+  - lerna bootstrap
 
-script: npm test
+script:
+  - npm test
