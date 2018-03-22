@@ -1,5 +1,7 @@
 # formscript-schema
 
+[![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=packages%2Fformscript-schema%2Fpackage.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=packages%2Fformscript-schema%2Fpackage.json)
+
 > Tools to help work with the FormScript specification
 
 ## <a name="install"></a>Install
