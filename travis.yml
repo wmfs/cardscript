@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+  - node
+
+sudo: false
+dist: trusty
+
+install: npm install
+
+script: npm test
