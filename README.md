@@ -1,4 +1,6 @@
 # FormScript Specification Version `0.0.2`
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_shield)
+
 
 ## <a name="goal"></a>Goal
 
@@ -261,3 +263,6 @@ Form content in FormScript is pretty-much "flat"... things aren't split into dif
 
 ## <a name="license"></a>License
 [MIT](https://github.com/wmfs/form-script/blob/master/LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_large)
