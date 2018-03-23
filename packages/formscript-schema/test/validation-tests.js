@@ -5,8 +5,9 @@ const validator = require('./../lib/').validateForm
 const chai = require('chai')
 const expect = chai.expect
 
-const simpleForm = require('./fixtures/simple-form')
-const simpleFormWithUnknownType = require('./fixtures/simple-form-with-basic-problems')
+const exampleLoader = require('formscript-examples')
+const simpleForm = exampleLoader('simple-form')
+const simpleFormWithUnknownType = exampleLoader('simple-form-with-basic-problems')
 
 describe('Run some schema validation tests', function () {
   it('should prove a simple form validates correctly using default (simple) formatter', function () {
