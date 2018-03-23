@@ -180,10 +180,9 @@
       "endSet": {
         "title": "Marks the end of a set of related widgets - see the [Sets](#sets) section for more information.",
         "properties": {
-          "type": {"enum": ["endSet"]},
-          "id": {"type": {"$ref": "#/definitions/id"} }
+          "type": {"enum": ["endSet"]}
         },
-        "required": ["id", "type"]
+        "required": ["type"]
       },
 
       "select": {
@@ -218,6 +217,21 @@
         "properties": {
           "id": {"type": "string"},
           "type": {"enum": ["number"]},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "default": {"$ref": "#/definitions/attributes/defaultNumber"}
+            }
+          }
+        },
+        "required": ["id", "type"]
+      },
+
+      "slider": {
+        "title": "For capturing a number along a specified range",
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["slider"]},
           "attributes": {
             "type": "object",
             "properties": {

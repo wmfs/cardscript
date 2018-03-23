@@ -1,7 +1,8 @@
 const processSchemaErrors = require('./../../utils/process-schema-errors')
 module.exports = function simpleFormatter (validationResult) {
+  const processedSchemaErrors = processSchemaErrors(validationResult.errors)
   return {
-    formContentValid: validationResult.errors.length === 0,
-    errors: processSchemaErrors(validationResult.errors)
+    formContentValid: processedSchemaErrors.length === 0,
+    errors: processedSchemaErrors
   }
 }

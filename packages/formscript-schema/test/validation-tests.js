@@ -7,6 +7,7 @@ const expect = chai.expect
 
 const exampleLoader = require('formscript-examples')
 const simpleForm = exampleLoader('simple-form')
+const patientCareForm = exampleLoader('patient-care')
 const simpleFormWithUnknownType = exampleLoader('simple-form-with-basic-problems')
 
 describe('Run some schema validation tests', function () {
@@ -18,6 +19,11 @@ describe('Run some schema validation tests', function () {
   it('should prove a simple form validates correctly using raw jsonschema output', function () {
     const result = validator(simpleForm, {format: 'jsonSchema'})
     expect(result.errors).to.have.length(0)
+  })
+
+  it('should prove the more complex Patient Care form validates', function () {
+    const result = validator(patientCareForm)
+    expect(result.formContentValid).to.equal(true)
   })
 
   it('should fail validation with some basic problems', function () {
