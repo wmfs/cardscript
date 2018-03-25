@@ -4,7 +4,7 @@
       "type": "header",
       "attributes": {
         "heading": 1,
-        "description": "Let's get to know each other a bit better...",
+        "desc": "Let's get to know each other a bit better...",
         "backgroundImage": "happyPeople.jpg",
         "backgroundImageAltText": "Beautiful people smiling around a laptop"
       }
@@ -12,11 +12,11 @@
     {
       "type": "text",
       "attributes": {
-        "label": "First name",
+        "heading": "First name",
         "placeholder": "e.g. Lucy",
-        "required": true,
-        "minLength": 1,
-        "maxLength": 100,
+        "mandatory": true,
+        "minCharacters": 1,
+        "maxCharacters": 100,
         "help": "Enter your first name here"
       }
     },
@@ -26,9 +26,9 @@
       "attributes": {
         "label": "Second name",
         "placeholder": "e.g. Smith",
-        "required": true,
-        "minLength": 1,
-        "maxLength": 100
+        "mandatory": true,
+        "minCharacters": 1,
+        "maxCharacters": 100
       }
     },
     {
@@ -44,16 +44,6 @@
       "attributes": {
         "label": "Number of pets",
         "default": "NaN!"
-      }
-    },
-    {
-      "type": "menuBar",
-      "attributes": {
-        "sticky": "true",
-        "placement": "top",
-        "saveButton": true,
-        "cancelButton": false,
-        "progressBar": false
       }
     }
   ]

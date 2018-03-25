@@ -1,7 +1,7 @@
 {
   "name": "formscript",
   "description": "Experimental specification to define complex forms in a straightforward way",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Tim Needham",
   "devDependencies": {
     "lerna": "^2.9.0"

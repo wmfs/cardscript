@@ -10,37 +10,27 @@ describe('Run some schema validation tests', function () {
     const simpleFormExample = exampleLoader('simple-form')
     expect(simpleFormExample).to.eql(
       {
-        formContent: [
+        'formContent': [
           {
-            attributes: {
-              backgroundImage: 'happyPeople.jpg',
-              backgroundImageAltText: 'Beautiful people smiling around a laptop',
-              description: "Let's get to know each other a bit better...",
-              heading: 'Register!'
-            },
-            type: 'header'
+            'type': 'header',
+            'attributes': {
+              'heading': 'Register!',
+              'desc': 'Let\'s get to know each other a bit better...',
+              'backgroundImage': 'happyPeople.jpg',
+              'backgroundImageAltText': 'Beautiful people smiling around a laptop'
+            }
           },
           {
-            attributes: {
-              help: 'Enter your full name here',
-              label: 'Name',
-              maxLength: 100,
-              minLength: 1,
-              placeholder: 'e.g. Lucy Smith',
-              required: true
-            },
-            id: 'name',
-            type: 'text'
-          },
-          {
-            attributes: {
-              cancelButton: false,
-              placement: 'top',
-              progressBar: false,
-              saveButton: true,
-              sticky: 'true'
-            },
-            type: 'menuBar'
+            'id': 'name',
+            'type': 'text',
+            'attributes': {
+              'heading': 'Name',
+              'placeholder': 'e.g. Lucy Smith',
+              'mandatory': true,
+              'minCharacters': 1,
+              'maxCharacters': 100,
+              'help': 'Enter your full name here'
+            }
           }
         ]
       }

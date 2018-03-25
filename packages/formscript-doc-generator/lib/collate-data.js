@@ -47,8 +47,6 @@ module.exports = function collateData () {
     path.resolve(__dirname, './../../../packages/formscript-schema/test/fixtures/simple-form.json')
   )
 
-  console.log()
-
   const data = {
     version: lernaJson.version,
     simpleExample: JSON.stringify(simpleExample, null, 2),

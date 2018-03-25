@@ -4,7 +4,7 @@
       "type": "header",
       "attributes": {
         "heading": "Patient Report",
-        "description": "This is an early-access version of a form to collect 'Patient Report' data. Please note both form content and this app may change considerably ahead of a wider roll-out.",
+        "desc": "This is an early-access version of a form to collect 'Patient Report' data. Please note both form content and this app may change considerably ahead of a wider roll-out.",
         "backgroundImage": "wmfs/casualty-care-background.jpg",
         "backgroundImageAltText": "Photograph of activity at a Road Traffic Collision"
       }
@@ -13,9 +13,8 @@
       "id": "incidentSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Incident details",
-        "description": "Please provide details of the incident at which casualty care was administered (we'll be automatically linking to real-time incident data soon).",
+        "desc": "Please provide details of the incident at which casualty care was administered (we'll be automatically linking to real-time incident data soon).",
         "showInTOC": true
       }
     },
@@ -24,7 +23,7 @@
       "type": "number",
       "attributes": {
         "heading": "Incident Number",
-        "required": true
+        "mandatory": true
       }
     },
     {
@@ -32,7 +31,7 @@
       "type": "select",
       "attributes": {
         "heading": "Station",
-        "required": true,
+        "mandatory": true,
         "numericValue": false,
         "titleMap": [
           {"value": "ALDRIDGE", "title": "Aldridge"},
@@ -81,7 +80,7 @@
       "type": "select",
       "attributes": {
         "heading": "Watch",
-        "required": true,
+        "mandatory": true,
         "numericValue": false,
         "titleMap": [
           {"value": "RED", "title": "Red"},
@@ -98,7 +97,7 @@
       "type": "number",
       "attributes": {
         "heading": "Roll number of patient carer",
-        "required": true
+        "mandatory": true
       }
     },
     {
@@ -108,9 +107,8 @@
       "id": "patientSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Patient details",
-        "description": "The questions in this section relate to the patient which received care.",
+        "desc": "The questions in this section relate to the patient which received care.",
         "showInTOC": true
       }
     },
@@ -119,7 +117,7 @@
       "type": "text",
       "attributes": {
         "heading": "Patient name",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -127,7 +125,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Patient gender",
-        "required": true,
+        "mandatory": true,
         "titleMap": [
           {"value": "MALE", "title": "Male"},
           {"value": "FEMALE", "title": "Female"},
@@ -140,7 +138,7 @@
       "type": "number",
       "attributes": {
         "heading": "Age of patient",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -148,7 +146,7 @@
       "type": "address",
       "attributes": {
         "heading": "Patient's address",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -156,7 +154,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Did the patient collapse?",
-        "required": true,
+        "mandatory": true,
         "default": "NO",
         "titleMap": [
           {"value": "NO", "title": "No"},
@@ -170,7 +168,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Did the patient show any signs of life on arrival?",
-        "required": true,
+        "mandatory": true,
         "default": "YES",
         "titleMap": [
           {"value": "YES", "title": "Yes"},
@@ -185,7 +183,6 @@
       "id": "airwaySection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Any airway treatments?",
         "showInTOC": true
       }
@@ -195,7 +192,7 @@
       "type": "select",
       "attributes": {
         "heading": "Gurgling noise from airway?",
-        "required": true,
+        "mandatory": true,
         "default": "NOT_APPLICABLE",
         "titleMap": [
           {"value": "NOT_APPLICABLE", "title": "No gurgling noise - not applicable"},
@@ -211,7 +208,7 @@
       "type": "select",
       "attributes": {
         "heading": "Snoring noises from airway?",
-        "required": true,
+        "mandatory": true,
         "default": "NOT_APPLICABLE",
         "titleMap": [
           {"value": "NOT_APPLICABLE", "title": "No snoring noise - not applicable"},
@@ -233,7 +230,7 @@
       "type": "radio",
       "attributes": {
         "heading": "C-Spine treatment?",
-        "required": true,
+        "mandatory": true,
         "default": "CLEAR",
         "titleMap": [
           {"value": "CLEAR", "title": "Clear"},
@@ -246,7 +243,7 @@
       "type": "select",
       "attributes": {
         "heading": "Choking?",
-        "required": true,
+        "mandatory": true,
         "default": "NOT_APPLICABLE",
         "titleMap": [
           {"value": "NOT_APPLICABLE", "title": "No choking - not applicable"},
@@ -263,7 +260,7 @@
       "type": "select",
       "attributes": {
         "heading": "Airway status",
-        "required": true,
+        "mandatory": true,
         "default": "TALKING",
         "titleMap": [
           {"value": "TALKING", "title": "Talking"},
@@ -281,7 +278,6 @@
       "id": "breathingSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Any breathing treatments?",
         "showInTOC": true
       }
@@ -291,7 +287,7 @@
       "type": "select",
       "attributes": {
         "heading": "Was the patient breathing at all times?",
-        "required": true,
+        "mandatory": true,
         "default": "YES",
         "titleMap": [
           {"value": "YES", "title": "Yes"},
@@ -307,7 +303,7 @@
       "type": "select",
       "attributes": {
         "heading": "Any chest injury found?",
-        "required": true,
+        "mandatory": true,
         "default": "NO",
         "titleMap": [
           {"value": "NO", "title": "No"},
@@ -324,7 +320,7 @@
       "showWhen": "data.chestInjury !== 'NO'",
       "attributes": {
         "heading": "What treatment was provided for the chest injury?",
-        "required": true,
+        "mandatory": true,
         "titleMap": [
           {"value": "CHEST_SEAL", "title": "Chest seal"},
           {"value": "PATIENT_POSITIONING", "title": "Patient positioning"},
@@ -339,7 +335,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Any treatment when breathing normally?",
-        "required": true,
+        "mandatory": true,
         "titleMap": [
           {"value": "NO", "title": "No"},
           {"value": "15_MIN_REBREATHER_MASK", "title": "Yes - oxygen @ 15 l/min via non-rebreather mask"},
@@ -352,7 +348,7 @@
       "type": "text",
       "attributes": {
         "heading": "Initial respiratory rate on arrival",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -360,7 +356,7 @@
       "type": "text",
       "attributes": {
         "heading": "Initial respiratory rate on handover",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -370,7 +366,6 @@
       "id": "circulationSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Circulation",
         "showInTOC": true
       }
@@ -380,7 +375,7 @@
       "type": "select",
       "attributes": {
         "heading": "Any external compressible bleeding?",
-        "required": true,
+        "mandatory": true,
         "default": "NO",
         "titleMap": [
           {"value": "NO", "title": "No"},
@@ -400,7 +395,7 @@
       "type": "select",
       "attributes": {
         "heading": "Was the patient in shock?",
-        "required": true,
+        "mandatory": true,
         "default": "NO",
         "titleMap": [
           {"value": "NO", "title": "No"},
@@ -416,7 +411,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Radial Pulse",
-        "required": true,
+        "mandatory": true,
         "default": "NOT_ASSESSED",
         "titleMap": [
           {"value": "NOT_ASSESSED", "title": "Not assessed"},
@@ -430,7 +425,7 @@
       "type": "number",
       "attributes": {
         "heading": "Pulse rate on arrival (BPM)",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -438,7 +433,7 @@
       "type": "number",
       "attributes": {
         "heading": "Pulse rate on handover (BPM)",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -446,7 +441,7 @@
       "type": "text",
       "attributes": {
         "heading": "Blood pressure (if recorded)",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -454,7 +449,7 @@
       "type": "text",
       "attributes": {
         "heading": "Temperature (if recorded)",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -462,7 +457,7 @@
       "type": "number",
       "attributes": {
         "heading": "Capillary refill time (seconds)",
-        "required": false
+        "mandatory": false
       }
     },
     {
@@ -472,7 +467,6 @@
       "id": "disabilitySection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Disability",
         "showInTOC": true
       }
@@ -526,14 +520,14 @@
       "type": "questionnaire",
       "attributes": {
         "heading": "Pain-score on arrival",
-        "description": "How did the carer assess the patient's pain when they first met?",
+        "desc": "How did the carer assess the patient's pain when they first met?",
         "default": 1,
         "numericValue": true,
         "titleMap": [
-          {"value": 0, "title": "0", "description": "No pain"},
-          {"value": 1, "title": "1", "description": "Slight pain"},
-          {"value": 2, "title": "2", "description": "Moderate pain"},
-          {"value": 3, "title": "3", "description": "Severe pain"}
+          {"value": 0, "title": "0", "desc": "No pain"},
+          {"value": 1, "title": "1", "desc": "Slight pain"},
+          {"value": 2, "title": "2", "desc": "Moderate pain"},
+          {"value": 3, "title": "3", "desc": "Severe pain"}
         ]
       }
     },
@@ -542,14 +536,14 @@
       "type": "questionnaire",
       "attributes": {
         "heading": "Pain-score at handover",
-        "description": "How did the carer assess the patient's pain at handover?",
+        "desc": "How did the carer assess the patient's pain at handover?",
         "default": 1,
         "numericValue": true,
         "titleMap": [
-          {"value": 0, "title": "0", "description": "No pain"},
-          {"value": 1, "title": "1", "description": "Slight pain"},
-          {"value": 2, "title": "2", "description": "Moderate pain"},
-          {"value": 3, "title": "3", "description": "Severe pain"}
+          {"value": 0, "title": "0", "desc": "No pain"},
+          {"value": 1, "title": "1", "desc": "Slight pain"},
+          {"value": 2, "title": "2", "desc": "Moderate pain"},
+          {"value": 3, "title": "3", "desc": "Severe pain"}
         ]
       }
     },
@@ -560,7 +554,6 @@
       "id": "exposureSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Exposure",
         "showInTOC": true
       }
@@ -570,7 +563,7 @@
       "type": "select",
       "attributes": {
         "heading": "Exposure",
-        "description": "Was the patient treated for exposure?",
+        "desc": "Was the patient treated for exposure?",
         "default": "NOT_NECESSARY",
         "titleMap": [
           {"value": "NOT_NECESSARY", "title": "No treatment necessary"},
@@ -592,7 +585,6 @@
       "id": "burnsSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Burns",
         "showInTOC": true
       }
@@ -687,7 +679,6 @@
       "id": "cprSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "CPR",
         "showInTOC": true
       }
@@ -744,7 +735,6 @@
       "id": "medicationSection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Medication",
         "showInTOC": true
       }
@@ -770,7 +760,6 @@
       "id": "summarySection",
       "type": "set",
       "attributes": {
-        "setType": "section",
         "heading": "Summary",
         "showInTOC": true
       }
