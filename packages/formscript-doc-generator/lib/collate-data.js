@@ -44,7 +44,7 @@ module.exports = function collateData () {
   )
 
   const simpleExample = jsonfile.readFileSync(
-    path.resolve(__dirname, './../../../packages/formscript-schema/test/fixtures/simple-form.json')
+    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-form.json')
   )
 
   const data = {
