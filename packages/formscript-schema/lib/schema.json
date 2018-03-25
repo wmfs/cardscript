@@ -471,7 +471,7 @@
 
   "type": "object",
   "properties": {
-    "formContent": {
+    "widgets": {
       "type": "array",
       "items": {
         "type": "object",
@@ -501,7 +501,7 @@
       }
     }
   },
-  "required": ["formContent"],
+  "required": ["widgets"],
   "additionalProperties": false
 }
 

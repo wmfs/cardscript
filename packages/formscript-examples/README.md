@@ -14,7 +14,7 @@ const formscriptSchema = require('formscript-schema')
 
 const result = formscriptSchema.validateForm(
 {
-  formContent: [
+  widgets: [
     {
       type: 'header',
       attributes: {
@@ -49,7 +49,7 @@ const result = formscriptSchema.validateForm(
   ]
 })
 
-if (result.formContentValid) {
+if (result.widgetsValid) {
   // All is well!!
 } else {
   // Do something with result.errors array.

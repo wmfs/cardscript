@@ -13,7 +13,7 @@ module.exports = function processSchemaErrors (rawErrors) {
     rawError => {
       let replacementError = _.cloneDeep(rawError)
 
-      // Extract formContent array index
+      // Extract widgets array index
       let idx = extractWidgetIndexFromSchemaError(rawError)
       if (_.isNumber(idx)) {
         replacementError.widgetIndex = idx

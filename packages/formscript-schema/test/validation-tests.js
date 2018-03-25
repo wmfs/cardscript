@@ -13,7 +13,7 @@ const simpleFormWithUnknownType = exampleLoader('simple-form-with-basic-problems
 describe('Run some schema validation tests', function () {
   it('should prove a simple form validates correctly using default (simple) formatter', function () {
     const result = validator(simpleForm)
-    expect(result.formContentValid).to.equal(true)
+    expect(result.widgetsValid).to.equal(true)
   })
 
   it('should prove a simple form validates correctly using raw jsonschema output', function () {
@@ -23,12 +23,12 @@ describe('Run some schema validation tests', function () {
 
   it('should prove the more complex Patient Care form validates', function () {
     const result = validator(patientCareForm)
-    expect(result.formContentValid).to.equal(true)
+    expect(result.widgetsValid).to.equal(true)
   })
 
   it('should fail validation with some basic problems', function () {
     const result = validator(simpleFormWithUnknownType)
-    expect(result.formContentValid).to.equal(false)
+    expect(result.widgetsValid).to.equal(false)
 
     expect(result.errors).to.have.length(6)
     expect(result.errors[0].widgetIndex).to.eql(0)
