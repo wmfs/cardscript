@@ -29,6 +29,7 @@ describe('Run some schema validation tests', function () {
   it('should fail validation with some basic problems', function () {
     const result = validator(simpleFormWithUnknownType)
     expect(result.formContentValid).to.equal(false)
+
     expect(result.errors).to.have.length(6)
     expect(result.errors[0].widgetIndex).to.eql(0)
     expect(result.errors[0].property).to.eql('The "header" widget defined at index 0')
