@@ -276,7 +276,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ### <a name="list"></a>Widget List
 
+
 <hr>
+
 ## <a name="list-address"></a>`address`
 
 > Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.
@@ -302,7 +304,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-apiLookup"></a>`apiLookup`
 
 > Allows the user to select a specific value from an API endpoint
@@ -329,7 +333,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-checkboxList"></a>`checkboxList`
 
 > Offer a related set of checkboxes with accompanying labels for the user to switch on and off.
@@ -371,7 +377,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-currency"></a>`currency`
 
 > Just like a `number` widget, but for specifically collecting a monetary value.
@@ -389,7 +397,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-date"></a>`date`
 
 > Allows the user to provide a specific date - without a time portion.
@@ -408,7 +418,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-dateTime"></a>`dateTime`
 
 > Collects a specific date and time from the user.
@@ -428,7 +440,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-endSet"></a>`endSet`
 
 > Marks the end of a set of related widgets - see the [Sets](#set) section for more information.
@@ -452,7 +466,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-endSubForm"></a>`endSubForm`
 
 > Marks the end of a sub-form - see the [Sets](#set) section for more information.
@@ -480,7 +496,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-fileUpload"></a>`fileUpload`
 
 > Allows the user to upload a file.
@@ -505,7 +523,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-header"></a>`header`
 
 > Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component).
@@ -523,7 +543,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-image"></a>`image`
 
 > Embeds a non-interactive image within the form.
@@ -540,7 +562,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-map"></a>`map`
 
 > Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)
@@ -572,7 +596,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-number"></a>`number`
 
 > Like a `text` widget, but specifically for collecting numeric content.
@@ -590,7 +616,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-questionnaire"></a>`questionnaire`
 
 > Offers the user a question with two or more possible responses on an appropriate scale.
@@ -632,7 +660,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-radio"></a>`radio`
 
 > Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.
@@ -663,7 +693,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-richtext"></a>`richtext`
 
 > Offers the user a text editor with functionality to format text.
@@ -681,7 +713,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-select"></a>`select`
 
 > Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.
@@ -726,7 +760,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-set"></a>`set`
 
 > Marks the start of a set of related widgets - see the [Sets](#set) section for more information.
@@ -750,7 +786,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-signature"></a>`signature`
 
 > Allow the collection of a handwritten signature
@@ -769,7 +807,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-slider"></a>`slider`
 
 > For capturing a number along a specified range
@@ -790,7 +830,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-stickyNote"></a>`stickyNote`
 
 > A panel for putting helpful text or other informative text
@@ -808,7 +850,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-subForm"></a>`subForm`
 
 > Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.)
@@ -836,7 +880,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-switch"></a>`switch`
 
 > Presents a on/off style switch to the user.
@@ -853,7 +899,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-text"></a>`text`
 
 > A bread-and-butter box for collecting textual information from the user.
@@ -873,7 +921,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-textarea"></a>`textarea`
 
 > Collects simple multi-line text input from the user.
@@ -891,7 +941,9 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+
 <hr>
+
 ## <a name="list-time"></a>`time`
 
 > Allows the user to provide a specific time (without being tied to a particular date)
