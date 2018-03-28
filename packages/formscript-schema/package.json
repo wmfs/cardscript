@@ -1,7 +1,7 @@
 {
   "name": "formscript-schema",
   "description": "Tools to help work with the FormScript specification",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {
@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "chai": "4.1.0",
-    "formscript-examples": "^0.0.3",
+    "formscript-examples": "^0.0.4",
     "mocha": "5.0.5",
     "standard": "11.0.0"
   },
