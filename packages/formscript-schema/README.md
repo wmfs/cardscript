@@ -66,4 +66,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[MIT](https://github.com/wmfs/formscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/formscript/blob/master/LICENSE)

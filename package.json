@@ -10,7 +10,7 @@
     "bootstrap": "./node_modules/.bin/lerna bootstrap",
     "test": "./node_modules/.bin/lerna run test --concurrency 1  --loglevel debug"
   },
-  "license": "MIT",
+  "license": "GPLv3",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmfs/formscript"

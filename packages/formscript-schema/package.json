@@ -19,7 +19,7 @@
     "lint": "standard",
     "test": "standard && mocha"
   },
-  "license": "MIT",
+  "license": "GPLv3",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmfs/formscript"
