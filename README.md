@@ -1,26 +1,11 @@
 # Formscript
-### Version `0.0.2`
+### Version `0.0.3`
 
 [![Build Status](https://travis-ci.org/wmfs/formscript.svg?branch=master)](https://travis-ci.org/wmfs/formscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/formscript/blob/master/CONTRIBUTING.md)
 
 __This document defines a [JSON](https://tools.ietf.org/html/rfc7159)-based language used to describe form-content declaratively.
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
-
-> Copyright &copy; 2018 West Midlands Fire Service.
->
-> This program is free software: you can redistribute it and/or modify
-> it under the terms of the GNU General Public License as published by
-> the Free Software Foundation, either version 3 of the License, or
-> (at your option) any later version.
->
-> This program is distributed in the hope that it will be useful,
-> but WITHOUT ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> GNU General Public License for more details.
->
-> You should have received a copy of the GNU General Public License
-> along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -115,7 +100,7 @@ Forms are constructed from an ordered list of "__widgets__".
 * The order that `Widget` objects appear within a form definition is important - representing the order users will encounter them.
 * The Formscript specification offers a fixed set of 26 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Formscript/blob/master/CONTRIBUTING.md)
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 26 widgets supported in Formscript `0.0.2`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 26 widgets supported in Formscript `0.0.3`:__
 
 | Widget Type      | Description |
 | -----------      | ----------- |
@@ -257,7 +242,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Formscript `0.0.2` supports a set of 15 common attributes from which widgets can be configured.
+Formscript `0.0.3` supports a set of 15 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
  
 | Attribute Name | Type | Description |
