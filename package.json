@@ -1,7 +1,7 @@
 {
   "name": "formscript",
   "description": "A JSON-based language used to describe form-content declaratively.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Tim Needham",
   "devDependencies": {
     "lerna": "^2.9.0"
