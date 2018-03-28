@@ -1,7 +1,7 @@
 {
   "name": "formscript-examples",
   "description": "Example Formscript files, to help with testing and documentation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {
