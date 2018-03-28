@@ -1,0 +1,9 @@
+{
+  "id": "openingTime",
+  "type": "time",
+  "attributes": {
+    "mandatory": true,
+    "heading": "Opening Time",
+    "desc": "What time does the business usually open?"
+  }
+}

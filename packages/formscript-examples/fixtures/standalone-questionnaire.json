@@ -1,0 +1,17 @@
+{
+  "id": "painArrival",
+  "type": "questionnaire",
+  "attributes": {
+    "mandatory": true,
+    "heading": "Pain-score on arrival",
+    "desc": "How did the carer assess the patient's pain when they first met?",
+    "default": 1,
+    "numericValue": true,
+    "titleMap": [
+      {"value": 0, "title": "0", "desc": "No pain"},
+      {"value": 1, "title": "1", "desc": "Slight pain"},
+      {"value": 2, "title": "2", "desc": "Moderate pain"},
+      {"value": 3, "title": "3", "desc": "Severe pain"}
+    ]
+  }
+}

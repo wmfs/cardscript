@@ -1,0 +1,18 @@
+{
+  "id": "",
+  "type": "apiLookup",
+  "attributes": {
+    "apiName": "fleet",
+    "heading": "Fire Appliance",
+    "desc": "Please select the Fire Appliance involved with this event",
+    "mandatory": true,
+    "results": {
+      "limit": 20,
+      "pagination": true
+    },
+    "params": {
+      "showCurrentOnly": true,
+      "showOperationalOnly": true
+    }
+  }
+}

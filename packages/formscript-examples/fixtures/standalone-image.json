@@ -1,0 +1,8 @@
+{
+  "id": "numberOfFloors",
+  "type": "image",
+  "attributes": {
+    "image": "wmfs/number-of-floors-diagram.png",
+    "altText": "Indicates ground-floor is referred to as '0' and one above it is referred to as '1': but the total number of floors is 2."
+  }
+}

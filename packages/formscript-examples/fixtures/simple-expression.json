@@ -1,0 +1,21 @@
+{
+  "widgets": [
+    {
+      "id": "userWantsToGiveFeedback",
+      "type": "switch",
+      "attributes": {
+        "default": false,
+        "heading": "Do you want to leave feedback?"
+      }
+    },
+    {
+      "id": "feedback",
+      "showWhen": "data.userWantsToGiveFeedback",
+      "type": "textarea",
+      "attributes": {
+        "heading": "Feedback",
+        "desc": "Please tell us how you feel!"
+      }
+    }
+  ]
+}

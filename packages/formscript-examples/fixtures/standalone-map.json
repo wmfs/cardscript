@@ -1,0 +1,23 @@
+{
+  "id": "incidentCoordinates",
+  "type": "map",
+  "attributes": {
+    "heading": "Point of ignition",
+    "mandatory": true,
+    "desc": "Please indicate the exact position of where the fire started.",
+    "enableLocationAssist": true,
+    "drawingMode": "singlePoint",
+    "drawingConfig": {
+      "autoCentre": true,
+      "iconImage": "wmfs/flame"
+    },
+    "relatedLayers": [
+      {
+        "name": "gaz",
+        "heading": "Gazetteer",
+        "desc": "Buildings and similar",
+        "visibleByDefault": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "info",
+  "type": "stickyNote",
+  "attributes": {
+    "style": "informative",
+    "heading": "Remember!",
+    "desc": "Floor numbering starts with 0 (ground floor)."
+  }
+}

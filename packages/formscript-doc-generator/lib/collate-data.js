@@ -1,10 +1,26 @@
 const _ = require('lodash')
 const jsonfile = require('jsonfile')
 const path = require('path')
+const exampleLoader = require('formscript-examples')
 
 module.exports = function collateData () {
   const schema = jsonfile.readFileSync(
     path.resolve(__dirname, './../../../packages/formscript-schema/lib/schema.json')
+  )
+
+  const topLevelProperties = []
+  _.forEach(
+    schema.properties,
+    function (value, name) {
+      topLevelProperties.push(
+        {
+          name: name,
+          type: value.type,
+          required: schema.required.indexOf(name) !== -1,
+          desc: value.title
+        }
+      )
+    }
   )
 
   const propertyInfo = []
@@ -25,6 +41,7 @@ module.exports = function collateData () {
     function (rawWidgetDefinition, widgetType) {
       const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
       widgetDefinition.type = widgetType
+      widgetDefinition.example = JSON.stringify(exampleLoader(`standalone-${_.kebabCase(widgetType)}`), null, 2)
       widgetInfo.push(widgetDefinition)
     }
   )
@@ -47,12 +64,19 @@ module.exports = function collateData () {
     path.resolve(__dirname, './../../formscript-examples/fixtures/simple-form.json')
   )
 
+  const expressionExample = jsonfile.readFileSync(
+    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-expression.json')
+  )
+
   const data = {
+    year: new Date().getFullYear(),
     version: lernaJson.version,
     simpleExample: JSON.stringify(simpleExample, null, 2),
+    expressionExample: JSON.stringify(expressionExample, null, 2),
     widgets: _.sortBy(widgetInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
-    properties: propertyInfo
+    properties: propertyInfo,
+    topLevelProperties: topLevelProperties
   }
   return data
 }

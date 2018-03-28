@@ -1,0 +1,9 @@
+{
+  "id": "clinicalNotes",
+  "type": "richtext",
+  "attributes": {
+    "heading": "Clinical Notes?",
+    "mandatory": false,
+    "desc": "If you have any clinical notes, please enter them here"
+  }
+}

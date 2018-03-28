@@ -1,0 +1,10 @@
+{
+  "id": "numShocks",
+  "type": "number",
+  "attributes": {
+    "mandatory": true,
+    "default": 2,
+    "heading": "How many shocks were delivered?"
+  }
+}
+    

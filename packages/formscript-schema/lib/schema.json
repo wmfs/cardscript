@@ -7,9 +7,9 @@
 
   "definitions": {
 
-    "id": {"type": "string", "title": "A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model."},
-    "type": {"type": "string", "title": "Denotes the type of widget being defined (e.g. `text`, `number` etc.)"},
-    "showWhen": {"type": "string", "title": "An expression which evaluates to `true` will cause the widget to appear (so the widget will not be shown to the user if evaluated to be `false`)."},
+    "id": {"type": "string", "title": "A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model. Providing an `id` value is very often mandatory (depending on the type of widget involved). Regardless, it is good practice to always provide an `id` because it assists modification (or \"_patching_\") of form definitions."},
+    "type": {"type": "string", "title": "A mandatory value denoting the type of widget being defined (e.g. `text`, `number` etc.)"},
+    "showWhen": {"type": "string", "title": "An expression, that when evaluating to `true` will cause the widget to appear (so the widget will not be shown if evaluated to be `false`)."},
 
     "attributes": {
       "heading": {"type": "string", "title": "Some short, strong, punchy text to identify the widget."},
@@ -47,6 +47,26 @@
         "title": "Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.",
         "properties": {
           "type": {"enum": ["address"]},
+          "id": {"$ref": "#/definitions/id"},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
+              "mandatory": {"$ref": "#/definitions/attributes/mandatory"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
+      },
+
+      "apiLookup": {
+        "title": "Allows the user to select a specific value from an API endpoint",
+        "properties": {
+          "type": {"enum": ["apiLookup"]},
           "id": {"$ref": "#/definitions/id"},
           "showWhen": {"$ref": "#/definitions/showWhen"},
           "attributes": {
@@ -250,6 +270,26 @@
         "additionalProperties": false
       },
 
+      "signature": {
+        "title": "Allow the collection of a handwritten signature",
+        "properties": {
+          "type": {"enum": ["signature"]},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "id": {"$ref": "#/definitions/id"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
+              "mandatory": {"$ref": "#/definitions/attributes/mandatory"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
+      },
+
       "image": {
         "title": "Embeds a non-interactive image within the form.",
         "properties": {
@@ -336,7 +376,7 @@
       },
 
       "set": {
-        "title": "Marks the start of a set of related widgets - see the [Sets](#sets) section for more information.",
+        "title": "Marks the start of a set of related widgets - see the [Sets](#set) section for more information.",
         "properties": {
           "type": {"enum": ["set"]},
           "id": {"$ref": "#/definitions/id"},
@@ -356,7 +396,17 @@
       },
 
       "endSet": {
-        "title": "Marks the end of a set of related widgets - see the [Sets](#sets) section for more information.",
+        "title": "Marks the end of a set of related widgets - see the [Sets](#set) section for more information.",
+        "properties": {
+          "type": {"enum": ["endSet"]},
+          "showWhen": {"$ref": "#/definitions/showWhen"}
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+
+      "endSubForm": {
+        "title": "Marks the end of a sub-form - see the [Sets](#set) section for more information.",
         "properties": {
           "type": {"enum": ["endSet"]},
           "showWhen": {"$ref": "#/definitions/showWhen"}
@@ -450,6 +500,23 @@
         "additionalProperties": false
       },
 
+      "currency": {
+        "title": "Just like a `number` widget, but for specifically collecting a monetary value.",
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["currency"]},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "default": {"$ref": "#/definitions/attributes/defaultNumber"}
+            }
+          }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
+      },
+
       "slider": {
         "title": "For capturing a number along a specified range",
         "properties": {
@@ -471,13 +538,38 @@
 
   "type": "object",
   "properties": {
+
+    "title": {
+      "type": "string",
+      "title": "A short-as-possible label to associate with the form."
+    },
+
+    "desc": {
+      "type": "string",
+      "title": "A quick summary of what the form is hoping to achieve."
+    },
+
+    "version": {
+      "type": "string",
+      "title": "Denotes the current version of the form definition. This will be assigned by whatever tooling and processes conjure your forms. There is a strong preference that form version strings adhere to [Semantic Versioning](http://nodesource.com/blog/semver-a-primer/)."
+    },
+
+    "shasum": {
+      "type": "string",
+      "title": "Optionally assigned by tooling, this is a checksum value based on the form-definition. Uses include client-side storage management of form definitions and integrity checking."
+    },
+
     "widgets": {
       "type": "array",
+      "title": "The main event, 1 or more `widget` objects which an app should render to produce a form.",
+      "minItems": 1,
       "items": {
         "type": "object",
         "oneOf": [
           {"$ref": "#/definitions/widgets/address"},
+          {"$ref": "#/definitions/widgets/apiLookup"},
           {"$ref": "#/definitions/widgets/checkboxList"},
+          {"$ref": "#/definitions/widgets/currency"},
           {"$ref": "#/definitions/widgets/date"},
           {"$ref": "#/definitions/widgets/dateTime"},
           {"$ref": "#/definitions/widgets/time"},
@@ -485,6 +577,7 @@
           {"$ref": "#/definitions/widgets/questionnaire"},
           {"$ref": "#/definitions/widgets/radio"},
           {"$ref": "#/definitions/widgets/richtext"},
+          {"$ref": "#/definitions/widgets/signature"},
           {"$ref": "#/definitions/widgets/textarea"},
           {"$ref": "#/definitions/widgets/set"},
           {"$ref": "#/definitions/widgets/endSet"},
@@ -495,6 +588,7 @@
           {"$ref": "#/definitions/widgets/map"},
           {"$ref": "#/definitions/widgets/fileUpload"},
           {"$ref": "#/definitions/widgets/subForm"},
+          {"$ref": "#/definitions/widgets/endSubForm"},
           {"$ref": "#/definitions/widgets/stickyNote"},
           {"$ref": "#/definitions/widgets/image"}
         ]

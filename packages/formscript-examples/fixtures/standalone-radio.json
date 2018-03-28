@@ -1,0 +1,13 @@
+{
+  "id": "gender",
+  "type": "radio",
+  "attributes": {
+    "heading": "Patient gender",
+    "mandatory": true,
+    "titleMap": [
+      {"value": "MALE", "title": "Male"},
+      {"value": "FEMALE", "title": "Female"},
+      {"value": "UNKNOWN", "title": "Unknown"}
+    ]
+  }
+}

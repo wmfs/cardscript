@@ -1,0 +1,17 @@
+{
+  "id": "patientAddress",
+  "type": "address",
+  "attributes": {
+    "heading": "Where does the patient live?",
+    "desc": "If it's not possible to ascertain an accurate address from the patient then please select 'Unknown'",
+    "mandatory": true,
+    "results": {
+      "limit": 20,
+      "pagination": true
+    },
+    "params": {
+      "enableUnknownOption": true,
+      "enableLocationAssist": false
+    }
+  }
+}

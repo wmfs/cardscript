@@ -1,0 +1,11 @@
+{
+  "id": "handover",
+  "type": "text",
+  "attributes": {
+    "heading": "Who was the patient handed over to?",
+    "desc": "Please provide Emergency service and name of person.",
+    "placeholder": "Service/name",
+    "mandatory": false,
+    "minCharacters": 10
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "choking",
+  "type": "select",
+  "attributes": {
+    "heading": "Choking?",
+    "desc": "Was the patient choking, if so what treatment was administered?",
+    "mandatory": true,
+    "default": "NOT_APPLICABLE",
+    "titleMap": [
+      {"value": "NOT_APPLICABLE", "title": "No choking - not applicable"},
+      {"value": "COUGH", "title": "Encourage cough"},
+      {"value": "BACK_SLAPS", "title": "Back slaps"},
+      {"value": "ABDOMINAL_THRUSTS", "title": "Adbominal/Chest thrusts"},
+      {"value": "COMPRESSIONS", "title": "Chest compressions (CPR)"},
+      {"value": "OTHER", "title": "Other"}
+    ]
+  }
+}

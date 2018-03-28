@@ -1,0 +1,15 @@
+{
+  "widgets": [
+    {
+      "type": "set",
+      "attributes": {
+        "heading": "Incident details",
+        "desc": "Please provide details of the incident at which casualty care was administered.",
+        "showInTOC": true
+      }
+    },
+    {
+      "type": "endSet"
+    }
+  ]
+}
