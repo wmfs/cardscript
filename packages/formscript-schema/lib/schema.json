@@ -398,8 +398,7 @@
       "endSet": {
         "title": "Marks the end of a set of related widgets - see the [Sets](#set) section for more information.",
         "properties": {
-          "type": {"enum": ["endSet"]},
-          "showWhen": {"$ref": "#/definitions/showWhen"}
+          "type": {"enum": ["endSet"]}
         },
         "required": ["type"],
         "additionalProperties": false
@@ -408,8 +407,7 @@
       "endSubForm": {
         "title": "Marks the end of a sub-form - see the [Sets](#set) section for more information.",
         "properties": {
-          "type": {"enum": ["endSet"]},
-          "showWhen": {"$ref": "#/definitions/showWhen"}
+          "type": {"enum": ["endSet"]}
         },
         "required": ["type"],
         "additionalProperties": false

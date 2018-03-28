@@ -155,7 +155,7 @@ To assist with navigation (especially around larger, more complex forms) it is c
 
 In Formscript,  __sets__ allow widgets to be grouped into related chunks.
 
-* Each set begins with a `set` widget and ends with a `endSet` widget.
+* Each set begins with a `set` widget and ends with an `endSet` widget.
 * Nesting of sets is possible and sets are especially powerful when combined with dynamic expressions to conditionally show/hide content.
 * Sets enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) components.
 * Multi-step "wizard" interfaces are also easily achieved via sets.
@@ -200,7 +200,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
 __In the example above we have two widgets:__
 
 * The first is a simple boolean on/off `switch` widget (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
-* The second widget is a big textbox (with the `id` of `feedback`) for collecting feedback from the user.
+* The second widget is a `textarea` box (with the `id` of `feedback`) for collecting feedback from the user.
 
 The `feedback` widget should only show if the `userWantsToGiveFeedback` switch is thrown on (i.e. `true`).
 
@@ -284,9 +284,11 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 <hr>
 
-## <a name="list-address"></a>`address`
+## The <a name="list-address"></a>`address` widget
 
-> Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.
+__Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.__
+
+__Example__
 
 ``` json
 {
@@ -309,12 +311,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`address`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-apiLookup"></a>`apiLookup`
+## The <a name="list-apiLookup"></a>`apiLookup` widget
 
-> Allows the user to select a specific value from an API endpoint
+__Allows the user to select a specific value from an API endpoint__
+
+__Example__
 
 ``` json
 {
@@ -338,12 +353,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`apiLookup`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-checkboxList"></a>`checkboxList`
+## The <a name="list-checkboxList"></a>`checkboxList` widget
 
-> Offer a related set of checkboxes with accompanying labels for the user to switch on and off.
+__Offer a related set of checkboxes with accompanying labels for the user to switch on and off.__
+
+__Example__
 
 ``` json
 {
@@ -382,12 +410,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`checkboxList`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-currency"></a>`currency`
+## The <a name="list-currency"></a>`currency` widget
 
-> Just like a `number` widget, but for specifically collecting a monetary value.
+__Just like a `number` widget, but for specifically collecting a monetary value.__
+
+__Example__
 
 ``` json
 {
@@ -402,12 +443,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`currency`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-date"></a>`date`
+## The <a name="list-date"></a>`date` widget
 
-> Allows the user to provide a specific date - without a time portion.
+__Allows the user to provide a specific date - without a time portion.__
+
+__Example__
 
 ``` json
 {
@@ -423,12 +477,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`date`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-dateTime"></a>`dateTime`
+## The <a name="list-dateTime"></a>`dateTime` widget
 
-> Collects a specific date and time from the user.
+__Collects a specific date and time from the user.__
+
+__Example__
 
 ``` json
 {
@@ -445,12 +512,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`dateTime`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-endSet"></a>`endSet`
+## The <a name="list-endSet"></a>`endSet` widget
 
-> Marks the end of a set of related widgets - see the [Sets](#set) section for more information.
+__Marks the end of a set of related widgets - see the [Sets](#set) section for more information.__
+
+__Example__
 
 ``` json
 {
@@ -471,12 +551,21 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`type`:__ _Mandatory_ (`endSet`)
+
+
+
 
 <hr>
 
-## <a name="list-endSubForm"></a>`endSubForm`
+## The <a name="list-endSubForm"></a>`endSubForm` widget
 
-> Marks the end of a sub-form - see the [Sets](#set) section for more information.
+__Marks the end of a sub-form - see the [Sets](#set) section for more information.__
+
+__Example__
 
 ``` json
 {
@@ -501,12 +590,21 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`type`:__ _Mandatory_ (`endSubForm`)
+
+
+
 
 <hr>
 
-## <a name="list-fileUpload"></a>`fileUpload`
+## The <a name="list-fileUpload"></a>`fileUpload` widget
 
-> Allows the user to upload a file.
+__Allows the user to upload a file.__
+
+__Example__
 
 ``` json
 {
@@ -528,12 +626,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`fileUpload`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-header"></a>`header`
+## The <a name="list-header"></a>`header` widget
 
-> Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component).
+__Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component).__
+
+__Example__
 
 ``` json
 {
@@ -548,12 +659,23 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`type`:__ _Mandatory_ (`header`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-image"></a>`image`
+## The <a name="list-image"></a>`image` widget
 
-> Embeds a non-interactive image within the form.
+__Embeds a non-interactive image within the form.__
+
+__Example__
 
 ``` json
 {
@@ -567,12 +689,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`image`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-map"></a>`map`
+## The <a name="list-map"></a>`map` widget
 
-> Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)
+__Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)__
+
+__Example__
 
 ``` json
 {
@@ -601,12 +736,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`map`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-number"></a>`number`
+## The <a name="list-number"></a>`number` widget
 
-> Like a `text` widget, but specifically for collecting numeric content.
+__Like a `text` widget, but specifically for collecting numeric content.__
+
+__Example__
 
 ``` json
 {
@@ -621,12 +769,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`number`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-questionnaire"></a>`questionnaire`
+## The <a name="list-questionnaire"></a>`questionnaire` widget
 
-> Offers the user a question with two or more possible responses on an appropriate scale.
+__Offers the user a question with two or more possible responses on an appropriate scale.__
+
+__Example__
 
 ``` json
 {
@@ -665,12 +826,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`questionnaire`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-radio"></a>`radio`
+## The <a name="list-radio"></a>`radio` widget
 
-> Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.
+__Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.__
+
+__Example__
 
 ``` json
 {
@@ -698,12 +872,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`radio`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-richtext"></a>`richtext`
+## The <a name="list-richtext"></a>`richtext` widget
 
-> Offers the user a text editor with functionality to format text.
+__Offers the user a text editor with functionality to format text.__
+
+__Example__
 
 ``` json
 {
@@ -718,12 +905,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`richtext`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-select"></a>`select`
+## The <a name="list-select"></a>`select` widget
 
-> Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.
+__Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.__
+
+__Example__
 
 ``` json
 {
@@ -765,12 +965,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`select`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-set"></a>`set`
+## The <a name="list-set"></a>`set` widget
 
-> Marks the start of a set of related widgets - see the [Sets](#set) section for more information.
+__Marks the start of a set of related widgets - see the [Sets](#set) section for more information.__
+
+__Example__
 
 ``` json
 {
@@ -791,12 +1004,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`set`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-signature"></a>`signature`
+## The <a name="list-signature"></a>`signature` widget
 
-> Allow the collection of a handwritten signature
+__Allow the collection of a handwritten signature__
+
+__Example__
 
 ``` json
 {
@@ -812,12 +1038,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`signature`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-slider"></a>`slider`
+## The <a name="list-slider"></a>`slider` widget
 
-> For capturing a number along a specified range
+__For capturing a number along a specified range__
+
+__Example__
 
 ``` json
 {
@@ -835,12 +1074,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`slider`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-stickyNote"></a>`stickyNote`
+## The <a name="list-stickyNote"></a>`stickyNote` widget
 
-> A panel for putting helpful text or other informative text
+__A panel for putting helpful text or other informative text__
+
+__Example__
 
 ``` json
 {
@@ -855,12 +1107,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`stickyNote`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-subForm"></a>`subForm`
+## The <a name="list-subForm"></a>`subForm` widget
 
-> Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.)
+__Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.)__
+
+__Example__
 
 ``` json
 {
@@ -885,12 +1150,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`subForm`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-switch"></a>`switch`
+## The <a name="list-switch"></a>`switch` widget
 
-> Presents a on/off style switch to the user.
+__Presents a on/off style switch to the user.__
+
+__Example__
 
 ``` json
 {
@@ -904,12 +1182,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`switch`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-text"></a>`text`
+## The <a name="list-text"></a>`text` widget
 
-> A bread-and-butter box for collecting textual information from the user.
+__A bread-and-butter box for collecting textual information from the user.__
+
+__Example__
 
 ``` json
 {
@@ -926,12 +1217,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`text`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-textarea"></a>`textarea`
+## The <a name="list-textarea"></a>`textarea` widget
 
-> Collects simple multi-line text input from the user.
+__Collects simple multi-line text input from the user.__
+
+__Example__
 
 ``` json
 {
@@ -946,12 +1250,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 ```
 
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`textarea`)
+
+__`showWhen`:__ _Optional_
+
+
+
 
 <hr>
 
-## <a name="list-time"></a>`time`
+## The <a name="list-time"></a>`time` widget
 
-> Allows the user to provide a specific time (without being tied to a particular date)
+__Allows the user to provide a specific time (without being tied to a particular date)__
+
+__Example__
 
 ``` json
 {
@@ -965,6 +1282,17 @@ Not one widget-type requires all these attributes. Attributes are often optional
 }
 
 ```
+
+__Properties__
+
+
+__`id`:__ _Mandatory_
+
+__`type`:__ _Mandatory_ (`time`)
+
+__`showWhen`:__ _Optional_
+
+
 
 
 

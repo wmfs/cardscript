@@ -3,6 +3,35 @@ const jsonfile = require('jsonfile')
 const path = require('path')
 const exampleLoader = require('formscript-examples')
 
+function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
+  const rawProps = rawWidgetDefinition.properties
+  const summary = []
+  widgetProperties.forEach(
+    function (prop) {
+      if (rawProps.hasOwnProperty(prop.name)) {
+
+        let text
+        if (rawWidgetDefinition.required.indexOf(prop.name) === -1) {
+          text = '_Optional_'
+        } else {
+          text = '_Mandatory_'
+        }
+
+        if (prop.name === 'type') {
+          text += ` (\`${widgetType}\`)`
+        }
+        summary.push(
+          {
+            name: prop.name,
+            text: text
+          }
+        )
+      }
+    }
+  )
+  return summary
+}
+
 module.exports = function collateData () {
   const schema = jsonfile.readFileSync(
     path.resolve(__dirname, './../../../packages/formscript-schema/lib/schema.json')
@@ -42,6 +71,7 @@ module.exports = function collateData () {
       const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
       widgetDefinition.type = widgetType
       widgetDefinition.example = JSON.stringify(exampleLoader(`standalone-${_.kebabCase(widgetType)}`), null, 2)
+      widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
       widgetInfo.push(widgetDefinition)
     }
   )

@@ -108,7 +108,7 @@ To assist with navigation (especially around larger, more complex forms) it is c
 
 In Formscript,  __sets__ allow widgets to be grouped into related chunks.
 
-* Each set begins with a `set` widget and ends with a `endSet` widget.
+* Each set begins with a `set` widget and ends with an `endSet` widget.
 * Nesting of sets is possible and sets are especially powerful when combined with dynamic expressions to conditionally show/hide content.
 * Sets enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) components.
 * Multi-step "wizard" interfaces are also easily achieved via sets.
@@ -134,7 +134,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
 __In the example above we have two widgets:__
 
 * The first is a simple boolean on/off `switch` widget (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
-* The second widget is a big textbox (with the `id` of `feedback`) for collecting feedback from the user.
+* The second widget is a `textarea` box (with the `id` of `feedback`) for collecting feedback from the user.
 
 The `feedback` widget should only show if the `userWantsToGiveFeedback` switch is thrown on (i.e. `true`).
 
@@ -203,14 +203,25 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 <hr>
 
-## <a name="list-<%= widget.type -%>"></a>`<%= widget.type%>`
+## The <a name="list-<%= widget.type -%>"></a>`<%= widget.type%>` widget
 
-> <%= widget.title %>
+__<%= widget.title %>__
+
+__Example__
 
 ``` json
 <%- widget.example %>
 
 ```
+
+__Properties__
+
+<% widget.propertySummary.forEach(function(prop) { -%>
+
+__`<%= prop.name -%>`:__ <%= prop.text -%>
+
+<% }) %>
+
 
 <% }) %>
 
