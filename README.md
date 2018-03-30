@@ -28,12 +28,13 @@
 
 [![Build Status](https://travis-ci.org/wmfs/formscript.svg?branch=master)](https://travis-ci.org/wmfs/formscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/formscript/blob/master/CONTRIBUTING.md)
 
-__This document defines a [JSON](https://tools.ietf.org/html/rfc7159)-based language used to describe form-content declaratively.
+__This project defines a [JSON](https://tools.ietf.org/html/rfc7159)-based language used to describe form-content declaratively.
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
 * For some introductory context around the motivations driving Formscript, please see [Appendix A: Formscript Motivation](#motivation).
 * A [JSON Schema (Draft-07)](http://json-schema.org/) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
+* The Formscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/formscript)) provides several utilities to help work with the specification. Please see [Appendix B: Formscript Utilities](#utilities) for further information.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -53,6 +54,7 @@ In this document, such software is referred to as an "app".__
 * [License (GPLv3)](#license)
 * [Appendices](#appendices)
   * [Appendix A: Formscript Motivation](#motivation)
+  * [Appendix B: Formscript Utilities](#utilities)
 
 ## <a name="structure"></a>Structure of a Form
 
@@ -60,13 +62,14 @@ In Formscript, a form is represented by a [JSON Object](https://tools.ietf.org/h
 
 ### <a name="example"></a>Example: Simple Form
 
-The content of a form is specified by configuring one or more _widgets_, which are represented by JSON objects.
+The content of a [_form_](#form) is specified by configuring one or more [_widgets_](#widget), which are represented by JSON objects.
 
 * In this example, a form is defined that contains two widgets, one that defines a suitable header (with some text and an accompanying image),
 followed by a second widget for letting the user enter their name.
 
 ``` json
 {
+  "title": "Simple demo form!",
   "widgets": [
     {
       "type": "header",
@@ -93,7 +96,7 @@ followed by a second widget for letting the user enter their name.
 }
 ```
 
-* The order that objects are defined within `widgets` is important, representing the order users will encounter them.
+* The order that objects are defined within the `widgets` array is important, representing the order users will encounter them.
 
 ## <a name="concepts"></a>Concepts
 
@@ -191,6 +194,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
 
 ```json
 {
+  "title": "Simple expression demo!",
   "widgets": [
     {
       "id": "userWantsToGiveFeedback",
@@ -1530,3 +1534,4 @@ So... __Formscript__!
 
 * It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.
 
+## <a name="utilities"></a>Appendix B: Formscript Utilities

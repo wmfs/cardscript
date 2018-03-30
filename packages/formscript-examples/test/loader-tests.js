@@ -10,6 +10,7 @@ describe('Run some schema validation tests', function () {
     const simpleFormExample = exampleLoader('simple-form')
     expect(simpleFormExample).to.eql(
       {
+        'title': 'Simple demo form!',
         'widgets': [
           {
             'type': 'header',

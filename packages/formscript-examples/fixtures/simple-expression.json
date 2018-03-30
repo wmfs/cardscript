@@ -1,4 +1,5 @@
 {
+  "title": "Simple expression demo!",
   "widgets": [
     {
       "id": "userWantsToGiveFeedback",

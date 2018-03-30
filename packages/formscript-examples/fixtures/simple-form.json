@@ -1,4 +1,5 @@
 {
+  "title": "Simple demo form!",
   "widgets": [
     {
       "type": "header",
