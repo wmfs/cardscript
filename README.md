@@ -1519,7 +1519,7 @@ __...we went looking for an open standard capable of replacing our existing libr
 __Spoiler:__ We couldn't find one. Which was disappointing (and unexpected), because the experience of adopting [Amazon State Language](https://states-language.net/spec.html) had been great.
 We were edging closer to defining our own, but at the same time very mindful of this sort of thing:
 
-[How standards proliferate]: https://imgs.xkcd.com/comics/standards.png "Licensed under CC BY-NC 2.5 by xkcd.com"
+![How standards proliferate Licensed under CC BY-NC 2.5 by xkcd.com](https://imgs.xkcd.com/comics/standards.png)
 
 * A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema Form definitions.
 It was becoming evident we didn't have a good fit for what we wanted to do, and that using a badly-fitting standard is actually worse than not using a standard at all.
