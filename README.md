@@ -32,7 +32,8 @@ __This document defines a [JSON](https://tools.ietf.org/html/rfc7159)-based lang
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
-* A [JSON Schema (Draft-07)](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
+* For some introductory context around the motivations driving Formscript, please see [Appendix A: Formscript Motivation](#motivation).
+* A [JSON Schema (Draft-07)](http://json-schema.org/) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
 
 ## <a name="toc"></a>Table of Contents
 
@@ -49,10 +50,13 @@ In this document, such software is referred to as an "app".__
   * [Widget Properties](#properties)
   * [Widget Attributes](#attributes)
   * [Widget List](#list)
+* [License (GPLv3)](#license)
+* [Appendices](#appendices)
+  * [Appendix A: Formscript Motivation](#motivation)
 
 ## <a name="structure"></a>Structure of a Form
 
-A Form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).
+In Formscript, a form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).
 
 ### <a name="example"></a>Example: Simple Form
 
@@ -1457,4 +1461,72 @@ __`showWhen`:__ _Optional_
 
 <hr>
 
+# <a name="license"></a>License (GPLv3)
+
+The Formscript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/formscript/blob/master/LICENSE).
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_large)
+
+<hr>
+
+# <a name="appendices"></a>Appendices
+
+## <a name="motivation"></a>Appendix A: Formscript Motivation
+
+__Formscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
+Our work over the last 20 years has heavily involved collecting data from a variety of teams and environments.
+During this time, our best experiences have come from taking a declarative approach to defining form content.__
+
+* Originally we used XML to define the content of our forms (or _Workbooks_ as they became known).
+From there it was a relatively simple process to write a renderer to conjure appropriate UIs from those definitions.
+Over the intervening years we have defined some 50 workbooks in XML to collect over 3 million documents and we've extended our [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) to support growing business need.
+
+* We're now actively working on our third-generation form rendering engine.
+While designing the accompanying backend, we've found great benefit in aligning to open standards (for example our workflow is now defined in [Amazon State Language](https://states-language.net/spec.html)).
+
+* Given our positive experiences of declarative techniques and open standards, it was natural our new forms engine should use an open standard to define content.
+We therefore prototyped using a few projects (for example [Schema Form](https://json-schema-form.github.io/angular-schema-form/)) and shipped our [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) using [Mozilla React Schema Form](https://mozilla-services.github.io/react-jsonschema-form).
+
+__They're great libraries and helped us get up-and-running quickly.__
+
+Unfortunately both these specifications are bound to an underlying UI technology (i.e. Angular and React respectively).
+This is by far the biggest problem for us - it felt very much like the tail wagging the dog.
+They both mandate a traditional web form interface too. What if we're only working in a CLI context, or want to try some voice interface technology?
+
+* And they're fine for reasonably trivial forms, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both frameworks - even to deliver quite basic form experiences.
+
+To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involved a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when developing larger forms.
+In turn, we found this complexity bleeds into tooling and the wider architecture.
+
+__So with a shopping-list in-hand:__
+
+1. Must be an open standard and encourage contributions
+2. Must be easily extended to include new capabilities
+3. Must not be tied to any particular frontend technology or project
+4. Must not be tied to a particular UI pattern
+5. Must use a standard expression language (strong preference towards Javascript)
+6. Must support complex validation expressions
+7. Must support dynamic show/hide expressions (with optimisation for large chunks of the form)
+8. Must support online/offline behaviours
+9. Must have a schema to validate declarations and support tooling
+10. Must have an open SDK or similar to assist implementation
+11. Must be well documented
+12. Must have minimum of friction for embedding in a variety of app styles
+12. Strong preference towards JSON-based languages
+
+__...we went looking for an open standard capable of replacing our existing library of XML-defined forms (some of which are pretty hefty in terms of number of components and logic).__
+
+__Spoiler:__ We couldn't find one. Which was disappointing (and unexpected), because the experience of adopting [Amazon State Language](https://states-language.net/spec.html) had been great.
+We were edging closer to defining our own, but at the same time very mindful of this sort of thing:
+
+[How standards proliferate]: https://imgs.xkcd.com/comics/standards.png "Licensed under CC BY-NC 2.5 by xkcd.com"
+
+* A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema Form definitions.
+It was becoming evident we didn't have a good fit for what we wanted to do, and that using a badly-fitting standard is actually worse than not using a standard at all.
+
+* The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML felt out of place if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
+
+So... __Formscript__!
+
+* It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.
+
