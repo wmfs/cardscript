@@ -547,6 +547,11 @@
       "title": "A quick summary of what the form is hoping to achieve."
     },
 
+    "canBeCompletedOffline": {
+      "type": "boolean",
+      "title": "If the client app has stored this form definition, is it conceivable the user can fill-in the contents offline, with the collected data being synchronised when a network connection next becomes available?"
+    },
+
     "version": {
       "type": "string",
       "title": "Denotes the current version of the form definition. This will be assigned by whatever tooling and processes conjure your forms. There is a strong preference that form version strings adhere to [Semantic Versioning](http://nodesource.com/blog/semver-a-primer/)."
