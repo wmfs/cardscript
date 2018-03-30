@@ -1,19 +1,12 @@
 {
-  "widgets": [
-    {
-      "type": "subForm",
-      "attributes": {
-        "heading": "Explosions",
-        "desc": "Please provide details of the explosions which occurred.",
-        "minAllowed": 1,
-        "maxAllowed": 10,
-        "showAtLeastOne": true,
-        "singularEntityText": "explosion",
-        "pluralEntityText": "explosions"
-      }
-    },
-    {
-      "type": "endSubForm"
-    }
-  ]
+  "type": "subForm",
+  "attributes": {
+    "heading": "Explosions",
+    "desc": "Please provide details of the explosions which occurred.",
+    "minAllowed": 1,
+    "maxAllowed": 10,
+    "showAtLeastOne": true,
+    "singularEntityText": "explosion",
+    "pluralEntityText": "explosions"
+  }
 }

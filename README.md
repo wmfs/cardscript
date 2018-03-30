@@ -32,6 +32,8 @@ __This document defines a [JSON](https://tools.ietf.org/html/rfc7159)-based lang
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
+* A [JSON Schema (Draft-07)](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
+
 ## <a name="toc"></a>Table of Contents
 
 * [Structure of a Form](#structure)
@@ -129,7 +131,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 26
 
 | Widget Type      | Description |
 | -----------      | ----------- |
-| [`address`](#list-address) | Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar. |
+| [`address`](#list-address) | Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar. |
 | [`apiLookup`](#list-apiLookup) | Allows the user to select a specific value from an API endpoint |
 | [`checkboxList`](#list-checkboxList) | Offer a related set of checkboxes with accompanying labels for the user to switch on and off. |
 | [`currency`](#list-currency) | Just like a `number` widget, but for specifically collecting a monetary value. |
@@ -289,16 +291,16 @@ Not one widget-type requires all these attributes. Attributes are often optional
 | `titleMap` | `array` | An array of objects denoting a set of values that the user can select from. |
 
 
-### <a name="list"></a>Widget List
+# <a name="list"></a>Widget List
 
 
 <hr>
 
 ## The <a name="list-address"></a>`address` widget
 
-__Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.__
+__Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -324,11 +326,22 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`address`)
+__`type`:__ _Required_ (`"address"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+
 
 
 
@@ -339,7 +352,7 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to select a specific value from an API endpoint__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -366,11 +379,22 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`apiLookup`)
+__`type`:__ _Required_ (`"apiLookup"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+
 
 
 
@@ -381,7 +405,7 @@ __`showWhen`:__ _Optional_
 
 __Offer a related set of checkboxes with accompanying labels for the user to switch on and off.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -423,11 +447,26 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`checkboxList`)
+__`type`:__ _Required_ (`"checkboxList"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `maxLimit` | `number` | `No` | Maximum number of array elements the user should provide |
+| `minLimit` | `number` | `No` | Minimum number of array elements the user should provide |
+| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+
 
 
 
@@ -438,7 +477,7 @@ __`showWhen`:__ _Optional_
 
 __Just like a `number` widget, but for specifically collecting a monetary value.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -456,11 +495,20 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`currency`)
+__`type`:__ _Required_ (`"currency"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+
 
 
 
@@ -471,7 +519,7 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to provide a specific date - without a time portion.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -490,11 +538,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`date`)
+__`type`:__ _Required_ (`"date"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -505,7 +554,7 @@ __`showWhen`:__ _Optional_
 
 __Collects a specific date and time from the user.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -525,11 +574,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`dateTime`)
+__`type`:__ _Required_ (`"dateTime"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -540,23 +590,11 @@ __`showWhen`:__ _Optional_
 
 __Marks the end of a set of related widgets - see the [Sets](#set) section for more information.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
-  "widgets": [
-    {
-      "type": "set",
-      "attributes": {
-        "heading": "Incident details",
-        "desc": "Please provide details of the incident at which casualty care was administered.",
-        "showInTOC": true
-      }
-    },
-    {
-      "type": "endSet"
-    }
-  ]
+  "type": "endSet"
 }
 
 ```
@@ -564,7 +602,8 @@ __Example__
 __Properties__
 
 
-__`type`:__ _Mandatory_ (`endSet`)
+__`type`:__ _Required_ (`"endSet"`)
+
 
 
 
@@ -575,27 +614,11 @@ __`type`:__ _Mandatory_ (`endSet`)
 
 __Marks the end of a sub-form - see the [Sets](#set) section for more information.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
-  "widgets": [
-    {
-      "type": "subForm",
-      "attributes": {
-        "heading": "Explosions",
-        "desc": "Please provide details of the explosions which occurred.",
-        "minAllowed": 1,
-        "maxAllowed": 10,
-        "showAtLeastOne": true,
-        "singularEntityText": "explosion",
-        "pluralEntityText": "explosions"
-      }
-    },
-    {
-      "type": "endSubForm"
-    }
-  ]
+  "type": "endSubForm"
 }
 
 ```
@@ -603,7 +626,8 @@ __Example__
 __Properties__
 
 
-__`type`:__ _Mandatory_ (`endSubForm`)
+__`type`:__ _Required_ (`"endSubForm"`)
+
 
 
 
@@ -614,7 +638,7 @@ __`type`:__ _Mandatory_ (`endSubForm`)
 
 __Allows the user to upload a file.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -639,11 +663,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`fileUpload`)
+__`type`:__ _Required_ (`"fileUpload"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -654,7 +679,7 @@ __`showWhen`:__ _Optional_
 
 __Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component).__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -672,9 +697,21 @@ __Example__
 __Properties__
 
 
-__`type`:__ _Mandatory_ (`header`)
+__`type`:__ _Required_ (`"header"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `backgroundImage` | `string` | `No` |  |
+| `backgroundImageAltText` | `string` | `No` |  |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
+
 
 
 
@@ -685,7 +722,7 @@ __`showWhen`:__ _Optional_
 
 __Embeds a non-interactive image within the form.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -702,11 +739,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`image`)
+__`type`:__ _Required_ (`"image"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -717,7 +755,7 @@ __`showWhen`:__ _Optional_
 
 __Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -749,11 +787,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`map`)
+__`type`:__ _Required_ (`"map"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -764,7 +803,7 @@ __`showWhen`:__ _Optional_
 
 __Like a `text` widget, but specifically for collecting numeric content.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -782,11 +821,20 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`number`)
+__`type`:__ _Required_ (`"number"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+
 
 
 
@@ -797,7 +845,7 @@ __`showWhen`:__ _Optional_
 
 __Offers the user a question with two or more possible responses on an appropriate scale.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -839,11 +887,25 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`questionnaire`)
+__`type`:__ _Required_ (`"questionnaire"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+
 
 
 
@@ -854,7 +916,7 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -885,11 +947,24 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`radio`)
+__`type`:__ _Required_ (`"radio"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+
 
 
 
@@ -900,7 +975,7 @@ __`showWhen`:__ _Optional_
 
 __Offers the user a text editor with functionality to format text.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -918,11 +993,23 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`richtext`)
+__`type`:__ _Required_ (`"richtext"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+
 
 
 
@@ -933,7 +1020,7 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -978,11 +1065,25 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`select`)
+__`type`:__ _Required_ (`"select"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+
 
 
 
@@ -993,23 +1094,16 @@ __`showWhen`:__ _Optional_
 
 __Marks the start of a set of related widgets - see the [Sets](#set) section for more information.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
-  "widgets": [
-    {
-      "type": "set",
-      "attributes": {
-        "heading": "Incident details",
-        "desc": "Please provide details of the incident at which casualty care was administered.",
-        "showInTOC": true
-      }
-    },
-    {
-      "type": "endSet"
-    }
-  ]
+  "type": "set",
+  "attributes": {
+    "heading": "Incident details",
+    "desc": "Please provide details of the incident at which casualty care was administered.",
+    "showInTOC": true
+  }
 }
 
 ```
@@ -1017,11 +1111,22 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`set`)
+__`type`:__ _Required_ (`"set"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `showInTOC` | `boolean` | `No` | Should this set appear in a Table of Contents or similar, if the app supports such things? |
+
 
 
 
@@ -1032,7 +1137,7 @@ __`showWhen`:__ _Optional_
 
 __Allow the collection of a handwritten signature__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1051,11 +1156,22 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`signature`)
+__`type`:__ _Required_ (`"signature"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+
 
 
 
@@ -1066,7 +1182,7 @@ __`showWhen`:__ _Optional_
 
 __For capturing a number along a specified range__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1087,11 +1203,20 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`slider`)
+__`type`:__ _Required_ (`"slider"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+
 
 
 
@@ -1102,7 +1227,7 @@ __`showWhen`:__ _Optional_
 
 __A panel for putting helpful text or other informative text__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1120,11 +1245,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`stickyNote`)
+__`type`:__ _Required_ (`"stickyNote"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -1135,27 +1261,20 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.)__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
-  "widgets": [
-    {
-      "type": "subForm",
-      "attributes": {
-        "heading": "Explosions",
-        "desc": "Please provide details of the explosions which occurred.",
-        "minAllowed": 1,
-        "maxAllowed": 10,
-        "showAtLeastOne": true,
-        "singularEntityText": "explosion",
-        "pluralEntityText": "explosions"
-      }
-    },
-    {
-      "type": "endSubForm"
-    }
-  ]
+  "type": "subForm",
+  "attributes": {
+    "heading": "Explosions",
+    "desc": "Please provide details of the explosions which occurred.",
+    "minAllowed": 1,
+    "maxAllowed": 10,
+    "showAtLeastOne": true,
+    "singularEntityText": "explosion",
+    "pluralEntityText": "explosions"
+  }
 }
 
 ```
@@ -1163,11 +1282,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`subForm`)
+__`type`:__ _Required_ (`"subForm"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -1178,7 +1298,7 @@ __`showWhen`:__ _Optional_
 
 __Presents a on/off style switch to the user.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1195,11 +1315,23 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`switch`)
+__`type`:__ _Required_ (`"switch"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `boolean` | `No` | A boolean value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+
 
 
 
@@ -1210,7 +1342,7 @@ __`showWhen`:__ _Optional_
 
 __A bread-and-butter box for collecting textual information from the user.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1230,11 +1362,26 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`text`)
+__`type`:__ _Required_ (`"text"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `maxCharacters` | `number` | `No` | The maximum length of number of characters a user can specify. |
+| `minCharacters` | `number` | `No` | The minimum length of number of characters a will need to provide. |
+| `placeholder` | `string` | `No` | Some example text that can be appear ina widget ahead of collecting use input.  |
+
 
 
 
@@ -1245,7 +1392,7 @@ __`showWhen`:__ _Optional_
 
 __Collects simple multi-line text input from the user.__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1263,11 +1410,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`textarea`)
+__`type`:__ _Required_ (`"textarea"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 
@@ -1278,7 +1426,7 @@ __`showWhen`:__ _Optional_
 
 __Allows the user to provide a specific time (without being tied to a particular date)__
 
-__Example__
+__Example JSON__
 
 ``` json
 {
@@ -1296,11 +1444,12 @@ __Example__
 __Properties__
 
 
-__`id`:__ _Mandatory_
+__`id`:__ _Required_
 
-__`type`:__ _Mandatory_ (`time`)
+__`type`:__ _Required_ (`"time"`)
 
 __`showWhen`:__ _Optional_
+
 
 
 

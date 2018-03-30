@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
 
   "title": "FormScript Schema",
   "description": "A simple way to define feature-rich web forms",
@@ -44,7 +44,7 @@
     "widgets": {
 
       "address": {
-        "title": "Allows the user to __select__ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.",
+        "title": "Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.",
         "properties": {
           "type": {"enum": ["address"]},
           "id": {"$ref": "#/definitions/id"},

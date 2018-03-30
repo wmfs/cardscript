@@ -15,11 +15,11 @@ function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefini
         if (rawWidgetDefinition.required.indexOf(prop.name) === -1) {
           text = '_Optional_'
         } else {
-          text = '_Mandatory_'
+          text = '_Required_'
         }
 
         if (prop.name === 'type') {
-          text += ` (\`${widgetType}\`)`
+          text += ` (\`"${widgetType}"\`)`
         }
         summary.push(
           {
@@ -30,6 +30,44 @@ function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefini
       }
     }
   )
+  return summary
+}
+
+function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDefinition) {
+  const rawAttribs = rawWidgetDefinition.properties.attributes
+  const summary = []
+  if (rawAttribs) {
+    _.forEach(
+      rawAttribs.properties,
+      function (value, key) {
+        let attributeSchema
+        if (_.isObject(value) && value.hasOwnProperty('$ref')) {
+          const refKey = value.$ref.slice(25) // Remove: #/definitions/attributes/
+          attributeSchema = attributeProperties[refKey]
+        } else {
+          attributeSchema = value
+        }
+
+        let required = 'No'
+        const requiredAttributes = rawWidgetDefinition.properties.attributes.required
+        if (requiredAttributes) {
+          if (requiredAttributes.indexOf(key) !== -1) {
+            required = 'Yes'
+          }
+        }
+
+        summary.push(
+          {
+            name: key,
+            type: attributeSchema.type,
+            text: attributeSchema.title,
+            required: required
+          }
+        )
+      }
+    )
+  }
+
   return summary
 }
 
@@ -73,6 +111,7 @@ module.exports = function collateData () {
       widgetDefinition.type = widgetType
       widgetDefinition.example = JSON.stringify(exampleLoader(`standalone-${_.kebabCase(widgetType)}`), null, 2)
       widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
+      widgetDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(widgetType, schema.definitions.attributes, rawWidgetDefinition), 'name')
       widgetInfo.push(widgetDefinition)
     }
   )

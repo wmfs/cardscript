@@ -9,6 +9,8 @@ __This document defines a [JSON](https://tools.ietf.org/html/rfc7159)-based lang
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
+* A [JSON Schema (Draft-07)](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
+
 ## <a name="toc"></a>Table of Contents
 
 * [Structure of a Form](#structure)
@@ -184,7 +186,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 | `<%= attribute.name%>` | `<%= attribute.type %>` | <%= attribute.title %> |
 <% }) %>
 
-### <a name="list"></a>Widget List
+# <a name="list"></a>Widget List
 
 <% widgets.forEach(function(widget) { -%>
 
@@ -194,7 +196,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 __<%= widget.title %>__
 
-__Example__
+__Example JSON__
 
 ``` json
 <%- widget.example %>
@@ -205,10 +207,21 @@ __Properties__
 
 <% widget.propertySummary.forEach(function(prop) { -%>
 
-__`<%= prop.name -%>`:__ <%= prop.text -%>
+__`<%= prop.name -%>`:__ <%- prop.text -%>
 
 <% }) %>
 
+<% if (widget.attributeSummary.length > 0 ) { -%>
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+<% widget.attributeSummary.forEach(function(attrib) { -%>
+| `<%= attrib.name -%>` | `<%= attrib.type -%>` | `<%= attrib.required -%>` | <%= attrib.text -%> |
+<% }) %>
+
+<% } %>
 
 <% }) %>
 
