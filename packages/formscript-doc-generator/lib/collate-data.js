@@ -2,6 +2,7 @@ const _ = require('lodash')
 const jsonfile = require('jsonfile')
 const path = require('path')
 const exampleLoader = require('formscript-examples')
+const stopText = require('./stop-text')
 
 function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
   const rawProps = rawWidgetDefinition.properties
@@ -99,6 +100,7 @@ module.exports = function collateData () {
   )
 
   const data = {
+    stopText: stopText,
     year: new Date().getFullYear(),
     version: lernaJson.version,
     simpleExample: JSON.stringify(simpleExample, null, 2),
