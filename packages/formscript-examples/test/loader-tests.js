@@ -11,6 +11,7 @@ describe('Run some schema validation tests', function () {
     expect(simpleFormExample).to.eql(
       {
         'title': 'Simple demo form!',
+        'canBeCompletedOffline': true,
         'widgets': [
           {
             'type': 'header',

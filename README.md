@@ -70,6 +70,7 @@ followed by a second widget for letting the user enter their name.
 ``` json
 {
   "title": "Simple demo form!",
+  "canBeCompletedOffline": true,
   "widgets": [
     {
       "type": "header",
@@ -195,6 +196,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
 ```json
 {
   "title": "Simple expression demo!",
+  "canBeCompletedOffline": true,
   "widgets": [
     {
       "id": "userWantsToGiveFeedback",
@@ -258,6 +260,7 @@ The top-level object defining a form comprises of several properties:
 | ---------------- | --------- | ----------- | ----------- |
 | `title` | `string` | A short-as-possible label to associate with the form. | `false` |
 | `desc` | `string` | A quick summary of what the form is hoping to achieve. | `false` |
+| `canBeCompletedOffline` | `boolean` | If the client app has stored this form definition, is it conceivable the user can fill-in the contents offline, with the collected data being synchronised when a network connection next becomes available? | `false` |
 | `version` | `string` | Denotes the current version of the form definition. This will be assigned by whatever tooling and processes conjure your forms. There is a strong preference that form version strings adhere to [Semantic Versioning](http://nodesource.com/blog/semver-a-primer/). | `false` |
 | `shasum` | `string` | Optionally assigned by tooling, this is a checksum value based on the form-definition. Uses include client-side storage management of form definitions and integrity checking. | `false` |
 | `widgets` | `array` | The main event, 1 or more `widget` objects which an app should render to produce a form. | `true` |
