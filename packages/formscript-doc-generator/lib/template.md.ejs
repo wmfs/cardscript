@@ -303,3 +303,11 @@ So... __Formscript__!
 * It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.
 
 ## <a name="utilities"></a>Appendix B: Formscript Utilities
+
+__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Formscript:__
+
+| Package | Description | Github | NPM  |
+| ------- | ------------| ------ | ---- |
+<% packages.forEach(function(package) { -%>
+| `<%= package.name -%>` | <%- package.description -%> | [Here](<%- package.repo -%>) | [Here](<%- package.npm -%>) -%> |
+<% }) %>

@@ -945,7 +945,7 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
@@ -1718,3 +1718,12 @@ So... __Formscript__!
 * It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.
 
 ## <a name="utilities"></a>Appendix B: Formscript Utilities
+
+__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Formscript:__
+
+| Package | Description | Github | NPM  |
+| ------- | ------------| ------ | ---- |
+| `formscript-doc-generator` | Produces some markdown from the FormScript JSON Schema | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-doc-generator) | [Here](https://www.npmjs.com/package/formscript-doc-generator)  |
+| `formscript-examples` | Example Formscript files, to help with testing and documentation | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-examples) | [Here](https://www.npmjs.com/package/formscript-examples)  |
+| `formscript-schema` | Tools to help work with the FormScript specification | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-schema) | [Here](https://www.npmjs.com/package/formscript-schema)  |
+

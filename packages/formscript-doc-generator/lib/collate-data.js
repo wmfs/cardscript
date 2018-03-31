@@ -3,7 +3,7 @@ const jsonfile = require('jsonfile')
 const path = require('path')
 const exampleLoader = require('formscript-examples')
 const stopText = require('./stop-text')
-
+const getPackageInfo = require('./get-package-info')
 function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
   const rawProps = rawWidgetDefinition.properties
   const summary = []
@@ -158,7 +158,8 @@ module.exports = function collateData () {
     widgets: _.sortBy(widgetInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
     properties: propertyInfo,
-    topLevelProperties: topLevelProperties
+    topLevelProperties: topLevelProperties,
+    packages: getPackageInfo()
   }
   return data
 }

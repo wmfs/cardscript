@@ -19,7 +19,7 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmfs/formscript"
+    "url": "https://github.com/wmfs/formscript/tree/master/packages/formscript-examples"
   },
   "bugs": {
     "url": "https://github.com/wmfs/formscript/issues"
