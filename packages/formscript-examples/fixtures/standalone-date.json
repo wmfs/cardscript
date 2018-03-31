@@ -5,6 +5,6 @@
     "mandatory": true,
     "heading": "Date of birth",
     "desc": "Date the employee was born",
-    "historicByAtLeast": "18 years"
+    "historicByAtLeast": "P18Y"
   }
 }

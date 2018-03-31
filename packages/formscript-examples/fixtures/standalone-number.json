@@ -4,6 +4,7 @@
   "attributes": {
     "mandatory": true,
     "default": 2,
+    "minimum": 0,
     "heading": "How many shocks were delivered?"
   }
 }

@@ -280,25 +280,34 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Formscript `0.0.4` supports a set of 15 common attributes from which widgets can be configured.
+Formscript `0.0.4` supports a set of 24 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
  
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
+| `captureHistoric` | `boolean` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
 | `default` | `any` | A value to default a widget to if not supplied by other mechanisms. |
 | `defaultBoolean` | `boolean` | A boolean value to default a widget to if not supplied by other mechanisms. |
 | `defaultNumber` | `number` | A numeric value to default a widget to if not supplied by other mechanisms. |
 | `defaultString` | `string` | A string value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enableLocationAssist` | `boolean` | If supported by the app, should the widget try to find results from a search API by proximity to the user&#39;s current location? |
+| `enableUnknownOption` | `boolean` | Should the widget allow the user to indicate they don&#39;t know enough detail to find the most suitable result from a search API? |
 | `enabled` | `boolean` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `futuristicByAtMost` | `string` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
 | `heading` | `string` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `historicByAtLeast` | `string` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
 | `label` | `string` | A short piece of text to help identify what content is required by the user. |
+| `labelPath` | `string` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for &#39;stamping&#39; labels as they were at time of data-collection and to improve subsequent render-times of the data). |
 | `mandatory` | `boolean` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
 | `maxCharacters` | `number` | The maximum length of number of characters a user can specify. |
+| `maximum` | `number` | The maximum numeric value a user can specify. |
 | `minCharacters` | `number` | The minimum length of number of characters a will need to provide. |
+| `minimum` | `number` | The minimum numeric value a user can specify. |
 | `numericValue` | `value` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `placeholder` | `string` | Some example text that can be appear ina widget ahead of collecting use input.  |
+| `placeholder` | `string` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+| `resultLimit` | `number` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
 | `titleMap` | `array` | An array of objects denoting a set of values that the user can select from. |
 
 
@@ -321,14 +330,10 @@ __Example JSON__
     "heading": "Where does the patient live?",
     "desc": "If it's not possible to ascertain an accurate address from the patient then please select 'Unknown'",
     "mandatory": true,
-    "results": {
-      "limit": 20,
-      "pagination": true
-    },
-    "params": {
-      "enableUnknownOption": true,
-      "enableLocationAssist": false
-    }
+    "labelPath": "$.patientAddressLabel",
+    "resultLimit": 20,
+    "enableUnknownOption": true,
+    "enableLocationAssist": false
   }
 }
 
@@ -349,9 +354,15 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
+| `enableUnknownOption` | `boolean` | `No` | Should the widget allow the user to indicate they don't know enough detail to find the most suitable result from a search API? |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `labelPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
 
 
 
@@ -367,17 +378,15 @@ __Example JSON__
 
 ``` json
 {
-  "id": "",
+  "id": "fireApplianceId",
   "type": "apiLookup",
   "attributes": {
     "apiName": "fleet",
     "heading": "Fire Appliance",
+    "labelPath": "$.fireApplianceLabel",
     "desc": "Please select the Fire Appliance involved with this event",
     "mandatory": true,
-    "results": {
-      "limit": 20,
-      "pagination": true
-    },
+    "resultLimit": 20,
     "params": {
       "showCurrentOnly": true,
       "showOperationalOnly": true
@@ -402,9 +411,15 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `apiName` | `string` | `Yes` | Name of the API endpoint which will be used to get a list of results for the user to select from. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `labelPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `params` | `object` | `No` | Key/value pairs which will be passed to the API endpoint. As such, contents will vary depending on the API involved. |
+| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
 
 
 
@@ -472,11 +487,13 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `maxLimit` | `number` | `No` | Maximum number of array elements the user should provide |
 | `minLimit` | `number` | `No` | Minimum number of array elements the user should provide |
-| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
+| `titleMap` | `array` | `Yes` | An array of objects denoting a set of values that the user can select from. |
 
 
 
@@ -518,7 +535,12 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
 
 
 
@@ -540,7 +562,7 @@ __Example JSON__
     "mandatory": true,
     "heading": "Date of birth",
     "desc": "Date the employee was born",
-    "historicByAtLeast": "18 years"
+    "historicByAtLeast": "P18Y"
   }
 }
 
@@ -554,6 +576,20 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"date"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `captureHistoric` | `boolean` | `No` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `futuristicByAtMost` | `string` | `No` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `historicByAtLeast` | `string` | `No` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 
@@ -576,7 +612,7 @@ __Example JSON__
     "heading": "Appointment",
     "desc": "The date and time this visit is scheduled for",
     "captureHistoric": false,
-    "futuristicByAtMost": "3 months"
+    "futuristicByAtMost": "P3M"
   }
 }
 
@@ -590,6 +626,20 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"dateTime"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `captureHistoric` | `boolean` | `No` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `futuristicByAtMost` | `string` | `No` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `historicByAtLeast` | `string` | `No` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 
@@ -658,7 +708,7 @@ __Example JSON__
   "attributes": {
     "heading": "Any photographic evidence?",
     "desc": "Upload any digital photographs supporting your observations",
-    "enableCaptioning": true,
+    "captionPath": "$.evidenceDescription",
     "formatRestriction": [
       "jpg",
       "jpeg"
@@ -679,6 +729,22 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"fileUpload"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `captionPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where some caption text also provided by the user should be stored on the data model. If this value is not provided, the the widget should not offer captioning of uploads. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `formatRestriction` | `array` | `No` | An array of strings representing a set of file extensions that are allowed to be uploaded, for example: `["jpg", "jpeg"]`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `maxFileSize` | `string` | `No` | A [human2bytes](https://www.npmjs.com/package/human2bytes) compatible string representing the maximum filesize permitted (e.g. `50mb`). |
+| `maxNumberOfFiles` | `number` | `No` | The maximum number of files that the user is required to upload. |
+| `minNumberOfFiles` | `number` | `No` | The minimum number of files that the user is required to upload. |
 
 
 
@@ -718,8 +784,8 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `backgroundImage` | `string` | `No` |  |
-| `backgroundImageAltText` | `string` | `No` |  |
+| `backgroundImage` | `string` | `No` | A path to an image file that should be resolved from the app's base image URL or similar. |
+| `backgroundImageAltText` | `string` | `No` | Text that describes the `backgroundImage` image. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
 
@@ -758,6 +824,18 @@ __`showWhen`:__ _Optional_
 
 
 
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `altText` | `string` | `No` | Text that describes the `backgroundImage` image. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `image` | `string` | `Yes` | A path to an image file that should be resolved from the app's base image URL or similar. |
+
+
+
 
 
 <hr>
@@ -777,16 +855,21 @@ __Example JSON__
     "mandatory": true,
     "desc": "Please indicate the exact position of where the fire started.",
     "enableLocationAssist": true,
-    "drawingMode": "singlePoint",
-    "drawingConfig": {
-      "autoCentre": true,
-      "iconImage": "wmfs/flame"
-    },
+    "collectGeometries": [
+      "points"
+    ],
+    "minGeometries": 1,
+    "maxGeometries": 1,
+    "pointIconPalette": [
+      {
+        "file": "wmfs/flame.png",
+        "label": "Flame"
+      }
+    ],
     "relatedLayers": [
       {
         "name": "gaz",
-        "heading": "Gazetteer",
-        "desc": "Buildings and similar",
+        "label": "Gazetteer",
         "visibleByDefault": false
       }
     ]
@@ -803,6 +886,23 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"map"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `collectGeometries` | `array` | `No` |  |
+| `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `maxGeometries` | `number` | `No` | The maximum number of geometries required from the user |
+| `minGeometries` | `number` | `No` | The minimum number of geometries required from the user |
+| `pointIconPalette` | `array` | `No` | An array of icons which the user can select from when adding point geometries |
+| `relatedLayers` | `array` | `No` | An array of layers which the widget should request when rendering maps. |
 
 
 
@@ -823,6 +923,7 @@ __Example JSON__
   "attributes": {
     "mandatory": true,
     "default": 2,
+    "minimum": 0,
     "heading": "How many shocks were delivered?"
   }
 }
@@ -844,7 +945,14 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `maximum` | `number` | `No` | The maximum numeric value a user can specify. |
+| `minimum` | `number` | `No` | The minimum numeric value a user can specify. |
+| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
 
 
 
@@ -912,8 +1020,10 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
 | `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
 
@@ -971,8 +1081,10 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
 | `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
 
@@ -1018,8 +1130,10 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 
@@ -1090,8 +1204,10 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
 | `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
 
@@ -1180,8 +1296,10 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 
@@ -1227,6 +1345,13 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `maximum` | `number` | `No` | The maximum numeric value a user can specify. |
+| `minimum` | `number` | `No` | The minimum numeric value a user can specify. |
+| `step` | `number` | `No` | The steps/intervals that the slider widget should snap to. |
 
 
 
@@ -1264,6 +1389,16 @@ __`showWhen`:__ _Optional_
 
 
 
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `style` | __enum:__<br>`normal`<br>`informative`<br>`danger`<br> | `No` | Some style pointers that the note should take. |
+
+
+
 
 
 <hr>
@@ -1298,6 +1433,22 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"subForm"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `maxAllowed` | `number` | `No` | The maximum number of sub-forms that the user can complete. |
+| `minAllowed` | `number` | `No` | The minimum number of sub-forms that the user is required to complete. |
+| `pluralEntityText` | `string` | `No` | What are many of these forms termed? Consider using it in a sentence such as '_You must specify at least 3 `${pluralEntitiyText}`!_'. |
+| `showAtLeastOne` | `boolean` | `No` | If `true` and no sub-forms have yet been completed, then the app should show an empty sub-form ready for the user to start entering data (especially useful when `minAllowed > 0`). |
+| `singularEntityText` | `string` | `No` | What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'. |
 
 
 
@@ -1340,8 +1491,10 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `default` | `boolean` | `No` | A boolean value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 
@@ -1386,12 +1539,13 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `maxCharacters` | `number` | `No` | The maximum length of number of characters a user can specify. |
 | `minCharacters` | `number` | `No` | The minimum length of number of characters a will need to provide. |
-| `placeholder` | `string` | `No` | Some example text that can be appear ina widget ahead of collecting use input.  |
+| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
 
 
 
@@ -1429,6 +1583,21 @@ __`showWhen`:__ _Optional_
 
 
 
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `maxCharacters` | `number` | `No` | The maximum length of number of characters a user can specify. |
+| `minCharacters` | `number` | `No` | The minimum length of number of characters a will need to provide. |
+| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+
+
+
 
 
 <hr>
@@ -1460,6 +1629,17 @@ __`id`:__ _Required_
 __`type`:__ _Required_ (`"time"`)
 
 __`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 
 
 

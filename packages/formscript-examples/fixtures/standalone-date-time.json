@@ -6,6 +6,6 @@
     "heading": "Appointment",
     "desc": "The date and time this visit is scheduled for",
     "captureHistoric": false,
-    "futuristicByAtMost": "3 months"
+    "futuristicByAtMost": "P3M"
   }
 }

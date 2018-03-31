@@ -224,7 +224,7 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 <% widget.attributeSummary.forEach(function(attrib) { -%>
-| `<%= attrib.name -%>` | `<%= attrib.type -%>` | `<%= attrib.required -%>` | <%= attrib.text -%> |
+| `<%= attrib.name -%>` | <%- attrib.type -%> | `<%= attrib.required -%>` | <%- attrib.text -%> |
 <% }) %>
 
 <% } %>

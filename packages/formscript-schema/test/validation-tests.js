@@ -23,6 +23,7 @@ describe('Run some schema validation tests', function () {
 
   it('should prove the more complex Patient Care form validates', function () {
     const result = validator(patientCareForm)
+    console.log(result.errors)
     expect(result.widgetsValid).to.equal(true)
   })
 

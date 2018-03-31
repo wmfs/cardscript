@@ -10,7 +10,6 @@ function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefini
   widgetProperties.forEach(
     function (prop) {
       if (rawProps.hasOwnProperty(prop.name)) {
-
         let text
         if (rawWidgetDefinition.required.indexOf(prop.name) === -1) {
           text = '_Optional_'
@@ -56,10 +55,22 @@ function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDe
           }
         }
 
+        let attributeType = attributeSchema.type
+        if (_.isUndefined(attributeType) && _.isArray(attributeSchema.enum)) {
+          attributeType = `__enum:__<br>`
+          attributeSchema.enum.forEach(
+            function (value) {
+              attributeType += `\`${value}\`<br>`
+            }
+          )
+        } else {
+          attributeType = '`' + attributeType + '`'
+        }
+
         summary.push(
           {
             name: key,
-            type: attributeSchema.type,
+            type: attributeType,
             text: attributeSchema.title,
             required: required
           }

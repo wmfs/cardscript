@@ -6,16 +6,16 @@
     "mandatory": true,
     "desc": "Please indicate the exact position of where the fire started.",
     "enableLocationAssist": true,
-    "drawingMode": "singlePoint",
-    "drawingConfig": {
-      "autoCentre": true,
-      "iconImage": "wmfs/flame"
-    },
+    "collectGeometries": ["points"],
+    "minGeometries": 1,
+    "maxGeometries": 1,
+    "pointIconPalette": [
+      {"file": "wmfs/flame.png", "label": "Flame"}
+    ],
     "relatedLayers": [
       {
         "name": "gaz",
-        "heading": "Gazetteer",
-        "desc": "Buildings and similar",
+        "label": "Gazetteer",
         "visibleByDefault": false
       }
     ]
