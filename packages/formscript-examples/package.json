@@ -1,7 +1,7 @@
 {
   "name": "formscript-examples",
-  "description": "Example Formscript files, to help with testing and documentation",
-  "version": "0.0.4",
+  "description": "Produces Formscript's main README.md file using FormScript's JSON Schema and other sources.",
+  "version": "0.0.5",
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {

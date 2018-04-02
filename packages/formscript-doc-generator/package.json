@@ -1,13 +1,13 @@
 {
   "name": "formscript-doc-generator",
-  "description": "Produces some markdown from the FormScript JSON Schema",
-  "version": "0.0.4",
+  "description": "Produces Formscript's main README.md file using FormScript's JSON Schema and other sources.",
+  "version": "0.0.5",
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {
     "dottie": "2.0.0",
     "ejs": "2.5.8",
-    "formscript-examples": "^0.0.4",
+    "formscript-examples": "^0.0.5",
     "jsonfile": "4.0.0",
     "lodash": "4.17.5",
     "upath": "1.0.4"
