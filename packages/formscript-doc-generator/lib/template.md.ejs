@@ -21,6 +21,7 @@ In this document, such software is referred to as an "app".__
   * [Apps](#app)
   * [Forms](#form)
   * [Widgets](#widget)
+    * [Widget summary](#widget-summary)
   * [Sets](#set)
   * [Expressions](#expression)
 * [Reference](#reference)
@@ -35,14 +36,14 @@ In this document, such software is referred to as an "app".__
 
 ## <a name="structure"></a>Structure of a Form
 
-In Formscript, a form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).
+__In Formscript, a form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
 
 ### <a name="example"></a>Example: Simple Form
 
 __The content of a [_form_](#form) is specified by configuring one or more [_widgets_](#widget), which are represented by JSON objects.__
 
-* In this example, a form is defined that contains two widgets, one that defines a suitable header (with some text and an accompanying image),
-followed by a second widget for letting the user enter their name.
+* In this example, a form is defined that contains two widgets, one that defines a suitable [`header`](#list-header) (with some text and an accompanying image),
+followed by a second [`text`](#text-header)-widget for letting the user enter their name.
 
 ``` json
 <%- simpleExample -%>
@@ -53,7 +54,7 @@ followed by a second widget for letting the user enter their name.
 
 ## <a name="concepts"></a>Concepts
 
-Formscript is built on a handful of key concepts...
+__Formscript is built on a handful of key concepts...__
 
 ### <a name="app"></a>Apps
 
@@ -63,17 +64,16 @@ In this document, such software is referred to an "__app__".
 * Apps can be implemented in any frontend-framework, language or library.
 * Formscript does not impose any aesthetic or UI constraints onto apps that implement it.
 * Formscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
-* Perhaps as a fallback, Formscript content can even be rendered as a hard-copy paper form.
-* Several utilities to help develop apps that use Formscript (written in Javascript) are published on [here on npmjs.com](https://www.npmjs.com/search?q=formscript) (the accompanying source code and related issues can be found [here](https://github.com/wmfs/formscript/tree/master/packages)).
+* Several utilities to help develop apps that use Formscript (written in Javascript). Please see [Appendix B: Formscript Utilities](#utilities) for further information.
 
 ### <a name="form"></a>Forms
 
 The purpose of Formscript is to define a user interface, referred to as a "__form__".
 
-* Using an app, forms are typically used to collect information from a user: but it's entirely possible to simply convey information using a form definition as well.
+* Forms are typically used to collect information from a user within an [app](#app). Forms can be non-interactive as well, and they can be used to simply display information to the user.
 * With Formscript it's possible to configure a form with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
 * Formscript definitions are naturally stored in `.json` files (typically one-file-per-form).
-* In certain use-cases consider that [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer a compelling alternative to serialising Formscript definitions in `.json` files.
+* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Formscript definitions.
 * Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json), which may be used to validate the basic integrity of Formscript content.
 * For comprehensive Formscript validation, please refer to the [formscript-schema](https://www.npmjs.com/package/formscript-schema) package.
 
@@ -83,11 +83,13 @@ Forms are constructed from an ordered list of "__widgets__".
 
 * To avoid overloading frontend-terms like 'component', Formscript refers to each object in the `widgets` array as a __widget__.
 * Consider a widget as an area of a form responsible for a particular task: either collecting a specific piece of information from a user or visualising a certain piece of information.
-* As such, widgets can be interactive (`text`, `number`, `map` etc.) and non-interactive (`heading`, `stickyNote` etc.)
+* As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a form definition is important - representing the order users will encounter them.
 * The Formscript specification offers a fixed set of <%= widgets.length %> standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Formscript/blob/master/CONTRIBUTING.md)
 
 __Ahead of the [Reference](#reference) section, here's a quick summary of the <%= widgets.length %> widgets supported in Formscript `<%= version %>`:__
+
+#### <a name="widget-summary"></a>Widget summary
 
 | Widget Type      | Description |
 | -----------      | ----------- |
@@ -97,17 +99,25 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the <%
 
 ### <a name="set"></a>Sets
 
-All the widgets that define a form's content are specified in a simple array.
+All the [widgets](#widget) that define a [form](#form)'s content are specified in a simple array.
 This design helps align Formscript with vertical-scrolling interfaces with very little friction.
 To assist with navigation (especially around larger, more complex forms) it is common for User Interfaces to be split into logical sections.
 
-In Formscript,  __sets__ allow widgets to be grouped into related chunks.
+* __In Formscript,  _sets_ allow widgets to be grouped into related chunks.__
 
-* Each set begins with a `set` widget and ends with an `endSet` widget.
-* Nesting of sets is possible and sets are especially powerful when combined with dynamic expressions to conditionally show/hide content.
-* Sets enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) components.
+__Example JSON__
+
+``` json
+<%- simpleSetExample -%>
+
+```
+
+* In this example, we are declaring that a [`textarea`](#list-textarea) widget (with the id `feedback`) should be rendered within a set (which will appear in a Table of Contents and have the heading "_Any feedback?_").
+* The beginning of each set is marked with a [`set`](#list-set) widget and is terminated with an [`endSet`](#list-endSet) widget (just like `<div>` and `</div>`).
+* Nesting of sets is possible and sets are especially powerful when combined with dynamic [expression](#expression)s to conditionally show/hide content.
+* Sets also enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) functionality.
 * Multi-step "wizard" interfaces are also easily achieved via sets.
-
+* The [`subForm`](#list-subForm) and [`endSubForm`](#list-endSubForm) widgets use exactly the same technique to define repeating-groups of widgets.
 
 ### <a name="expression"></a>Expressions
 
@@ -128,8 +138,8 @@ Consider an expression to be something that could be evaluated in a Javascript `
 
 __In the example above we have two widgets:__
 
-* The first is a simple boolean on/off `switch` widget (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
-* The second widget is a `textarea` box (with the `id` of `feedback`) for collecting feedback from the user.
+* The first is a simple boolean on/off [`switch`](#list-switch) widget (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
+* The second widget is a [`textarea`](#list-textbox) box (with the `id` of `feedback`) for collecting feedback from the user.
 
 The `feedback` widget should only show if the `userWantsToGiveFeedback` switch is thrown on (i.e. `true`).
 
@@ -194,6 +204,8 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
+Here is the list of all <%= widgets.length %> widgets supported in Formscript `<%= version %>` (please see [Widget summary](#widget-summary) for a handy index).
+
 <% widgets.forEach(function(widget) { -%>
 
 <hr>
@@ -246,7 +258,7 @@ The Formscript specification and related tooling is provided under [__GNU Genera
 ## <a name="motivation"></a>Appendix A: Formscript Motivation
 
 __Formscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
-Our work over the last 20 years has heavily involved collecting data from a variety of teams and environments.
+Our work over the last 20 years has often involved collecting data from a variety of teams and environments.
 During this time, our best experiences have come from taking a declarative approach to defining form content.__
 
 * Originally we used XML to define the content of our forms (or _Workbooks_ as they became known).
@@ -256,18 +268,18 @@ Over the intervening years we have defined some 50 workbooks in XML to collect o
 * We're now actively working on our third-generation form rendering engine.
 While designing the accompanying backend, we've found great benefit in aligning to open standards (for example our workflow is now defined in [Amazon State Language](https://states-language.net/spec.html)).
 
-* Given our positive experiences of declarative techniques and open standards, it was natural our new forms engine should use an open standard to define content.
+* Given our positive experiences of declarative techniques and open standards, it was a natural evolution for our new forms engine should use an open standard to define content.
 We therefore prototyped using a few projects (for example [Schema Form](https://json-schema-form.github.io/angular-schema-form/)) and shipped our [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) using [Mozilla React Schema Form](https://mozilla-services.github.io/react-jsonschema-form).
 
 __They're great libraries and helped us get up-and-running quickly.__
 
-Unfortunately both these specifications are bound to an underlying UI technology (i.e. Angular and React respectively).
+In hindsight, both these specifications are restricted by being bound to an underlying UI technology (i.e. Angular and React respectively).
 This is by far the biggest problem for us - it felt very much like the tail wagging the dog.
-They both mandate a traditional web form interface too. What if we're only working in a CLI context, or want to try some voice interface technology?
+Both projects mandate a traditional web-form interface too. What if we're only working in a CLI context, or want to try some voice interface technology?
 
-* And they're fine for reasonably trivial forms, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both frameworks - even to deliver quite basic form experiences.
+* And React Schema Form and Schema.io work well for reasonably trivial forms, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both approaches - even to deliver quite basic form experiences.
 
-To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involved a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when developing larger forms.
+To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involves a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when developing larger forms.
 In turn, we found this complexity bleeds into tooling and the wider architecture.
 
 __So with a shopping-list in-hand:__
@@ -300,7 +312,7 @@ It was becoming evident we didn't have a good fit for what we wanted to do, and 
 
 So... __Formscript__!
 
-* It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.
+* __It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.__
 
 ## <a name="utilities"></a>Appendix B: Formscript Utilities
 

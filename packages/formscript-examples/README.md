@@ -1,6 +1,6 @@
 # formscript-examples
 
-> Example Formscript files, to help with testing and documentation
+> Example Formscript JSON files, to help with testing and documentation. Includes loader utility.
 
 * Note: files
 

@@ -2,11 +2,16 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=packages%2Fformscript-doc-generator%2Fpackage.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=packages%2Fformscript-doc-generator%2Fpackage.json)
 
-> Tools to help work with the FormScript specification
+> Produces Formscript's main README.md file using FormScript's JSON Schema and other sources.
 
 ## <a name="install"></a>Install
 ```bash
 $ npm install formscript-doc-generator --save
+```
+
+## <a name="usage"></a>Usage
+```bash
+$ npm run generate
 ```
 
 ## <a name="test"></a>Testing

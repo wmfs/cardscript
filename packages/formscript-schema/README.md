@@ -2,7 +2,7 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=packages%2Fformscript-schema%2Fpackage.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=packages%2Fformscript-schema%2Fpackage.json)
 
-> Tools to help work with the FormScript specification
+> Contains a JSON Schema for Formscript, along with a validation utility.
 
 ## <a name="install"></a>Install
 ```bash
@@ -16,36 +16,28 @@ const formscriptSchema = require('formscript-schema')
 
 const result = formscriptSchema.validateForm(
 {
+  title: 'Simple demo form!',
+  canBeCompletedOffline: true,
   widgets: [
     {
       type: 'header',
       attributes: {
         heading: 'Register!',
-        description: "Let's get to know each other a bit better...",
+        desc: 'Let's get to know each other a bit better...',
         backgroundImage: 'happyPeople.jpg',
         backgroundImageAltText: 'Beautiful people smiling around a laptop'
       }
     },
     {
-      id: 'firstName',
+      id: 'name',
       type: 'text',
       attributes: {
-        label: 'First name',
-        placeholder: 'e.g. Lucy Smith',        
-        required: true,
-        minLength: 1,
-        maxLength: 100,
-        help: 'Enter your full name here'  
-      }
-    },
-    {
-      type: 'menuBar',
-      attributes: {
-        sticky: true,
-        placement: 'top',
-        saveButton: true,
-        cancelButton: false,
-        progressBar: false
+        heading: 'Name',
+        placeholder: 'e.g. Lucy Smith',
+        mandatory: true,
+        minCharacters: 1,
+        maxCharacters: 100,
+        help: 'Enter your full name here'
       }
     }
   ]

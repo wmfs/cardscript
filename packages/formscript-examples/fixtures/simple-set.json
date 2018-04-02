@@ -1,0 +1,23 @@
+{
+  "title": "Simple set demo!",
+  "widgets": [
+    {
+      "type": "set",
+      "attributes": {
+        "heading": "Any feedback?",
+        "showInToc": true
+      }
+    },
+    {
+      "id": "feedback",
+      "type": "textarea",
+      "attributes": {
+        "heading": "Feedback",
+        "desc": "Please tell us how you feel!"
+      }
+    },
+    {
+      "type": "endSet"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ const path = require('path')
 const exampleLoader = require('formscript-examples')
 const stopText = require('./stop-text')
 const getPackageInfo = require('./get-package-info')
+
 function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
   const rawProps = rawWidgetDefinition.properties
   const summary = []
@@ -145,6 +146,10 @@ module.exports = function collateData () {
     path.resolve(__dirname, './../../formscript-examples/fixtures/simple-form.json')
   )
 
+  const simpleSetExample = jsonfile.readFileSync(
+    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-set.json')
+  )
+
   const expressionExample = jsonfile.readFileSync(
     path.resolve(__dirname, './../../formscript-examples/fixtures/simple-expression.json')
   )
@@ -154,6 +159,7 @@ module.exports = function collateData () {
     year: new Date().getFullYear(),
     version: lernaJson.version,
     simpleExample: JSON.stringify(simpleExample, null, 2),
+    simpleSetExample: JSON.stringify(simpleSetExample, null, 2),
     expressionExample: JSON.stringify(expressionExample, null, 2),
     widgets: _.sortBy(widgetInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
