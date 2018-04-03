@@ -32,6 +32,7 @@ __This project defines a [JSON](https://tools.ietf.org/html/rfc7159)-based langu
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
+* Get hands-on with Formscripts with the online __[Formscript Playpen](https://wmfs.github.io/formscript/)__.
 * For some introductory context around the motivations driving Formscript, please see [Appendix A: Formscript Motivation](#motivation).
 * A [JSON Schema (Draft-07)](http://json-schema.org/) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
 * The Formscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/formscript)) provides several utilities to help work with the specification. Please see [Appendix B: Formscript Utilities](#utilities) for further information.
@@ -1744,7 +1745,7 @@ We were edging closer to defining our own, but at the same time very mindful of 
 * A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema Form definitions.
 It was becoming evident we didn't have a good fit for what we wanted to do, and that using a badly-fitting standard is actually worse than not using a standard at all.
 
-* The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML felt out of place if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
+* The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML feels out-of-place nowadays if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
 So... __Formscript__!
 
