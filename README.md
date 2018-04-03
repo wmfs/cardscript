@@ -32,6 +32,8 @@ __This project defines a [JSON](https://tools.ietf.org/html/rfc7159)-based langu
 The forms thus defined may be rendered and executed by software.
 In this document, such software is referred to as an "app".__
 
+### Getting started
+
 * Get hands-on with Formscripts with the online __[Formscript Playpen](https://wmfs.github.io/formscript/)__.
 * For some introductory context around the motivations driving Formscript, please see [Appendix A: Formscript Motivation](#motivation).
 * A [JSON Schema (Draft-07)](http://json-schema.org/) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
