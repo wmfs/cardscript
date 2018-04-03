@@ -1,1 +1,47 @@
-<h1>I WILL BE A PLAYPEN SOON!!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formscript playpen</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #formscript {
+           height: 200px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Formscript Playpen</h1>
+        <p class="lead">This is a simple playpen to experiment with Formscript. Drop some Formscript JSON into the box below and then click the "Render!" button to see what happens. Please take a look at the <a href="https://github.com/wmfs/formscript">Formscript documentation</a> to get started.</p>
+    </div>
+
+
+    <div id="app">
+        <h3>Formscript JSON</h3>
+        <textarea v-model="formscript" class="form-control" id="formscript" placeholder="Enter some Formscript JSON here!" style="font-family:monospace;"></textarea>
+        <br>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Render!</a>
+        <br>
+        <br>
+        {{ formscript }}
+    </div>
+
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      formscript: null,
+      result: {}
+    }
+  })
+</script>
+</body>
+
+</html>
