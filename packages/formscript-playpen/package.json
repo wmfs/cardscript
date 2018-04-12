@@ -5,6 +5,7 @@
   "author": "Tim Needham <tim.needham@wmfs.net>",
   "private": true,
   "scripts": {
+    "gh-docs": "node ../../node_modules/vue-gh-pages/index.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
@@ -12,7 +13,9 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "formscript-schema": "^0.0.5",
+    "vue2-brace-editor": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -56,6 +59,7 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
+    "vue-gh-pages": "1.12.0",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
