@@ -11,15 +11,13 @@
     <div id="app">
 
       <h3>STEP 1: Formscript JSON</h3>
-      <editor
-        v-model="formscript"
-        @init="editorInit"
-        lang="javascript"
-        theme="dawn"
-        width="100%"
-        height="300px"
-      ></editor>
-      <br>
+
+      <div class="code-window">
+        <header class="code-header">
+          <div class="code-buttons"></div>formscript-sample.json</header>
+          <codemirror v-model="formscript"></codemirror>
+      </div>
+
       <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Build!</a>
       <br>
       <br>
@@ -46,20 +44,10 @@ const example = JSON.stringify(require('./example'), null, 2)
 const validator = require('formscript-schema').validateForm
 export default {
   name: 'Playpen',
+  mounted () {
+
+  },
   methods: {
-
-    editorInit (editor) {
-      require('brace/ext/language_tools') //language extension prerequsite...
-      require('brace/mode/javascript'),
-      require('brace/theme/dawn')
-      editor.setOptions(
-        {
-          showPrintMargin: false,
-          fontFamily: 'Courier,monospace'
-        }
-      )
-    },
-
     renderFormscript: function render () {
       const result = validator(JSON.parse(this.formscript))
       if (result.widgetsValid) {
@@ -71,8 +59,7 @@ export default {
       }
     }
   },
-  components: {
-    editor: require('vue2-ace-editor')
+  mounted () {
   },
   data () {
     return {
@@ -89,7 +76,41 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #formscript {
-    height: 250px;
+
+  .code-window {
+    height: 332px;
+    border-radius: 4px;
+    background: #fff;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .code-window .code-header {
+    background: #ececec;
+    padding: 0.4rem;
+    font-size: 1.7rem;
+    position: relative;
+    color: #a5a5a5;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+  }
+
+  .code-window .code-header .code-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 12px;
+    margin-left: 35px;
+    width: 11px;
+    height: 11px;
+    background: #a5a5a5;
+    border-radius: 50%;
+    box-shadow: -20px 0 0 #a5a5a5, 20px 0 0 #a5a5a5;
+  }
+  .code-window .code-editor {
+    position: relative;
+    height: 340px;
+    color: #444;
   }
 </style>
