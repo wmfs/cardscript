@@ -15,7 +15,7 @@
         v-model="formscript"
         @init="editorInit"
         lang="javascript"
-        theme="tomorrow"
+        theme="dawn"
         width="100%"
         height="300px"
       ></editor>
@@ -51,8 +51,13 @@ export default {
     editorInit (editor) {
       require('brace/ext/language_tools') //language extension prerequsite...
       require('brace/mode/javascript'),
-      require('brace/theme/tomorrow')
-      editor.setShowPrintMargin(false)
+      require('brace/theme/dawn')
+      editor.setOptions(
+        {
+          showPrintMargin: false,
+          fontFamily: 'Courier,monospace'
+        }
+      )
     },
 
     renderFormscript: function render () {
