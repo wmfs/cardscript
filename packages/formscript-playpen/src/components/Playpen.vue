@@ -2,27 +2,25 @@
   <div class="container">
     <div class="jumbotron">
       <h1 class="display-3">Formscript Playpen</h1>
-      <p class="lead">This is a simple playpen to experiment with Formscript. Change the demo Formscript JSON in the editor below and then click the "Render!" button to see what happens. Please take a look at the <a href="https://github.com/wmfs/formscript">Formscript documentation</a> for more information.</p>
+      <p class="lead">Provide some Formscript JSON in the
+        editor below and then click the "Build!" button to turn it into something more useful. Please take a look at the <a
+          href="https://github.com/wmfs/formscript">Formscript documentation</a> for more information.</p>
     </div>
 
 
     <div id="app">
 
       <h3>STEP 1: Formscript JSON</h3>
-      <AceEditor
-        :fontSize="14"
-        :showPrintMargin="false"
-        :showGutter="true"
-        :highlightActiveLine="true"
-        mode="javascript"
-        :defaultValue="example"
-        theme="monokai"
+      <editor
+        v-model="formscript"
+        @init="editorInit"
+        lang="javascript"
+        theme="tomorrow"
         width="100%"
-        :onChange="onChange"
-        name="editor"
-        :editorProps="{$blockScrolling: true}"/>
+        height="300px"
+      ></editor>
       <br>
-      <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Render!</a>
+      <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Build!</a>
       <br>
       <br>
 
@@ -44,21 +42,20 @@
 </template>
 
 <script>
-import brace from 'brace'
-import { Ace as AceEditor} from 'vue2-brace-editor'
-import 'brace/mode/javascript'
-import 'brace/theme/monokai'
 const example = JSON.stringify(require('./example'), null, 2)
 const validator = require('formscript-schema').validateForm
 export default {
   name: 'Playpen',
   methods: {
-    onChange (newValue) {
-      console.log('change', newValue)
-      this.$set(this, 'formscript', newValue)
+
+    editorInit (editor) {
+      require('brace/ext/language_tools') //language extension prerequsite...
+      require('brace/mode/javascript'),
+      require('brace/theme/tomorrow')
+      editor.setShowPrintMargin(false)
     },
 
-    renderFormscript: function render() {
+    renderFormscript: function render () {
       const result = validator(JSON.parse(this.formscript))
       if (result.widgetsValid) {
         this.$set(this.validation, 'state', 'valid')
@@ -70,7 +67,7 @@ export default {
     }
   },
   components: {
-    AceEditor: AceEditor
+    editor: require('vue2-ace-editor')
   },
   data () {
     return {

@@ -12,10 +12,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "formscript-schema": "^0.0.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "formscript-schema": "^0.0.5",
-    "vue2-brace-editor": "^2.0.1"
+    "vue2-ace-editor": "^0.0.9"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
