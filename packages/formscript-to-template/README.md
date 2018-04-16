@@ -22,7 +22,7 @@ const result = formscriptToTemplate.convert(
         type: 'header',
         attributes: {
           heading: 'Register!',
-          desc: 'Let's get to know each other a bit better...'
+          desc: "Let's get to know each other a bit better..."
         }
       },
       {
