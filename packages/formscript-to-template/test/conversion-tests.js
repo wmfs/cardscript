@@ -11,7 +11,7 @@ const patientCareForm = exampleLoader('patient-care')
 
 const CONFIG = {
   template: {
-    widgetTagPrefix: 'app-',
+    widgetTagPrefix: 'app',
     closingWidgetTags: false,
     rootTag: ['<div>', '</div>'],
     conditionalTag: ['<template v-if="$$EXPRESSION$$">', '</template>'],
@@ -21,16 +21,17 @@ const CONFIG = {
 }
 
 describe('Run some simple conversion tests', function () {
-  it('should prove simple formscript converts correctly', function () {
+  it('should prove simple Formscript converts correctly', function () {
     const result = formscriptToTemplate.convert(simpleForm, CONFIG)
     // expect(result.widgetsValid).to.equal(true)
     expect(result.template).to.be.a('string')
-    console.log(result)
+    console.log(result.template)
   })
-  it('should prove the pateintCare formscript converts correctly', function () {
+
+  it('should prove the patientCare Formscript converts correctly', function () {
     const result = formscriptToTemplate.convert(patientCareForm, CONFIG)
     // expect(result.widgetsValid).to.equal(true)
     expect(result.template).to.be.a('string')
-    console.log(result)
+    console.log(result.template)
   })
 })

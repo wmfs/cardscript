@@ -4,7 +4,7 @@
 
 ## <a name="install"></a>Install
 ```bash
-$ npm install formscript-2-template --save
+$ npm install formscript-to-template --save
 ```
 
 ## <a name="usage"></a>Usage
@@ -41,13 +41,13 @@ const result = formscriptToTemplate.convert(
   // Options!
   {
     template: {
-      widgetTagPrefix: 'app-',
+      widgetTagPrefix: 'app',
       closingWidgetTags: false,
       rootTag: ['<div>', '</div>'],
       conditionalTag: ['<template v-if="$$EXPRESSION$$">', '</template>'],
-      modelBindingAttributeTemplate: 'v-model="data.$$WIDGET_KEY$$"'
-    },
-    unknownWidgetStrategy: 'include'
+      modelBindingAttributeTemplate: 'v-model="data.$$WIDGET_KEY$$"',
+      pretty: true
+    }
   }
 )
 
