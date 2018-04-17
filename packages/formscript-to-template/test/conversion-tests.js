@@ -14,7 +14,8 @@ const CONFIG = {
     widgetTagPrefix: 'app',
     closingWidgetTags: false,
     rootTag: ['<div>', '</div>'],
-    conditionalTag: ['<template v-if="$$EXPRESSION$$">', '</template>'],
+    setReplacementTag: 'template',
+    conditionalAttributeTemplate: 'v-if="$$EXPRESSION$$"',
     modelBindingAttributeTemplate: 'v-model="data.$$WIDGET_KEY$$"'
   },
   unknownWidgetStrategy: 'include'

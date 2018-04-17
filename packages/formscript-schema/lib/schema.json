@@ -552,9 +552,7 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "heading": {"$ref": "#/definitions/attributes/heading"},
-              "desc": {"$ref": "#/definitions/attributes/desc"},
-              "showInTOC": {"type": "boolean", "title": "Should this set appear in a Table of Contents or similar, if the app supports such things?"}
+              "tocTitle": {"type": "string", "title": "Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC."}
             },
             "additionalProperties": false
           }

@@ -14,9 +14,7 @@
       "id": "incidentSection",
       "type": "set",
       "attributes": {
-        "heading": "Incident details",
-        "desc": "Please provide details of the incident at which casualty care was administered (we'll be automatically linking to real-time incident data soon).",
-        "showInTOC": true
+        "tocTitle": "Incident"
       }
     },
     {
@@ -108,9 +106,7 @@
       "id": "patientSection",
       "type": "set",
       "attributes": {
-        "heading": "Patient details",
-        "desc": "The questions in this section relate to the patient which received care.",
-        "showInTOC": true
+        "tocTitle": "Patient"
       }
     },
     {
@@ -184,8 +180,7 @@
       "id": "airwaySection",
       "type": "set",
       "attributes": {
-        "heading": "Any airway treatments?",
-        "showInTOC": true
+        "tocTitle": "Airway"
       }
     },
     {
@@ -279,8 +274,7 @@
       "id": "breathingSection",
       "type": "set",
       "attributes": {
-        "heading": "Any breathing treatments?",
-        "showInTOC": true
+        "tocTitle": "Breathing"
       }
     },
     {
@@ -367,8 +361,7 @@
       "id": "circulationSection",
       "type": "set",
       "attributes": {
-        "heading": "Circulation",
-        "showInTOC": true
+        "tocTitle": "Circulation"
       }
     },
     {
@@ -468,8 +461,7 @@
       "id": "disabilitySection",
       "type": "set",
       "attributes": {
-        "heading": "Disability",
-        "showInTOC": true
+        "tocTitle": "Disability"
       }
     },
     {
@@ -555,8 +547,7 @@
       "id": "exposureSection",
       "type": "set",
       "attributes": {
-        "heading": "Exposure",
-        "showInTOC": true
+        "tocTitle": "Exposure"
       }
     },
     {
@@ -586,8 +577,7 @@
       "id": "burnsSection",
       "type": "set",
       "attributes": {
-        "heading": "Burns",
-        "showInTOC": true
+        "tocTitle": "Burns"
       }
     },
     {
@@ -680,8 +670,7 @@
       "id": "cprSection",
       "type": "set",
       "attributes": {
-        "heading": "CPR",
-        "showInTOC": true
+        "tocTitle": "CPR"
       }
     },
     {
@@ -736,8 +725,7 @@
       "id": "medicationSection",
       "type": "set",
       "attributes": {
-        "heading": "Medication",
-        "showInTOC": true
+        "tocTitle": "Medication"
       }
     },
     {
@@ -761,8 +749,7 @@
       "id": "summarySection",
       "type": "set",
       "attributes": {
-        "heading": "Summary",
-        "showInTOC": true
+        "tocTitle": "Summary"
       }
     },
     {

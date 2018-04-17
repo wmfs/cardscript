@@ -1,6 +1,7 @@
 module.exports = {
   showWhen: false,
   bindToDataModel: false,
+  openingTag: false,
   closingTag: true
 }
 

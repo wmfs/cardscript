@@ -1,7 +1,8 @@
 module.exports = {
   showWhen: false,
   bindToDataModel: false,
-  closingTag: false
+  openingTag: false,
+  closingTag: true
 }
 
 // export function templateCompiler (widget) {

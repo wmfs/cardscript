@@ -1,6 +1,7 @@
 module.exports = {
   showWhen: true,
   bindToDataModel: true,
+  openingTag: true,
   closingTag: true,
   titleMapProcessor: function (widgetDefinition, titleMap, tagPrefix, options) {
     const id = `${widgetDefinition.id}_${titleMap.value}`

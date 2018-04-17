@@ -8,16 +8,12 @@
     </div>
 
 
+
     <div id="app">
-
-      <h3>STEP 1: Formscript JSON</h3>
-
-      <div class="code-window">
-        <header class="code-header">
-          <div class="code-buttons"></div>formscript-sample.json</header>
-          <codemirror v-model="formscript"></codemirror>
-      </div>
-
+      <h4>Formscript JSON</h4>
+      <br>
+      <codemirror v-model="formscript"></codemirror>
+      <br>
       <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Build!</a>
       <br>
       <br>
@@ -32,7 +28,60 @@
       </div>
 
       <div v-if="validation.state === 'valid'">
-        VALID!
+        <hr>
+        <h3 id="success">Success!</h3>
+        <br>
+        <p>The supplied Formscript has been checked using the <a href="https://github.com/wmfs/formscript/tree/master/packages/formscript-schema">formscript-schema</a> package, and it passed!</p>
+        <br>
+
+        <vue-tabs>
+          <v-tab title="Render">
+            <br>
+            <div class="alert alert-secondary" role="alert">
+              This is an simple rendering of the Formscript provided above. Note this is only meant to be a basic illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way they see fit!
+            </div>
+            <h1>1</h1>
+            <formscript></formscript>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+            <h1>1</h1>
+          </v-tab>
+          <v-tab title="Data">
+          </v-tab>
+          <v-tab title="Template">
+            <br>
+            <div class="alert alert-secondary" role="alert">
+            This is output of running the above Formscript through the <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-to-template">formscript-to-template</a> package. Here we've configured things to output in a Vue.js style, but Angular and React templates can be generated too!
+            </div>
+            <pre><code class="template">{{output.template.template}}</code></pre>
+          </v-tab>
+        </vue-tabs>
       </div>
     </div>
 
@@ -40,22 +89,35 @@
 </template>
 
 <script>
+import Formscript from 'formscript-simple-vue'
 const example = JSON.stringify(require('./example'), null, 2)
 const validator = require('formscript-schema').validateForm
+const templateConverter = require('formscript-to-template').convert
+
 export default {
   name: 'Playpen',
+  components: {
+    Formscript
+  },
   mounted () {
 
   },
   methods: {
     renderFormscript: function render () {
-      const result = validator(JSON.parse(this.formscript))
+      const parsed = JSON.parse(this.formscript)
+      const result = validator(parsed)
       if (result.widgetsValid) {
         this.$set(this.validation, 'state', 'valid')
         this.$set(this.validation, 'errors', [])
+        this.$set(this.output, 'template', templateConverter(parsed))
+        this.$nextTick(function () {
+          const e = document.getElementById("success");
+          e.scrollIntoView();
+        })
       } else {
         this.$set(this.validation, 'state', 'invalid')
         this.$set(this.validation, 'errors', result.errors)
+        this.$set(this.output, 'template', '')
       }
     }
   },
@@ -68,7 +130,8 @@ export default {
       validation: {
         state: 'notValidated',
         errors: []
-      }
+      },
+      output: {}
     }
   }
 }
@@ -77,40 +140,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  .code-window {
-    height: 332px;
-    border-radius: 4px;
-    background: #fff;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  .code-window .code-header {
-    background: #ececec;
-    padding: 0.4rem;
-    font-size: 1.7rem;
-    position: relative;
-    color: #a5a5a5;
-    border-bottom: 1px solid #e0e0e0;
-    text-align: center;
-  }
-
-  .code-window .code-header .code-buttons {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 12px;
-    margin-left: 35px;
-    width: 11px;
-    height: 11px;
-    background: #a5a5a5;
-    border-radius: 50%;
-    box-shadow: -20px 0 0 #a5a5a5, 20px 0 0 #a5a5a5;
-  }
-  .code-window .code-editor {
-    position: relative;
-    height: 340px;
-    color: #444;
+  .template {
+    white-space: pre;
+    overflow-x: auto;
+    display: inline-block;
+    min-width: 100%;
   }
 </style>
