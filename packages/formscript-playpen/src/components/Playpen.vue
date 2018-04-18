@@ -3,11 +3,10 @@
     <div class="jumbotron">
       <h1 class="display-3">Formscript Playpen</h1>
       <p class="lead">Provide some Formscript JSON in the
-        editor below and then click the "Build!" button to turn it into something more useful. Please take a look at the <a
+        editor below and then click the "Build!" button to turn it into something more useful. Please take a look at the
+        <a
           href="https://github.com/wmfs/formscript">Formscript documentation</a> for more information.</p>
     </div>
-
-
 
     <div id="app">
       <h4>Formscript JSON</h4>
@@ -31,14 +30,18 @@
         <hr>
         <h3 id="success">Success!</h3>
         <br>
-        <p>The supplied Formscript has been checked using the <a href="https://github.com/wmfs/formscript/tree/master/packages/formscript-schema">formscript-schema</a> package, and it passed!</p>
+        <p>The supplied Formscript has been checked using the <a
+          href="https://github.com/wmfs/formscript/tree/master/packages/formscript-schema">formscript-schema</a>
+          package, and it passed!</p>
         <br>
 
         <vue-tabs>
           <v-tab title="Render">
             <br>
             <div class="alert alert-secondary" role="alert">
-              This is an simple rendering of the Formscript provided above. Note this is only meant to be a basic illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way they see fit!
+              This is an simple rendering of the Formscript provided above. Note this is only meant to be a basic
+              illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way
+              they see fit!
             </div>
             <h1>1</h1>
             <formscript></formscript>
@@ -77,7 +80,10 @@
           <v-tab title="Template">
             <br>
             <div class="alert alert-secondary" role="alert">
-            This is output of running the above Formscript through the <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-to-template">formscript-to-template</a> package. Here we've configured things to output in a Vue.js style, but Angular and React templates can be generated too!
+              This is output of running the above Formscript through the <a class="alert-link"
+                                                                            href="https://github.com/wmfs/formscript/tree/master/packages/formscript-to-template">formscript-to-template</a>
+              package. Here we've configured things to output in a Vue.js style, but Angular and React templates can be
+              generated too!
             </div>
             <pre><code class="template">{{output.template.template}}</code></pre>
           </v-tab>
@@ -90,6 +96,7 @@
 
 <script>
 import Formscript from 'formscript-simple-vue'
+
 const example = JSON.stringify(require('./example'), null, 2)
 const validator = require('formscript-schema').validateForm
 const templateConverter = require('formscript-to-template').convert
@@ -98,9 +105,6 @@ export default {
   name: 'Playpen',
   components: {
     Formscript
-  },
-  mounted () {
-
   },
   methods: {
     renderFormscript: function render () {
@@ -111,8 +115,8 @@ export default {
         this.$set(this.validation, 'errors', [])
         this.$set(this.output, 'template', templateConverter(parsed))
         this.$nextTick(function () {
-          const e = document.getElementById("success");
-          e.scrollIntoView();
+          const e = document.getElementById('success')
+          e.scrollIntoView()
         })
       } else {
         this.$set(this.validation, 'state', 'invalid')
@@ -120,8 +124,6 @@ export default {
         this.$set(this.output, 'template', '')
       }
     }
-  },
-  mounted () {
   },
   data () {
     return {

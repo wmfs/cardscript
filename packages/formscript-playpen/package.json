@@ -5,7 +5,7 @@
   "author": "Tim Needham <tim.needham@wmfs.net>",
   "private": true,
   "scripts": {
-    "gh-docs": "node ../../node_modules/vue-gh-pages/index.js",
+    "gh-docs": "node ../../node_modules/vue-gh-pages/index.js -p --output ../../",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
@@ -21,6 +21,7 @@
     "formscript-simple-vue": "0.0.5"
   },
   "devDependencies": {
+    "vue-gh-pages": "^1.15.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -62,7 +63,6 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
-    "vue-gh-pages": "1.12.0",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
