@@ -1,7 +1,8 @@
 const _ = require('lodash')
 const jsonfile = require('jsonfile')
 const path = require('path')
-const exampleLoader = require('formscript-examples')
+const examples = require('formscript-examples')
+const snippets = require('./snippets')
 const stopText = require('./stop-text')
 const getPackageInfo = require('./get-package-info')
 
@@ -121,7 +122,7 @@ module.exports = function collateData () {
     function (rawWidgetDefinition, widgetType) {
       const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
       widgetDefinition.type = widgetType
-      widgetDefinition.example = JSON.stringify(exampleLoader(`standalone-${_.kebabCase(widgetType)}`), null, 2)
+      widgetDefinition.example = JSON.stringify(snippets[widgetType], null, 2)
       widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
       widgetDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(widgetType, schema.definitions.attributes, rawWidgetDefinition), 'name')
       widgetInfo.push(widgetDefinition)
@@ -142,25 +143,13 @@ module.exports = function collateData () {
     path.resolve(__dirname, './../../../lerna.json')
   )
 
-  const simpleExample = jsonfile.readFileSync(
-    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-form.json')
-  )
-
-  const simpleSetExample = jsonfile.readFileSync(
-    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-set.json')
-  )
-
-  const expressionExample = jsonfile.readFileSync(
-    path.resolve(__dirname, './../../formscript-examples/fixtures/simple-expression.json')
-  )
-
   const data = {
     stopText: stopText,
     year: new Date().getFullYear(),
     version: lernaJson.version,
-    simpleExample: JSON.stringify(simpleExample, null, 2),
-    simpleSetExample: JSON.stringify(simpleSetExample, null, 2),
-    expressionExample: JSON.stringify(expressionExample, null, 2),
+    simpleExample: JSON.stringify(examples.simple, null, 2),
+    simpleSetExample: JSON.stringify(examples.set, null, 2),
+    expressionExample: JSON.stringify(examples.expression, null, 2),
     widgets: _.sortBy(widgetInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
     properties: propertyInfo,

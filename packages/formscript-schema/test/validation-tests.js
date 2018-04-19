@@ -4,31 +4,26 @@
 const validator = require('./../lib/').validateForm
 const chai = require('chai')
 const expect = chai.expect
-
-const exampleLoader = require('formscript-examples')
-const simpleForm = exampleLoader('simple-form')
-const patientCareForm = exampleLoader('patient-care')
-const simpleFormWithUnknownType = exampleLoader('simple-form-with-basic-problems')
+const examples = require('formscript-examples')
 
 describe('Run some schema validation tests', function () {
   it('should prove a simple form validates correctly using default (simple) formatter', function () {
-    const result = validator(simpleForm)
+    const result = validator(examples.simple)
     expect(result.widgetsValid).to.equal(true)
   })
 
   it('should prove a simple form validates correctly using raw jsonschema output', function () {
-    const result = validator(simpleForm, {format: 'jsonSchema'})
+    const result = validator(examples.simple, {format: 'jsonSchema'})
     expect(result.errors).to.have.length(0)
   })
 
   it('should prove the more complex Patient Care form validates', function () {
-    const result = validator(patientCareForm)
-    console.log(result.errors)
+    const result = validator(examples.complex)
     expect(result.widgetsValid).to.equal(true)
   })
 
   it('should fail validation with some basic problems', function () {
-    const result = validator(simpleFormWithUnknownType)
+    const result = validator(examples.simpleFormWithBasicProblems)
     expect(result.widgetsValid).to.equal(false)
 
     expect(result.errors).to.have.length(6)

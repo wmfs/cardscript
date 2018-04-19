@@ -13,7 +13,17 @@
       <br>
       <codemirror v-model="formscript"></codemirror>
       <br>
+
       <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Build!</a>
+      <div class="dropup float-right">
+        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Simple example</a>
+          <a class="dropdown-item" href="#">Complex example</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Clear content</a>
+        </div>
+      </div>
       <br>
       <br>
 
@@ -67,8 +77,7 @@
 
 <script>
 import Formscript from 'formscript-simple-vue'
-
-const example = JSON.stringify(require('./example'), null, 2)
+const examples = require('formscript-examples')
 const validator = require('formscript-schema').validateForm
 const templateConverter = require('formscript-to-template').convert
 
@@ -102,35 +111,13 @@ export default {
           this.$set(this.dynamic, 'template', '')
         }
       })
-
-
-
-
-      // const parsed = JSON.parse(this.formscript)
-      // const result = validator(parsed)
-      // if (result.widgetsValid) {
-      //   this.$set(this.validation, 'state', 'valid')
-      //   this.$set(this.validation, 'errors', [])
-      //   const output = templateConverter(parsed)
-      //
-      //   console.log(output)
-      //
-      //   this.$set(this.dynamic, 'template', output.template)
-      //   // this.$nextTick(function () {
-      //   //   const e = document.getElementById('success')
-      //   //   e.scrollIntoView()
-      //   // })
-      // } else {
-      //   this.$set(this.validation, 'state', 'invalid')
-      //   this.$set(this.validation, 'errors', result.errors)
-      //   this.$set(this.dynamic, 'template', '')
-      // }
     }
   },
   data () {
+    const defaultFormscript = JSON.stringify(examples.simple, null, 2)
     return {
-      example: example,
-      formscript: example,
+      example: defaultFormscript,
+      formscript: defaultFormscript,
       validation: {
         state: 'notValidated',
         errors: []

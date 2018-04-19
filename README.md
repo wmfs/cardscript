@@ -74,7 +74,6 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 ``` json
 {
   "title": "Simple demo form!",
-  "canBeCompletedOffline": true,
   "widgets": [
     {
       "type": "header",
@@ -230,7 +229,6 @@ Consider an expression to be something that could be evaluated in a Javascript `
 ```json
 {
   "title": "Simple expression demo!",
-  "canBeCompletedOffline": true,
   "widgets": [
     {
       "id": "userWantsToGiveFeedback",
@@ -1286,9 +1284,7 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `showInTOC` | `boolean` | `No` | Should this set appear in a Table of Contents or similar, if the app supports such things? |
+| `tocTitle` | `string` | `No` | Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC. |
 
 
 
@@ -1761,5 +1757,8 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | ------- | ------------| ------ | ---- |
 | `formscript-doc-generator` | Produces Formscript's main README.md file using FormScript's JSON Schema and other sources. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-doc-generator) | [Here](https://www.npmjs.com/package/formscript-doc-generator)  |
 | `formscript-examples` | Example Formscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-examples) | [Here](https://www.npmjs.com/package/formscript-examples)  |
+| `formscript-playpen` | A playpen to try-out some Formscript. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-playpen) | [Here](https://www.npmjs.com/package/formscript-playpen)  |
 | `formscript-schema` | Contains a JSON Schema for Formscript, along with a validation utility. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-schema) | [Here](https://www.npmjs.com/package/formscript-schema)  |
+| `formscript-simple-vue` | A Vue.js component for rendering a simple UI from Formscript | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-simple-vue) | [Here](https://www.npmjs.com/package/formscript-simple-vue)  |
+| `formscript-to-template` | Takes some Formscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-to-template) | [Here](https://www.npmjs.com/package/formscript-to-template)  |
 

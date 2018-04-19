@@ -1,6 +1,5 @@
 {
   "title": "Simple expression demo!",
-  "canBeCompletedOffline": true,
   "widgets": [
     {
       "id": "userWantsToGiveFeedback",
