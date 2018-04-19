@@ -43,37 +43,8 @@
               illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way
               they see fit!
             </div>
-            <h1>1</h1>
-            <formscript></formscript>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
-            <h1>1</h1>
+            <br>
+            <formscript v-bind:content="dynamic.template"></formscript>
           </v-tab>
           <v-tab title="Data">
           </v-tab>
@@ -85,7 +56,7 @@
               package. Here we've configured things to output in a Vue.js style, but Angular and React templates can be
               generated too!
             </div>
-            <pre><code class="template">{{output.template.template}}</code></pre>
+            <pre><code class="template">{{dynamic.template}}</code></pre>
           </v-tab>
         </vue-tabs>
       </div>
@@ -108,21 +79,52 @@ export default {
   },
   methods: {
     renderFormscript: function render () {
-      const parsed = JSON.parse(this.formscript)
-      const result = validator(parsed)
-      if (result.widgetsValid) {
-        this.$set(this.validation, 'state', 'valid')
-        this.$set(this.validation, 'errors', [])
-        this.$set(this.output, 'template', templateConverter(parsed))
-        this.$nextTick(function () {
-          const e = document.getElementById('success')
-          e.scrollIntoView()
-        })
-      } else {
-        this.$set(this.validation, 'state', 'invalid')
-        this.$set(this.validation, 'errors', result.errors)
-        this.$set(this.output, 'template', '')
-      }
+
+      this.$set(this.validation, 'state', 'invalid')
+      this.$set(this.validation, 'errors', [])
+      this.$set(this.dynamic, 'template', '')
+
+      this.$nextTick(function () {
+        const parsed = JSON.parse(this.formscript)
+        const result = validator(parsed)
+        if (result.widgetsValid) {
+          this.$set(this.validation, 'state', 'valid')
+          this.$set(this.validation, 'errors', [])
+          const output = templateConverter(parsed)
+          this.$set(this.dynamic, 'template', output.template)
+          this.$nextTick(function () {
+            const e = document.getElementById('success')
+            e.scrollIntoView()
+          })
+        } else {
+          this.$set(this.validation, 'state', 'invalid')
+          this.$set(this.validation, 'errors', result.errors)
+          this.$set(this.dynamic, 'template', '')
+        }
+      })
+
+
+
+
+      // const parsed = JSON.parse(this.formscript)
+      // const result = validator(parsed)
+      // if (result.widgetsValid) {
+      //   this.$set(this.validation, 'state', 'valid')
+      //   this.$set(this.validation, 'errors', [])
+      //   const output = templateConverter(parsed)
+      //
+      //   console.log(output)
+      //
+      //   this.$set(this.dynamic, 'template', output.template)
+      //   // this.$nextTick(function () {
+      //   //   const e = document.getElementById('success')
+      //   //   e.scrollIntoView()
+      //   // })
+      // } else {
+      //   this.$set(this.validation, 'state', 'invalid')
+      //   this.$set(this.validation, 'errors', result.errors)
+      //   this.$set(this.dynamic, 'template', '')
+      // }
     }
   },
   data () {
@@ -133,7 +135,7 @@ export default {
         state: 'notValidated',
         errors: []
       },
-      output: {}
+      dynamic: {}
     }
   }
 }

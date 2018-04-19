@@ -1,10 +1,9 @@
 <template>
-    <h2>...THERE!</h2>
+    <p>I am a date widget!</p>
 </template>
 <script>
   export default {
-    name: 'There',
-    data() {
+    data () {
       return {
       }
     }
