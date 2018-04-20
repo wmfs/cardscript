@@ -45,17 +45,29 @@
           <br>
 
           <vue-tabs>
-            <v-tab title="UI">
+            <v-tab title="View">
               <br>
               <div class="alert alert-secondary" role="alert">
-                This is a simple rendering of the Formscript provided above. Note this is only meant to be a basic
-                illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way
-                they see fit!
+                This is a simple rendering of the parsed Formscript. Note that this is only meant to be a basic
+                illustration of typical web usage, your app is free to interpret Formscript and conjure a UI in any way
+                you see fit!
               </div>
               <br>
-              <formscript v-bind:content="dynamic.template"></formscript>
+
+              <div class="card">
+                <div class="card-body">
+                  <formscript v-bind:content="dynamicContent"></formscript>
+                </div>
+              </div>
+
             </v-tab>
-            <v-tab title="Data">
+            <v-tab title="Model">
+              <br>
+              <div class="alert alert-secondary" role="alert">
+                This is the underlying data model for the GUI. Be sure to check back here as you change input fields to see the model change.
+              </div>
+              <pre><code class="template">{{dynamicContent.data}}</code></pre>
+              <br>
             </v-tab>
             <v-tab title="Template">
               <br>
@@ -66,7 +78,7 @@
                 be
                 generated too!
               </div>
-              <pre><code class="template">{{dynamic.template}}</code></pre>
+              <pre><code class="template">{{dynamicContent.template}}</code></pre>
             </v-tab>
           </vue-tabs>
         </div>
@@ -92,7 +104,7 @@
       setExampleContent: function (id) {
         this.$set(this.validation, 'state', 'notValidated')
         this.$set(this.validation, 'errors', [])
-        this.$set(this.dynamic, 'template', '')
+        this.$set(this.dynamicContent, 'template', '')
         this.$set(this, 'formscript', JSON.stringify(examples[id], null, 2))
         const e = document.getElementById('editor')
         e.scrollIntoView()
@@ -102,7 +114,8 @@
 
         this.$set(this.validation, 'state', 'notValidated')
         this.$set(this.validation, 'errors', [])
-        this.$set(this.dynamic, 'template', '')
+        this.$set(this.dynamicContent, 'template', '')
+        this.$set(this.dynamicContent, 'data', {})
 
         this.$nextTick(function () {
           const parsed = JSON.parse(this.formscript)
@@ -111,7 +124,8 @@
             this.$set(this.validation, 'state', 'valid')
             this.$set(this.validation, 'errors', [])
             const output = templateConverter(parsed)
-            this.$set(this.dynamic, 'template', output.template)
+            this.$set(this.dynamicContent, 'template', output.template)
+            this.$set(this.dynamicContent, 'data', {})
             this.$nextTick(function () {
               const e = document.getElementById('success')
               e.scrollIntoView()
@@ -119,7 +133,8 @@
           } else {
             this.$set(this.validation, 'state', 'invalid')
             this.$set(this.validation, 'errors', result.errors)
-            this.$set(this.dynamic, 'template', '')
+            this.$set(this.dynamicContent, 'template', '')
+            this.$set(this.dynamicContent, 'data', {})
           }
         })
       }
@@ -133,7 +148,7 @@
           state: 'notValidated',
           errors: []
         },
-        dynamic: {}
+        dynamicContent: {}
       }
     }
   }

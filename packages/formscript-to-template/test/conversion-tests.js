@@ -13,9 +13,8 @@ const CONFIG = {
     rootTag: ['<div>', '</div>'],
     setReplacementTag: 'template',
     conditionalAttributeTemplate: 'v-if="$$EXPRESSION$$"',
-    modelBindingAttributeTemplate: 'v-model="data.$$WIDGET_KEY$$"'
-  },
-  unknownWidgetStrategy: 'include'
+    modelBindingAttributeTemplate: ['v-model', 'data.$$WIDGET_ID$$']
+  }
 }
 
 describe('Run some simple conversion tests', function () {

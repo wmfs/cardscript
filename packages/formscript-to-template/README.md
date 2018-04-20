@@ -44,9 +44,9 @@ const result = formscriptToTemplate.convert(
       widgetTagPrefix: 'app',
       closingWidgetTags: false,
       rootTag: ['<div>', '</div>'],
-      conditionalTag: ['<template v-if="$$EXPRESSION$$">', '</template>'],
-      modelBindingAttributeTemplate: 'v-model="data.$$WIDGET_KEY$$"',
-      pretty: true
+      setReplacementTag: 'template',
+      conditionalAttributeTemplate: 'v-if="$$EXPRESSION$$"',
+      modelBindingAttributeTemplate: ['v-model', 'data.$$WIDGET_ID$$']
     }
   }
 )

@@ -637,6 +637,7 @@
             "type": "object",
             "properties": {
               "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "default": {"$ref": "#/definitions/attributes/defaultString"},
               "placeholder": {"$ref": "#/definitions/attributes/placeholder"},
@@ -662,6 +663,7 @@
             "type": "object",
             "properties": {
               "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "default": {"$ref": "#/definitions/attributes/defaultNumber"},
               "minimum": {"$ref": "#/definitions/attributes/minimum"},

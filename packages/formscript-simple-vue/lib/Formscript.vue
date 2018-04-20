@@ -1,5 +1,7 @@
 <template>
+    <div>
     <component :is="uiTemplate"></component>
+    </div>
 </template>
 <script>
 import AppAddress from './widgets/address'
@@ -33,9 +35,10 @@ export default {
   name: 'Formscript',
   props: ['content'],
   data () {
+    const _this = this
     return {
       uiTemplate: {
-        template: this.content,
+        template: this.content.template,
         components: {
           AppAddress,
           AppApiLookup,
@@ -66,7 +69,7 @@ export default {
         },
         data: function () {
           return {
-            data: {}
+            data: _this.content.data
           }
         }
       }

@@ -1,8 +1,8 @@
 const _ = require('lodash')
-const escape = require('escape-html')
 const widgetProcessors = require('./widgets')
 const dottie = require('dottie')
 const replacementTagNames = {}
+const WIDGET_ID = '$$WIDGET_ID$$'
 
 module.exports.convert = function convert (formscript, options) {
   if (!options) {
@@ -27,6 +27,16 @@ module.exports.convert = function convert (formscript, options) {
   let template = rootTag[0] + lineEnding
   const widgets = formscript.widgets
 
+  let bindingTag
+  let bindingTemplate
+  if (options.modelBindingAttributeTemplate) {
+    bindingTag = options.modelBindingAttributeTemplate[0]
+    bindingTemplate = options.modelBindingAttributeTemplate[1]
+  } else {
+    bindingTag = 'v-model'
+    bindingTemplate = 'data.' + WIDGET_ID
+  }
+
   widgets.forEach(
     function (widgetDefinition) {
       const widgetType = widgetDefinition.type
@@ -44,6 +54,14 @@ module.exports.convert = function convert (formscript, options) {
       if (widgetProcessor.openingTag) {
         // Process attributes
         const attributes = []
+        if (widgetProcessor.bindToDataModel && widgetDefinition.id) {
+          attributes.push(
+            {
+              propName: bindingTag,
+              propString: bindingTemplate.split(WIDGET_ID).join(widgetDefinition.id)
+            }
+          )
+        }
 
         if (widgetDefinition.showWhen) {
           attributes.push(
@@ -62,7 +80,7 @@ module.exports.convert = function convert (formscript, options) {
                 attributes.push(
                   {
                     propName: _.kebabCase(key),
-                    propString: escape(value)
+                    propString: value
                   }
                 )
               }
