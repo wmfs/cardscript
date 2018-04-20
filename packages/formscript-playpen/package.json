@@ -19,7 +19,8 @@
     "vue-nav-tabs": "^0.5.7",
     "formscript-to-template": "0.0.5",
     "formscript-simple-vue": "0.0.5",
-    "formscript-examples": "0.0.5"
+    "formscript-examples": "0.0.5",
+    "formscript-parser": "0.0.5"
   },
   "devDependencies": {
     "vue-gh-pages": "^1.15.2",

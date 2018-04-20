@@ -64,7 +64,9 @@
             <v-tab title="Model">
               <br>
               <div class="alert alert-secondary" role="alert">
-                This is the underlying data model for the GUI. Be sure to check back here as you change input fields to see the model change.
+                This is the underlying data model for the GUI (default values were inferred from the Fromscript using the
+                <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-parser">formscript-parser</a> package.
+                Be sure to check back here as you change input fields to see the model change!
               </div>
               <pre><code class="template">{{dynamicContent.data}}</code></pre>
               <br>
@@ -93,6 +95,7 @@
   const examples = require('formscript-examples')
   const validator = require('formscript-schema').validateForm
   const templateConverter = require('formscript-to-template').convert
+  const parser = require('formscript-parser').parse
 
   export default {
     name: 'Playpen',
@@ -118,14 +121,15 @@
         this.$set(this.dynamicContent, 'data', {})
 
         this.$nextTick(function () {
-          const parsed = JSON.parse(this.formscript)
-          const result = validator(parsed)
+          const formscript = JSON.parse(this.formscript)
+          const result = validator(formscript)
           if (result.widgetsValid) {
+            const parsed = parser(formscript)
             this.$set(this.validation, 'state', 'valid')
             this.$set(this.validation, 'errors', [])
-            const output = templateConverter(parsed)
+            const output = templateConverter(formscript)
             this.$set(this.dynamicContent, 'template', output.template)
-            this.$set(this.dynamicContent, 'data', {})
+            this.$set(this.dynamicContent, 'data', parsed.defaultValues)
             this.$nextTick(function () {
               const e = document.getElementById('success')
               e.scrollIntoView()

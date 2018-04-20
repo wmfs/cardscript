@@ -5,7 +5,8 @@ module.exports = {
   closingTag: true,
   titleMapProcessor: function (widgetDefinition, titleMap, tagPrefix, options) {
     const optionAttribs = []
-    optionAttribs.push(`v-model="data.${widgetDefinition.id}"`)
+    const bindingProp = options.makeModelBindingTag(widgetDefinition.id)
+    optionAttribs.push(`${bindingProp.propName}="${bindingProp.propString}"`)
     optionAttribs.push(`widgetId="${widgetDefinition.id}"`)
     optionAttribs.push(`title="${titleMap.title}"`)
     optionAttribs.push(`desc="${titleMap.desc}"`)

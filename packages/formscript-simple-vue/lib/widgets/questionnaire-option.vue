@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!--template += `<input id="${widget.key}_${value}" type="radio" ref="input" v-model="data.${widget.key}" value="${value}" name="${widget.key}">`-->
-        <input type="radio" ref="input" v-bind:value="responseValue" v-model="valueCopy" v-bind:name="widgetId" v-on:change="updateValue($event.target.value)">
+        <input type="radio" ref="input" :value="title" v-model="valueCopy" v-bind:name="widgetId" v-on:change="updateValue($event.target.value)">
         <p>{{title}}</p>
         <p>{{desc}}</p>
     </div>
@@ -10,12 +10,12 @@
 <script>
 
   export default {
-    props: ['responseValue', 'widgetId', 'title', 'desc', 'icon'],
+    props: ['value', 'responseValue', 'widgetId', 'title', 'desc', 'icon'],
     components: {},
     data () {
       return {
-        valueCopy: JSON.parse(this.responseValue),
-        isNumber: !isNaN(this.responseValue)
+        valueCopy: JSON.parse(this.value),
+        isNumber: !isNaN(this.value)
       }
     },
     mounted () {

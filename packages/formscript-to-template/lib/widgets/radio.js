@@ -5,8 +5,9 @@ module.exports = {
   closingTag: true,
   titleMapProcessor: function (widgetDefinition, titleMap, tagPrefix, options) {
     const id = `${widgetDefinition.id}_${titleMap.value}`
+    const bindingProp = options.makeModelBindingTag(widgetDefinition.id)
     return [
-      `<input id="${id}" type="radio" ref="input" v-model="data.${widgetDefinition.id}" value="${titleMap.value}" name="${widgetDefinition.id}">`,
+      `<input id="${id}" type="radio" ref="input" ${bindingProp.propName}="${bindingProp.propString}" value="${titleMap.value}" name="${widgetDefinition.id}">`,
       `<label for="${id}">${titleMap.title}</label><br>`
     ]
   }

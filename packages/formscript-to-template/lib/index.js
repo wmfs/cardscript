@@ -2,7 +2,7 @@ const _ = require('lodash')
 const widgetProcessors = require('./widgets')
 const dottie = require('dottie')
 const replacementTagNames = {}
-const WIDGET_ID = '$$WIDGET_ID$$'
+const geteModelBindingTagFunction = require('./utils/get-model-binding-tag-function')
 
 module.exports.convert = function convert (formscript, options) {
   if (!options) {
@@ -32,11 +32,9 @@ module.exports.convert = function convert (formscript, options) {
   if (options.modelBindingAttributeTemplate) {
     bindingTag = options.modelBindingAttributeTemplate[0]
     bindingTemplate = options.modelBindingAttributeTemplate[1]
-  } else {
-    bindingTag = 'v-model'
-    bindingTemplate = 'data.' + WIDGET_ID
   }
-
+  const makeModelBindingTag = geteModelBindingTagFunction(bindingTag, bindingTemplate)
+  options.makeModelBindingTag = makeModelBindingTag
   widgets.forEach(
     function (widgetDefinition) {
       const widgetType = widgetDefinition.type
@@ -55,12 +53,7 @@ module.exports.convert = function convert (formscript, options) {
         // Process attributes
         const attributes = []
         if (widgetProcessor.bindToDataModel && widgetDefinition.id) {
-          attributes.push(
-            {
-              propName: bindingTag,
-              propString: bindingTemplate.split(WIDGET_ID).join(widgetDefinition.id)
-            }
-          )
+          attributes.push(makeModelBindingTag(widgetDefinition.id))
         }
 
         if (widgetDefinition.showWhen) {
