@@ -712,6 +712,7 @@
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "default": {"$ref": "#/definitions/attributes/defaultNumber"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},
               "minimum": {"$ref": "#/definitions/attributes/minimum"},
               "maximum": {"$ref": "#/definitions/attributes/maximum"},

@@ -18,6 +18,7 @@ import AppImage from './widgets/image'
 import AppMap from './widgets/map'
 import AppNumber from './widgets/number'
 import AppQuestionnaire from './widgets/questionnaire'
+import AppQuestionnaireOption from './widgets/questionnaire-option'
 import AppRadio from './widgets/radio'
 import AppRichtext from './widgets/richtext'
 import AppSelect from './widgets/select'
@@ -54,6 +55,7 @@ export default {
           AppMap,
           AppNumber,
           AppQuestionnaire,
+          AppQuestionnaireOption,
           AppRadio,
           AppRichtext,
           AppSelect,

@@ -1,16 +1,17 @@
 module.exports = {
   showWhen: true,
-  bindToDataModel: true,
+  bindToDataModel: false,
   openingTag: true,
   closingTag: true,
   titleMapProcessor: function (widgetDefinition, titleMap, tagPrefix, options) {
     const optionAttribs = []
     optionAttribs.push(`v-model="data.${widgetDefinition.id}"`)
-    optionAttribs.push(`widgetKey="${widgetDefinition.id}"`)
-    optionAttribs.push(`label="${titleMap.title}"`)
+    optionAttribs.push(`widgetId="${widgetDefinition.id}"`)
+    optionAttribs.push(`title="${titleMap.title}"`)
     optionAttribs.push(`desc="${titleMap.desc}"`)
+    optionAttribs.push(`responseValue="${titleMap.value}"`)
     return [
-      `<${tagPrefix}-questionnaire-option ${optionAttribs.join(' ')}>${titleMap.title}</${tagPrefix}-questionnaire-option>`
+      `<${tagPrefix}-questionnaire-option ${optionAttribs.join(' ')}></${tagPrefix}-questionnaire-option>`
     ]
   }
 }

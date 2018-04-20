@@ -1,6 +1,6 @@
 module.exports = {
   showWhen: true,
-  bindToDataModel: true,
+  bindToDataModel: false,
   openingTag: true,
   closingTag: true,
   titleMapProcessor: function (widgetDefinition, titleMap, tagPrefix, options) {
