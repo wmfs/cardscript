@@ -2,10 +2,7 @@
   <div class="container">
     <div class="jumbotron">
       <h1 class="display-3">Formscript Playpen</h1>
-      <p class="lead">Provide some Formscript JSON in the
-        editor below and then click the "Build!" button to turn it into something more useful. Please take a look at the
-        <a
-          href="https://github.com/wmfs/formscript">Formscript documentation</a> for more information.</p>
+      <p class="lead">Hack around with some Formscript JSON in the editor below and then click the "<strong>Parse!</strong>" button to try it out. Please take a look at the <a href="https://github.com/wmfs/formscript">Formscript documentation</a> for more information.</p>
     </div>
 
     <div id="app">
@@ -14,16 +11,16 @@
       <codemirror id="editor" v-model="formscript"></codemirror>
       <br>
 
-      <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Build!</a>
+      <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Parse!</a>
       <div class="dropup float-right">
         <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#/" v-on:click="setExampleContent('simple')">Simple example</a>
-          <a class="dropdown-item" href="#/" v-on:click="setExampleContent('complex')">Complex example</a>
+          <a class="dropdown-item" href="#" v-on:click="setExampleContent('simple')">Simple example</a>
+          <a class="dropdown-item" href="#" v-on:click="setExampleContent('complex')">Complex example</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#/" v-on:click="setExampleContent('blank')">Blank</a>
+          <a class="dropdown-item" href="#" v-on:click="setExampleContent('blank')">Blank</a>
         </div>
       </div>
       <br>
@@ -42,16 +39,16 @@
           <hr>
           <h3 id="success">Success!</h3>
           <br>
-          <p>The supplied Formscript has been checked using the <a
+          <p>The supplied Formscript has passed the validation checks in the <a
             href="https://github.com/wmfs/formscript/tree/master/packages/formscript-schema">formscript-schema</a>
-            package, and it passed!</p>
+            package!</p>
           <br>
 
           <vue-tabs>
             <v-tab title="UI">
               <br>
               <div class="alert alert-secondary" role="alert">
-                This is an simple rendering of the Formscript provided above. Note this is only meant to be a basic
+                This is a simple rendering of the Formscript provided above. Note this is only meant to be a basic
                 illustration of typical web usage, clients are free to interpret Formscript and conjure a UI in any way
                 they see fit!
               </div>
@@ -97,6 +94,8 @@
         this.$set(this.validation, 'errors', [])
         this.$set(this.dynamic, 'template', '')
         this.$set(this, 'formscript', JSON.stringify(examples[id], null, 2))
+        const e = document.getElementById('editor')
+        e.scrollIntoView()
       },
 
       renderFormscript: function render () {
