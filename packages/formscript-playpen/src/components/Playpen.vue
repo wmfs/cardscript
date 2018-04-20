@@ -132,17 +132,19 @@
           if (result.widgetsValid) {
             console.log('PARSING ' + Date.now())
             const parsed = parser(formscript)
-            this.$set(this.validation, 'state', 'valid')
-            this.$set(this.validation, 'errors', [])
             console.log('BUILDING TEMPLATE ' + Date.now())
             const output = templateConverter(formscript)
             console.log('FINISHING ' + Date.now())
-            this.$set(this.dynamicContent, 'template', output.template)
-            this.$set(this.dynamicContent, 'data', parsed.defaultValues)
             this.$nextTick(function () {
-              const e = document.getElementById('success')
-              e.scrollIntoView()
-              console.log('DONE ' + Date.now())
+              this.$set(this.validation, 'state', 'valid')
+              this.$set(this.validation, 'errors', [])
+              this.$set(this.dynamicContent, 'template', output.template)
+              this.$set(this.dynamicContent, 'data', parsed.defaultValues)
+              this.$nextTick(function () {
+                const e = document.getElementById('success')
+                e.scrollIntoView()
+                console.log('DONE ' + Date.now())
+              })
             })
           } else {
             this.$set(this.validation, 'state', 'invalid')
