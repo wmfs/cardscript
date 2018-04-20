@@ -3,5 +3,6 @@ module.exports = {
   expression: require('./examples/expression'),
   set: require('./examples/set'),
   simple: require('./examples/simple'),
-  simpleFormWithBasicProblems: require('./examples/simple-form-with-basic-problems')
+  simpleFormWithBasicProblems: require('./examples/simple-form-with-basic-problems'),
+  blank: require('./examples/blank')
 }
