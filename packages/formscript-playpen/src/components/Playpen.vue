@@ -121,7 +121,7 @@
       }
       console.log(result)
       console.log('Finished promise.')
-      // resolve(result)
+      resolve(result)
     })
   }
 
@@ -142,15 +142,17 @@
       },
 
       renderFormscript: function renderFormscript () {
-        this.showSpinner = true
-        this.$nextTick(
+        const comp = this
+        comp.showSpinner = true
+        comp.$nextTick(
           function () {
-            this.$set(this.validation, 'state', 'notValidated')
-            this.$nextTick(
+            comp.$set(comp.validation, 'state', 'notValidated')
+            comp.$nextTick(
               function () {
-                processFormscript(this.formscript).then(
-                  (results) => {
-                    this.showSpinner = false
+                processFormscript(comp.formscript).then(
+                  (output) => {
+                    // comp.showSpinner = false
+                    console.log('>>>>>>', output)
                   }
                 )
               }
