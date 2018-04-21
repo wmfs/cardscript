@@ -74,9 +74,9 @@
           <v-tab title="Model">
             <br>
             <div class="alert alert-secondary" role="alert">
-              This is the underlying data model for the GUI (default values were inferred from the Fromscript using the
+              This is the underlying data model for the view (default values were inferred from the Fromscript using the
               <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-extract-defaults">formscript-extract-defaults</a>
-              package.
+            package).
               Be sure to check back here as you change input fields to see the model change!
             </div>
             <pre><code class="template">{{dynamicContent.data}}</code></pre>
@@ -93,6 +93,30 @@
             </div>
             <pre><code class="template">{{dynamicContent.template}}</code></pre>
           </v-tab>
+          <v-tab title="Info">
+            <br>
+            <h4>Performance</h4>
+              <p>This playpen is working with raw Formscript (parsing, validating and transforming).
+                Most apps wouldn't need to do that kind of heavy lifting in the client.
+                As such, the rendering times inside the playpen are higher than usual... this is where all the time just went:
+              </p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Step</th>
+                <th scope="col">Time (ms)</th>
+                <th scope="col">%</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="time in dynamicContent.times">
+                <td>{{time.label}}</td>
+                <td>{{time.duration}}</td>
+                <td>{{time.percentage}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </v-tab>
         </vue-tabs>
       </div>
     </div>
@@ -108,13 +132,56 @@
   const templateConverter = require('formscript-to-template').convert
   const extractDefaults = require('formscript-extract-defaults')
 
-  function processFormscript(formscriptString) {
-    return new Promise((resolve, reject) => {
+  class Stopwatch {
+    constructor() {
+      this.times = [
+        {
+          label: "init",
+          milliseconds: Date.now()
+        }
+      ]
+    }
+
+    addTime (label) {
+      const previousTime = this.times[this.times.length-1]
+      const n = Date.now()
+      previousTime.duration = n - previousTime.milliseconds
+      this.times.push(
+        {
+          label: label,
+          milliseconds: n
+        }
+      )
+    }
+
+    getResults() {
+      const trimmed = this.times.slice(1, -1)
+      let total = 0
+      trimmed.forEach(
+        function (time) {
+          total += time.duration
+        }
+      )
+      trimmed.forEach(
+        function (time) {
+          time.percentage = ((time.duration / total) * 100).toFixed(1)
+        }
+      )
+      return trimmed
+    }
+  }
+
+  function processFormscript(formscriptString, stopwatch) {
+    return new Promise((resolve) => {
       const result = {}
+      stopwatch.addTime('Parse string into object')
       const formscript = JSON.parse(formscriptString)
+      stopwatch.addTime('Validate object')
       result.validatorOutput = validator(formscript)
       if (result.validatorOutput.widgetsValid) {
+        stopwatch.addTime('Extract default values')
         result.defaultValues = extractDefaults(formscript)
+        stopwatch.addTime('Generate template')
         result.templateOutput = templateConverter(formscript)
       }
       resolve(result)
@@ -144,7 +211,8 @@
             comp.$set(comp.validation, 'state', 'notValidated')
             comp.$nextTick(
               function () {
-                processFormscript(comp.formscript).then(
+                const stopwatch = new Stopwatch()
+                processFormscript(comp.formscript, stopwatch).then(
                   (output) => {
                     let elementIdToScrollTo
                     if (output.validatorOutput.widgetsValid) {
@@ -152,6 +220,7 @@
                       comp.$set(comp.validation, 'errors', [])
                       comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
                       comp.$set(comp.dynamicContent, 'data', output.defaultValues)
+                      comp.$set(comp.dynamicContent, 'times', [])
                       elementIdToScrollTo = 'success'
                     } else {
                       comp.$set(comp.validation, 'state', 'invalid')
@@ -160,11 +229,14 @@
                       comp.$set(comp.dynamicContent, 'data', {})
                       elementIdToScrollTo = 'thereWereErrors'
                     }
+                    stopwatch.addTime('Render')
                     comp.$nextTick(
                       function () {
                         comp.$set(comp, 'showSpinner', false)
                         const e = document.getElementById(elementIdToScrollTo)
                         e.scrollIntoView()
+                        stopwatch.addTime('finished')
+                        comp.$set(comp.dynamicContent, 'times', stopwatch.getResults())
                       }
                     )
                   }
