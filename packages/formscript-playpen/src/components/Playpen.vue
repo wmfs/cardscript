@@ -23,16 +23,16 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#" v-on:click="setExampleContent('simple')">Simple example</a>
-          <a class="dropdown-item" href="#" v-on:click="setExampleContent('complex')">Complex example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('simple')">Simple example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('complex')">Complex example</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" v-on:click="setExampleContent('blank')">Blank</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('blank')">Blank</a>
         </div>
       </div>
       <br>
       <br>
 
-      <div v-if=" validation.state=== 'invalid'">
+      <div id="thereWereErrors" v-if=" validation.state=== 'invalid'">
         <h3>There were errors...</h3>
         <div class="alert alert-danger" role="alert" v-for="error in validation.errors">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -75,7 +75,7 @@
             <br>
             <div class="alert alert-secondary" role="alert">
               This is the underlying data model for the GUI (default values were inferred from the Fromscript using the
-              <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-parser">formscript-parser</a>
+              <a class="alert-link" href="https://github.com/wmfs/formscript/tree/master/packages/formscript-extract-defaults">formscript-extract-defaults</a>
               package.
               Be sure to check back here as you change input fields to see the model change!
             </div>
@@ -106,21 +106,17 @@
   const examples = require('formscript-examples')
   const validator = require('formscript-schema').validateForm
   const templateConverter = require('formscript-to-template').convert
-  const parser = require('formscript-parser').parse
+  const extractDefaults = require('formscript-extract-defaults')
 
   function processFormscript(formscriptString) {
     return new Promise((resolve, reject) => {
-      console.log('Starting promise...')
       const result = {}
       const formscript = JSON.parse(formscriptString)
-      console.log(formscript)
       result.validatorOutput = validator(formscript)
       if (result.validatorOutput.widgetsValid) {
-        result.parserOutput = parser(formscript)
+        result.defaultValues = extractDefaults(formscript)
         result.templateOutput = templateConverter(formscript)
       }
-      console.log(result)
-      console.log('Finished promise.')
       resolve(result)
     })
   }
@@ -137,8 +133,6 @@
         this.$set(this.validation, 'errors', [])
         this.$set(this.dynamicContent, 'template', '')
         this.$set(this, 'formscript', JSON.stringify(examples[id], null, 2))
-        const e = document.getElementById('editor')
-        e.scrollIntoView()
       },
 
       renderFormscript: function renderFormscript () {
@@ -146,14 +140,33 @@
         this.$set(comp, 'showSpinner', true)
         setTimeout(
           function () {
-            comp.$forceUpdate()
+            // comp.$forceUpdate()
             comp.$set(comp.validation, 'state', 'notValidated')
             comp.$nextTick(
               function () {
                 processFormscript(comp.formscript).then(
                   (output) => {
-                    this.$set(comp, 'showSpinner', false)
-                    console.log('>>>>>>', output)
+                    let elementIdToScrollTo
+                    if (output.validatorOutput.widgetsValid) {
+                      comp.$set(comp.validation, 'state', 'valid')
+                      comp.$set(comp.validation, 'errors', [])
+                      comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
+                      comp.$set(comp.dynamicContent, 'data', output.defaultValues)
+                      elementIdToScrollTo = 'success'
+                    } else {
+                      comp.$set(comp.validation, 'state', 'invalid')
+                      comp.$set(comp.validation, 'errors', output.validatorOutput.errors)
+                      comp.$set(comp.dynamicContent, 'template', '')
+                      comp.$set(comp.dynamicContent, 'data', {})
+                      elementIdToScrollTo = 'thereWereErrors'
+                    }
+                    comp.$nextTick(
+                      function () {
+                        comp.$set(comp, 'showSpinner', false)
+                        const e = document.getElementById(elementIdToScrollTo)
+                        e.scrollIntoView()
+                      }
+                    )
                   }
                 )
               }

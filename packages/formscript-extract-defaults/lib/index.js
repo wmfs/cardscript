@@ -4,11 +4,8 @@ const widgetTypeDefaults = {
   switch: false
 }
 
-module.exports.parse = function parseFormscript (formscript) {
-  const parsed = {
-    defaultValues: {},
-    toc: []
-  }
+module.exports = function extractDefaults (formscript) {
+  const defaultValues = {}
   formscript.widgets.forEach(
     function (widget) {
       let defaultValue
@@ -21,10 +18,10 @@ module.exports.parse = function parseFormscript (formscript) {
         }
       }
       if (defaultValue !== undefined) {
-        parsed.defaultValues[widget.id] = defaultValue
+        defaultValues[widget.id] = defaultValue
       }
     }
   )
 
-  return parsed
+  return defaultValues
 }
