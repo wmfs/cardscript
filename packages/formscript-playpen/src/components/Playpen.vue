@@ -11,8 +11,11 @@
       <codemirror id="editor" v-model="formscript"></codemirror>
       <br>
 
-      <a class="btn btn-primary btn-lg" href="#" role="button" v-on:click="renderFormscript()">Parse!</a>
+      <button type="button" class="btn btn-primary btn-lg" v-on:click="renderFormscript()">Parse!</button>
+
       <div class="dropup float-right">
+
+
         <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples
         </button>
@@ -35,7 +38,7 @@
           </div>
         </div>
 
-      <div v-if="validation.state === 'processing'">
+      <div v-if="showSpinner">
         <img src="../assets/spinner.gif"/>
       </div>
 
@@ -118,6 +121,7 @@
             component.$set(this.validation, 'errors', [])
             component.$set(this.dynamicContent, 'template', output.template)
             component.$set(this.dynamicContent, 'data', parsed.defaultValues)
+            this.showSpinner = false
             resolve()
           })
         } else {
@@ -125,6 +129,8 @@
           component.$set(component.validation, 'errors', result.errors)
           component.$set(component.dynamicContent, 'template', '')
           component.$set(component.dynamicContent, 'data', {})
+          this.showSpinner = false
+          resolve()
         }
       })
     })
@@ -148,16 +154,21 @@
 
       renderFormscript: function render () {
         console.log('START ' + Date.now())
-        this.$set(this.validation, 'state', 'processing')
+        this.showSpinner = true
+        this.$set(this.validation, 'state', 'notValidated')
         this.$set(this.validation, 'errors', [])
         this.$set(this.dynamicContent, 'template', '')
         this.$set(this.dynamicContent, 'data', {})
-        parseFormscript(this).then((response) => {
-          this.$set(this.validation, 'state', 'valid')
-          this.$nextTick(function () {
-            const e = document.getElementById('success')
-            e.scrollIntoView()
-            console.log('FINISHED')
+
+        this.$nextTick(function() {
+          parseFormscript(this).then((response) => {
+            this.$set(this.validation, 'state', 'valid')
+            this.$nextTick(function () {
+              this.showSpinner = false
+              const e = document.getElementById('success')
+              e.scrollIntoView()
+              console.log('FINISHED')
+            })
           })
         })
       }
@@ -165,6 +176,7 @@
     data () {
       const defaultFormscript = JSON.stringify(examples.simple, null, 2)
       return {
+        showSpinner: false,
         example: defaultFormscript,
         formscript: defaultFormscript,
         validation: {
