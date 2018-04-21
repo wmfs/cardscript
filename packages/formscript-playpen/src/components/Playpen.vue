@@ -143,9 +143,10 @@
 
       renderFormscript: function renderFormscript () {
         const comp = this
-        comp.showSpinner = true
+        this.$set(comp, 'showSpinner', true)
         comp.$nextTick(
           function () {
+            comp.$forceUpdate()
             comp.$set(comp.validation, 'state', 'notValidated')
             comp.$nextTick(
               function () {
