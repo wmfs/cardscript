@@ -108,15 +108,20 @@
   const templateConverter = require('formscript-to-template').convert
   const parser = require('formscript-parser').parse
 
-  function processFormscript() {
+  function processFormscript(formscriptString) {
     return new Promise((resolve, reject) => {
-      const results = {}
-      setTimeout(
-        function() {
-          resolve(results)
-        },
-        2000
-      )
+      console.log('Starting promise...')
+      const result = {}
+      const formscript = JSON.parse(formscriptString)
+      console.log(formscript)
+      result.validatorOutput = validator(formscript)
+      if (result.validatorOutput.widgetsValid) {
+        result.parserOutput = parser(formscript)
+        result.templateOutput = templateConverter(formscript)
+      }
+      console.log(result)
+      console.log('Finished promise.')
+      // resolve(result)
     })
   }
 
@@ -143,7 +148,7 @@
             this.$set(this.validation, 'state', 'notValidated')
             this.$nextTick(
               function () {
-                processFormscript().then(
+                processFormscript(this.formscript).then(
                   (results) => {
                     this.showSpinner = false
                   }
