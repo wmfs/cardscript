@@ -101,6 +101,35 @@
   const templateConverter = require('formscript-to-template').convert
   const parser = require('formscript-parser').parse
 
+  function parseFormscript(component) {
+    return new Promise((resolve, reject) => {
+      component.$nextTick(function () {
+        console.log('START JSON.parse() ' + Date.now())
+        const formscript = JSON.parse(component.formscript)
+        console.log('VALIDATING ' + Date.now())
+        const result = validator(formscript)
+        if (result.widgetsValid) {
+          console.log('PARSING ' + Date.now())
+          const parsed = parser(formscript)
+          console.log('BUILDING TEMPLATE ' + Date.now())
+          const output = templateConverter(formscript)
+          console.log('FINISHING ' + Date.now())
+          component.$nextTick(function () {
+            component.$set(this.validation, 'errors', [])
+            component.$set(this.dynamicContent, 'template', output.template)
+            component.$set(this.dynamicContent, 'data', parsed.defaultValues)
+            resolve()
+          })
+        } else {
+          component.$set(component.validation, 'state', 'invalid')
+          component.$set(component.validation, 'errors', result.errors)
+          component.$set(component.dynamicContent, 'template', '')
+          component.$set(component.dynamicContent, 'data', {})
+        }
+      })
+    })
+  }
+
   export default {
     name: 'Playpen',
     components: {
@@ -123,35 +152,13 @@
         this.$set(this.validation, 'errors', [])
         this.$set(this.dynamicContent, 'template', '')
         this.$set(this.dynamicContent, 'data', {})
-
-        this.$nextTick(function () {
-          console.log('START JSON.parse() ' + Date.now())
-          const formscript = JSON.parse(this.formscript)
-          console.log('VALIDATING ' + Date.now())
-          const result = validator(formscript)
-          if (result.widgetsValid) {
-            console.log('PARSING ' + Date.now())
-            const parsed = parser(formscript)
-            console.log('BUILDING TEMPLATE ' + Date.now())
-            const output = templateConverter(formscript)
-            console.log('FINISHING ' + Date.now())
-            this.$nextTick(function () {
-              this.$set(this.validation, 'state', 'valid')
-              this.$set(this.validation, 'errors', [])
-              this.$set(this.dynamicContent, 'template', output.template)
-              this.$set(this.dynamicContent, 'data', parsed.defaultValues)
-              this.$nextTick(function () {
-                const e = document.getElementById('success')
-                e.scrollIntoView()
-                console.log('DONE ' + Date.now())
-              })
-            })
-          } else {
-            this.$set(this.validation, 'state', 'invalid')
-            this.$set(this.validation, 'errors', result.errors)
-            this.$set(this.dynamicContent, 'template', '')
-            this.$set(this.dynamicContent, 'data', {})
-          }
+        parseFormscript(this).then((response) => {
+          this.$set(this.validation, 'state', 'valid')
+          this.$nextTick(function () {
+            const e = document.getElementById('success')
+            e.scrollIntoView()
+            console.log('FINISHED')
+          })
         })
       }
     },
