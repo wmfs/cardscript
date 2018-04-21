@@ -144,7 +144,7 @@
       renderFormscript: function renderFormscript () {
         const comp = this
         this.$set(comp, 'showSpinner', true)
-        comp.$nextTick(
+        setTimeout(
           function () {
             comp.$forceUpdate()
             comp.$set(comp.validation, 'state', 'notValidated')
@@ -152,13 +152,14 @@
               function () {
                 processFormscript(comp.formscript).then(
                   (output) => {
-                    // comp.showSpinner = false
+                    this.$set(comp, 'showSpinner', false)
                     console.log('>>>>>>', output)
                   }
                 )
               }
             )
-          }
+          },
+          20
         )
       }
     },
