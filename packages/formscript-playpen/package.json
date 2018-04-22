@@ -17,6 +17,7 @@
     "vue-codemirror": "^4.0.4",
     "vue-router": "^3.0.1",
     "vue-nav-tabs": "^0.5.7",
+    "formscript-parser": "0.0.5",
     "formscript-to-template": "0.0.5",
     "formscript-simple-vue": "0.0.5",
     "formscript-examples": "0.0.5",

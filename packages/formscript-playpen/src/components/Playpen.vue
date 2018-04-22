@@ -128,6 +128,7 @@
   import Formscript from 'formscript-simple-vue'
 
   const examples = require('formscript-examples')
+  const parser = require('formscript-parser')
   const validator = require('formscript-schema').validateForm
   const templateConverter = require('formscript-to-template').convert
   const extractDefaults = require('formscript-extract-defaults')
@@ -175,14 +176,22 @@
     return new Promise((resolve) => {
       const result = {}
       stopwatch.addTime('Parse string into object')
-      const formscript = JSON.parse(formscriptString)
-      stopwatch.addTime('Validate object')
-      result.validatorOutput = validator(formscript)
-      if (result.validatorOutput.widgetsValid) {
-        stopwatch.addTime('Extract default values')
-        result.defaultValues = extractDefaults(formscript)
-        stopwatch.addTime('Generate template')
-        result.templateOutput = templateConverter(formscript)
+      const parserResult = parser(formscriptString)
+      if (parserResult.parsed) {
+        const formscript = parserResult.parsed
+        stopwatch.addTime('Validate object')
+        result.validatorOutput = validator(formscript)
+        if (result.validatorOutput.widgetsValid) {
+          stopwatch.addTime('Extract default values')
+          result.defaultValues = extractDefaults(formscript)
+          stopwatch.addTime('Generate template')
+          result.templateOutput = templateConverter(formscript)
+        }
+      } else {
+        result.validatorOutput = {
+          widgetsValid: false,
+          errors: parserResult.errors
+        }
       }
       resolve(result)
     })
