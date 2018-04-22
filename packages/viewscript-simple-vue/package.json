@@ -1,0 +1,18 @@
+{
+  "name": "viewscript-simple-vue",
+  "version": "0.0.5",
+  "description": "A Vue.js component for rendering a simple UI from Viewscript",
+  "main": "lib/Viewscript.vue",
+  "scripts": {
+  },
+  "author": "Tim Needham",
+  "license": "GPLv3",
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue"
+  },
+  "devDependencies": {
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "viewscript-parser",
+  "description": "Like JSON.parse(), but for Viewscript. And it supports YAML.",
+  "version": "0.0.5",
+  "author": "Tim Needham",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "yamljs": "^0.3.0",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "chai": "4.1.0",
+    "viewscript-examples": "^0.0.5",
+    "mocha": "5.0.5",
+    "standard": "11.0.0"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "standard && mocha"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/viewscript/issues"
+  }
+}

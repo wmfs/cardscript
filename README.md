@@ -23,10 +23,10 @@
 <!---                                                                                        --->
 
 
-# Formscript
+# Viewscript
 ### Version `0.0.5`
 
-[![Build Status](https://travis-ci.org/wmfs/formscript.svg?branch=master)](https://travis-ci.org/wmfs/formscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/formscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/formscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/formscript/blob/master/CONTRIBUTING.md)
+[![Build Status](https://travis-ci.org/wmfs/viewscript.svg?branch=master)](https://travis-ci.org/wmfs/viewscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/viewscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/viewscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/viewscript/blob/master/CONTRIBUTING.md)
 
 __This project defines a [JSON](https://tools.ietf.org/html/rfc7159)-based language used to describe form-content declaratively.
 The forms thus defined may be rendered and executed by software.
@@ -34,10 +34,10 @@ In this document, such software is referred to as an "app".__
 
 ## Getting started
 
-* __Get hands-on with Formscript using the online [Formscript Playpen](https://wmfs.github.io/formscript/)!__
-* For some introductory context around the motivations driving Formscript, please see [Appendix A: Formscript Motivation](#motivation).
-* A [JSON Schema (Draft-07)](http://json-schema.org/) for Formscript is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json).
-* The Formscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/formscript)) provides several utilities to help work with the specification. Please see [Appendix B: Formscript Utilities](#utilities) for further information.
+* __Get hands-on with Viewscript using the online [Viewscript Playpen](https://wmfs.github.io/viewscript/)!__
+* For some introductory context around the motivations driving Viewscript, please see [Appendix A: Viewscript Motivation](#motivation).
+* A [JSON Schema (Draft-07)](http://json-schema.org/) for Viewscript is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json).
+* The Viewscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/viewscript)) provides several utilities to help work with the specification. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -57,12 +57,12 @@ In this document, such software is referred to as an "app".__
   * [Widget List](#list)
 * [License (GPLv3)](#license)
 * [Appendices](#appendices)
-  * [Appendix A: Formscript Motivation](#motivation)
-  * [Appendix B: Formscript Utilities](#utilities)
+  * [Appendix A: Viewscript Motivation](#motivation)
+  * [Appendix B: Viewscript Utilities](#utilities)
 
 ## <a name="structure"></a>Structure of a Form
 
-__In Formscript, a form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
+__In Viewscript, a form is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
 
 ### <a name="example"></a>Example: Simple Form
 
@@ -104,40 +104,40 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 ## <a name="concepts"></a>Concepts
 
-__Formscript is built on a handful of key concepts...__
+__Viewscript is built on a handful of key concepts...__
 
 ### <a name="app"></a>Apps
 
-Forms defined in Formscript may be rendered and executed by software.
+Forms defined in Viewscript may be rendered and executed by software.
 In this document, such software is referred to an "__app__".
 
 * Apps can be implemented in any frontend-framework, language or library.
-* Formscript does not impose any aesthetic or UI constraints onto apps that implement it.
-* Formscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
-* Several utilities to help develop apps that use Formscript (written in Javascript). Please see [Appendix B: Formscript Utilities](#utilities) for further information.
+* Viewscript does not impose any aesthetic or UI constraints onto apps that implement it.
+* Viewscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
+* Several utilities to help develop apps that use Viewscript (written in Javascript). Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
 
 ### <a name="form"></a>Forms
 
-The purpose of Formscript is to define a user interface, referred to as a "__form__".
+The purpose of Viewscript is to define a user interface, referred to as a "__form__".
 
 * Forms are typically used to collect information from a user within an [app](#app). Forms can be non-interactive as well, and they can be used to simply display information to the user.
-* With Formscript it's possible to configure a form with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
-* Formscript definitions are naturally stored in `.json` files (typically one-file-per-form).
-* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Formscript definitions.
-* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/formscript/master/packages/formscript-schema/lib/schema.json), which may be used to validate the basic integrity of Formscript content.
-* For comprehensive Formscript validation, please refer to the [formscript-schema](https://www.npmjs.com/package/formscript-schema) package.
+* With Viewscript it's possible to configure a form with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
+* Viewscript definitions are naturally stored in `.json` files (typically one-file-per-form).
+* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Viewscript definitions.
+* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json), which may be used to validate the basic integrity of Viewscript content.
+* For comprehensive Viewscript validation, please refer to the [viewscript-schema](https://www.npmjs.com/package/viewscript-schema) package.
 
 ### <a name="widget"></a>Widgets
 
 Forms are constructed from an ordered list of "__widgets__".
 
-* To avoid overloading frontend-terms like 'component', Formscript refers to each object in the `widgets` array as a __widget__.
+* To avoid overloading frontend-terms like 'component', Viewscript refers to each object in the `widgets` array as a __widget__.
 * Consider a widget as an area of a form responsible for a particular task: either collecting a specific piece of information from a user or visualising a certain piece of information.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a form definition is important - representing the order users will encounter them.
-* The Formscript specification offers a fixed set of 26 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Formscript/blob/master/CONTRIBUTING.md)
+* The Viewscript specification offers a fixed set of 26 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 26 widgets supported in Formscript `0.0.5`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 26 widgets supported in Viewscript `0.0.5`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -174,10 +174,10 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 26
 ### <a name="set"></a>Sets
 
 All the [widgets](#widget) that define a [form](#form)'s content are specified in a simple array.
-This design helps align Formscript with vertical-scrolling interfaces with very little friction.
+This design helps align Viewscript with vertical-scrolling interfaces with very little friction.
 To assist with navigation (especially around larger, more complex forms) it is common for User Interfaces to be split into logical sections.
 
-* __In Formscript,  _sets_ allow widgets to be grouped into related chunks.__
+* __In Viewscript,  _sets_ allow widgets to be grouped into related chunks.__
 
 __Example JSON__
 
@@ -216,7 +216,7 @@ __Example JSON__
 
 ### <a name="expression"></a>Expressions
 
-Formscript uses __expressions__ to deliver dynamic content. Expressions are used to:
+Viewscript uses __expressions__ to deliver dynamic content. Expressions are used to:
 
 * Conditionally show/hide widgets depending on values as they change.
 * Validate form content based on more complex business rules.
@@ -260,7 +260,7 @@ The `feedback` widget should only show if the `userWantsToGiveFeedback` switch i
 
 There are a few new things going on here.
 Most types of widget (here the `switch` and `textarea` types) expect an app to read and write their values to an underlying `data` object (using their respective `id` values as keys).
-It is also expected that any app implementing Formscript should also make this `data` object available within a safe sandbox while evaluating expressions.
+It is also expected that any app implementing Viewscript should also make this `data` object available within a safe sandbox while evaluating expressions.
 
 In the previous example we can see the `showWhen` attribute is being used on the `feedback` widget. The string value here is an _expression_, which will control the visibility of the widget (i.e. it should only be shown to the user when the expression evaluates to `true`).
 
@@ -312,7 +312,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Formscript `0.0.5` supports a set of 24 common attributes from which widgets can be configured.
+Viewscript `0.0.5` supports a set of 24 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
  
 | Attribute Name | Type | Description |
@@ -345,7 +345,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the list of all 26 widgets supported in Formscript `0.0.5` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the list of all 26 widgets supported in Viewscript `0.0.5` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -980,6 +980,7 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
@@ -1377,6 +1378,7 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
@@ -1571,6 +1573,7 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
@@ -1682,17 +1685,17 @@ __Attributes__
 
 # <a name="license"></a>License (GPLv3)
 
-The Formscript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/formscript/blob/master/LICENSE).
+The Viewscript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/viewscript/blob/master/LICENSE).
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fformscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fformscript?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript?ref=badge_large)
 
 <hr>
 
 # <a name="appendices"></a>Appendices
 
-## <a name="motivation"></a>Appendix A: Formscript Motivation
+## <a name="motivation"></a>Appendix A: Viewscript Motivation
 
-__Formscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
+__Viewscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
 Our work over the last 20 years has often involved collecting data from a variety of teams and environments.
 During this time, our best experiences have come from taking a declarative approach to defining form content.__
 
@@ -1745,20 +1748,22 @@ It was becoming evident we didn't have a good fit for what we wanted to do, and 
 
 * The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML feels out-of-place nowadays if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
-So... __Formscript__!
+So... __Viewscript__!
 
 * __It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.__
 
-## <a name="utilities"></a>Appendix B: Formscript Utilities
+## <a name="utilities"></a>Appendix B: Viewscript Utilities
 
-__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Formscript:__
+__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Viewscript:__
 
 | Package | Description | Github | NPM  |
 | ------- | ------------| ------ | ---- |
-| `formscript-doc-generator` | Produces Formscript's main README.md file using FormScript's JSON Schema and other sources. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-doc-generator) | [Here](https://www.npmjs.com/package/formscript-doc-generator)  |
-| `formscript-examples` | Example Formscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-examples) | [Here](https://www.npmjs.com/package/formscript-examples)  |
-| `formscript-playpen` | A playpen to try-out some Formscript. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-playpen) | [Here](https://www.npmjs.com/package/formscript-playpen)  |
-| `formscript-schema` | Contains a JSON Schema for Formscript, along with a validation utility. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-schema) | [Here](https://www.npmjs.com/package/formscript-schema)  |
-| `formscript-simple-vue` | A Vue.js component for rendering a simple UI from Formscript | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-simple-vue) | [Here](https://www.npmjs.com/package/formscript-simple-vue)  |
-| `formscript-to-template` | Takes some Formscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/formscript/tree/master/packages/formscript-to-template) | [Here](https://www.npmjs.com/package/formscript-to-template)  |
+| `viewscript-doc-generator` | Produces Viewscript's main README.md file using Viewscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-doc-generator) | [Here](https://www.npmjs.com/package/viewscript-doc-generator)  |
+| `viewscript-examples` | Example Viewscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-examples) | [Here](https://www.npmjs.com/package/viewscript-examples)  |
+| `viewscript-extract-defaults` | Extracts sensible defaults from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-extract-defaults)  |
+| `viewscript-parser` | Like JSON.parse(), but for Viewscript. And it supports YAML. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) | [Here](https://www.npmjs.com/package/viewscript-parser)  |
+| `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
+| `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
+| `viewscript-simple-vue` | A Vue.js component for rendering a simple UI from Viewscript | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-simple-vue)  |
+| `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
 
