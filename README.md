@@ -34,7 +34,8 @@ In this document, such software is referred to as an "app".__
 
 ## Getting started
 
-* __Get hands-on with Viewscript using the online [Viewscript Playpen](https://wmfs.github.io/viewscript/)!__
+#### __Get hands-on with Viewscript using the online [Viewscript Playpen](https://wmfs.github.io/formscript/)!
+
 * For some introductory context around the motivations driving Viewscript, please see [Appendix A: Viewscript Motivation](#motivation).
 * A [JSON Schema (Draft-07)](http://json-schema.org/) for Viewscript is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json).
 * The Viewscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/viewscript)) provides several utilities to help work with the specification. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
