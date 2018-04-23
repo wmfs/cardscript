@@ -11,7 +11,7 @@ const CONFIG = {
     widgetTagPrefix: 'app',
     closingWidgetTags: false,
     rootTag: ['<div>', '</div>'],
-    setReplacementTag: 'template',
+    setReplacementTag: 'div',
     showWhenTag: 'v-if',
     modelBindingAttributeTemplate: ['v-model', 'data.$$WIDGET_ID$$']
   }

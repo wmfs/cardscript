@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
+    <div>
         <h4 class="display-4" >{{heading}}</h4>
         <p class="lead">{{desc}}</p>
     </div>
@@ -11,9 +11,7 @@
     props: [
       'widgetId',
       'desc',
-      'heading',
-      'backgroundImage',
-      'backgroundImageAltText',
+      'heading'
     ],
     components: {},
     data () {

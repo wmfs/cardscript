@@ -21,7 +21,8 @@
     "viewscript-to-template": "0.0.5",
     "viewscript-simple-vue": "0.0.5",
     "viewscript-examples": "0.0.5",
-    "viewscript-extract-defaults": "0.0.5"
+    "viewscript-extract-defaults": "0.0.5",
+    "viewscript-table-of-contents": "0.0.5"
   },
   "devDependencies": {
     "vue-gh-pages": "^1.15.2",

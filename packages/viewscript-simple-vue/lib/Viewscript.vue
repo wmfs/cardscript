@@ -14,6 +14,7 @@ import AppEndSet from './widgets/end-set'
 import AppEndSubForm from './widgets/end-sub-form'
 import AppFileUpload from './widgets/file-upload'
 import AppHeader from './widgets/header'
+import AppHeading from './widgets/heading'
 import AppImage from './widgets/image'
 import AppMap from './widgets/map'
 import AppNumber from './widgets/number'
@@ -50,6 +51,7 @@ export default {
           AppEndSet,
           AppEndSubForm,
           AppFileUpload,
+          AppHeading,
           AppHeader,
           AppImage,
           AppMap,

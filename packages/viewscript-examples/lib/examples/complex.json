@@ -18,6 +18,13 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Incident details",
+        "desc": "Which incident was patient care administered?"
+      }
+    },
+    {
       "id": "incidentNum",
       "type": "number",
       "attributes": {
@@ -110,6 +117,13 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Patient Details",
+        "desc": "The questions in this section relate to the patient which received care"
+      }
+    },
+    {
       "id": "patientName",
       "type": "text",
       "attributes": {
@@ -183,6 +197,13 @@
         "tocTitle": "Airway"
       }
     },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Airway Treatment"
+      }
+    },
+
     {
       "id": "gurgling",
       "type": "select",
@@ -278,6 +299,13 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Breathing",
+        "desc": "The questions in this section relate to the patient which received care"
+      }
+    },
+    {
       "id": "alwaysBreathing",
       "type": "select",
       "attributes": {
@@ -362,6 +390,12 @@
       "type": "set",
       "attributes": {
         "tocTitle": "Circulation"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Circulation"
       }
     },
     {
@@ -465,6 +499,12 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Disability"
+      }
+    },
+    {
       "id": "limbMovement",
       "type": "checkboxList",
       "attributes": {
@@ -551,6 +591,12 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Exposure"
+      }
+    },
+    {
       "id": "exposure",
       "type": "select",
       "attributes": {
@@ -578,6 +624,12 @@
       "type": "set",
       "attributes": {
         "tocTitle": "Burns"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Burns"
       }
     },
     {
@@ -674,6 +726,12 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Burns"
+      }
+    },
+    {
       "id": "cprGiven",
       "type": "switch",
       "attributes": {
@@ -729,6 +787,12 @@
       }
     },
     {
+      "type": "heading",
+      "attributes": {
+        "heading": "Medication"
+      }
+    },
+    {
       "id": "medicationGiven",
       "type": "radio",
       "attributes": {
@@ -750,6 +814,12 @@
       "type": "set",
       "attributes": {
         "tocTitle": "Summary"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Summary"
       }
     },
     {

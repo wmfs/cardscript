@@ -218,7 +218,7 @@
       },
 
       "header": {
-        "title": "Displays a header for a form (with an optional background image and some text akin to a '[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)' component).",
+        "title": "A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/).",
         "properties": {
           "type": {"enum": ["header"]},
           "showWhen": {"$ref": "#/definitions/showWhen"},
@@ -229,6 +229,25 @@
               "desc": {"$ref": "#/definitions/attributes/desc"},
               "backgroundImage": {"type": "string", "title": "A path to an image file that should be resolved from the app's base image URL or similar."},
               "backgroundImageAltText": {"type": "string", "title": "Text that describes the `backgroundImage` image."}
+            },
+            "required": ["heading"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+
+      "heading": {
+        "title": "Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience.",
+        "properties": {
+          "type": {"enum": ["heading"]},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"}
             },
             "required": ["heading"],
             "additionalProperties": false
@@ -761,6 +780,7 @@
           {"$ref": "#/definitions/widgets/dateTime"},
           {"$ref": "#/definitions/widgets/time"},
           {"$ref": "#/definitions/widgets/header"},
+          {"$ref": "#/definitions/widgets/heading"},
           {"$ref": "#/definitions/widgets/questionnaire"},
           {"$ref": "#/definitions/widgets/radio"},
           {"$ref": "#/definitions/widgets/richtext"},

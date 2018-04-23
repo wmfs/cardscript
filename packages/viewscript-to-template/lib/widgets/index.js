@@ -9,6 +9,7 @@ module.exports = {
   endSubForm: require('./end-sub-form'),
   fileUpload: require('./file-upload'),
   header: require('./header'),
+  heading: require('./heading'),
   image: require('./image'),
   map: require('./map'),
   number: require('./number'),

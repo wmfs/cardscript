@@ -94,7 +94,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the <%
 | Widget Type      | Description |
 | -----------      | ----------- |
 <% widgets.forEach(function(widget) { -%>
-| [`<%= widget.type -%>`](#list-<%= widget.type -%>) | <%= widget.title %> |
+| [`<%= widget.type -%>`](#list-<%= widget.type -%>) | <%- widget.title %> |
 <% }) %>
 
 ### <a name="set"></a>Sets
@@ -188,7 +188,7 @@ Each `widget` object comprise of some properties:
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
 <% properties.forEach(function(property) { -%>
-| `<%= property.name%>` | `<%= property.type %>` | <%= property.title %> |
+| `<%= property.name%>` | `<%= property.type %>` | <%- property.title %> |
 <% })-%>
 | `attributes` | `object` | A key/value object for configuring each widget - the content of which is dependent on the widget's `type`. |
 
@@ -200,7 +200,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
 <% attributes.forEach(function(attribute) { -%>
-| `<%= attribute.name%>` | `<%= attribute.type %>` | <%= attribute.title %> |
+| `<%= attribute.name%>` | `<%= attribute.type %>` | <%- attribute.title %> |
 <% }) %>
 
 # <a name="list"></a>Widget List
@@ -213,7 +213,7 @@ Here is the list of all <%= widgets.length %> widgets supported in Viewscript `<
 
 ## The <a name="list-<%= widget.type -%>"></a>`<%= widget.type%>` widget
 
-__<%= widget.title %>__
+__<%- widget.title %>__
 
 __Example JSON__
 

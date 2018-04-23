@@ -11,7 +11,7 @@ module.exports.convert = function convert (viewscript, options) {
 
   const rootTag = dottie.get(options, 'template.rootTag') || ['<form>', '</form>']
   const tagPrefix = dottie.get(options, 'template.widgetTagPrefix') || 'app'
-  replacementTagNames.set = dottie.get(options, 'template.setReplacementTag') || 'template'
+  replacementTagNames.set = dottie.get(options, 'template.setReplacementTag') || 'div'
   replacementTagNames.endSet = dottie.get(options, 'template.setReplacementTag') || replacementTagNames.set
 
   let lineEnding
@@ -56,9 +56,15 @@ module.exports.convert = function convert (viewscript, options) {
         // Process attributes
         const attributes = []
         if (widgetDefinition.id) {
+          let idName
+          if (widgetDefinition.type === 'set') {
+            idName = 'id'
+          } else {
+            idName = 'widgetId'
+          }
           attributes.push(
             {
-              propName: 'widgetId',
+              propName: idName,
               propString: widgetDefinition.id
             }
           )
@@ -80,7 +86,7 @@ module.exports.convert = function convert (viewscript, options) {
           _.forEach(
             widgetDefinition.attributes,
             function (value, key) {
-              if (key !== 'titleMap') {
+              if (key !== 'titleMap' && key !== 'tocTitle') {
                 attributes.push(
                   {
                     propName: _.kebabCase(key),

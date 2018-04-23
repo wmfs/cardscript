@@ -132,9 +132,9 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* The Viewscript specification offers a fixed set of 26 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
+* The Viewscript specification offers a fixed set of 27 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 26 widgets supported in Viewscript `0.0.5`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 27 widgets supported in Viewscript `0.0.5`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -149,7 +149,8 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 26
 | [`endSet`](#list-endSet) | Marks the end of a set of related widgets - see the [Sets](#set) section for more information. |
 | [`endSubForm`](#list-endSubForm) | Marks the end of a sub-form - see the [Sets](#set) section for more information. |
 | [`fileUpload`](#list-fileUpload) | Allows the user to upload a file. |
-| [`header`](#list-header) | Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component). |
+| [`header`](#list-header) | A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/). |
+| [`heading`](#list-heading) | Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience. |
 | [`image`](#list-image) | Embeds a non-interactive image within the form. |
 | [`map`](#list-map) | Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.) |
 | [`number`](#list-number) | Like a `text` widget, but specifically for collecting numeric content. |
@@ -161,7 +162,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 26
 | [`signature`](#list-signature) | Allow the collection of a handwritten signature |
 | [`slider`](#list-slider) | For capturing a number along a specified range |
 | [`stickyNote`](#list-stickyNote) | A panel for putting helpful text or other informative text |
-| [`subForm`](#list-subForm) | Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.) |
+| [`subForm`](#list-subForm) | Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.) |
 | [`switch`](#list-switch) | Presents a on/off style switch to the user. |
 | [`text`](#list-text) | A bread-and-butter box for collecting textual information from the user. |
 | [`textarea`](#list-textarea) | Collects simple multi-line text input from the user. |
@@ -310,7 +311,7 @@ Each `widget` object comprise of some properties:
 
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
-| `id` | `string` | A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model. Providing an `id` value is very often mandatory (depending on the type of widget involved). Regardless, it is good practice to always provide an `id` because it assists modification (or &#34;_patching_&#34;) of form definitions. |
+| `id` | `string` | A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model. Providing an `id` value is very often mandatory (depending on the type of widget involved). Regardless, it is good practice to always provide an `id` because it assists modification (or "_patching_") of form definitions. |
 | `type` | `string` | A mandatory value denoting the type of widget being defined (e.g. `text`, `number` etc.) |
 | `showWhen` | `string` | An expression, that when evaluating to `true` will cause the widget to appear (so the widget will not be shown if evaluated to be `false`). |
 | `attributes` | `object` | A key/value object for configuring each widget - the content of which is dependent on the widget's `type`. |
@@ -328,16 +329,16 @@ Not one widget-type requires all these attributes. Attributes are often optional
 | `defaultNumber` | `number` | A numeric value to default a widget to if not supplied by other mechanisms. |
 | `defaultString` | `string` | A string value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enableLocationAssist` | `boolean` | If supported by the app, should the widget try to find results from a search API by proximity to the user&#39;s current location? |
-| `enableUnknownOption` | `boolean` | Should the widget allow the user to indicate they don&#39;t know enough detail to find the most suitable result from a search API? |
+| `enableLocationAssist` | `boolean` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
+| `enableUnknownOption` | `boolean` | Should the widget allow the user to indicate they don't know enough detail to find the most suitable result from a search API? |
 | `enabled` | `boolean` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `futuristicByAtMost` | `string` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
 | `heading` | `string` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
 | `historicByAtLeast` | `string` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
 | `label` | `string` | A short piece of text to help identify what content is required by the user. |
-| `labelPath` | `string` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for &#39;stamping&#39; labels as they were at time of data-collection and to improve subsequent render-times of the data). |
-| `mandatory` | `boolean` | Indicates if a value needs to be supplied by the user, or if it&#39;s optional. |
+| `labelPath` | `string` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
+| `mandatory` | `boolean` | Indicates if a value needs to be supplied by the user, or if it's optional. |
 | `maxCharacters` | `number` | The maximum length of number of characters a user can specify. |
 | `maximum` | `number` | The maximum numeric value a user can specify. |
 | `minCharacters` | `number` | The minimum length of number of characters a will need to provide. |
@@ -350,7 +351,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the list of all 26 widgets supported in Viewscript `0.0.5` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the list of all 27 widgets supported in Viewscript `0.0.5` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -795,7 +796,7 @@ __Attributes__
 
 ## The <a name="list-header"></a>`header` widget
 
-__Displays a header for a form (with an optional background image and some text akin to a &#39;[Hero Unit](https://en.wikipedia.org/wiki/Hero_image)&#39; component).__
+__A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/).__
 
 __Example JSON__
 
@@ -827,6 +828,45 @@ __Attributes__
 | ---- | -----| -------- | ----------- |
 | `backgroundImage` | `string` | `No` | A path to an image file that should be resolved from the app's base image URL or similar. |
 | `backgroundImageAltText` | `string` | `No` | Text that describes the `backgroundImage` image. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-heading"></a>`heading` widget
+
+__Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "header",
+  "attributes": {
+    "heading": "Patient Report",
+    "desc": "Use this form to provide details of patient care administered at the scene of an incident."
+  }
+}
+
+```
+
+__Properties__
+
+
+__`type`:__ _Required_ (`"heading"`)
+
+__`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
 
@@ -1444,7 +1484,7 @@ __Attributes__
 
 ## The <a name="list-subForm"></a>`subForm` widget
 
-__Allows the user to enter a number of &#39;sub forms&#39; (think order-lines or contact details etc.)__
+__Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.)__
 
 __Example JSON__
 
@@ -1771,5 +1811,6 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
 | `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
 | `viewscript-simple-vue` | A Vue.js component for rendering a simple UI from Viewscript | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-simple-vue)  |
+| `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
 | `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
 

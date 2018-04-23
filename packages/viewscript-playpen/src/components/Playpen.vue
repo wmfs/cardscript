@@ -63,20 +63,21 @@
             </div>
             <br>
 
+            <div v-if="dynamicContent.toc.length > 0">
+              <h5 class="display-5">Table of contents</h5>
+              <small class="">As derived using the <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-table-of-contents">viewscript-table-of-contents</a> package.</small>
+              <br>
+              <br>
+              <ol>
+                <li v-for="entry in dynamicContent.toc" :key="entry.widgetId">
+                  <a href="#" v-on:click.prevent="tocClick(entry.widgetId)">{{ entry.tocTitle }}</a>
+                </li>
+              </ol>
+            </div>
+
             <div class="card">
               <div class="card-body">
                 <viewscript v-bind:content="dynamicContent"></viewscript>
-              </div>
-            </div>
-          </v-tab>
-          <v-tab title="TOC">
-            <br>
-            <div class="alert alert-secondary" role="alert">
-              This is a Table of Contents derived from the Viewscript via the <a class="alert-link" href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-table-of-contents">viewscript-table-of-contents</a> package.
-            </div>
-            <div class="card">
-              <div class="card-body">
-                WIP!
               </div>
             </div>
           </v-tab>
@@ -141,6 +142,7 @@
   const validator = require('viewscript-schema').validateForm
   const templateConverter = require('viewscript-to-template').convert
   const extractDefaults = require('viewscript-extract-defaults')
+  const extractToc = require('viewscript-table-of-contents')
 
   class Stopwatch {
     constructor() {
@@ -193,6 +195,8 @@
         if (result.validatorOutput.widgetsValid) {
           stopwatch.addTime('Extract default values')
           result.defaultValues = extractDefaults(viewscript)
+          stopwatch.addTime('Extract TOC')
+          result.toc = extractToc(viewscript)
           stopwatch.addTime('Generate template')
           result.templateOutput = templateConverter(viewscript)
         }
@@ -212,7 +216,10 @@
       Viewscript
     },
     methods: {
-
+      tocClick: function(elementIdToScrollTo) {
+        const e = document.getElementById(elementIdToScrollTo)
+        e.scrollIntoView()
+      },
       setExampleContent: function (id) {
         this.$set(this.validation, 'state', 'notValidated')
         this.$set(this.validation, 'errors', [])
@@ -239,12 +246,14 @@
                       comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
                       comp.$set(comp.dynamicContent, 'data', output.defaultValues)
                       comp.$set(comp.dynamicContent, 'times', [])
+                      comp.$set(comp.dynamicContent, 'toc', output.toc)
                       elementIdToScrollTo = 'success'
                     } else {
                       comp.$set(comp.validation, 'state', 'invalid')
                       comp.$set(comp.validation, 'errors', output.validatorOutput.errors)
                       comp.$set(comp.dynamicContent, 'template', '')
                       comp.$set(comp.dynamicContent, 'data', {})
+                      comp.$set(comp.dynamicContent, 'toc', [])
                       elementIdToScrollTo = 'thereWereErrors'
                     }
                     stopwatch.addTime('Render')
