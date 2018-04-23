@@ -407,6 +407,7 @@
             "type": "object",
             "properties": {
               "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "default": {"$ref": "#/definitions/attributes/defaultString"},
               "placeholder": {"$ref": "#/definitions/attributes/placeholder"},

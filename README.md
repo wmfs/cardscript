@@ -232,11 +232,18 @@ Consider an expression to be something that could be evaluated in a Javascript `
   "title": "Simple expression demo!",
   "widgets": [
     {
+      "type": "header",
+      "attributes": {
+        "heading": "All done!",
+        "desc": "We're all done here, we would really appreciate some feedback though!"
+      }
+    },
+    {
       "id": "userWantsToGiveFeedback",
       "type": "switch",
       "attributes": {
         "default": false,
-        "heading": "Do you want to leave feedback?"
+        "heading": "I would like to leave some feedback"
       }
     },
     {
@@ -245,7 +252,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
       "type": "textarea",
       "attributes": {
         "heading": "Feedback",
-        "desc": "Please tell us how you feel!"
+        "desc": "How did you feel using our app?"
       }
     }
   ]
@@ -1624,6 +1631,7 @@ __Attributes__
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
 | `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |

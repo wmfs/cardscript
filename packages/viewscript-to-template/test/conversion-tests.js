@@ -12,7 +12,7 @@ const CONFIG = {
     closingWidgetTags: false,
     rootTag: ['<div>', '</div>'],
     setReplacementTag: 'template',
-    conditionalAttributeTemplate: 'v-if="$$EXPRESSION$$"',
+    showWhenTag: 'v-if',
     modelBindingAttributeTemplate: ['v-model', 'data.$$WIDGET_ID$$']
   }
 }

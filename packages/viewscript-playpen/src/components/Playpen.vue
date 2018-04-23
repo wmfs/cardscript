@@ -24,6 +24,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('simple')">Simple example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('expression')">Expression example</a>
           <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('complex')">Complex example</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('blank')">Blank</a>

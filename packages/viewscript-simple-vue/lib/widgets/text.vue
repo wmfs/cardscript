@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <label v-bind:for="widgetId">{{heading}}</label>
-        <input type="text" class="form-control" v-bind:id="widgetId" v-bind:value="value" v-on:input="updateValue($event.target.value)" v-bind:placeholder="placeholder">
+        <input type="text" class="form-control" v-bind:id="widgetId" v-bind:value="value" v-on:input="updateValue($event.target.value)" :placeholder="placeholder">
         <small class="form-text text-muted">{{help}}</small>
     </div>
 </template>

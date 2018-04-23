@@ -2,11 +2,18 @@
   "title": "Simple expression demo!",
   "widgets": [
     {
+      "type": "header",
+      "attributes": {
+        "heading": "All done!",
+        "desc": "We're all done here, we would really appreciate some feedback though!"
+      }
+    },
+    {
       "id": "userWantsToGiveFeedback",
       "type": "switch",
       "attributes": {
         "default": false,
-        "heading": "Do you want to leave feedback?"
+        "heading": "I would like to leave some feedback"
       }
     },
     {
@@ -15,7 +22,7 @@
       "type": "textarea",
       "attributes": {
         "heading": "Feedback",
-        "desc": "Please tell us how you feel!"
+        "desc": "How did you feel using our app?"
       }
     }
   ]

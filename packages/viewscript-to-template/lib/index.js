@@ -34,6 +34,9 @@ module.exports.convert = function convert (viewscript, options) {
     bindingTemplate = options.modelBindingAttributeTemplate[1]
   }
   const makeModelBindingTag = geteModelBindingTagFunction(bindingTag, bindingTemplate)
+
+  const showWhenTag = options.showWhenTag || 'v-if'
+
   options.makeModelBindingTag = makeModelBindingTag
   widgets.forEach(
     function (widgetDefinition) {
@@ -67,8 +70,8 @@ module.exports.convert = function convert (viewscript, options) {
         if (widgetDefinition.showWhen) {
           attributes.push(
             {
-              propName: 'X',
-              propString: 'Y'
+              propName: showWhenTag,
+              propString: widgetDefinition.showWhen
             }
           )
         }
