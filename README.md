@@ -234,7 +234,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
     {
       "type": "header",
       "attributes": {
-        "header": "All done!",
+        "heading": "All done!",
         "desc": "We're all done here, we would really appreciate some feedback though!"
       }
     },
