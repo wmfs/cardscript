@@ -155,6 +155,7 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},
@@ -179,6 +180,7 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "desc": {"$ref": "#/definitions/attributes/desc"},
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},

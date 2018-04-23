@@ -1,11 +1,29 @@
 <template>
-    <p class="form-text text-muted">// TODO: Implement dateTime widget!</p>
+    <div class="form-group">
+        <label v-bind:for="widgetId">{{heading}}</label>
+        <input type="datetime-local" class="form-control" v-bind:id="widgetId" v-bind:value="value" v-on:input="updateValue($event.target.value)">
+        <small class="form-text text-muted">{{help}}</small>
+    </div>
 </template>
 <script>
+
   export default {
+    props: ['widgetId', 'value', 'heading', 'enabled', 'desc', 'help', 'mandatory'],
+    components: {},
     data () {
-      return {
+      return {}
+    },
+    mounted () {
+    },
+
+    methods: {
+      updateValue: function (value) {
+        this.$emit('input', value)
       }
     }
   }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>

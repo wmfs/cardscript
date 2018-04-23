@@ -20,10 +20,6 @@ Vue.use(VueTabs)
 Vue.use(Viewscript)
 Vue.use(VueCodemirror, {
   options: {
-    lint: true,
-    gutters: [
-      'CodeMirror-lint-markers'
-    ],
     mode: {
       name: 'application/json'
     },

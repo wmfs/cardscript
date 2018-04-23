@@ -8,8 +8,6 @@
     </div>
 
     <div id="app">
-      <h5 class="display-5">Viewscript JSON</h5>
-      <br>
       <codemirror id="editor" v-model="viewscript"></codemirror>
       <br>
 
@@ -276,7 +274,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
   .template {
     white-space: pre;
     overflow-x: auto;
