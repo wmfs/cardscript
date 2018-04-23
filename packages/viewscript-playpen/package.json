@@ -1,6 +1,6 @@
 {
   "name": "viewscript-playpen",
-  "version": "1.0.0",
+  "version": "0.0.6",
   "description": "A playpen to try-out some Viewscript.",
   "author": "Tim Needham <tim.needham@wmfs.net>",
   "private": true,
@@ -12,20 +12,19 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "viewscript-schema": "^0.0.5",
+    "viewscript-examples": "^0.0.6",
+    "viewscript-extract-defaults": "^0.0.6",
+    "viewscript-parser": "^0.0.6",
+    "viewscript-schema": "^0.0.6",
+    "viewscript-simple-vue": "^0.0.6",
+    "viewscript-table-of-contents": "^0.0.6",
+    "viewscript-to-template": "^0.0.6",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",
-    "vue-router": "^3.0.1",
     "vue-nav-tabs": "^0.5.7",
-    "viewscript-parser": "0.0.5",
-    "viewscript-to-template": "0.0.5",
-    "viewscript-simple-vue": "0.0.5",
-    "viewscript-examples": "0.0.5",
-    "viewscript-extract-defaults": "0.0.5",
-    "viewscript-table-of-contents": "0.0.5"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "vue-gh-pages": "^1.15.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -64,6 +63,7 @@
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-gh-pages": "^1.15.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
