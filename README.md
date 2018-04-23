@@ -24,11 +24,11 @@
 
 
 # Viewscript
-### Version `0.0.5`
+### Version `0.0.6`
 
 [![Build Status](https://travis-ci.org/wmfs/viewscript.svg?branch=master)](https://travis-ci.org/wmfs/viewscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/viewscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/viewscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/viewscript/blob/master/CONTRIBUTING.md)
 
-#### This project defines a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interface content declaratively.
+#### The goal of Viewscript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
 
 ## Getting started
 
@@ -36,7 +36,7 @@
 
 * For some introductory context around why we developed Viewscript, please see [Appendix A: Viewscript Motivation](#motivation).
 * A [JSON Schema (Draft-07)](http://json-schema.org/) for Viewscript is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json).
-* The Viewscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/viewscript)) provides several utilities to help work with the specification. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
+* The Viewscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/viewscript)) provides several utilities to help work with the language. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -72,7 +72,7 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 ``` json
 {
-  "title": "Simple demo form!",
+  "title": "Simple demo view!",
   "widgets": [
     {
       "type": "header",
@@ -132,9 +132,9 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* The Viewscript specification offers a fixed set of 27 standard widgets. Need another widget-type entirely or an extra configuration options? [Pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
+* The Viewscript specification offers a fixed set of 27 standard widgets. If you beed another widget-type or an extra configuration options... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 27 widgets supported in Viewscript `0.0.5`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 27 widgets supported in Viewscript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -208,7 +208,7 @@ __Example JSON__
 }
 ```
 
-* In this example, we are declaring that a [`text](#list-text) widget (with the id `name`) should be rendered within a set (which should appear in a Table of Contents with the heading "_Profile_").
+* In this example, we are declaring that a [`text`](#list-text) widget (with the id `name`) should be rendered within a set (which should appear in a Table of Contents with the heading "_Profile_").
 * The beginning of each set is marked with a [`set`](#list-set) widget and is terminated with an [`endSet`](#list-endSet) widget (just like `<div>` and `</div>`).
 * Nesting of sets is possible and sets are especially powerful when combined with dynamic [expressions](#expression) to conditionally show/hide content.
 * Sets also enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) functionality.
@@ -234,7 +234,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
     {
       "type": "header",
       "attributes": {
-        "heading": "All done!",
+        "header": "All done!",
         "desc": "We're all done here, we would really appreciate some feedback though!"
       }
     },
@@ -261,9 +261,9 @@ Consider an expression to be something that could be evaluated in a Javascript `
 
 __In the example above we have three widgets:__
 
-* the first widget is a simple [`header`](#list-header).
-* The second widget is a simple boolean on/off [`switch`](#list-switch) (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
-* The third widget is a [`textarea`](#list-textbox) box (with the `id` of `feedback`) for collecting feedback from the user.
+1. The first widget is a simple [`header`](#list-header).
+2. The second widget is a simple boolean on/off [`switch`](#list-switch) (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
+3. The third widget is a [`textarea`](#list-textbox) box (with the `id` of `feedback`) for collecting feedback from the user.
 
 The `feedback` widget should only show if the `userWantsToGiveFeedback` switch is thrown on (i.e. `true`).
 
@@ -318,7 +318,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Viewscript `0.0.5` supports a set of 24 common attributes from which widgets can be configured.
+Viewscript `0.0.6` supports a set of 24 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
  
 | Attribute Name | Type | Description |
@@ -351,7 +351,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the list of all 27 widgets supported in Viewscript `0.0.5` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 27 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>

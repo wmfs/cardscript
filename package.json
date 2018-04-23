@@ -1,7 +1,7 @@
 {
   "name": "viewscript",
-  "description": "A JSON-based language used to describe form-content declaratively.",
-  "version": "0.0.3",
+  "description": "The goal of Viewscript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
+  "version": "0.0.5",
   "author": "Tim Needham",
   "devDependencies": {
     "lerna": "^2.9.0"

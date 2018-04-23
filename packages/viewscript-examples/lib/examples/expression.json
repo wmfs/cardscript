@@ -4,7 +4,7 @@
     {
       "type": "header",
       "attributes": {
-        "heading": "All done!",
+        "header": "All done!",
         "desc": "We're all done here, we would really appreciate some feedback though!"
       }
     },
