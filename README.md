@@ -1743,27 +1743,27 @@ The Viewscript specification and related tooling is provided under [__GNU Genera
 
 __Viewscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
 Our work over the last 20 years has often involved collecting data from a variety of teams and environments.
-During this time, our best experiences have come from taking a declarative approach to defining view content.__
+During this time, our best experiences have come from taking a declarative approach to defining form content.__
 
-* Originally we used XML to define the content of our views (or _Workbooks_ as they became known).
+* Originally we used XML to define the content of our forms (or _workbooks_ as they became known).
 From there it was a relatively simple process to write a renderer to conjure appropriate UIs from those definitions.
 Over the intervening years we have defined some 50 workbooks in XML to collect over 3 million documents and we've extended our [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) to support growing business need.
 
 * We're now actively working on our third-generation view rendering engine.
 While designing the accompanying backend, we've found great benefit in aligning to open standards (for example our workflow is now defined in [Amazon State Language](https://states-language.net/spec.html)).
 
-* Given our positive experiences of declarative techniques and open standards, it was a natural evolution for our new views engine to use an open standard to work from.
+* Given our positive experiences of declarative techniques and open standards, it was a natural evolution for our new declarative-UI engine to incorporate an open standard.
 We therefore prototyped using a few projects (for example [Schema View](https://json-schema-view.github.io/angular-schema-view/)) and shipped our [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) using [Mozilla React Schema View](https://mozilla-services.github.io/react-jsonschema-view).
 
 __They're great libraries and helped us get up-and-running quickly.__
 
 In hindsight, both these specifications are restricted by being bound to an underlying UI technology (i.e. Angular and React respectively).
 This is by far the biggest problem for us - it felt very much like the tail wagging the dog.
-Both projects mandate a traditional web-view interface too. What if we're only working in a CLI context, or want to try some voice interface technology?
+Both projects mandate a traditional web-view interface too. What if we're only working in a CLI context, or want to try some voice-interface technology?
 
-* And React Schema View and Schema.io work well for reasonably trivial views, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both approaches - even to deliver quite basic view experiences.
+* React Schema View and Schema.io work well for reasonably trivial UI content, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both approaches - even to deliver quite basic experiences.
 
-To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involves a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when developing larger views.
+To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involves a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when describing larger UIs.
 In turn, we found this complexity bleeds into tooling and the wider architecture.
 
 __So with a shopping-list in-hand:__
@@ -1789,12 +1789,12 @@ We were edging closer to defining our own, but at the same time very mindful of 
 
 ![How standards proliferate Licensed under CC BY-NC 2.5 by xkcd.com](https://imgs.xkcd.com/comics/standards.png)
 
-* A particularity bad smell came about when we developed a simple intermediary viewat (to ease tooling complexity and authoring processes) which we could translate back into React Schema View definitions.
+* A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema View definitions.
 It was becoming evident we didn't have a good fit for what we wanted to do, and that using a badly-fitting standard is actually worse than not using a standard at all.
 
 * The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML feels out-of-place nowadays if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
-So... __Viewscript__!
+### So... __Viewscript__!
 
 * __It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.__
 
