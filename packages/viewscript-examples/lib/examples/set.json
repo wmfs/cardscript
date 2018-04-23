@@ -4,16 +4,19 @@
     {
       "type": "set",
       "attributes": {
-        "heading": "Any feedback?",
-        "showInToc": true
+        "tocTitle": "Profile"
       }
     },
     {
-      "id": "feedback",
-      "type": "textarea",
+      "id": "name",
+      "type": "text",
       "attributes": {
-        "heading": "Feedback",
-        "desc": "Please tell us how you feel!"
+        "heading": "Name",
+        "placeholder": "e.g. Lucy Smith",
+        "mandatory": true,
+        "minCharacters": 1,
+        "maxCharacters": 100,
+        "help": "Enter your full name here"
       }
     },
     {
