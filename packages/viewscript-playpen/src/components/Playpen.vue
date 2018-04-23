@@ -68,7 +68,17 @@
                 <viewscript v-bind:content="dynamicContent"></viewscript>
               </div>
             </div>
-
+          </v-tab>
+          <v-tab title="TOC">
+            <br>
+            <div class="alert alert-secondary" role="alert">
+              This is a Table of Contents derived from the Viewscript via the <a class="alert-link" href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-table-of-contents">viewscript-table-of-contents</a> package.
+            </div>
+            <div class="card">
+              <div class="card-body">
+                WIP!
+              </div>
+            </div>
           </v-tab>
           <v-tab title="Model">
             <br>
@@ -119,7 +129,7 @@
         </vue-tabs>
       </div>
     </div>
-
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -274,6 +284,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .footer {
+    height: 300px;
+  }
+
   .template {
     white-space: pre;
     overflow-x: auto;
