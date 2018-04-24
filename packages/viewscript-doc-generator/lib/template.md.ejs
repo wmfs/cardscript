@@ -56,16 +56,6 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 __Viewscript is built on a handful of key concepts...__
 
-### <a name="app"></a>Apps
-
-Views defined in Viewscript may be rendered and executed by software.
-In this document, such software is referred to an "__app__".
-
-* Apps can be implemented in any frontend-framework, language or library.
-* Viewscript does not impose any aesthetic or UI constraints onto apps that implement it.
-* Viewscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
-* Please note several utilities are available to help embed Viewscript into apps. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
-
 ### <a name="view"></a>Views
 
 The purpose of Viewscript is to define a user interface, referred to as a "__view__".
@@ -76,6 +66,16 @@ The purpose of Viewscript is to define a user interface, referred to as a "__vie
 * In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Viewscript definitions (the [viewscript-parser](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) utility supports both)..
 * Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json), which may be used to validate the basic integrity of Viewscript content.
 * For more comprehensive Viewscript validation, please refer to the [viewscript-schema](https://www.npmjs.com/package/viewscript-schema) package.
+
+### <a name="app"></a>Apps
+
+Views defined in Viewscript may be rendered and executed by software.
+In this document, such software is referred to an "__app__".
+
+* Apps can be implemented in any frontend-framework, language or library.
+* Viewscript does not impose any aesthetic or UI constraints onto apps that implement it.
+* Viewscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
+* Please note several utilities are available to help embed Viewscript into apps. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
 
 ### <a name="widget"></a>Widgets
 
@@ -270,15 +270,14 @@ Over the intervening years we have defined some 50 workbooks in XML to collect o
 While designing the accompanying backend, we've found great benefit in aligning to open standards (for example our workflow is now defined in [Amazon State Language](https://states-language.net/spec.html)).
 
 * Given our positive experiences of declarative techniques and open standards, it was a natural evolution for our new declarative-UI engine to incorporate an open standard.
-We therefore prototyped using a few projects (for example [Schema View](https://json-schema-view.github.io/angular-schema-view/)) and shipped our [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) using [Mozilla React Schema View](https://mozilla-services.github.io/react-jsonschema-view).
+We therefore prototyped using a few projects (for example [Schema Form](https://json-schema-form.github.io/angular-schema-form/)) and shipped our [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) using [Mozilla React Schema Form](https://mozilla-services.github.io/react-jsonschema-form).
 
 __They're great libraries and helped us get up-and-running quickly.__
 
 In hindsight, both these specifications are restricted by being bound to an underlying UI technology (i.e. Angular and React respectively).
-This is by far the biggest problem for us - it felt very much like the tail wagging the dog.
-Both projects mandate a traditional web-view interface too. What if we're only working in a CLI context, or want to try some voice-interface technology?
+Both projects mandate a traditional web-form interface too. What if we're only working in a CLI context, or want to try some voice-interface technology? And what if we wanted to define dashboards and similar read-only content?
 
-* React Schema View and Schema.io work well for reasonably trivial UI content, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both approaches - even to deliver quite basic experiences.
+* React Schema Form and Schema.io work well for reasonably trivial UI content, but start adding requirements for expression-based conditionality/validation, different layout structures, differing online/offline behaviours etc. and we were soon "working against" both approaches - even to deliver quite basic experiences.
 
 To compound matters, the underlying use of [JSON Schema](http://json-schema.org/) involves a lot of duplication and arbitrary splitting between model and UI definitions: which soon builds friction when describing larger UIs.
 In turn, we found this complexity bleeds into tooling and the wider architecture.
