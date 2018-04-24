@@ -2,20 +2,14 @@
   <div class="container">
     <div class="jumbotron">
       <h3 class="display-3">Viewscript Playpen</h3>
-      <p class="lead">Use the editor below to write some Viewscript JSON or YAML, then click the
-        "<strong>Go!</strong>" button to try it out. Take a look at the <a
+      <p class="lead">Try one of the provided examples (or use the editor below to write some of your own Viewscript JSON/YAML) then click the
+        "<strong>Go!</strong>" button to turn it into a UI. Take a look at the <a
           href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more information!</p>
     </div>
 
     <div id="app">
-      <codemirror id="editor" v-model="viewscript"></codemirror>
-      <br>
 
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="renderViewscript()">Go!</button>
-
-      <img v-if="showSpinner" src="../assets/spinner.gif"/>
-
-      <div class="dropup float-right">
+      <div class="dropdown">
 
         <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples
@@ -28,6 +22,14 @@
           <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('blank')">Blank</a>
         </div>
       </div>
+      <br>
+      <codemirror id="editor" v-model="viewscript"></codemirror>
+      <br>
+
+      <button type="button" class="btn btn-primary btn-lg" v-on:click="renderViewscript()">Go!</button>
+
+      <img v-if="showSpinner" src="../assets/spinner.gif"/>
+
       <br>
       <br>
 
