@@ -132,7 +132,7 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* The Viewscript specification offers a fixed set of 27 standard widgets. If you beed another widget-type or an extra configuration options... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md)
+* Viewscript is a delightful walled-garden, offering a fixed set of 27 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
 
 __Ahead of the [Reference](#reference) section, here's a quick summary of the 27 widgets supported in Viewscript `0.0.6`:__
 
