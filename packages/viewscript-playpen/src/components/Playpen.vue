@@ -15,11 +15,11 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('simple')">Simple example</a>
-          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('expression')">Expression example</a>
-          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('complex')">Complex example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('simple')">Simple example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('expression')">Expression example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('complex')">Complex example</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" style="cursor:pointer" v-on:click.stop="setExampleContent('blank')">Blank</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('blank')">Blank</a>
         </div>
       </div>
       <br>
