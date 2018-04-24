@@ -43,8 +43,8 @@
 * [Structure of a View](#structure)
   * [Example: Simple View](#example)
 * [Concepts](#concepts)
-  * [Apps](#app)
   * [Views](#view)
+  * [Apps](#app)
   * [Widgets](#widget)
     * [Widget summary](#widget-summary)
   * [Sets](#set)
@@ -120,7 +120,7 @@ Views defined in Viewscript may be rendered and executed by software.
 In this document, such software is referred to an "__app__".
 
 * Apps can be implemented in any frontend-framework, language or library.
-* Viewscript does not impose any aesthetic or UI constraints onto apps that implement it.
+* Viewscript does not impose any aesthetic or UI constraints onto apps which implement it.
 * Viewscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
 * Please note several utilities are available to help embed Viewscript into apps. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
 
