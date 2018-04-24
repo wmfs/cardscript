@@ -7,7 +7,7 @@
   "devDependencies": {
     "chai": "4.1.0",
     "mocha": "5.1.1",
-    "standard": "11.0.0",
+    "standard": "11.0.1",
     "viewscript-examples": "^0.0.6"
   },
   "scripts": {
