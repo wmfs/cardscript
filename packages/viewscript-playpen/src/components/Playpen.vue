@@ -278,7 +278,7 @@
       }
     },
     data () {
-      const defaultViewscript = JSON.stringify(examples.simple, null, 2)
+      const defaultViewscript = JSON.stringify(examples.complex, null, 2)
       return {
         showSpinner: false,
         example: defaultViewscript,
