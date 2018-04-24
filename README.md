@@ -1788,10 +1788,10 @@ We were edging closer to defining our own, but at the same time very mindful of 
 
 ![How standards proliferate Licensed under CC BY-NC 2.5 by xkcd.com](https://imgs.xkcd.com/comics/standards.png)
 
-* A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema View definitions.
+* A particularity bad smell came about when we developed a simple intermediary format (to ease tooling complexity and authoring processes) which we could translate back into React Schema Form definitions.
 It was becoming evident we didn't have a good fit for what we wanted to do, and that using a badly-fitting standard is actually worse than not using a standard at all.
 
-* The XML used in our outgoing generation had some problems (requiring it's own expression-language was a particular mis-step and XML feels out-of-place nowadays if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
+* The XML used in our outgoing generation had some problems: requiring it's own expression-language was a particular mis-step and XML feels ancient if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
 ### So... __Viewscript__!
 
