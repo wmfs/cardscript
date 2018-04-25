@@ -15,17 +15,9 @@ describe('Run some Viewscript table-of-contents-extracting tests', function () {
   it('should extract some defaults from complex Viewscript', function () {
     const toc = extractToc(examples.complex)
     expect(toc).to.eql(
-      [{widgetId: 'incidentSection', tocTitle: 'Incident'},
-        {widgetId: 'patientSection', tocTitle: 'Patient'},
-        {widgetId: 'airwaySection', tocTitle: 'Airway'},
-        {widgetId: 'breathingSection', tocTitle: 'Breathing'},
-        {widgetId: 'circulationSection', tocTitle: 'Circulation'},
-        {widgetId: 'disabilitySection', tocTitle: 'Disability'},
-        {widgetId: 'exposureSection', tocTitle: 'Exposure'},
-        {widgetId: 'burnsSection', tocTitle: 'Burns'},
-        {widgetId: 'cprSection', tocTitle: 'CPR'},
-        {widgetId: 'medicationSection', tocTitle: 'Medication'},
-        {widgetId: 'summarySection', tocTitle: 'Summary'}
+      [
+        {widgetId: 'yourDetails', tocTitle: 'Your Details'},
+        {widgetId: 'thePizza', tocTitle: 'The Pizza'}
       ]
     )
   })
