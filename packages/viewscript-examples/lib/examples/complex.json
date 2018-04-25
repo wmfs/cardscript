@@ -241,6 +241,16 @@
       "showWhen": "data.hot"
     },
     {
+      "id": "info",
+      "type": "stickyNote",
+      "attributes": {
+        "style": "informative",
+        "heading": "Warning!",
+        "desc": "We will not be held responsible if you can't handle the heat!"
+      },
+      "showWhen": "data.hot"
+    },
+    {
       "id": "toppings",
       "type": "checkboxList",
       "attributes": {
