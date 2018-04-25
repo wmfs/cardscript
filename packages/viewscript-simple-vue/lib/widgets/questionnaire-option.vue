@@ -3,7 +3,7 @@
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{desc}}</h6>
-            <input type="radio" ref="input" :value="title" v-model="valueCopy" v-bind:name="widgetId" v-on:change="updateValue($event.target.value)">
+            <input type="radio" ref="input" :value="responseValue" v-model="valueCopy" v-bind:name="widgetId" v-on:change="updateValue($event.target.value)">
         </div>
     </div>
 </template>
@@ -15,7 +15,7 @@
     components: {},
     data () {
       return {
-        valueCopy: JSON.parse(this.value),
+        valueCopy: JSON.parse(JSON.stringify(this.value)),
         isNumber: !isNaN(this.value)
       }
     },

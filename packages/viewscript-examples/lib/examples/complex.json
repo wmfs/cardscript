@@ -114,6 +114,7 @@
       "attributes": {
         "heading": "What size pizza?",
         "mandatory": true,
+        "numericValue": false,
         "default": "M",
         "titleMap": [
           {
