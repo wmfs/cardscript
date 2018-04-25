@@ -1,0 +1,205 @@
+{
+  "title": "The Grand Formscript Showcase",
+  "widgets": [
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The Grand Formscript Showcase",
+        "desc": "This form is to demonstrate the capabilities of Formscript",
+        "backgroundImage": "formscript/img.jpg",
+        "backgroundImageAltText": "Image representing the glory of Formscript"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "This heading sits within a set (usually at the top!) to allow you to describe what the set is for"
+      }
+    },
+    {
+      "id": "switchWidget",
+      "type": "switch",
+      "attributes": {
+        "heading": "Switch",
+        "desc": "Switch widgets allow you to record boolean values",
+        "default": false
+      }
+    },
+    {
+      "id": "textWidget",
+      "type": "text",
+      "attributes": {
+        "heading": "Text",
+        "desc": "Text widgets can collect information in the form of a string from us"
+      }
+    },
+    {
+      "id": "numberWidget",
+      "type": "number",
+      "attributes": {
+        "heading": "Number",
+        "desc": "Number widgets are similar to text widgets, but only allow numerical input"
+      }
+    },
+    {
+      "id": "currencyWidget",
+      "type": "currency",
+      "attributes": {
+        "heading": "Currency",
+        "desc": "Currency widgets are similar to number widgets, but for collecting a monetary value"
+      }
+    },
+    {
+      "id": "dateWidget",
+      "type": "date",
+      "attributes": {
+        "heading": "Date",
+        "desc": "Date widgets allow us to choose a date without a time attached"
+      }
+    },
+    {
+      "id": "timeWidget",
+      "type": "time",
+      "attributes": {
+        "heading": "Time"
+      }
+    },
+    {
+      "id": "dateTimeWidget",
+      "type": "dateTime",
+      "attributes": {
+        "heading": "Date-Time",
+        "desc": "Date-time widgets allow us to choose a date-time"
+      }
+    },
+    {
+      "id": "addressWidget",
+      "type": "address",
+      "attributes": {
+        "heading": "Address"
+      }
+    },
+    {
+      "id": "selectWidget",
+      "type": "select",
+      "attributes": {
+        "heading": "Select",
+        "desc": "Select widgets present a list of options where we can select one",
+        "titleMap": [
+          {
+            "value": "FIRST",
+            "title": "First Option"
+          },
+          {
+            "value": "SECOND",
+            "title": "Second Option"
+          },
+          {
+            "value": "THIRD",
+            "title": "Third Option"
+          }
+        ]
+      }
+    },
+    {
+      "id": "radioWidget",
+      "type": "radio",
+      "attributes": {
+        "heading": "Radio",
+        "desc": "Radio widgets also allow one selection, but not in a drop down list",
+        "titleMap": [
+          {
+            "value": "FIRST",
+            "title": "First Option"
+          },
+          {
+            "value": "SECOND",
+            "title": "Second Option"
+          },
+          {
+            "value": "THIRD",
+            "title": "Third Option"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sliderWidget",
+      "type": "slider",
+      "attributes": {
+        "heading": "Slider",
+        "desc": "Slider widgets let us select a value from a range, at certain 'step' points",
+        "minimum": 0,
+        "maximum": 10,
+        "step": 1
+      }
+    },
+    {
+      "id": "questionnaireWidget",
+      "type": "questionnaire",
+      "attributes": {
+        "heading": "Questionnaire",
+        "desc": "Questionnaire widgets let us display possible responses on an appropriate scale",
+        "titleMap": [
+          {
+            "value": "FIRST",
+            "title": "First Option"
+          },
+          {
+            "value": "SECOND",
+            "title": "Second Option"
+          },
+          {
+            "value": "THIRD",
+            "title": "Third Option"
+          }
+        ]
+      }
+    },
+    {
+      "id": "checkboxWidget",
+      "type": "checkboxList",
+      "attributes": {
+        "heading": "Checkbox List",
+        "desc": "Checkbox List widgets allow us to select multiple options",
+        "titleMap": [
+          {
+            "value": "FIRST",
+            "title": "First Option"
+          },
+          {
+            "value": "SECOND",
+            "title": "Second Option"
+          },
+          {
+            "value": "THIRD",
+            "title": "Third Option"
+          }
+        ]
+      }
+    },
+    {
+      "id": "imageWidget",
+      "type": "image",
+      "attributes": {
+        "heading": "Image",
+        "image": "img.jpg",
+        "altText": "Alt text can be placed on images too"
+      }
+    },
+    {
+      "id": "uploadWidget",
+      "type": "fileUpload",
+      "attributes": {
+        "heading": "File Upload"
+      }
+    },
+    {
+      "id": "mapWidget",
+      "type": "map",
+      "attributes": {
+        "heading": "Map"
+      }
+    }
+  ]
+}
