@@ -16,27 +16,13 @@ describe('Run some Viewscript default-extracting tests', function () {
     const result = extractDefaults(examples.complex)
     expect(result).to.eql(
       {
-        collapse: 'NO',
-        signsOfLife: 'YES',
-        gurgling: 'NOT_APPLICABLE',
-        snoring: 'NOT_APPLICABLE',
-        cspine: 'CLEAR',
-        choking: 'NOT_APPLICABLE',
-        airwayStatus: 'TALKING',
-        alwaysBreathing: 'YES',
-        chestInjury: 'NO',
-        bleeding: 'NO',
-        shock: 'NO',
-        radialPulse: 'NOT_ASSESSED',
-        limbMovement: ['LEFT_ARM', 'RIGHT_ARM', 'LEFT_LEG', 'RIGHT_LEG'],
-        avpuArrival: 'ALERT',
-        avpuHandover: 'ALERT',
-        painArrival: 1,
-        painHandover: 1,
-        exposure: 'NOT_NECESSARY',
-        burns: false,
-        cprGiven: false,
-        numShocks: 1
+        base: 'TOMATO',
+        deliveryOrCollection: 'COLLECT',
+        dietaryReq: [],
+        hot: false,
+        size: 'M',
+        sprinkles: false,
+        toppings: []
       }
     )
   })
