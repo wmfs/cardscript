@@ -244,7 +244,7 @@
       "id": "info",
       "type": "stickyNote",
       "attributes": {
-        "style": "informative",
+        "style": "danger",
         "heading": "Warning!",
         "desc": "We will not be held responsible if you can't handle the heat!"
       },
