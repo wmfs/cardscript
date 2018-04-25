@@ -1,13 +1,13 @@
 {
-  "title": "The Grand Formscript Showcase",
+  "title": "The Grand Viewscript Showcase",
   "widgets": [
     {
       "type": "header",
       "attributes": {
-        "heading": "The Grand Formscript Showcase",
-        "desc": "This form is to demonstrate the capabilities of Formscript",
-        "backgroundImage": "formscript/img.jpg",
-        "backgroundImageAltText": "Image representing the glory of Formscript"
+        "heading": "The Grand Viewscript Showcase",
+        "desc": "This view is to demonstrate the capabilities of Viewscript",
+        "backgroundImage": "viewscript/img.jpg",
+        "backgroundImageAltText": "Image representing the glory of Viewscript"
       }
     },
     {
@@ -143,15 +143,18 @@
         "titleMap": [
           {
             "value": "FIRST",
-            "title": "First Option"
+            "title": "First Option",
+            "desc": "First"
           },
           {
             "value": "SECOND",
-            "title": "Second Option"
+            "title": "Second Option",
+            "desc": "Second"
           },
           {
             "value": "THIRD",
-            "title": "Third Option"
+            "title": "Third Option",
+            "desc": "Third"
           }
         ]
       }

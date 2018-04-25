@@ -5,7 +5,7 @@
       "type": "header",
       "attributes": {
         "heading": "Pizza Place",
-        "desc": "This is an example form where you can order some imaginary pizza.",
+        "desc": "This is an example view where you can order some imaginary pizza.",
         "backgroundImage": "wmfs/pizza.jpg",
         "backgroundImageAltText": "Photograph of a pizza"
       }

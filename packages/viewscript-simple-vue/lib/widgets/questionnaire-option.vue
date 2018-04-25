@@ -3,7 +3,8 @@
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{desc}}</h6>
-            <input type="radio" ref="input" :value="responseValue" v-model="valueCopy" v-bind:name="widgetId" v-on:change="updateValue($event.target.value)">
+            <input type="radio" ref="input" :value="responseValue" v-model="valueCopy" v-bind:name="widgetId"
+                   v-on:change="updateValue($event.target.value)">
         </div>
     </div>
 </template>
@@ -15,7 +16,7 @@
     components: {},
     data () {
       return {
-        valueCopy: JSON.parse(JSON.stringify(this.value)),
+        valueCopy: this.value !== undefined ? JSON.parse(JSON.stringify(this.value)) : this.value,
         isNumber: !isNaN(this.value)
       }
     },
@@ -24,7 +25,7 @@
     methods: {
       updateValue: function (value) {
         if (value) {
-          // TODO: Might need more if there's no default, but return  number if default was a number
+          // TODO: Might need more if there's no default, but return number if default was a number
           if (this.isNumber) {
             this.$emit('input', Number(value))
           } else {

@@ -18,6 +18,7 @@
           <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('simple')">Simple example</a>
           <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('expression')">Expression example</a>
           <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('complex')">Complex example</a>
+          <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('kitchenSink')">Kitchen sink example</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" style="cursor:pointer" v-on:click.prevent="setExampleContent('blank')">Blank</a>
         </div>
