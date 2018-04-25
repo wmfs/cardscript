@@ -1,75 +1,27 @@
 {
-  "title": "The Grand Viewscript Showcase",
+  "title": "The Kitchen Sink",
   "widgets": [
     {
       "type": "header",
       "attributes": {
-        "heading": "The Grand Viewscript Showcase",
+        "heading": "The Widget Showcase",
         "desc": "This view is to demonstrate the capabilities of Viewscript",
         "backgroundImage": "viewscript/img.jpg",
         "backgroundImageAltText": "Image representing the glory of Viewscript"
       }
     },
     {
-      "type": "heading",
+      "type": "set",
+      "id": "addressSet",
       "attributes": {
-        "heading": "This heading sits within a set (usually at the top!) to allow you to describe what the set is for"
+        "tocTitle": "The 'Address' widget"
       }
     },
     {
-      "id": "switchWidget",
-      "type": "switch",
+      "type": "header",
       "attributes": {
-        "heading": "Switch",
-        "desc": "Switch widgets allow you to record boolean values",
-        "default": false
-      }
-    },
-    {
-      "id": "textWidget",
-      "type": "text",
-      "attributes": {
-        "heading": "Text",
-        "desc": "Text widgets can collect information in the form of a string from us"
-      }
-    },
-    {
-      "id": "numberWidget",
-      "type": "number",
-      "attributes": {
-        "heading": "Number",
-        "desc": "Number widgets are similar to text widgets, but only allow numerical input"
-      }
-    },
-    {
-      "id": "currencyWidget",
-      "type": "currency",
-      "attributes": {
-        "heading": "Currency",
-        "desc": "Currency widgets are similar to number widgets, but for collecting a monetary value"
-      }
-    },
-    {
-      "id": "dateWidget",
-      "type": "date",
-      "attributes": {
-        "heading": "Date",
-        "desc": "Date widgets allow us to choose a date without a time attached"
-      }
-    },
-    {
-      "id": "timeWidget",
-      "type": "time",
-      "attributes": {
-        "heading": "Time"
-      }
-    },
-    {
-      "id": "dateTimeWidget",
-      "type": "dateTime",
-      "attributes": {
-        "heading": "Date-Time",
-        "desc": "Date-time widgets allow us to choose a date-time"
+        "heading": "The 'Address' widget",
+        "desc": "Address widgets let us locate addresses"
       }
     },
     {
@@ -80,11 +32,27 @@
       }
     },
     {
-      "id": "selectWidget",
-      "type": "select",
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "checkSet",
       "attributes": {
-        "heading": "Select",
-        "desc": "Select widgets present a list of options where we can select one",
+        "tocTitle": "The 'Checkbox List' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Checkbox List' widget",
+        "desc": "Checkbox List widgets allow us to select multiple options"
+      }
+    },
+    {
+      "id": "checkboxWidget",
+      "type": "checkboxList",
+      "attributes": {
+        "heading": "Checkbox List",
         "titleMap": [
           {
             "value": "FIRST",
@@ -102,36 +70,190 @@
       }
     },
     {
-      "id": "radioWidget",
-      "type": "radio",
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "currencySet",
       "attributes": {
-        "heading": "Radio",
-        "desc": "Radio widgets also allow one selection, but not in a drop down list",
-        "titleMap": [
-          {
-            "value": "FIRST",
-            "title": "First Option"
-          },
-          {
-            "value": "SECOND",
-            "title": "Second Option"
-          },
-          {
-            "value": "THIRD",
-            "title": "Third Option"
-          }
-        ]
+        "tocTitle": "The 'Currency' widget"
       }
     },
     {
-      "id": "sliderWidget",
-      "type": "slider",
+      "type": "header",
       "attributes": {
-        "heading": "Slider",
-        "desc": "Slider widgets let us select a value from a range, at certain 'step' points",
-        "minimum": 0,
-        "maximum": 10,
-        "step": 1
+        "heading": "The 'Currency' widget",
+        "desc": "Currency widgets are similar to number widgets, but for collecting a monetary value"
+      }
+    },
+    {
+      "id": "currencyWidget",
+      "type": "currency",
+      "attributes": {
+        "heading": "Currency"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "dateSet",
+      "attributes": {
+        "tocTitle": "The 'Date' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Date' widget",
+        "desc": "Date widgets allow us to choose a date without a time attached"
+      }
+    },
+    {
+      "id": "dateWidget",
+      "type": "date",
+      "attributes": {
+        "heading": "Date"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "dateTimeSet",
+      "attributes": {
+        "tocTitle": "The 'Date-Time' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Date-Time' widget",
+        "desc": "Date-time widgets allow us to choose a date-time"
+      }
+    },
+    {
+      "id": "dateTimeWidget",
+      "type": "dateTime",
+      "attributes": {
+        "heading": "Date-Time"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "uploadSet",
+      "attributes": {
+        "tocTitle": "The 'File Upload' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Upload' widget",
+        "desc": "Upload widgets let us attach supporting documents to a view"
+      }
+    },
+    {
+      "id": "uploadWidget",
+      "type": "fileUpload",
+      "attributes": {
+        "heading": "File Upload"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "imgSet",
+      "attributes": {
+        "tocTitle": "The 'Image' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Image' widget",
+        "desc": "Image widgets let us display static images in a view"
+      }
+    },
+    {
+      "id": "imageWidget",
+      "type": "image",
+      "attributes": {
+        "heading": "Image",
+        "image": "img.jpg",
+        "altText": "Alt text can be placed on images too"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "mapSet",
+      "attributes": {
+        "tocTitle": "The 'Map' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Map' widget",
+        "desc": "Map widgets let us visualise maps and locations"
+      }
+    },
+    {
+      "id": "mapWidget",
+      "type": "map",
+      "attributes": {
+        "heading": "Map"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "numberSet",
+      "attributes": {
+        "tocTitle": "The 'Number' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Number' widget",
+        "desc": "Number widgets are similar to text widgets, but only allow numerical input"
+      }
+    },
+    {
+      "id": "numberWidget",
+      "type": "number",
+      "attributes": {
+        "heading": "Number"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "questionnaireSet",
+      "attributes": {
+        "tocTitle": "The 'Questionnaire' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Questionnaire' widget",
+        "desc": "Questionnaire widgets let us display possible responses on an appropriate scale"
       }
     },
     {
@@ -139,7 +261,6 @@
       "type": "questionnaire",
       "attributes": {
         "heading": "Questionnaire",
-        "desc": "Questionnaire widgets let us display possible responses on an appropriate scale",
         "titleMap": [
           {
             "value": "FIRST",
@@ -160,11 +281,27 @@
       }
     },
     {
-      "id": "checkboxWidget",
-      "type": "checkboxList",
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "radioSet",
       "attributes": {
-        "heading": "Checkbox List",
-        "desc": "Checkbox List widgets allow us to select multiple options",
+        "tocTitle": "The 'Radio' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Radio' widget",
+        "desc": "Radio widgets allow one selection, but not in a drop down list"
+      }
+    },
+    {
+      "id": "radioWidget",
+      "type": "radio",
+      "attributes": {
+        "heading": "Radio",
         "titleMap": [
           {
             "value": "FIRST",
@@ -182,27 +319,145 @@
       }
     },
     {
-      "id": "imageWidget",
-      "type": "image",
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "selectSet",
       "attributes": {
-        "heading": "Image",
-        "image": "img.jpg",
-        "altText": "Alt text can be placed on images too"
+        "tocTitle": "The 'Select' widget"
       }
     },
     {
-      "id": "uploadWidget",
-      "type": "fileUpload",
+      "type": "header",
       "attributes": {
-        "heading": "File Upload"
+        "heading": "The 'Select' widget",
+        "desc": "Radio widgets allow one selection in a drop down list"
       }
     },
     {
-      "id": "mapWidget",
-      "type": "map",
+      "id": "selectWidget",
+      "type": "select",
       "attributes": {
-        "heading": "Map"
+        "heading": "Select",
+        "titleMap": [
+          {
+            "value": "FIRST",
+            "title": "First Option"
+          },
+          {
+            "value": "SECOND",
+            "title": "Second Option"
+          },
+          {
+            "value": "THIRD",
+            "title": "Third Option"
+          }
+        ]
       }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "id": "switchSet",
+      "type": "set",
+      "attributes": {
+        "tocTitle": "The 'Switch' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Switch' widget",
+        "desc": "Switch widgets allow you to record boolean values"
+      }
+    },
+    {
+      "id": "switchWidget",
+      "type": "switch",
+      "attributes": {
+        "heading": "Switch",
+        "default": false
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "sliderSet",
+      "attributes": {
+        "tocTitle": "The 'Slider' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Slider' widget",
+        "desc": "Slider widgets let us select a value from a range, at certain 'step' points"
+      }
+    },
+    {
+      "id": "sliderWidget",
+      "type": "slider",
+      "attributes": {
+        "heading": "Slider",
+        "minimum": 0,
+        "maximum": 10,
+        "step": 1
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "textSet",
+      "attributes": {
+        "tocTitle": "The 'Text' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Text' widget",
+        "desc": "Text widgets can collect information in the form of a string from us"
+      }
+    },
+    {
+      "id": "textWidget",
+      "type": "text",
+      "attributes": {
+        "heading": "Text"
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "set",
+      "id": "timeSet",
+      "attributes": {
+        "tocTitle": "The 'Time' widget"
+      }
+    },
+    {
+      "type": "header",
+      "attributes": {
+        "heading": "The 'Time' widget",
+        "desc": "Time widgets allow us to choose a time without a date attached"
+      }
+    },
+    {
+      "id": "timeWidget",
+      "type": "time",
+      "attributes": {
+        "heading": "Time"
+      }
+    },
+    {
+      "type": "endSet"
     }
   ]
 }
