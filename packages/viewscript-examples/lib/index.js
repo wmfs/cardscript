@@ -5,5 +5,5 @@ module.exports = {
   simple: require('./examples/simple'),
   simpleFormWithBasicProblems: require('./examples/simple-form-with-basic-problems'),
   blank: require('./examples/blank'),
-  kitchenSink: require('./examples/kitchen-sink.json')
+  kitchenSink: require('./examples/kitchen-sink')
 }
