@@ -884,7 +884,9 @@ __Renders a horizontal line to help split things up (i.e. like a `</hr>`)__
 __Example JSON__
 
 ``` json
-
+{
+  "type": "horizontalLine"
+}
 
 ```
 
