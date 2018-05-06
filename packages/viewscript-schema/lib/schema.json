@@ -282,10 +282,10 @@
         "additionalProperties": false
       },
 
-      "subForm": {
+      "subView": {
         "title": "Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.)",
         "properties": {
-          "type": {"enum": ["subForm"]},
+          "type": {"enum": ["subView"]},
           "id": {"$ref": "#/definitions/id"},
           "showWhen": {"$ref": "#/definitions/showWhen"},
           "attributes": {
@@ -297,15 +297,15 @@
               "desc": {"$ref": "#/definitions/attributes/desc"},
               "minAllowed": {
                 "type": "number",
-                "title": "The minimum number of sub-forms that the user is required to complete."
+                "title": "The minimum number of sub-views that the user is required to complete."
               },
               "maxAllowed": {
                 "type": "number",
-                "title": "The maximum number of sub-forms that the user can complete."
+                "title": "The maximum number of sub-views that the user can complete."
               },
               "showAtLeastOne": {
                 "type": "boolean",
-                "title": "If `true` and no sub-forms have yet been completed, then the app should show an empty sub-form ready for the user to start entering data (especially useful when `minAllowed > 0`)."
+                "title": "If `true` and no sub-views have yet been completed, then the app should show an empty sub-view ready for the user to start entering data (especially useful when `minAllowed > 0`)."
               },
               "singularEntityText": {
                 "type": "string",
@@ -602,8 +602,8 @@
         "additionalProperties": false
       },
 
-      "endSubForm": {
-        "title": "Marks the end of a sub-form - see the [Sets](#set) section for more information.",
+      "endSubView": {
+        "title": "Marks the end of a sub-view - see the [Sets](#set) section for more information.",
         "properties": {
           "type": {"enum": ["endSet"]}
         },
@@ -805,8 +805,8 @@
           {"$ref": "#/definitions/widgets/number"},
           {"$ref": "#/definitions/widgets/map"},
           {"$ref": "#/definitions/widgets/fileUpload"},
-          {"$ref": "#/definitions/widgets/subForm"},
-          {"$ref": "#/definitions/widgets/endSubForm"},
+          {"$ref": "#/definitions/widgets/subView"},
+          {"$ref": "#/definitions/widgets/endSubView"},
           {"$ref": "#/definitions/widgets/stickyNote"},
           {"$ref": "#/definitions/widgets/image"}
         ]

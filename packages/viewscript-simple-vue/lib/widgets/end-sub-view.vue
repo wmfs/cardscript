@@ -1,5 +1,5 @@
 <template>
-    <p>I am a sub-form widget!</p>
+    <p>I am an end-sub-view widget!</p>
 </template>
 <script>
   export default {

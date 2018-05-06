@@ -20,8 +20,8 @@ module.exports = {
   endSet: {
     conversionFunction: require('./end-set')
   },
-  endSubForm: {
-    conversionFunction: require('./end-sub-form')
+  endSubView: {
+    conversionFunction: require('./end-sub-view')
   },
   fileUpload: {
     conversionFunction: require('./file-upload')
@@ -68,8 +68,8 @@ module.exports = {
   stickyNote: {
     conversionFunction: require('./sticky-note')
   },
-  subForm: {
-    conversionFunction: require('./sub-form')
+  subView: {
+    conversionFunction: require('./sub-view')
   },
   switch: {
     conversionFunction: require('./switch')

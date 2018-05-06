@@ -40,7 +40,9 @@ class TagNode {
 module.exports = class ComponentBuilder {
   constructor (widgetDefiniton) {
     this.rootTags = []
-    this.showWhen = widgetDefiniton.showWhen
+    if (widgetDefiniton) {
+      this.showWhen = widgetDefiniton.showWhen
+    }
   }
 
   addTag (tagName) {

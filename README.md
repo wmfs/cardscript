@@ -147,7 +147,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 28
 | [`date`](#list-date) | Allows the user to provide a specific date - without a time portion. |
 | [`dateTime`](#list-dateTime) | Collects a specific date and time from the user. |
 | [`endSet`](#list-endSet) | Marks the end of a set of related widgets - see the [Sets](#set) section for more information. |
-| [`endSubForm`](#list-endSubForm) | Marks the end of a sub-form - see the [Sets](#set) section for more information. |
+| [`endSubView`](#list-endSubView) | Marks the end of a sub-view - see the [Sets](#set) section for more information. |
 | [`fileUpload`](#list-fileUpload) | Allows the user to upload a file. |
 | [`header`](#list-header) | A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/). |
 | [`heading`](#list-heading) | Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience. |
@@ -163,7 +163,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 28
 | [`signature`](#list-signature) | Allow the collection of a handwritten signature |
 | [`slider`](#list-slider) | For capturing a number along a specified range |
 | [`stickyNote`](#list-stickyNote) | A panel for putting helpful text or other informative text |
-| [`subForm`](#list-subForm) | Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.) |
+| [`subView`](#list-subView) | Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.) |
 | [`switch`](#list-switch) | Presents a on/off style switch to the user. |
 | [`text`](#list-text) | A bread-and-butter box for collecting textual information from the user. |
 | [`textarea`](#list-textarea) | Collects simple multi-line text input from the user. |
@@ -714,15 +714,15 @@ __`type`:__ _Required_ (`"endSet"`)
 
 <hr>
 
-## The <a name="list-endSubForm"></a>`endSubForm` widget
+## The <a name="list-endSubView"></a>`endSubView` widget
 
-__Marks the end of a sub-form - see the [Sets](#set) section for more information.__
+__Marks the end of a sub-view - see the [Sets](#set) section for more information.__
 
 __Example JSON__
 
 ``` json
 {
-  "type": "endSubForm"
+  "type": "endSubView"
 }
 
 ```
@@ -730,7 +730,7 @@ __Example JSON__
 __Properties__
 
 
-__`type`:__ _Required_ (`"endSubForm"`)
+__`type`:__ _Required_ (`"endSubView"`)
 
 
 
@@ -1506,7 +1506,7 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-subForm"></a>`subForm` widget
+## The <a name="list-subView"></a>`subView` widget
 
 __Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.)__
 
@@ -1514,7 +1514,7 @@ __Example JSON__
 
 ``` json
 {
-  "type": "subForm",
+  "type": "subView",
   "attributes": {
     "heading": "Explosions",
     "desc": "Please provide details of the explosions which occurred.",
@@ -1533,7 +1533,7 @@ __Properties__
 
 __`id`:__ _Required_
 
-__`type`:__ _Required_ (`"subForm"`)
+__`type`:__ _Required_ (`"subView"`)
 
 __`showWhen`:__ _Optional_
 
@@ -1547,10 +1547,10 @@ __Attributes__
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `maxAllowed` | `number` | `No` | The maximum number of sub-forms that the user can complete. |
-| `minAllowed` | `number` | `No` | The minimum number of sub-forms that the user is required to complete. |
+| `maxAllowed` | `number` | `No` | The maximum number of sub-views that the user can complete. |
+| `minAllowed` | `number` | `No` | The minimum number of sub-views that the user is required to complete. |
 | `pluralEntityText` | `string` | `No` | What are many of these forms termed? Consider using it in a sentence such as '_You must specify at least 3 `${pluralEntitiyText}`!_'. |
-| `showAtLeastOne` | `boolean` | `No` | If `true` and no sub-forms have yet been completed, then the app should show an empty sub-form ready for the user to start entering data (especially useful when `minAllowed > 0`). |
+| `showAtLeastOne` | `boolean` | `No` | If `true` and no sub-views have yet been completed, then the app should show an empty sub-view ready for the user to start entering data (especially useful when `minAllowed > 0`). |
 | `singularEntityText` | `string` | `No` | What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'. |
 
 

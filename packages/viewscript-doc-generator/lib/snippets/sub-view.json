@@ -1,5 +1,5 @@
 {
-  "type": "subForm",
+  "type": "subView",
   "attributes": {
     "heading": "Explosions",
     "desc": "Please provide details of the explosions which occurred.",

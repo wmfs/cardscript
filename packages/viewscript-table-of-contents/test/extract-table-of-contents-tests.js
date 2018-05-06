@@ -16,8 +16,16 @@ describe('Run some Viewscript table-of-contents-extracting tests', function () {
     const toc = extractToc(examples.complex)
     expect(toc).to.eql(
       [
-        {widgetId: 'yourDetails', tocTitle: 'Your Details'},
-        {widgetId: 'thePizza', tocTitle: 'The Pizza'}
+        {
+          tocIcon: 'account_box',
+          tocTitle: 'Your Details',
+          widgetId: 'yourDetails'
+        },
+        {
+          tocIcon: 'local_pizza',
+          tocTitle: 'The Pizza',
+          widgetId: 'thePizza'
+        }
       ]
     )
   })

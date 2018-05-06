@@ -11,7 +11,7 @@ import AppCurrency from './widgets/currency'
 import AppDate from './widgets/date'
 import AppDateTime from './widgets/date-time'
 import AppEndSet from './widgets/end-set'
-import AppEndSubForm from './widgets/end-sub-form'
+import AppEndSubView from './widgets/end-sub-view'
 import AppFileUpload from './widgets/file-upload'
 import AppHeader from './widgets/header'
 import AppHeading from './widgets/heading'
@@ -27,7 +27,7 @@ import AppSet from './widgets/set'
 import AppSignature from './widgets/signature'
 import AppSlider from './widgets/slider'
 import AppStickyNote from './widgets/sticky-note'
-import AppSubForm from './widgets/sub-form'
+import AppSubView from './widgets/sub-view'
 import AppSwitch from './widgets/switch'
 import AppText from './widgets/text'
 import AppTextarea from './widgets/textarea'
@@ -49,7 +49,7 @@ export default {
           AppDate,
           AppDateTime,
           AppEndSet,
-          AppEndSubForm,
+          AppEndSubView,
           AppFileUpload,
           AppHeading,
           AppHeader,
@@ -65,7 +65,7 @@ export default {
           AppSignature,
           AppSlider,
           AppStickyNote,
-          AppSubForm,
+          AppSubView,
           AppSwitch,
           AppText,
           AppTextarea,
