@@ -1,11 +1,9 @@
 {
-  "name": "viewscript-to-vuetify",
-  "description": "Produces a template for use with Vuetify from some Viewscript.",
+  "name": "viewscript-extract-lists",
+  "description": "Extracts list objects from some Viewscript.",
   "version": "0.0.6",
   "author": "Tim Needham",
   "main": "./lib/index.js",
-  "dependencies": {
-  },
   "devDependencies": {
     "chai": "4.1.2",
     "mocha": "5.1.1",
@@ -19,7 +17,7 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify"
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists"
   },
   "bugs": {
     "url": "https://github.com/wmfs/viewscript/issues"

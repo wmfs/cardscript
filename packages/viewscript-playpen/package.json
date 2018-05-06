@@ -14,15 +14,17 @@
   "dependencies": {
     "viewscript-examples": "^0.0.6",
     "viewscript-extract-defaults": "^0.0.6",
+    "viewscript-extract-lists": "^0.0.6",
     "viewscript-parser": "^0.0.6",
     "viewscript-schema": "^0.0.6",
     "viewscript-simple-vue": "^0.0.6",
     "viewscript-table-of-contents": "^0.0.6",
-    "viewscript-to-template": "^0.0.6",
+    "viewscript-to-vuetify": "^0.0.6",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",
     "vue-nav-tabs": "^0.5.7",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.0.17"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",

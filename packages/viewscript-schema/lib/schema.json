@@ -574,7 +574,8 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "tocTitle": {"type": "string", "title": "Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC."}
+              "tocTitle": {"type": "string", "title": "Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC."},
+              "tocIcon": {"type": "string", "title": "An icon to accompany tocTitle. For now, Must be something in [Material.io](https://material.io/icons/), e.g. `local_pizza`"}
             },
             "additionalProperties": false
           }
@@ -587,6 +588,15 @@
         "title": "Marks the end of a set of related widgets - see the [Sets](#set) section for more information.",
         "properties": {
           "type": {"enum": ["endSet"]}
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+
+      "horizontalLine": {
+        "title": "Renders a horizontal line to help split things up (i.e. like a `</hr>`)",
+        "properties": {
+          "type": {"enum": ["horizontalLine"]}
         },
         "required": ["type"],
         "additionalProperties": false
@@ -781,6 +791,7 @@
           {"$ref": "#/definitions/widgets/time"},
           {"$ref": "#/definitions/widgets/header"},
           {"$ref": "#/definitions/widgets/heading"},
+          {"$ref": "#/definitions/widgets/horizontalLine"},
           {"$ref": "#/definitions/widgets/questionnaire"},
           {"$ref": "#/definitions/widgets/radio"},
           {"$ref": "#/definitions/widgets/richtext"},

@@ -11,7 +11,8 @@ module.exports = function extractTableOfContents (viewscript) {
             toc.push(
               {
                 widgetId: widget.id,
-                tocTitle: tocTitle
+                tocTitle: tocTitle,
+                tocIcon: widget.attributes.tocIcon || 'bookmark'
               }
             )
           }

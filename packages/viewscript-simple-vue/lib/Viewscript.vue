@@ -73,7 +73,8 @@ export default {
         },
         data: function () {
           return {
-            data: _this.content.data
+            data: _this.content.data,
+            lists: _this.content.lists
           }
         }
       }

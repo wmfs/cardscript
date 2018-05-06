@@ -2,7 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueCodemirror from 'vue-codemirror'
+import Vuetify from 'vuetify'
 import Viewscript from 'viewscript-simple-vue'
+import 'vuetify/dist/vuetify.min.css'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/theme/paraiso-dark.css'
@@ -15,6 +17,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(VueTabs)
+Vue.use(Vuetify)
 Vue.use(Viewscript)
 Vue.use(VueCodemirror, {
   options: {

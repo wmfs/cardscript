@@ -14,11 +14,12 @@
       "type": "set",
       "id": "addressSet",
       "attributes": {
-        "tocTitle": "The 'Address' widget"
+        "tocTitle": "The 'Address' widget",
+        "tocIcon": "home"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Address' widget",
         "desc": "Address widgets let us locate addresses"
@@ -35,14 +36,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "checkSet",
       "attributes": {
-        "tocTitle": "The 'Checkbox List' widget"
+        "tocTitle": "The 'Checkbox List' widget",
+        "tocIcon": "check_box"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Checkbox List' widget",
         "desc": "Checkbox List widgets allow us to select multiple options"
@@ -53,6 +58,7 @@
       "type": "checkboxList",
       "attributes": {
         "heading": "Checkbox List",
+        "default": ["FIRST"],
         "titleMap": [
           {
             "value": "FIRST",
@@ -73,14 +79,19 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "currencySet",
       "attributes": {
-        "tocTitle": "The 'Currency' widget"
+        "tocTitle": "The 'Currency' widget",
+        "tocIcon": "attach_money"
+
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Currency' widget",
         "desc": "Currency widgets are similar to number widgets, but for collecting a monetary value"
@@ -97,14 +108,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "dateSet",
       "attributes": {
-        "tocTitle": "The 'Date' widget"
+        "tocTitle": "The 'Date' widget",
+        "tocIcon": "today"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Date' widget",
         "desc": "Date widgets allow us to choose a date without a time attached"
@@ -121,14 +136,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "dateTimeSet",
       "attributes": {
-        "tocTitle": "The 'Date-Time' widget"
+        "tocTitle": "The 'Date-Time' widget",
+        "tocIcon": "today"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Date-Time' widget",
         "desc": "Date-time widgets allow us to choose a date-time"
@@ -145,14 +164,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "uploadSet",
       "attributes": {
-        "tocTitle": "The 'File Upload' widget"
+        "tocTitle": "The 'File Upload' widget",
+        "tocIcon": "file_upload"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Upload' widget",
         "desc": "Upload widgets let us attach supporting documents to a view"
@@ -169,14 +192,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "imgSet",
       "attributes": {
-        "tocTitle": "The 'Image' widget"
+        "tocTitle": "The 'Image' widget",
+        "tocIcon": "insert_photo"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Image' widget",
         "desc": "Image widgets let us display static images in a view"
@@ -195,14 +222,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "mapSet",
       "attributes": {
-        "tocTitle": "The 'Map' widget"
+        "tocTitle": "The 'Map' widget",
+        "tocIcon": "place"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Map' widget",
         "desc": "Map widgets let us visualise maps and locations"
@@ -219,14 +250,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "numberSet",
       "attributes": {
-        "tocTitle": "The 'Number' widget"
+        "tocTitle": "The 'Number' widget",
+        "tocIcon": "text_fields"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Number' widget",
         "desc": "Number widgets are similar to text widgets, but only allow numerical input"
@@ -243,14 +278,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "questionnaireSet",
       "attributes": {
-        "tocTitle": "The 'Questionnaire' widget"
+        "tocTitle": "The 'Questionnaire' widget",
+        "tocIcon": "question_answer"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Questionnaire' widget",
         "desc": "Questionnaire widgets let us display possible responses on an appropriate scale"
@@ -261,6 +300,7 @@
       "type": "questionnaire",
       "attributes": {
         "heading": "Questionnaire",
+        "default": "FIRST",
         "titleMap": [
           {
             "value": "FIRST",
@@ -284,14 +324,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "radioSet",
       "attributes": {
-        "tocTitle": "The 'Radio' widget"
+        "tocTitle": "The 'Radio' widget",
+        "tocIcon": "radio_button_checked"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Radio' widget",
         "desc": "Radio widgets allow one selection, but not in a drop down list"
@@ -302,6 +346,7 @@
       "type": "radio",
       "attributes": {
         "heading": "Radio",
+        "default": "FIRST",
         "titleMap": [
           {
             "value": "FIRST",
@@ -322,14 +367,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "selectSet",
       "attributes": {
-        "tocTitle": "The 'Select' widget"
+        "tocTitle": "The 'Select' widget",
+        "tocIcon": "arrow_drop_down"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Select' widget",
         "desc": "Radio widgets allow one selection in a drop down list"
@@ -360,14 +409,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "id": "switchSet",
       "type": "set",
       "attributes": {
-        "tocTitle": "The 'Switch' widget"
+        "tocTitle": "The 'Switch' widget",
+        "tocIcon": "check_box"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Switch' widget",
         "desc": "Switch widgets allow you to record boolean values"
@@ -385,14 +438,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "sliderSet",
       "attributes": {
-        "tocTitle": "The 'Slider' widget"
+        "tocTitle": "The 'Slider' widget",
+        "tocIcon": "linear_scale"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Slider' widget",
         "desc": "Slider widgets let us select a value from a range, at certain 'step' points"
@@ -412,14 +469,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "textSet",
       "attributes": {
-        "tocTitle": "The 'Text' widget"
+        "tocTitle": "The 'Text' widget",
+        "tocIcon": "text_fields"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Text' widget",
         "desc": "Text widgets can collect information in the form of a string from us"
@@ -436,14 +497,18 @@
       "type": "endSet"
     },
     {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "timeSet",
       "attributes": {
-        "tocTitle": "The 'Time' widget"
+        "tocTitle": "The 'Time' widget",
+        "tocIcon": "watch"
       }
     },
     {
-      "type": "header",
+      "type": "heading",
       "attributes": {
         "heading": "The 'Time' widget",
         "desc": "Time widgets allow us to choose a time without a date attached"

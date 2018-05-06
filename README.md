@@ -132,9 +132,9 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* Viewscript is a delightful walled-garden, offering a fixed set of 27 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
+* Viewscript is a delightful walled-garden, offering a fixed set of 28 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 27 widgets supported in Viewscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 28 widgets supported in Viewscript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -151,6 +151,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 27
 | [`fileUpload`](#list-fileUpload) | Allows the user to upload a file. |
 | [`header`](#list-header) | A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/). |
 | [`heading`](#list-heading) | Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience. |
+| [`horizontalLine`](#list-horizontalLine) | Renders a horizontal line to help split things up (i.e. like a `</hr>`) |
 | [`image`](#list-image) | Embeds a non-interactive image within the form. |
 | [`map`](#list-map) | Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.) |
 | [`number`](#list-number) | Like a `text` widget, but specifically for collecting numeric content. |
@@ -351,7 +352,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the full list of all 27 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 28 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -876,6 +877,28 @@ __Attributes__
 
 <hr>
 
+## The <a name="list-horizontalLine"></a>`horizontalLine` widget
+
+__Renders a horizontal line to help split things up (i.e. like a `</hr>`)__
+
+__Example JSON__
+
+``` json
+
+
+```
+
+__Properties__
+
+
+__`type`:__ _Required_ (`"horizontalLine"`)
+
+
+
+
+
+<hr>
+
 ## The <a name="list-image"></a>`image` widget
 
 __Embeds a non-interactive image within the form.__
@@ -1330,6 +1353,7 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
+| `tocIcon` | `string` | `No` | An icon to accompany tocTitle. For now, Must be something in [Material.io](https://material.io/icons/), e.g. `local_pizza` |
 | `tocTitle` | `string` | `No` | Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC. |
 
 
@@ -1806,10 +1830,12 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `viewscript-doc-generator` | Produces Viewscript's main README.md file using Viewscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-doc-generator) | [Here](https://www.npmjs.com/package/viewscript-doc-generator)  |
 | `viewscript-examples` | Example Viewscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-examples) | [Here](https://www.npmjs.com/package/viewscript-examples)  |
 | `viewscript-extract-defaults` | Extracts sensible defaults from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-extract-defaults)  |
+| `viewscript-extract-lists` | Extracts list objects from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists) | [Here](https://www.npmjs.com/package/viewscript-extract-lists)  |
 | `viewscript-parser` | Like JSON.parse(), but for Viewscript. And it supports YAML. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) | [Here](https://www.npmjs.com/package/viewscript-parser)  |
 | `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
 | `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
 | `viewscript-simple-vue` | A Vue.js component for rendering a simple UI from Viewscript | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-simple-vue)  |
 | `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
 | `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
+| `viewscript-to-vuetify` | Produces a template for use with Vuetify from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify) | [Here](https://www.npmjs.com/package/viewscript-to-vuetify)  |
 

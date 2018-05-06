@@ -14,7 +14,8 @@
       "id": "yourDetails",
       "type": "set",
       "attributes": {
-        "tocTitle": "Your Details"
+        "tocTitle": "Your Details",
+        "tocIcon": "account_box"
       }
     },
     {
@@ -99,8 +100,12 @@
       "id": "thePizza",
       "type": "set",
       "attributes": {
-        "tocTitle": "The Pizza"
+        "tocTitle": "The Pizza",
+        "tocIcon": "local_pizza"
       }
+    },
+    {
+      "type": "horizontalLine"
     },
     {
       "type": "heading",

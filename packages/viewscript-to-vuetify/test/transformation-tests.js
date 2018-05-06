@@ -9,6 +9,19 @@ const examples = require('viewscript-examples')
 describe('Run some Viewscript-to-Vuetify conversions', function () {
   it('should convert simple example', function () {
     const vuetifyTemplate = viewscriptToVuetify(examples.simple)
-    expect(vuetifyTemplate).to.be.a('string')
+    expect(vuetifyTemplate.template).to.be.a('string')
+    console.log(vuetifyTemplate)
+  })
+
+  it('should convert complex example', function () {
+    const vuetifyTemplate = viewscriptToVuetify(examples.complex)
+    expect(vuetifyTemplate.template).to.be.a('string')
+    console.log(vuetifyTemplate)
+  })
+
+  it('should convert kitchenSink example', function () {
+    const vuetifyTemplate = viewscriptToVuetify(examples.kitchenSink)
+    expect(vuetifyTemplate.template).to.be.a('string')
+    console.log(vuetifyTemplate)
   })
 })
