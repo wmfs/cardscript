@@ -605,7 +605,7 @@
       "endSubView": {
         "title": "Marks the end of a sub-view - see the [Sets](#set) section for more information.",
         "properties": {
-          "type": {"enum": ["endSet"]}
+          "type": {"enum": ["endSubView"]}
         },
         "required": ["type"],
         "additionalProperties": false

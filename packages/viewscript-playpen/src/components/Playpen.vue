@@ -303,7 +303,8 @@ export default {
                     comp.$set(comp.validation, 'state', 'valid')
                     comp.$set(comp.validation, 'errors', [])
                     comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
-                    comp.$set(comp.dynamicContent, 'data', output.defaultValues)
+                    comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
+                    comp.$set(comp.dynamicContent, 'subViewDefaults', output.defaultValues.subViews)
                     comp.$set(comp.dynamicContent, 'lists', output.lists)
                     comp.$set(comp.dynamicContent, 'times', [])
                     comp.$set(comp.dynamicContent, 'toc', output.toc)
@@ -345,6 +346,7 @@ export default {
       items: [
         {value: 'simple', text: 'Simple example'},
         {value: 'expression', text: 'Expression example'},
+        {value: 'subView', text: 'Sub-View example'},
         {value: 'complex', text: 'Complex example'},
         {value: 'kitchenSink', text: 'Kitchen sink example'}
       ],

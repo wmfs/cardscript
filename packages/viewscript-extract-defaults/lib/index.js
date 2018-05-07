@@ -1,24 +1,50 @@
-
 const widgetTypeDefaults = {
   checkboxList: [],
   switch: false
 }
 
 module.exports = function extractDefaults (viewscript) {
-  const defaultValues = {}
+  const subViewPath = []
+  const defaultValues = {
+    rootView: {},
+    subViews: {}
+  }
+
+  function addDefault (key, defaultValue) {
+    if (defaultValue !== undefined) {
+      if (subViewPath.length === 0) {
+        defaultValues.rootView[key] = defaultValue
+      } else {
+        const subViewId = subViewPath[subViewPath.length - 1]
+        defaultValues.subViews[subViewId][key] = defaultValue
+      }
+    }
+  }
+
   viewscript.widgets.forEach(
     function (widget) {
       let defaultValue
-      if (widgetTypeDefaults.hasOwnProperty(widget.type) && widget.id) {
-        defaultValue = widgetTypeDefaults[widget.type]
-      }
-      if (widget.hasOwnProperty('attributes')) {
-        if (widget.attributes.hasOwnProperty('default')) {
-          defaultValue = widget.attributes.default
-        }
-      }
-      if (defaultValue !== undefined) {
-        defaultValues[widget.id] = defaultValue
+      switch (widget.type) {
+        case 'subView':
+          addDefault(widget.id, [])
+          defaultValues.subViews[widget.id] = {}
+          subViewPath.push(widget.id)
+          break
+
+        case 'endSubView':
+          subViewPath.pop()
+          break
+
+        default:
+          defaultValue = widgetTypeDefaults[widget.type]
+          if (widget.hasOwnProperty('attributes')) {
+            if (widget.attributes.hasOwnProperty('default')) {
+              defaultValue = widget.attributes.default
+            }
+          }
+
+          addDefault(widget.id, defaultValue)
+          break
       }
     }
   )
