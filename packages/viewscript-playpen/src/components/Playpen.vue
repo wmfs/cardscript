@@ -6,8 +6,7 @@
           <v-layout align-center>
             <v-flex>
               <div class="display-3 grey--text text--darken-1">Viewscript playpen</div>
-              <p>Use the editor below to write some of your own Viewscript JSON/YAML, then click then
-                <strong>Go!</strong>" button to turn it into a UI.
+              <p>Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn it into a UI.
                 Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more
                 information!
               </p>
