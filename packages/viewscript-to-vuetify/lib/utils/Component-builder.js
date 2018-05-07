@@ -1,5 +1,20 @@
+const _ = require('lodash')
+
 class TagNode {
-  constructor (name) {
+  constructor (name, providedOptions) {
+    let options
+    if (providedOptions === undefined) {
+      options = {}
+    } else {
+      options = providedOptions
+    }
+
+    this.options = _.defaults(
+      options,
+      {
+        includeClosingTag: true
+      }
+    )
     this.name = name
     this.tagContent = null
     this.attributes = []
@@ -30,23 +45,23 @@ class TagNode {
     this.addAttribute(attributeName, 'data.' + widgetDefinition.id)
   }
 
-  addChildTag (tagName) {
-    const tagNode = new TagNode(tagName)
+  addChildTag (tagName, options) {
+    const tagNode = new TagNode(tagName, options)
     this.childTags.push(tagNode)
     return tagNode
   }
 }
 
 module.exports = class ComponentBuilder {
-  constructor (widgetDefiniton) {
+  constructor (widgetDefiniton, providedOptions) {
     this.rootTags = []
     if (widgetDefiniton) {
       this.showWhen = widgetDefiniton.showWhen
     }
   }
 
-  addTag (tagName) {
-    const tagNode = new TagNode(tagName)
+  addTag (tagName, options) {
+    const tagNode = new TagNode(tagName, options)
     this.rootTags.push(tagNode)
     return tagNode
   }
@@ -72,7 +87,10 @@ module.exports = class ComponentBuilder {
           }
           template += line
           _processTagArray(tag.childTags)
-          template += `</${tag.name}>`
+
+          if (tag.options.includeClosingTag) {
+            template += `</${tag.name}>`
+          }
         }
       )
     }

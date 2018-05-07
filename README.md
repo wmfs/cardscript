@@ -1545,6 +1545,7 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
+| `createButtonText` | `string` | `No` | Text to put on a button which will create a new entity. |
 | `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |

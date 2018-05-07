@@ -295,6 +295,10 @@
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "default": {"$ref": "#/definitions/attributes/default"},
               "desc": {"$ref": "#/definitions/attributes/desc"},
+              "createButtonText": {
+                "type": "string",
+                "title": "Text to put on a button which will create a new entity."
+              },
               "minAllowed": {
                 "type": "number",
                 "title": "The minimum number of sub-views that the user is required to complete."

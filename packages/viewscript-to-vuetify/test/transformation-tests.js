@@ -24,4 +24,10 @@ describe('Run some Viewscript-to-Vuetify conversions', function () {
     expect(vuetifyTemplate.template).to.be.a('string')
     console.log(vuetifyTemplate)
   })
+
+  it('should convert subView example', function () {
+    const vuetifyTemplate = viewscriptToVuetify(examples.subView)
+    expect(vuetifyTemplate.template).to.be.a('string')
+    console.log(vuetifyTemplate)
+  })
 })

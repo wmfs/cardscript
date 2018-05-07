@@ -303,6 +303,7 @@ export default {
                     comp.$set(comp.validation, 'state', 'valid')
                     comp.$set(comp.validation, 'errors', [])
                     comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
+                    console.log(output.templateOutput.template)
                     comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
                     comp.$set(comp.dynamicContent, 'subViewDefaults', output.defaultValues.subViews)
                     comp.$set(comp.dynamicContent, 'lists', output.lists)

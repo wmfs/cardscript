@@ -2,15 +2,27 @@
   "title": "Simple sub-view demo!",
   "widgets": [
     {
-      "type": "heading",
+      "type": "header",
       "attributes": {
-        "heading": "Let's get food..."
+        "heading": "Pizza Place",
+        "desc": "This is an example of how sub-views work",
+        "backgroundImage": "wmfs/pizza.jpg",
+        "backgroundImageAltText": "Photograph of a pizza"
       }
     },
     {
       "id": "starters",
       "type": "subView",
       "attributes": {
+        "heading": "Starters!",
+        "desc": "Pick some things to start...",
+        "createButtonText": "Add a starter!"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Starter"
       }
     },
     {
@@ -47,6 +59,15 @@
       "id": "pizzas",
       "type": "subView",
       "attributes": {
+        "heading": "Pizza!",
+        "desc": "The main event...",
+        "createButtonText": "Add a pizza!"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Pizza"
       }
     },
     {
@@ -84,6 +105,15 @@
       "id": "dips",
       "type": "subView",
       "attributes": {
+        "heading": "Dips!",
+        "desc": "Something to dunk those crusts into?",
+        "createButtonText": "Add a dip!"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "Dip"
       }
     },
     {
