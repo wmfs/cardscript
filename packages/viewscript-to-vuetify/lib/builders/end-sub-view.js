@@ -20,7 +20,7 @@ module.exports = function endSubView (widgetDefinition, options) {
   const save = actions.addChildTag('v-btn')
   save.addAttribute('color', 'blue darken-1')
   save.addAttribute('flat', null)
-  save.addAttribute('@click.native', `internals.dialogControl.${subViewId} = false`)
+  save.addAttribute('@click.native', `pushSubViewContent('${subViewId}')`)
   save.content('Save')
 
   template += builder.compile()

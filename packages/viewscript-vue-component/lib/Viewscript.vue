@@ -27,6 +27,20 @@
             const subViewDefaultValues = JSON.parse(JSON.stringify(this.internals.subViewDefaults[subViewId]))
             this.internals.currentSubViewData[subViewId] = subViewDefaultValues
             this.internals.dialogControl[subViewId] = true
+          },
+          pushSubViewContent: function pushSubViewContent(subViewId) {
+            const parentSubViewId = this.internals.subViewParents[subViewId]
+            const clone = JSON.parse(JSON.stringify(this.internals.currentSubViewData[subViewId]))
+
+            if (parentSubViewId === null) {
+              this.data[subViewId].push(clone)
+            } else {
+              this.internals.currentSubViewData[parentSubViewId][subViewId].push(clone)
+            }
+            this.internals.dialogControl[subViewId] = false
+          },
+          removeSubViewContent: function removeSubViewContent(subViewId, index) {
+            alert(`REMOVE index ${index} from ${subViewId}`)
           }
         }
       }
