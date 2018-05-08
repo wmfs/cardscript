@@ -1,0 +1,13 @@
+{
+  "name": "viewscript-vue-component",
+  "version": "0.0.6",
+  "description": "A simple Vue component to render dynamic Viewscript content using Vuetify",
+  "main": "lib/Viewscript.vue",
+  "scripts": {},
+  "author": "Tim Needham",
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-vue-component"
+  }
+}

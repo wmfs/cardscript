@@ -16,6 +16,8 @@ module.exports = function subViewConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
 
+  const dialogKey = `internals.dialogControl.${widgetDefinition.id}`
+
   const heading = builder.addTag('div')
   heading.addAttribute('class', 'display-1 grey--text text--darken-1 mt-4')
   heading.content(getAttribute('heading'))
@@ -27,22 +29,20 @@ module.exports = function subViewConverter (widgetDefinition, options) {
     desc.content(getAttribute('desc'))
   }
 
+  const button = builder.addTag('v-btn')
+  button.addAttribute('color', 'primary')
+  button.addAttribute('@click.native.stop', `createNewSubView('${widgetDefinition.id}')`)
+  button.addAttribute('dark', null)
+  button.content(getAttribute('createButtonText') || 'Add')
+
   const dialog = builder.addTag(
     'v-dialog',
     {
       includeClosingTag: false
     }
   )
-  dialog.addAttribute('v-model', `data.$${widgetDefinition.id}_modal`)
-  dialog.addAttribute('persistent', null)
+  dialog.addAttribute('v-model', dialogKey)
   dialog.addAttribute('max-width', '600px')
-
-  const button = dialog.addChildTag('v-btn')
-  button.addAttribute('slot', 'activator')
-  button.addAttribute('color', 'primary')
-  button.addAttribute('dark', null)
-
-  button.content(getAttribute('createButtonText') || 'Add')
 
   const card = dialog.addChildTag('v-card', {includeClosingTag: false})
 

@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import VueCodemirror from 'vue-codemirror'
 import Vuetify from 'vuetify'
-import Viewscript from 'viewscript-simple-vue'
+import Viewscript from 'viewscript-vue-component'
 import 'vuetify/dist/vuetify.min.css'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript.js'

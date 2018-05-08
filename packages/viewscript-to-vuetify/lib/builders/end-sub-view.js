@@ -14,13 +14,13 @@ module.exports = function endSubView (widgetDefinition, options) {
   const close = actions.addChildTag('v-btn')
   close.addAttribute('color', 'blue darken-1')
   close.addAttribute('flat', null)
-  close.addAttribute('@click.native', `data.$${subViewId}_modal = false`)
+  close.addAttribute('@click.native', `internals.dialogControl.${subViewId} = false`)
   close.content('Close')
 
   const save = actions.addChildTag('v-btn')
   save.addAttribute('color', 'blue darken-1')
   save.addAttribute('flat', null)
-  save.addAttribute('@click.native', `data.$${subViewId}_modal = false`)
+  save.addAttribute('@click.native', `internals.dialogControl.${subViewId} = false`)
   save.content('Save')
 
   template += builder.compile()

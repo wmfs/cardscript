@@ -178,6 +178,12 @@
                       </tr>
                       </tbody>
                     </table>
+
+                    <div class="display-1 grey--text text--darken-1 my-4">Internals</div>
+                    <p>Here are some of the internal workings (for managing dialog states and sub-views especially)
+                    </p>
+                    <pre class="horizontalScroll">{{dynamicContent.internals}}</pre>
+
                   </v-card>
                 </v-tab-item>
               </v-tabs>
@@ -190,8 +196,8 @@
 </template>
 
 <script>
-import Viewscript from 'viewscript-simple-vue'
-
+import Viewscript from 'viewscript-vue-component'
+const sdk = require('viewscript-vue-sdk')
 const examples = require('viewscript-examples')
 const parser = require('viewscript-parser')
 const validator = require('viewscript-schema').validateForm
@@ -255,6 +261,9 @@ function processViewscript (viewscriptString, stopwatch) {
         result.toc = extractToc(viewscript)
         stopwatch.addTime('Extract lists')
         result.lists = extractLists(viewscript)
+        stopwatch.addTime('Calculate starting internals')
+        result.defaultInternals = sdk.getDefaultInternals(viewscript)
+        result.defaultInternals.subViewDefaults = result.defaultValues.subViews
         stopwatch.addTime('Generate template')
         result.templateOutput = templateConverter(viewscript)
       }
@@ -302,9 +311,8 @@ export default {
                     comp.$set(comp.validation, 'state', 'valid')
                     comp.$set(comp.validation, 'errors', [])
                     comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
-                    console.log(output.templateOutput.template)
                     comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
-                    comp.$set(comp.dynamicContent, 'subViewDefaults', output.defaultValues.subViews)
+                    comp.$set(comp.dynamicContent, 'internals', output.defaultInternals)
                     comp.$set(comp.dynamicContent, 'lists', output.lists)
                     comp.$set(comp.dynamicContent, 'times', [])
                     comp.$set(comp.dynamicContent, 'toc', output.toc)
@@ -314,6 +322,7 @@ export default {
                     comp.$set(comp.validation, 'errors', output.validatorOutput.errors)
                     comp.$set(comp.dynamicContent, 'template', '')
                     comp.$set(comp.dynamicContent, 'data', {})
+                    comp.$set(comp.dynamicContent, 'internals', {})
                     comp.$set(comp.dynamicContent, 'lists', {})
                     comp.$set(comp.dynamicContent, 'toc', [])
                     elementIdToScrollTo = 'thereWereErrors'

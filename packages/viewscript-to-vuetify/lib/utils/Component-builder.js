@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const subViewTracker = require('./sub-view-tracker')
 
 class TagNode {
   constructor (name, providedOptions) {
@@ -42,7 +43,15 @@ class TagNode {
     if (modifier) {
       attributeName += `.${modifier}`
     }
-    this.addAttribute(attributeName, 'data.' + widgetDefinition.id)
+
+    let dataPath
+    if (subViewTracker.insideASubView()) {
+      const subViewId = subViewTracker.getCurrentSubView()
+      dataPath = `internals.currentSubViewData.${subViewId}.${widgetDefinition.id}`
+    } else {
+      dataPath = 'data.' + widgetDefinition.id
+    }
+    this.addAttribute(attributeName, dataPath)
   }
 
   addChildTag (tagName, options) {
