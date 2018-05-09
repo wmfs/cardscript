@@ -12,6 +12,7 @@ const GetAttribute = require('./../utils/Get-attribute')
 // singularEntityText
 
 module.exports = function subViewConverter (widgetDefinition, options) {
+  const parentSubView = subViewTracker.getCurrentSubView()
   subViewTracker.addSubView(widgetDefinition.id)
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
@@ -35,7 +36,14 @@ module.exports = function subViewConverter (widgetDefinition, options) {
 
   const tile = list.addChildTag('v-list-tile')
 
-  tile.addAttribute('v-for', `(item, $idx) in data.${widgetDefinition.id}`)
+  let arrayPath
+  if (parentSubView) {
+    arrayPath = `internals.currentSubViewData.${parentSubView}.${widgetDefinition.id}`
+  } else {
+    arrayPath = `data.${widgetDefinition.id}`
+  }
+
+  tile.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
   tile.addAttribute('avatar', null)
   tile.addAttribute('@click', '')
 
@@ -71,6 +79,7 @@ module.exports = function subViewConverter (widgetDefinition, options) {
       includeClosingTag: false
     }
   )
+  dialog.addAttribute('scrollable', null)
   dialog.addAttribute('v-model', dialogKey)
   dialog.addAttribute('max-width', '600px')
 

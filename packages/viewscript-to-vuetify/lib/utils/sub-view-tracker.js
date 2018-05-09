@@ -8,11 +8,19 @@ class SubViewTracker {
   }
 
   getCurrentSubView () {
-    return this.subViews[this.subViews.length - 1]
+    if (this.subViews.length === 0) {
+      return null
+    } else {
+      return this.subViews[this.subViews.length - 1]
+    }
   }
 
   addSubView (subViewId) {
     this.subViews.push(subViewId)
+  }
+
+  onRoot () {
+    return this.subViews.length < 2
   }
 
   removeSubView (subViewId) {
