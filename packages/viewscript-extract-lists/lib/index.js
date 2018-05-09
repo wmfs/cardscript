@@ -8,7 +8,9 @@ module.exports = function extractLists (viewscript, options) {
     candidateWidgetTypes = DEFAULT_CANDIDATE_WIDGET_TYPES
   }
 
-  const lists = {}
+  const lists = {
+    $simpleTitleMaps: {}
+  }
 
   if (viewscript && viewscript.hasOwnProperty('widgets')) {
     viewscript.widgets.forEach(
@@ -16,6 +18,7 @@ module.exports = function extractLists (viewscript, options) {
         if (candidateWidgetTypes.includes(widget.type) && widget.hasOwnProperty('attributes')) {
           let titleMap = widget.attributes.titleMap
           if (titleMap) {
+            const map = {}
             const list = []
             titleMap.forEach(
               function (item) {
@@ -25,10 +28,12 @@ module.exports = function extractLists (viewscript, options) {
                     value: item.value
                   }
                 )
+                map[item.value] = item.title || item.value
               }
             )
 
             lists[widget.id] = list
+            lists.$simpleTitleMaps[widget.id] = map
           }
         }
       }

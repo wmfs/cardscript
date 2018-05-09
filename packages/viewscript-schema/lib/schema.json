@@ -315,12 +315,14 @@
                 "type": "string",
                 "title": "What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'."
               },
-              "pluralEntityText": {
+              "instanceHeadingTemplate": {
                 "type": "string",
-                "title": "What are many of these forms termed? Consider using it in a sentence such as '_You must specify at least 3 `${pluralEntitiyText}`!_'."
+                "title": "A handlebars-like template for conjuring a title per instance."
+              },
+              "instanceDescTemplate": {
+                "type": "string",
+                "title": "A handlebars-like template for conjuring a title per instance."
               }
-
-
             },
             "additionalProperties": false
           }

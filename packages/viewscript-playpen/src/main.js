@@ -4,6 +4,8 @@ import Vue from 'vue'
 import VueCodemirror from 'vue-codemirror'
 import Vuetify from 'vuetify'
 import Viewscript from 'viewscript-vue-component'
+import sdk from 'viewscript-vue-sdk'
+
 import 'vuetify/dist/vuetify.min.css'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript.js'
@@ -30,6 +32,8 @@ Vue.use(VueCodemirror, {
   },
   events: ['scroll']
 })
+
+sdk.addFilters(Vue)
 
 /* eslint-disable no-new */
 new Vue({

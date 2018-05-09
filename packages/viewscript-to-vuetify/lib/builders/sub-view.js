@@ -53,9 +53,10 @@ module.exports = function subViewConverter (widgetDefinition, options) {
 
   const tileContent = tile.addChildTag('v-list-tile-content')
   const tileTitle = tileContent.addChildTag('v-list-tile-title')
-  tileTitle.content('I will be a title')
+
+  tileTitle.content(getAttribute('instanceHeadingTemplate'))
   const tileSubTitle = tileContent.addChildTag('v-list-tile-sub-title')
-  tileSubTitle.content('And I shall be some content')
+  tileSubTitle.content(getAttribute('instanceDescTemplate'))
 
   const tileAction = tile.addChildTag('v-list-tile-action')
   const actionButton = tileAction.addChildTag('v-btn')

@@ -16,7 +16,9 @@
       "attributes": {
         "heading": "Starters!",
         "desc": "Pick some things to start...",
-        "createButtonText": "Add a starter!"
+        "createButtonText": "Add a starter!",
+        "instanceHeadingTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
+        "instanceDescTemplate": "You'll be wanting {{item.starterQuantity}} of these."
       }
     },
     {
@@ -61,7 +63,9 @@
       "attributes": {
         "heading": "Pizza!",
         "desc": "The main event...",
-        "createButtonText": "Add a pizza!"
+        "createButtonText": "Add a pizza!",
+        "instanceHeadingTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
+        "instanceDescTemplate": "You'll be wanting {{item.pizzaQuantity}} of these."
       }
     },
     {
@@ -107,7 +111,9 @@
       "attributes": {
         "heading": "Dips!",
         "desc": "Something to dunk those crusts into?",
-        "createButtonText": "Add a dip!"
+        "createButtonText": "Add a dip!",
+        "instanceHeadingTemplate": "{{item.dipType | replaceWithTitle(lists.$simpleTitleMaps.dipType)}}",
+        "instanceDescTemplate": "You'll be wanting {{item.dipQuantity}} of these."
       }
     },
     {

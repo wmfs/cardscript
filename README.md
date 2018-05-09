@@ -1550,9 +1550,10 @@ __Attributes__
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 | `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `instanceDescTemplate` | `string` | `No` | A handlebars-like template for conjuring a title per instance. |
+| `instanceHeadingTemplate` | `string` | `No` | A handlebars-like template for conjuring a title per instance. |
 | `maxAllowed` | `number` | `No` | The maximum number of sub-views that the user can complete. |
 | `minAllowed` | `number` | `No` | The minimum number of sub-views that the user is required to complete. |
-| `pluralEntityText` | `string` | `No` | What are many of these forms termed? Consider using it in a sentence such as '_You must specify at least 3 `${pluralEntitiyText}`!_'. |
 | `showAtLeastOne` | `boolean` | `No` | If `true` and no sub-views have yet been completed, then the app should show an empty sub-view ready for the user to start entering data (especially useful when `minAllowed > 0`). |
 | `singularEntityText` | `string` | `No` | What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'. |
 
@@ -1837,8 +1838,9 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `viewscript-parser` | Like JSON.parse(), but for Viewscript. And it supports YAML. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) | [Here](https://www.npmjs.com/package/viewscript-parser)  |
 | `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
 | `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
-| `viewscript-simple-vue` | A Vue.js component for rendering a simple UI from Viewscript | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-simple-vue)  |
 | `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
 | `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
 | `viewscript-to-vuetify` | Produces a template for use with Vuetify from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify) | [Here](https://www.npmjs.com/package/viewscript-to-vuetify)  |
+| `viewscript-vue-component` | A simple Vue component to render dynamic Viewscript content using Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-vue-component) | [Here](https://www.npmjs.com/package/viewscript-vue-component)  |
+| `viewscript-vue-sdk` | An SDK for using Viewscript with Vue/Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-vue-sdk)  |
 
