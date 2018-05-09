@@ -9,13 +9,36 @@ const examples = require('viewscript-examples')
 describe('Run some Viewscript list-extracting tests', function () {
   it('should extract no list from some simple Viewscript', function () {
     const result = extractLists(examples.simple)
-    expect(result).to.eql({})
+    expect(result).to.eql(
+      {
+        $simpleTitleMaps: {}
+      }
+    )
   })
 
   it('should extract some lists from complex Viewscript', function () {
     const result = extractLists(examples.complex)
     expect(result).to.eql(
       {
+        '$simpleTitleMaps': {
+          base: {
+            BBQ: 'BBQ',
+            SWEETSOUR: 'Sweet And Sour',
+            TOMATO: 'Tomato Sauce'
+          },
+          primary: {
+            DARK_CHOC: 'Dark Chocolate',
+            MILK_CHOC: 'Milk Chocolate',
+            TOFFEE: 'Toffee',
+            WHITE_CHOC: 'White Chocolate'
+          },
+          secondary: {
+            DARK_CHOC: 'Dark Chocolate',
+            MILK_CHOC: 'Milk Chocolate',
+            TOFFEE: 'Toffee',
+            WHITE_CHOC: 'White Chocolate'
+          }
+        },
         base: [
           {
             value: 'TOMATO',
