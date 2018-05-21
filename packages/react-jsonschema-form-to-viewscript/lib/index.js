@@ -11,8 +11,8 @@ const WIDGET_MAP = {
   switchField: 'switch',
   radioField: 'radio',
   sliderField: 'slider',
-  noticeField: 'sticky-note',
-  checkField: 'checkbox-list',
+  noticeField: 'stickyNote',
+  checkField: 'checkboxList',
   dateField: 'date',
   timeField: 'time',
   // galleryField: '',
@@ -20,7 +20,7 @@ const WIDGET_MAP = {
   // titleField: '',
   mapField: 'map',
   // annotationField: '',
-  fileUploader: 'file-upload',
+  fileUploader: 'fileUpload',
   questionnaire: 'questionnaire',
   richTextArea: 'richtext',
   numberField: 'number',
@@ -101,6 +101,10 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
 function generateWidget (options) {
   if (options.uiSchema['ui:field'] === 'ArrayField') {
     // TODO: Do something different!
+    // options.uiSchema.items.forEach((item, idx) => {
+    //   console.log(item['ui:widget'])
+    //   console.log(options.schema.items[idx])
+    // })
   }
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
