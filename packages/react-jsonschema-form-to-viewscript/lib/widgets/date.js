@@ -8,5 +8,6 @@ module.exports = class Date {
         mandatory: options.mandatory
       }
     }
+    if (options.conditionalSchema.length > 0) this.widget.showWhen = options.conditionalSchema[0]
   }
 }

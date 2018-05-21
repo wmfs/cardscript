@@ -75,7 +75,7 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
         condition.forEach(c => {
           if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
             // TODO: Replace keys in expression with data.propertyId
-            conditionalSchema.push(c.expression)
+            conditionalSchema.push(convertExpression(c.expression))
           }
         })
       })
@@ -114,4 +114,22 @@ function readFile (path) {
     if (err) reject(err)
     else resolve(data)
   }))
+}
+
+function convertExpression (expression) {
+  if (expression[0] === '!') expression = expression.substring(1)
+  if (expression[0] === '(') expression = expression.substring(1)
+  if (expression[expression.length - 1] === ')') expression = expression.substring(0, expression.length - 1)
+
+  return expression
+    .split(' ')
+    .map(element => {
+      const e = element.split('_')
+      if (e.length > 1) {
+        return 'data.' + e[e.length - 1]
+      } else {
+        return element
+      }
+    })
+    .join(' ')
 }

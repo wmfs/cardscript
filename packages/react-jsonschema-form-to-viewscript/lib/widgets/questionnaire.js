@@ -17,5 +17,6 @@ module.exports = class Questionnaire {
       }
     }
     if (options.default) this.widget.attributes.default = options.default
+    if (options.conditionalSchema.length > 0) this.widget.showWhen = options.conditionalSchema[0]
   }
 }

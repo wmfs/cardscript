@@ -1105,7 +1105,7 @@
     "conditionalSchema": {
       "breathing_chestInjury": [
         {
-          "expression": "!(breathing_chestInjury === 'NO')",
+          "expression": "breathing_chestInjury !== 'NO'",
           "dependents": [
             "breathing_chestInjuryTreatment"
           ]

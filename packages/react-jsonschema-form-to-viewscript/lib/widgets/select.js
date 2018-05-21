@@ -11,7 +11,7 @@ module.exports = class Select {
         mandatory: options.mandatory
       }
     }
-    // if (conditionalSchema.length > 0) this.widget.attributes.showWhen = conditionalSchema[0]
+    if (options.conditionalSchema.length > 0) this.widget.showWhen = options.conditionalSchema[0]
     if (options.schema.default) this.widget.attributes.default = options.schema.default
   }
 }
