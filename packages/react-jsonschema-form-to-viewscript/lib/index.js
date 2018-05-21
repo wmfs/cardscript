@@ -74,7 +74,6 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
       Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
         condition.forEach(c => {
           if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-            // TODO: Replace keys in expression with data.propertyId
             conditionalSchema.push(convertExpression(c.expression))
           }
         })
