@@ -125,11 +125,7 @@ function convertExpression (expression) {
     .split(' ')
     .map(element => {
       const e = element.split('_')
-      if (e.length > 1) {
-        return 'data.' + e[e.length - 1]
-      } else {
-        return element
-      }
+      return (e.length > 1) ? 'data.' + e[e.length - 1] : element
     })
     .join(' ')
 }
