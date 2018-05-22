@@ -100,9 +100,14 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
 
 function generateWidget (options) {
   if (options.schema.type === 'array') {
-    // options.schema.items
     if (options.uiSchema['ui:widget']) {
       return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+    } else if (options.uiSchema.items) {
+      let isCheckBoxList = false
+      options.uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' })
+      if (isCheckBoxList) {
+        return new widgets['CheckboxList'](options).widget
+      }
     }
   }
 
