@@ -9,5 +9,6 @@ module.exports = class Switch {
       }
     }
     if (options.conditionalSchema.length > 0) this.widget.showWhen = options.conditionalSchema[0]
+    if (options.schema.hasOwnProperty('default')) this.widget.attributes.default = options.schema.default
   }
 }
