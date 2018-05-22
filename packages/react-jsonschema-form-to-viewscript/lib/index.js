@@ -6,26 +6,26 @@ const editor = require('mem-fs-editor')
 const WIDGET_MAP = {
   // expandableNoticeField: '',
   // unknownField: '',
-  textField: 'text',
-  selectField: 'select',
-  switchField: 'switch',
-  radioField: 'radio',
-  sliderField: 'slider',
-  noticeField: 'stickyNote',
-  checkField: 'checkboxList',
-  dateField: 'date',
-  timeField: 'time',
+  textField: 'Text',
+  selectField: 'Select',
+  switchField: 'Switch',
+  radioField: 'Radio',
+  sliderField: 'Slider',
+  noticeField: 'StickyNote',
+  checkField: 'CheckboxList',
+  dateField: 'Date',
+  timeField: 'Time',
   // galleryField: '',
   // listField: '',
   // titleField: '',
-  mapField: 'map',
+  mapField: 'Map',
   // annotationField: '',
-  fileUploader: 'fileUpload',
-  questionnaire: 'questionnaire',
-  richTextArea: 'richtext',
-  numberField: 'number',
+  fileUploader: 'FileUpload',
+  questionnaire: 'Questionnaire',
+  richTextArea: 'Richtext',
+  numberField: 'Number',
   // repeatextFld: '',
-  addressField: 'address'
+  addressField: 'Address'
   // findField: '',
   // bookingField: ''
 }
@@ -99,12 +99,11 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
 }
 
 function generateWidget (options) {
-  if (options.uiSchema['ui:field'] === 'ArrayField') {
-    // TODO: Do something different!
-    // options.uiSchema.items.forEach((item, idx) => {
-    //   console.log(item['ui:widget'])
-    //   console.log(options.schema.items[idx])
-    // })
+  if (options.schema.type === 'array') {
+    // options.schema.items
+    if (options.uiSchema['ui:widget']) {
+      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+    }
   }
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
