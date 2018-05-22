@@ -51,6 +51,15 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
   }
 
   Object.keys(form.jsonSchema.schema.properties).forEach(sectionId => {
+    let sectionCondition
+    Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
+      condition.forEach(c => {
+        if (c.dependents.includes(sectionId)) {
+          sectionCondition = convertExpression(c.expression)
+        }
+      })
+    })
+
     const section = form.jsonSchema.schema.properties[sectionId]
     viewscript.widgets.push(
       {
@@ -58,7 +67,8 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
         type: 'set',
         attributes: {
           tocTitle: section.title
-        }
+        },
+        showWhen: sectionCondition
       },
       {
         type: 'heading',
