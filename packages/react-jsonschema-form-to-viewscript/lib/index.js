@@ -110,7 +110,7 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
 
 function generateWidget (options) {
   if (options.schema.type === 'array') {
-    if (options.uiSchema['ui:widget']) {
+    if (options.uiSchema['ui:widget'] && WIDGET_MAP[options.uiSchema['ui:widget']]) {
       return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
     } else if (options.uiSchema.items) {
       let isCheckBoxList = false
@@ -120,6 +120,7 @@ function generateWidget (options) {
       }
     }
   }
+  // else parse as subform
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
     ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
