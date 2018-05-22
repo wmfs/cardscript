@@ -4,7 +4,8 @@ module.exports = class StickyNote {
       id: options.id,
       type: 'stickyNote',
       attributes: {
-        heading: options.schema.title
+        heading: options.schema.title,
+        desc: options.schema.text
       }
     }
     if (options.conditionalSchema.length > 0) this.widget.showWhen = options.conditionalSchema[0]
