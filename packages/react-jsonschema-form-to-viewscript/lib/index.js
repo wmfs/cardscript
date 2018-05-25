@@ -48,7 +48,7 @@ module.exports = function reactJsonSchemaFormToViewScript (form) {
     form.jsonSchema.conditionalSchema && Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
       condition.forEach(c => {
         if (c.dependents.includes(sectionId)) {
-          sectionCondition = convertExpression(c.expression)
+          // sectionCondition = convertExpression(c.expression)
         }
       })
     })
@@ -78,7 +78,7 @@ module.exports = function reactJsonSchemaFormToViewScript (form) {
         Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
           condition.forEach(c => {
             if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-              conditionalSchema.push(convertExpression(c.expression))
+              // conditionalSchema.push(convertExpression(c.expression))
             }
           })
         })
