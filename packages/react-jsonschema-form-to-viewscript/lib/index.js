@@ -1,7 +1,4 @@
-const fs = require('fs')
 const widgets = require('./widgets')
-const memFs = require('mem-fs')
-const editor = require('mem-fs-editor')
 
 const WIDGET_MAP = {
   // expandableNoticeField: '',
@@ -30,11 +27,7 @@ const WIDGET_MAP = {
   // bookingField: ''
 }
 
-module.exports = async function reactJsonSchemaFormToViewScript (options, callback) {
-  const store = memFs.create()
-  const virtualFs = editor.create(store)
-  const form = JSON.parse(await readFile(options.filePath))
-
+module.exports = function reactJsonSchemaFormToViewScript (form, callback) {
   const viewscript = {
     title: form.jsonSchema.schema.formtitle,
     widgets: [
@@ -101,11 +94,7 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
     viewscript.widgets.push({type: 'endSet'})
   })
 
-  virtualFs.writeJSON(options.outputPath, viewscript, null, 2)
-  virtualFs.commit(err => {
-    if (err) callback(err)
-    else callback(null, viewscript)
-  })
+  return viewscript
 }
 
 function generateWidget (options) {
