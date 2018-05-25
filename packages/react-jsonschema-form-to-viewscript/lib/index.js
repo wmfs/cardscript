@@ -7,7 +7,7 @@ const WIDGET_MAP = {
   // buttonlist: '',
   // diarysummary: '',
   // markup: '',
-  // propertylist: '',
+  propertylist: 'PropertyList',
   // summary: '',
   // tabularlist: '',
   // taglist: '',
@@ -63,7 +63,7 @@ function convertBoard (board, data) {
 
   board.content.map(content => {
     if (WIDGET_MAP[content.widget]) {
-      const widget = new widgets[WIDGET_MAP[content.widget]]({}).widget
+      const widget = new widgets[WIDGET_MAP[content.widget]](content).widget
       if (widget) viewscript.widgets.push(widget)
     }
   })

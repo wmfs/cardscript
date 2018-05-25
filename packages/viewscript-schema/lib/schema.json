@@ -48,10 +48,9 @@
           "required": ["value"]
         }
       },
-      "dataPath": {"type": "string", "title": "A JSON Path pointing to some data"},
-      "columns": {
+      "properties": {
         "type": "array",
-        "title": "An array of objects with a path to data and title describing the column",
+        "title": "An array of objects with a path to data and title describing the property",
         "items": {
           "properties": {
             "dataPath": {"type": "string", "title": "A path to the data"},
@@ -277,8 +276,7 @@
             "type": "object",
             "properties": {
               "heading": {"$ref": "#/definitions/attributes/heading"},
-              "dataPath": {"$ref": "#/definitions/attributes/dataPath"},
-              "columns": {"$ref": "#/definitions/attributes/columns"}
+              "properties": {"$ref": "#/definitions/attributes/properties"}
             },
             "additionalProperties": false
           }

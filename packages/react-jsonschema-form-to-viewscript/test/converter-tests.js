@@ -31,7 +31,7 @@ describe('Run some React-jsonschema-form-to-Viewscript conversions', function ()
   it('should convert hydrant viewer board without data', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
     const result = Converter(reactJsonSchemaForm, 'board')
-    expect(result.title).to.eql('Hydrant ${hydran' + 'tNumber}') // So Standard doesn't moan about Unexpected template string expression
+    expect(result.title).to.eql('Hydrant ${hydrantNumber}') // eslint-disable-line
   })
 })
 

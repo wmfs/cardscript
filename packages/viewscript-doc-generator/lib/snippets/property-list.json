@@ -3,8 +3,7 @@
   "type": "propertyList",
   "attributes": {
     "heading": "Contact Details",
-    "dataPath": "$.contactDetails",
-    "columns": [
+    "properties": [
       {
         "dataPath": "firstName",
         "header": "First Name"
