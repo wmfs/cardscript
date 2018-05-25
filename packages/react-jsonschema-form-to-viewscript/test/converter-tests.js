@@ -33,6 +33,12 @@ describe('Run some React-jsonschema-form-to-Viewscript conversions', function ()
     const result = Converter(reactJsonSchemaForm, 'board')
     expect(result.title).to.eql('Hydrant ${hydrantNumber}') // eslint-disable-line
   })
+
+  it('should convert incident summary board with data', async () => {
+    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'incident-summary.json')))
+    const result = Converter(reactJsonSchemaForm, 'board', {incidentNumber: 1234, incidentYear: 2018})
+    expect(result.title).to.eql('Incident 1234/2018')
+  })
 })
 
 function readFile (path) {

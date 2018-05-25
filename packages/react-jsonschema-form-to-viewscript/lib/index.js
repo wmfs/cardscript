@@ -11,6 +11,7 @@ const WIDGET_MAP = {
   // summary: '',
   // tabularlist: '',
   // taglist: '',
+  maplist: 'Map',
   // expandableNoticeField: '',
   // unknownField: '',
   textField: 'Text',
@@ -63,7 +64,7 @@ function convertBoard (board, data) {
 
   board.content.map(content => {
     if (WIDGET_MAP[content.widget]) {
-      const widget = new widgets[WIDGET_MAP[content.widget]](content).widget
+      const widget = new widgets[WIDGET_MAP[content.widget]](content, 'board').widget
       if (widget) viewscript.widgets.push(widget)
     }
   })
@@ -163,19 +164,19 @@ function convertForm (form) {
 function generateWidget (options) {
   if (options.schema.type === 'array') {
     if (options.uiSchema['ui:widget'] && WIDGET_MAP[options.uiSchema['ui:widget']]) {
-      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
     } else if (options.uiSchema.items) {
       let isCheckBoxList = false
       options.uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' })
       if (isCheckBoxList) {
-        return new widgets['CheckboxList'](options).widget
+        return new widgets['CheckboxList'](options, 'form').widget
       }
     }
   }
   // else parse as subform
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
-    ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+    ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
     : null
 }
 
