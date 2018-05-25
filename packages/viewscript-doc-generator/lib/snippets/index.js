@@ -14,6 +14,7 @@ module.exports = {
   image: require('./image'),
   map: require('./map'),
   number: require('./number'),
+  propertyList: require('./property-list'),
   questionnaire: require('./questionnaire'),
   radio: require('./radio'),
   richtext: require('./richtext'),

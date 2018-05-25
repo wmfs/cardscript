@@ -8,18 +8,30 @@ const path = require('path')
 const Converter = require('./../lib')
 
 describe('Run some React-jsonschema-form-to-Viewscript conversions', function () {
-  it('should convert casualty care example', async () => {
+  it('should convert casualty care form', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'casualty-care.json')))
-    const result = Converter(reactJsonSchemaForm)
+    const result = Converter(reactJsonSchemaForm, 'form')
     expect(result.title).to.eql('Casualty Care')
     expect(result.widgets.length).to.eql(84)
   })
 
-  it('should convert safe and strong example', async () => {
+  it('should convert safe and strong form', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'safe-and-strong.json')))
-    const result = Converter(reactJsonSchemaForm)
+    const result = Converter(reactJsonSchemaForm, 'form')
     expect(result.title).to.eql('Safe and Strong')
     expect(result.widgets.length).to.eql(34)
+  })
+
+  it('should convert hydrant viewer board with data', async () => {
+    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
+    const result = Converter(reactJsonSchemaForm, 'board', {hydrantNumber: '1234'})
+    expect(result.title).to.eql('Hydant 1234')
+  })
+
+  it('should convert hydrant viewer board without data', async () => {
+    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
+    const result = Converter(reactJsonSchemaForm, 'board')
+    expect(result.title).to.eql('Hydant ${hydrantNumber}')
   })
 })
 

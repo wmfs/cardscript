@@ -1,0 +1,22 @@
+{
+  "id": "contactDetails",
+  "type": "propertyList",
+  "attributes": {
+    "heading": "Contact Details",
+    "dataPath": "$.contactDetails",
+    "columns": [
+      {
+        "dataPath": "firstName",
+        "header": "First Name"
+      },
+      {
+        "dataPath": "lastName",
+        "header": "Last Name"
+      },
+      {
+        "dataPath": "mobileNumber",
+        "header": "Mobile Number"
+      }
+    ]
+  }
+}

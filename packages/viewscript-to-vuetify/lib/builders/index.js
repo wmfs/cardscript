@@ -44,6 +44,9 @@ module.exports = {
   number: {
     conversionFunction: require('./number')
   },
+  propertyList: {
+    conversionFunction: require('./property-list')
+  },
   questionnaire: {
     conversionFunction: require('./questionnaire')
   },

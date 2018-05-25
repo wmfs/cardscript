@@ -1,6 +1,16 @@
+const evaluate = require('static-eval')
+const { parse } = require('esprima')
+
 const widgets = require('./widgets')
 
 const WIDGET_MAP = {
+  // buttonlist: '',
+  // diarysummary: '',
+  // markup: '',
+  // propertylist: '',
+  // summary: '',
+  // tabularlist: '',
+  // taglist: '',
   // expandableNoticeField: '',
   // unknownField: '',
   textField: 'Text',
@@ -27,7 +37,47 @@ const WIDGET_MAP = {
   // bookingField: ''
 }
 
-module.exports = function reactJsonSchemaFormToViewScript (form) {
+module.exports = function reactJsonSchemaFormToViewScript (view, uiType, data) {
+  switch (uiType) {
+    case 'board':
+      return convertBoard(view, data)
+    case 'form':
+      return convertForm(view)
+  }
+}
+
+function convertBoard (board, data) {
+  const title = parseBoardTitle(board.boardTitleTemplate, data)
+
+  const viewscript = {
+    title,
+    widgets: [
+      {
+        type: 'header',
+        attributes: {
+          heading: title
+        }
+      }
+    ]
+  }
+
+  board.content.map(content => {
+    if (WIDGET_MAP[content.widget]) {
+      const widget = new widgets[WIDGET_MAP[content.widget]]({}).widget
+      if (widget) viewscript.widgets.push(widget)
+    }
+  })
+
+  return viewscript
+}
+
+function parseBoardTitle (template, data) {
+  if (!data) return template
+  const exp = JSON.parse(JSON.stringify(parse('`' + template + '`').body[0].expression))
+  return evaluate(exp, data)
+}
+
+function convertForm (form) {
   const viewscript = {
     title: form.jsonSchema.schema.formtitle,
     widgets: [

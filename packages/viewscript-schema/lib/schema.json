@@ -47,6 +47,17 @@
           "additionalProperties": false,
           "required": ["value"]
         }
+      },
+      "dataPath": {"type": "string", "title": "A JSON Path pointing to some data"},
+      "columns": {
+        "type": "array",
+        "title": "An array of objects with a path to data and title describing the column",
+        "items": {
+          "properties": {
+            "dataPath": {"type": "string", "title": "A path to the data"},
+            "header": {"type": "string", "title": "Header to describe the data"}
+          }
+        }
       }
     },
 
@@ -254,6 +265,25 @@
           }
         },
         "required": ["type"],
+        "additionalProperties": false
+      },
+
+      "propertyList": {
+        "title": "Displays a list of data provided in form of an array",
+        "properties": {
+          "type": {"enum": ["propertyList"]},
+          "id": {"$ref": "#/definitions/id"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "dataPath": {"$ref": "#/definitions/attributes/dataPath"},
+              "columns": {"$ref": "#/definitions/attributes/columns"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["id", "type"],
         "additionalProperties": false
       },
 
@@ -798,6 +828,7 @@
           {"$ref": "#/definitions/widgets/header"},
           {"$ref": "#/definitions/widgets/heading"},
           {"$ref": "#/definitions/widgets/horizontalLine"},
+          {"$ref": "#/definitions/widgets/propertyList"},
           {"$ref": "#/definitions/widgets/questionnaire"},
           {"$ref": "#/definitions/widgets/radio"},
           {"$ref": "#/definitions/widgets/richtext"},
