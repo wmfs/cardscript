@@ -25,13 +25,13 @@ describe('Run some React-jsonschema-form-to-Viewscript conversions', function ()
   it('should convert hydrant viewer board with data', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
     const result = Converter(reactJsonSchemaForm, 'board', {hydrantNumber: '1234'})
-    expect(result.title).to.eql('Hydant 1234')
+    expect(result.title).to.eql('Hydrant 1234')
   })
 
   it('should convert hydrant viewer board without data', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
     const result = Converter(reactJsonSchemaForm, 'board')
-    expect(result.title).to.eql('Hydant ${hydrantNumber}')
+    expect(result.title).to.eql('Hydrant ${hydran' + 'tNumber}') // So Standard doesn't moan about Unexpected template string expression
   })
 })
 

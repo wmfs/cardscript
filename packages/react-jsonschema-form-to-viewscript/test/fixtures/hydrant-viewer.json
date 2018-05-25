@@ -1,5 +1,5 @@
 {
-  "boardTitleTemplate": "Hydant ${hydrantNumber}",
+  "boardTitleTemplate": "Hydrant ${hydrantNumber}",
   "watchable": true,
   "category": "workingHydrants",
   "content": [
