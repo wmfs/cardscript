@@ -27,7 +27,7 @@ const WIDGET_MAP = {
   // bookingField: ''
 }
 
-module.exports = function reactJsonSchemaFormToViewScript (form, callback) {
+module.exports = function reactJsonSchemaFormToViewScript (form) {
   const viewscript = {
     title: form.jsonSchema.schema.formtitle,
     widgets: [
