@@ -45,7 +45,7 @@ module.exports = function reactJsonSchemaFormToViewScript (form) {
 
   Object.keys(form.jsonSchema.schema.properties).forEach(sectionId => {
     let sectionCondition
-    Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
+    form.jsonSchema.conditionalSchema && Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
       condition.forEach(c => {
         if (c.dependents.includes(sectionId)) {
           sectionCondition = convertExpression(c.expression)
@@ -54,44 +54,57 @@ module.exports = function reactJsonSchemaFormToViewScript (form) {
     })
 
     const section = form.jsonSchema.schema.properties[sectionId]
-    viewscript.widgets.push(
-      {
-        id: sectionId,
-        type: 'set',
-        attributes: {
-          tocTitle: section.title
+    if (section.properties) {
+      viewscript.widgets.push(
+        {
+          id: sectionId,
+          type: 'set',
+          attributes: {
+            tocTitle: section.title
+          },
+          showWhen: sectionCondition
         },
-        showWhen: sectionCondition
-      },
-      {
-        type: 'heading',
-        attributes: {
-          heading: section.title
-        }
-      }
-    )
-
-    Object.keys(section.properties).forEach(propertyId => {
-      const uiSchema = form.jsonSchema.uiSchema[sectionId][propertyId]
-      const conditionalSchema = []
-      Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
-        condition.forEach(c => {
-          if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-            conditionalSchema.push(convertExpression(c.expression))
+        {
+          type: 'heading',
+          attributes: {
+            heading: section.title
           }
-        })
-      })
-      const widget = generateWidget({
-        id: propertyId,
-        schema: section.properties[propertyId],
-        uiSchema,
-        conditionalSchema,
-        mandatory: section.required.includes(propertyId)
-      })
-      if (widget) viewscript.widgets.push(widget)
-    })
+        }
+      )
 
-    viewscript.widgets.push({type: 'endSet'})
+      Object.keys(section.properties).forEach(propertyId => {
+        const uiSchema = form.jsonSchema.uiSchema[sectionId][propertyId]
+        const conditionalSchema = []
+        Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
+          condition.forEach(c => {
+            if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
+              conditionalSchema.push(convertExpression(c.expression))
+            }
+          })
+        })
+        const widget = generateWidget({
+          id: propertyId,
+          schema: section.properties[propertyId],
+          uiSchema,
+          conditionalSchema,
+          mandatory: section.required.includes(propertyId)
+        })
+        if (widget) viewscript.widgets.push(widget)
+      })
+
+      viewscript.widgets.push({type: 'endSet'})
+    } else {
+      // Section is actually a widget
+      const widget = generateWidget({
+        id: sectionId,
+        schema: section,
+        uiSchema: form.jsonSchema.uiSchema[sectionId],
+        conditionalSchema: sectionCondition || [],
+        mandatory: false // todo: find if required
+      })
+
+      if (widget) viewscript.widgets.push(widget)
+    }
   })
 
   return viewscript
