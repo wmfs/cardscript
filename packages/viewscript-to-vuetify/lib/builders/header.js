@@ -10,9 +10,24 @@ module.exports = function headerConverter (widgetDefinition, options) {
   const builder = new ComponentBuilder(widgetDefinition)
   const getAttribute = GetAttribute(widgetDefinition)
 
+
   const jumbotron = builder.addTag('v-jumbotron')
-  jumbotron.addAttribute('color', 'primary')
+
+  const backgroundImage = getAttribute('backgroundImage')
+  if (backgroundImage) {
+    let src = 'https://tymly-api.wmfs.net/images/'
+    // TODO: REMOVE THIS, JUST FOR A DEMO!
+    if (backgroundImage.substring(0,5) !== 'wmfs/') {
+      src += 'wmfs/'
+    }
+    src += backgroundImage
+    jumbotron.addAttribute('src', src)
+  } else {
+    jumbotron.addAttribute('color', 'primary')
+  }
+
   jumbotron.addAttribute('dark', null)
+
 
   const container = jumbotron.addChildTag('v-container')
   container.addAttribute('fill-height', null)
