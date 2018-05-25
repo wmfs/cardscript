@@ -105,16 +105,17 @@ function convertForm (form) {
     })
 
     const section = form.jsonSchema.schema.properties[sectionId]
+    const set = {
+      id: sectionId,
+      type: 'set',
+      attributes: {
+        tocTitle: section.title
+      }
+    }
+    if (sectionCondition) set.showWhen = sectionCondition
     if (section.properties) {
       viewscript.widgets.push(
-        {
-          id: sectionId,
-          type: 'set',
-          attributes: {
-            tocTitle: section.title
-          },
-          showWhen: sectionCondition
-        },
+        set,
         {
           type: 'heading',
           attributes: {
