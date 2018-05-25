@@ -129,6 +129,7 @@ function generateWidget (options) {
     : null
 }
 
+/*
 function convertExpression (expression) {
   if (expression[0] === '!') expression = expression.substring(1)
   if (expression[0] === '(') expression = expression.substring(1)
@@ -142,3 +143,4 @@ function convertExpression (expression) {
     })
     .join(' ')
 }
+*/
