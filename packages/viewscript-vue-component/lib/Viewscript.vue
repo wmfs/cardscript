@@ -4,11 +4,9 @@
     </div>
 </template>
 <script>
-
   export default {
   name: 'Viewscript',
   props: ['content'],
-
   data () {
     const _this = this
     return {

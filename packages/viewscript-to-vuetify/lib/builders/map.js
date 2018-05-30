@@ -3,7 +3,7 @@ const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function mapConverter (widgetDefinition, options) {
   // collectGeometries
-  // enableLocationassist
+  // enableLocationAssist
   // enabled
   // heading
   // help
@@ -15,7 +15,6 @@ module.exports = function mapConverter (widgetDefinition, options) {
 
   // const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Map widget!')
+  builder.addTag('ty-map')
   return builder.compile()
 }

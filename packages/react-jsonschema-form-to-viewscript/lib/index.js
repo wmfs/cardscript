@@ -1,9 +1,17 @@
-const fs = require('fs')
+const evaluate = require('static-eval')
+const { parse } = require('esprima')
+
 const widgets = require('./widgets')
-const memFs = require('mem-fs')
-const editor = require('mem-fs-editor')
 
 const WIDGET_MAP = {
+  // buttonlist: '',
+  // diarysummary: '',
+  // markup: '',
+  propertylist: 'PropertyList',
+  // summary: '',
+  // tabularlist: '',
+  // taglist: '',
+  maplist: 'Map',
   // expandableNoticeField: '',
   // unknownField: '',
   textField: 'Text',
@@ -30,11 +38,47 @@ const WIDGET_MAP = {
   // bookingField: ''
 }
 
-module.exports = async function reactJsonSchemaFormToViewScript (options, callback) {
-  const store = memFs.create()
-  const virtualFs = editor.create(store)
-  const form = JSON.parse(await readFile(options.filePath))
+module.exports = function reactJsonSchemaFormToViewScript (view, uiType, data) {
+  switch (uiType) {
+    case 'board':
+      return convertBoard(view, data)
+    case 'form':
+      return convertForm(view)
+  }
+}
 
+function convertBoard (board, data) {
+  const title = parseBoardTitle(board.boardTitleTemplate, data)
+
+  const viewscript = {
+    title,
+    widgets: [
+      {
+        type: 'header',
+        attributes: {
+          heading: title
+        }
+      }
+    ]
+  }
+
+  board.content.map(content => {
+    if (WIDGET_MAP[content.widget]) {
+      const widget = new widgets[WIDGET_MAP[content.widget]](content, 'board').widget
+      if (widget) viewscript.widgets.push(widget)
+    }
+  })
+
+  return viewscript
+}
+
+function parseBoardTitle (template, data) {
+  if (!data) return template
+  const exp = JSON.parse(JSON.stringify(parse('`' + template + '`').body[0].expression))
+  return evaluate(exp, data)
+}
+
+function convertForm (form) {
   const viewscript = {
     title: form.jsonSchema.schema.formtitle,
     widgets: [
@@ -52,88 +96,92 @@ module.exports = async function reactJsonSchemaFormToViewScript (options, callba
 
   Object.keys(form.jsonSchema.schema.properties).forEach(sectionId => {
     let sectionCondition
-    Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
+    form.jsonSchema.conditionalSchema && Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
       condition.forEach(c => {
         if (c.dependents.includes(sectionId)) {
-          sectionCondition = convertExpression(c.expression)
+          // sectionCondition = convertExpression(c.expression)
         }
       })
     })
 
     const section = form.jsonSchema.schema.properties[sectionId]
-    viewscript.widgets.push(
-      {
-        id: sectionId,
-        type: 'set',
-        attributes: {
-          tocTitle: section.title
-        },
-        showWhen: sectionCondition
-      },
-      {
-        type: 'heading',
-        attributes: {
-          heading: section.title
-        }
+    const set = {
+      id: sectionId,
+      type: 'set',
+      attributes: {
+        tocTitle: section.title
       }
-    )
-
-    Object.keys(section.properties).forEach(propertyId => {
-      const uiSchema = form.jsonSchema.uiSchema[sectionId][propertyId]
-      const conditionalSchema = []
-      Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
-        condition.forEach(c => {
-          if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-            conditionalSchema.push(convertExpression(c.expression))
+    }
+    if (sectionCondition) set.showWhen = sectionCondition
+    if (section.properties) {
+      viewscript.widgets.push(
+        set,
+        {
+          type: 'heading',
+          attributes: {
+            heading: section.title
           }
+        }
+      )
+
+      Object.keys(section.properties).forEach(propertyId => {
+        const uiSchema = form.jsonSchema.uiSchema[sectionId][propertyId]
+        const conditionalSchema = []
+        Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
+          condition.forEach(c => {
+            if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
+              // conditionalSchema.push(convertExpression(c.expression))
+            }
+          })
         })
+        const widget = generateWidget({
+          id: propertyId,
+          schema: section.properties[propertyId],
+          uiSchema,
+          conditionalSchema,
+          mandatory: section.required.includes(propertyId)
+        })
+        if (widget) viewscript.widgets.push(widget)
       })
+
+      viewscript.widgets.push({type: 'endSet'})
+    } else {
+      // Section is actually a widget
       const widget = generateWidget({
-        id: propertyId,
-        schema: section.properties[propertyId],
-        uiSchema,
-        conditionalSchema,
-        mandatory: section.required.includes(propertyId)
+        id: sectionId,
+        schema: section,
+        uiSchema: form.jsonSchema.uiSchema[sectionId],
+        conditionalSchema: sectionCondition || [],
+        mandatory: false // todo: find if required
       })
+
       if (widget) viewscript.widgets.push(widget)
-    })
-
-    viewscript.widgets.push({type: 'endSet'})
+    }
   })
 
-  virtualFs.writeJSON(options.outputPath, viewscript, null, 2)
-  virtualFs.commit(err => {
-    if (err) callback(err)
-    else callback(null, viewscript)
-  })
+  return viewscript
 }
 
 function generateWidget (options) {
   if (options.schema.type === 'array') {
     if (options.uiSchema['ui:widget'] && WIDGET_MAP[options.uiSchema['ui:widget']]) {
-      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
     } else if (options.uiSchema.items) {
       let isCheckBoxList = false
       options.uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' })
       if (isCheckBoxList) {
-        return new widgets['CheckboxList'](options).widget
+        return new widgets['CheckboxList'](options, 'form').widget
       }
     }
   }
   // else parse as subform
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
-    ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options).widget
+    ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
     : null
 }
 
-function readFile (path) {
-  return new Promise((resolve, reject) => fs.readFile(path, 'utf8', (err, data) => {
-    if (err) reject(err)
-    else resolve(data)
-  }))
-}
-
+/*
 function convertExpression (expression) {
   if (expression[0] === '!') expression = expression.substring(1)
   if (expression[0] === '(') expression = expression.substring(1)
@@ -147,3 +195,4 @@ function convertExpression (expression) {
     })
     .join(' ')
 }
+*/

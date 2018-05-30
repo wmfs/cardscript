@@ -9,6 +9,7 @@ module.exports = {
   Header: require('./header'),
   Image: require('./image'),
   Map: require('./map'),
+  PropertyList: require('./property-list'),
   Questionnaire: require('./questionnaire'),
   Number: require('./number'),
   Radio: require('./radio'),
