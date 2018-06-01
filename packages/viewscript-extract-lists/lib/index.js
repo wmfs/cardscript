@@ -1,4 +1,4 @@
-const DEFAULT_CANDIDATE_WIDGET_TYPES = ['select']
+const DEFAULT_CANDIDATE_WIDGET_TYPES = ['select', 'checkboxList', 'questionnaire']
 
 module.exports = function extractLists (viewscript, options) {
   let candidateWidgetTypes

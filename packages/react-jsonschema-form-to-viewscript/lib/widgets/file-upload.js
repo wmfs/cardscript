@@ -1,5 +1,20 @@
 module.exports = class FileUpload {
   constructor (options) {
+    if (!options.schema.DocumentFormat) {
+      options.schema.DocumentFormat = {
+        value: ['pdf', 'jpg']
+      }
+    }
+    if (!options.schema.allowedDocumentSize) {
+      options.schema.allowedDocumentSize = {
+        value: 5
+      }
+    }
+    if (!options.schema.numberOfDocument) {
+      options.schema.numberOfDocument = {
+        value: 5
+      }
+    }
     this.widget = {
       id: options.id,
       type: 'fileUpload',
