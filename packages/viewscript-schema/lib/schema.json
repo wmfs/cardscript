@@ -515,17 +515,11 @@
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},
               "centreLatitudePath": {
                 "type": "string",
-                "items": {
-                  "type": "string",
-                  "title": "Path indicating which property should be used to infer a latitude value when first centering the map"
-                }
+                "title": "Path indicating which property should be used to infer a latitude value when first centering the map"
               },
               "centreLongitudePath": {
                 "type": "string",
-                "items": {
-                  "type": "string",
-                  "title": "Path indicating which property should be used to infer a longitude value when first centering the map"
-                }
+                "title": "Path indicating which property should be used to infer a longitude value when first centering the map"
               },
               "enableLocationAssist": {"$ref": "#/definitions/attributes/enableLocationAssist"},
               "collectGeometries": {

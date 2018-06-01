@@ -1001,8 +1001,8 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `centreLatitudePath` | `string` | `No` |  |
-| `centreLongitudePath` | `string` | `No` |  |
+| `centreLatitudePath` | `string` | `No` | Path indicating which property should be used to infer a latitude value when first centering the map |
+| `centreLongitudePath` | `string` | `No` | Path indicating which property should be used to infer a longitude value when first centering the map |
 | `collectGeometries` | `array` | `No` |  |
 | `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
