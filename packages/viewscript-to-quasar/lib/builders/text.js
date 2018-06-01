@@ -19,4 +19,5 @@ module.exports = function textConverter (widgetDefinition, options) {
   textField.bindToModel(widgetDefinition)
   textField.addAttribute('class', 'q-ma-xl')
   textField.addAttribute('float-label', getAttribute('heading'))
-  return builder.compile()}
+  return builder.compile()
+}

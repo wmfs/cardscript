@@ -62,5 +62,4 @@ module.exports = function dateConverter (widgetDefinition, options) {
   dateTime.addAttribute('float-label', getAttribute('heading'))
   dateTime.addAttribute('class', 'q-ma-xl')
   return builder.compile()
-
 }

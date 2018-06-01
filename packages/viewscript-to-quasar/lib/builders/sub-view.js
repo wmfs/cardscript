@@ -1,6 +1,6 @@
-const subViewTracker = require('./../utils/sub-view-tracker')
+// const subViewTracker = require('./../utils/sub-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+// const GetAttribute = require('./../utils/Get-attribute')
 
 // desc
 // heading
@@ -12,7 +12,6 @@ const GetAttribute = require('./../utils/Get-attribute')
 // singularEntityText
 
 module.exports = function subViewConverter (widgetDefinition, options) {
-  
   /*
   const parentSubView = subViewTracker.getCurrentSubView()
   subViewTracker.addSubView(widgetDefinition.id)
@@ -107,5 +106,4 @@ module.exports = function subViewConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: Sub view widget!')
   return builder.compile()
-
 }

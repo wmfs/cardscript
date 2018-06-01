@@ -1,4 +1,4 @@
-const subViewTracker = require('./../utils/sub-view-tracker')
+// const subViewTracker = require('./../utils/sub-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 // const GetAttribute = require('./../utils/Get-attribute')
 
@@ -32,5 +32,4 @@ module.exports = function endSubView (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: end sub view!')
   return builder.compile()
-
 }

@@ -27,5 +27,4 @@ module.exports = function richtextConverter (widgetDefinition, options) {
   editor.bindToModel(widgetDefinition)
   editor.addAttribute('class', 'q-mx-xl')
   return builder.compile()
-
 }

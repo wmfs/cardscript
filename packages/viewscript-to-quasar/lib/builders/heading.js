@@ -5,7 +5,6 @@ const GetAttribute = require('./../utils/Get-attribute')
 // heading
 
 module.exports = function headingConverter (widgetDefinition, options) {
-
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
   const heading = builder.addTag('p')
@@ -20,5 +19,4 @@ module.exports = function headingConverter (widgetDefinition, options) {
   }
 
   return builder.compile()
-
 }

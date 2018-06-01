@@ -19,5 +19,4 @@ module.exports = function signatureConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: Signature widget!')
   return builder.compile()
-
 }

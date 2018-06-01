@@ -1,8 +1,8 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function timeConverter (widgetDefinition, options) {
-  const getAttribute = GetAttribute(widgetDefinition)
+  // const getAttribute = GetAttribute(widgetDefinition)
 
   // enabled
   // heading
@@ -41,5 +41,4 @@ module.exports = function timeConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: Time widget!')
   return builder.compile()
-
 }

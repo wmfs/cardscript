@@ -23,5 +23,4 @@ module.exports = function fileUploadConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: file-upload widget!')
   return builder.compile()
-
 }

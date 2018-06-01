@@ -17,5 +17,4 @@ module.exports = function imageConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: image widget!')
   return builder.compile()
-
 }

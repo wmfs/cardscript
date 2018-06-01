@@ -1,5 +1,5 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function textareaConverter (widgetDefinition, options) {
   // default
@@ -29,5 +29,4 @@ module.exports = function textareaConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: text area!')
   return builder.compile()
-
 }

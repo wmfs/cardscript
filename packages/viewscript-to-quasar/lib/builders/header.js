@@ -7,17 +7,15 @@ const GetAttribute = require('./../utils/Get-attribute')
 // heading
 
 module.exports = function headerConverter (widgetDefinition, options) {
-
   const builder = new ComponentBuilder(widgetDefinition)
   const getAttribute = GetAttribute(widgetDefinition)
-
 
   let src
   const backgroundImage = getAttribute('backgroundImage')
   if (backgroundImage) {
     src = 'https://tymly-api.wmfs.net/images/'
     // TODO: REMOVE THIS, JUST FOR A DEMO!
-    if (backgroundImage.substring(0,5) !== 'wmfs/') {
+    if (backgroundImage.substring(0, 5) !== 'wmfs/') {
       src += 'wmfs/'
     }
     src += backgroundImage
@@ -37,26 +35,23 @@ module.exports = function headerConverter (widgetDefinition, options) {
 
   const title = media.addChildTag('q-card-title')
   title.addAttribute('slot', 'overlay')
-  title.content( getAttribute('heading') )
+  title.content(getAttribute('heading'))
 
   const span = title.addChildTag('span')
   span.addAttribute('slot', 'subtitle')
-  span.content( getAttribute('desc') )
-/*
-<q-card inline class="q-ma-sm">
-    <q-card-media overlay-position="full">
-    <img src="statics/parallax2.jpg">
+  span.content(getAttribute('desc'))
+  /*
+  <q-card inline class="q-ma-sm">
+      <q-card-media overlay-position="full">
+      <img src="statics/parallax2.jpg">
 
-    <q-card-title slot="overlay">
-    Title
-    <span slot="subtitle">Subtitle</span>
-    </q-card-title>
-    </q-card-media>
-    </q-card>
-  */
-
-
-
+      <q-card-title slot="overlay">
+      Title
+      <span slot="subtitle">Subtitle</span>
+      </q-card-title>
+      </q-card-media>
+      </q-card>
+    */
 
   //
   // jumbotron.addAttribute('dark', null)
@@ -82,5 +77,4 @@ module.exports = function headerConverter (widgetDefinition, options) {
   // }
 
   return builder.compile()
-
 }

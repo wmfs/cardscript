@@ -21,5 +21,4 @@ module.exports = function dateTimeConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: Address widget!')
   return builder.compile()
-
 }

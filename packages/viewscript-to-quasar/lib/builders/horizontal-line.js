@@ -11,5 +11,4 @@ module.exports = function horizontalLineConverter (widgetDefinition, options) {
   const pre = builder.addTag('pre')
   pre.content('// TODO: horizontal line!')
   return builder.compile()
-
 }

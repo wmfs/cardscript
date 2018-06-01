@@ -66,7 +66,6 @@ module.exports = function propertyListConverter (widgetDefinition, options) {
 
   // pre.content(JSON.stringify(widgetDefinition,null,2))
   return builder.compile()
-
 }
 //
 // v-card>
