@@ -1,6 +1,7 @@
 const widgetTypeDefaults = {
   checkboxList: [],
-  switch: false
+  switch: false,
+  richtext: ''
 }
 
 module.exports = function extractDefaults (viewscript) {

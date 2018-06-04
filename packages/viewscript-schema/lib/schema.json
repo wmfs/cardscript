@@ -513,6 +513,14 @@
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "enabled": {"$ref": "#/definitions/attributes/enabled"},
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},
+              "centreLatitudePath": {
+                "type": "string",
+                "title": "Path indicating which property should be used to infer a latitude value when first centering the map"
+              },
+              "centreLongitudePath": {
+                "type": "string",
+                "title": "Path indicating which property should be used to infer a longitude value when first centering the map"
+              },
               "enableLocationAssist": {"$ref": "#/definitions/attributes/enableLocationAssist"},
               "collectGeometries": {
                 "type": "array",

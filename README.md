@@ -132,9 +132,9 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* Viewscript is a delightful walled-garden, offering a fixed set of 28 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
+* Viewscript is a delightful walled-garden, offering a fixed set of 29 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 28 widgets supported in Viewscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 29 widgets supported in Viewscript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -155,6 +155,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 28
 | [`image`](#list-image) | Embeds a non-interactive image within the form. |
 | [`map`](#list-map) | Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.) |
 | [`number`](#list-number) | Like a `text` widget, but specifically for collecting numeric content. |
+| [`propertyList`](#list-propertyList) | Displays a list of data provided in form of an array |
 | [`questionnaire`](#list-questionnaire) | Offers the user a question with two or more possible responses on an appropriate scale. |
 | [`radio`](#list-radio) | Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style. |
 | [`richtext`](#list-richtext) | Offers the user a text editor with functionality to format text. |
@@ -319,7 +320,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Viewscript `0.0.6` supports a set of 24 common attributes from which widgets can be configured.
+Viewscript `0.0.6` supports a set of 25 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
  
 | Attribute Name | Type | Description |
@@ -346,13 +347,14 @@ Not one widget-type requires all these attributes. Attributes are often optional
 | `minimum` | `number` | The minimum numeric value a user can specify. |
 | `numericValue` | `value` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
 | `placeholder` | `string` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+| `properties` | `array` | An array of objects with a path to data and title describing the property |
 | `resultLimit` | `number` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
 | `titleMap` | `array` | An array of objects denoting a set of values that the user can select from. |
 
 
 # <a name="list"></a>Widget List
 
-Here is the full list of all 28 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 29 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -999,6 +1001,8 @@ __Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
+| `centreLatitudePath` | `string` | `No` | Path indicating which property should be used to infer a latitude value when first centering the map |
+| `centreLongitudePath` | `string` | `No` | Path indicating which property should be used to infer a longitude value when first centering the map |
 | `collectGeometries` | `array` | `No` |  |
 | `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
 | `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
@@ -1060,6 +1064,59 @@ __Attributes__
 | `maximum` | `number` | `No` | The maximum numeric value a user can specify. |
 | `minimum` | `number` | `No` | The minimum numeric value a user can specify. |
 | `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+
+
+
+
+
+<hr>
+
+## The <a name="list-propertyList"></a>`propertyList` widget
+
+__Displays a list of data provided in form of an array__
+
+__Example JSON__
+
+``` json
+{
+  "id": "contactDetails",
+  "type": "propertyList",
+  "attributes": {
+    "heading": "Contact Details",
+    "properties": [
+      {
+        "dataPath": "firstName",
+        "header": "First Name"
+      },
+      {
+        "dataPath": "lastName",
+        "header": "Last Name"
+      },
+      {
+        "dataPath": "mobileNumber",
+        "header": "Mobile Number"
+      }
+    ]
+  }
+}
+
+```
+
+__Properties__
+
+
+__`id`:__ _Required_
+
+__`type`:__ _Required_ (`"propertyList"`)
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `properties` | `array` | `No` | An array of objects with a path to data and title describing the property |
 
 
 
@@ -1831,6 +1888,7 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 
 | Package | Description | Github | NPM  |
 | ------- | ------------| ------ | ---- |
+| `react-jsonschema-form-to-viewscript` | Produces Viewscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/react-jsonschema-form-to-viewscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-viewscript)  |
 | `viewscript-doc-generator` | Produces Viewscript's main README.md file using Viewscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-doc-generator) | [Here](https://www.npmjs.com/package/viewscript-doc-generator)  |
 | `viewscript-examples` | Example Viewscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-examples) | [Here](https://www.npmjs.com/package/viewscript-examples)  |
 | `viewscript-extract-defaults` | Extracts sensible defaults from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-extract-defaults)  |
@@ -1839,6 +1897,7 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
 | `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
 | `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
+| `viewscript-to-quasar` | Produces a template for use with Quasar from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-quasar) | [Here](https://www.npmjs.com/package/viewscript-to-quasar)  |
 | `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
 | `viewscript-to-vuetify` | Produces a template for use with Vuetify from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify) | [Here](https://www.npmjs.com/package/viewscript-to-vuetify)  |
 | `viewscript-vue-component` | A simple Vue component to render dynamic Viewscript content using Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-vue-component) | [Here](https://www.npmjs.com/package/viewscript-vue-component)  |

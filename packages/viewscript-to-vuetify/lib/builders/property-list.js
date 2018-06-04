@@ -29,7 +29,7 @@ module.exports = function propertyListConverter (widgetDefinition, options) {
 
   const properties = getAttribute('properties')
   properties.forEach(
-    function(prop) {
+    function (prop) {
       const tr = table.addChildTag('tr')
       let labelTd = tr.addChildTag('td')
       labelTd.addAttribute('class', 'subheading pl-2 py-2 pr-3')
