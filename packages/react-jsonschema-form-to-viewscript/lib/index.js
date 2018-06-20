@@ -1,5 +1,5 @@
 const evaluate = require('static-eval')
-const { parse } = require('esprima')
+const {parse} = require('esprima')
 
 const widgets = require('./widgets')
 
@@ -175,6 +175,8 @@ function generateWidget (options) {
     }
   }
   // else parse as subform
+
+  if (!options.uiSchema) throw new Error(`No uiSchema on ${options.id}`)
 
   return WIDGET_MAP[options.uiSchema['ui:widget']]
     ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
