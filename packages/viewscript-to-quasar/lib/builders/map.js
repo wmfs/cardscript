@@ -1,5 +1,5 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
+const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function mapConverter (widgetDefinition, options) {
   // collectGeometries
@@ -13,10 +13,15 @@ module.exports = function mapConverter (widgetDefinition, options) {
   // pointIconPalette
   // relatedLayers
 
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const getAttribute = GetAttribute(widgetDefinition)
 
   const builder = new ComponentBuilder(widgetDefinition)
-  console.log('MAP INFO:', widgetDefinition)
-  builder.addTag('q-map')
+  const map = builder.addTag('q-map')
+  const centreLatitudePath = getAttribute('centreLatitudePath')
+  const centreLongitudePath = getAttribute('centreLongitudePath')
+
+  map.addAttribute(':centreLatitude', `data.${centreLatitudePath}`)
+  map.addAttribute(':centreLongitude', `data.${centreLongitudePath}`)
+
   return builder.compile()
 }
