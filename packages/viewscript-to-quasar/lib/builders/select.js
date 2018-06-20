@@ -16,6 +16,7 @@ module.exports = function selectConverter (widgetDefinition, options) {
   const builder = new ComponentBuilder(widgetDefinition)
   const select = builder.addTag('q-select')
   select.addAttribute('filter', null)
+  select.addAttribute(':dark', 'dark')
   select.addAttribute('stack-label', getAttribute('heading'))
   select.addAttribute('class', 'q-ma-xl')
   select.addAttribute(':options', `lists.${widgetDefinition.id}`)

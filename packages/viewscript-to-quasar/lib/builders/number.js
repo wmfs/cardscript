@@ -19,5 +19,6 @@ module.exports = function numberConverter (widgetDefinition, options) {
   textField.addAttribute('class', 'q-ma-xl')
   textField.addAttribute('type', 'number')
   textField.addAttribute('float-label', getAttribute('heading'))
+  textField.addAttribute(':dark', 'dark')
   return builder.compile()
 }
