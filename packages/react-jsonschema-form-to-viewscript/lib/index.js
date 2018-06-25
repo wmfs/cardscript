@@ -134,12 +134,14 @@ function convertForm (form) {
             }
           })
         })
+
+        const sectionRequired = section.required || []
         const widget = generateWidget({
           id: propertyId,
           schema: section.properties[propertyId],
           uiSchema,
           conditionalSchema,
-          mandatory: section.required.includes(propertyId)
+          mandatory: sectionRequired.includes(propertyId)
         })
         if (widget) viewscript.widgets.push(widget)
       })
