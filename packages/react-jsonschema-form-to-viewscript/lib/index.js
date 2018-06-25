@@ -135,7 +135,11 @@ function convertForm (form) {
           })
         })
 
-        const sectionRequired = section.required || []
+        let sectionRequired = section.required
+        if (!sectionRequired) {
+          console.log(`WARNING! The ${section.title} in ${form.jsonSchema.schema.formtitle} has no required array?`)
+          sectionRequired = []
+        }
         const widget = generateWidget({
           id: propertyId,
           schema: section.properties[propertyId],
