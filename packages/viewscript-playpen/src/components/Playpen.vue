@@ -145,7 +145,7 @@
                     </blockquote>
                     <hr>
                     <div class="display-1 grey--text text--darken-1 my-4">Vuetify Template</div>
-                    <pre class="horizontalScroll">{{dynamicContent.template}}</pre>
+                    <pre class="horizontalScroll">{{dynamicContent.vuetifyTemplate}}</pre>
 
                     <div class="display-1 grey--text text--darken-1 my-4">Quasar Template</div>
                     <pre class="horizontalScroll">{{dynamicContent.quasarTemplate}}</pre>
@@ -271,7 +271,7 @@ function processViewscript (viewscriptString, stopwatch) {
         result.defaultInternals = sdk.getDefaultInternals(viewscript)
         result.defaultInternals.subViewDefaults = result.defaultValues.subViews
         stopwatch.addTime('Generate template')
-        result.templateOutput = vuetifyConverter(viewscript)
+        result.vuetifyOutput = vuetifyConverter(viewscript)
         result.quasarOutput = quasarConverter(viewscript)
       }
     } else {
@@ -314,7 +314,7 @@ export default {
               if (output.validatorOutput.widgetsValid) {
                 comp.$set(comp.validation, 'state', 'valid')
                 comp.$set(comp.validation, 'errors', [])
-                comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
+                comp.$set(comp.dynamicContent, 'vuetifyTemplate', output.vuetifyOutput.template)
                 comp.$set(comp.dynamicContent, 'quasarTemplate', output.quasarOutput.template)
                 comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
                 comp.$set(comp.dynamicContent, 'internals', output.defaultInternals)

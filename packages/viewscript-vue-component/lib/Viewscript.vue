@@ -11,7 +11,7 @@
     const _this = this
     return {
       uiTemplate: {
-        template: this.content.template,
+        template: this.content.vuetifyTemplate, // quasarTemplate
         components: {},
         data: function () {
           return {
