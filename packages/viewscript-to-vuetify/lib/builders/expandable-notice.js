@@ -1,12 +1,6 @@
 const ComponentBuilder = require('./../utils/Component-builder')
 const GetAttribute = require('./../utils/Get-attribute')
 
-// default
-// content
-// enabled
-// heading
-// help
-
 module.exports = function expandableNoticeConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)

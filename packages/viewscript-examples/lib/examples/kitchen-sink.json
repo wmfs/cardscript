@@ -350,6 +350,48 @@
     },
     {
       "type": "set",
+      "id": "propertyListSet",
+      "attributes": {
+        "tocTitle": "The 'Property List' widget",
+        "tocIcon": "list"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'Property List' widget",
+        "desc": "Property List widget displays a list of specified data."
+      }
+    },
+    {
+      "id": "propertyListWidget",
+      "type": "propertyList",
+      "attributes": {
+        "heading": "Contact Details",
+        "properties": [
+          {
+            "dataPath": "firstName",
+            "header": "First Name"
+          },
+          {
+            "dataPath": "lastName",
+            "header": "Last Name"
+          },
+          {
+            "dataPath": "mobileNumber",
+            "header": "Mobile Number"
+          }
+        ]
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
+      "type": "set",
       "id": "questionnaireSet",
       "attributes": {
         "tocTitle": "The 'Questionnaire' widget",

@@ -28,19 +28,16 @@ module.exports = function propertyListConverter (widgetDefinition, options) {
   table.addAttribute('class', 'mx-1 mb-1')
 
   const properties = getAttribute('properties')
-  properties.forEach(
-    function (prop) {
-      const tr = table.addChildTag('tr')
-      let labelTd = tr.addChildTag('td')
-      labelTd.addAttribute('class', 'subheading pl-2 py-2 pr-3')
-      labelTd.content(prop.header)
-      let valueTd = tr.addChildTag('td')
-      valueTd.content(`{{data.${prop.dataPath}}}`)
-      valueTd.addAttribute('class', 'pa-2')
-    }
-  )
+  properties.forEach(prop => {
+    const tr = table.addChildTag('tr')
+    let labelTd = tr.addChildTag('td')
+    labelTd.addAttribute('class', 'subheading pl-2 py-2 pr-3')
+    labelTd.content(prop.header)
+    let valueTd = tr.addChildTag('td')
+    valueTd.content(`{{data.${prop.dataPath}}}`)
+    valueTd.addAttribute('class', 'pa-2')
+  })
 
-  // pre.content(JSON.stringify(widgetDefinition,null,2))
   return builder.compile()
 }
 //
