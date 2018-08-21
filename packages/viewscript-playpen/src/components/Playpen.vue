@@ -6,7 +6,8 @@
           <v-layout align-center>
             <v-flex>
               <div class="display-3 grey--text text--darken-1">Viewscript playpen</div>
-              <p>Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn it into a UI.
+              <p>Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>"
+                to turn it into a UI.
                 Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more
                 information!
               </p>
@@ -197,6 +198,7 @@
 
 <script>
 import Viewscript from 'viewscript-vue-component'
+
 const sdk = require('viewscript-vue-sdk')
 const examples = require('viewscript-examples')
 const parser = require('viewscript-parser')
@@ -293,7 +295,6 @@ export default {
       this.$set(this.dynamicContent, 'template', '')
       this.$set(this, 'viewscript', JSON.stringify(examples[this.currentExample], null, 2))
     },
-
     renderViewscript: function renderViewscript () {
       const comp = this
       this.$set(comp, 'showSpinner', true)
@@ -301,46 +302,40 @@ export default {
         function () {
           // comp.$forceUpdate()
           comp.$set(comp.validation, 'state', 'notValidated')
-          comp.$nextTick(
-            function () {
-              const stopwatch = new Stopwatch()
-              processViewscript(comp.viewscript, stopwatch).then(
-                (output) => {
-                  let elementIdToScrollTo
-                  if (output.validatorOutput.widgetsValid) {
-                    comp.$set(comp.validation, 'state', 'valid')
-                    comp.$set(comp.validation, 'errors', [])
-                    comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
-                    comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
-                    comp.$set(comp.dynamicContent, 'internals', output.defaultInternals)
-                    comp.$set(comp.dynamicContent, 'lists', output.lists)
-                    comp.$set(comp.dynamicContent, 'times', [])
-                    comp.$set(comp.dynamicContent, 'toc', output.toc)
-                    elementIdToScrollTo = 'success'
-                  } else {
-                    comp.$set(comp.validation, 'state', 'invalid')
-                    comp.$set(comp.validation, 'errors', output.validatorOutput.errors)
-                    comp.$set(comp.dynamicContent, 'template', '')
-                    comp.$set(comp.dynamicContent, 'data', {})
-                    comp.$set(comp.dynamicContent, 'internals', {})
-                    comp.$set(comp.dynamicContent, 'lists', {})
-                    comp.$set(comp.dynamicContent, 'toc', [])
-                    elementIdToScrollTo = 'thereWereErrors'
-                  }
-                  stopwatch.addTime('Render')
-                  comp.$nextTick(
-                    function () {
-                      comp.$set(comp, 'showSpinner', false)
-                      const e = document.getElementById(elementIdToScrollTo)
-                      e.scrollIntoView()
-                      stopwatch.addTime('finished')
-                      comp.$set(comp.dynamicContent, 'times', stopwatch.getResults())
-                    }
-                  )
-                }
-              )
-            }
-          )
+          comp.$nextTick(() => {
+            const stopwatch = new Stopwatch()
+            processViewscript(comp.viewscript, stopwatch).then(output => {
+              let elementIdToScrollTo
+              if (output.validatorOutput.widgetsValid) {
+                comp.$set(comp.validation, 'state', 'valid')
+                comp.$set(comp.validation, 'errors', [])
+                comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
+                comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
+                comp.$set(comp.dynamicContent, 'internals', output.defaultInternals)
+                comp.$set(comp.dynamicContent, 'lists', output.lists)
+                comp.$set(comp.dynamicContent, 'times', [])
+                comp.$set(comp.dynamicContent, 'toc', output.toc)
+                elementIdToScrollTo = 'success'
+              } else {
+                comp.$set(comp.validation, 'state', 'invalid')
+                comp.$set(comp.validation, 'errors', output.validatorOutput.errors)
+                comp.$set(comp.dynamicContent, 'template', '')
+                comp.$set(comp.dynamicContent, 'data', {})
+                comp.$set(comp.dynamicContent, 'internals', {})
+                comp.$set(comp.dynamicContent, 'lists', {})
+                comp.$set(comp.dynamicContent, 'toc', [])
+                elementIdToScrollTo = 'thereWereErrors'
+              }
+              stopwatch.addTime('Render')
+              comp.$nextTick(() => {
+                comp.$set(comp, 'showSpinner', false)
+                const e = document.getElementById(elementIdToScrollTo)
+                e.scrollIntoView()
+                stopwatch.addTime('finished')
+                comp.$set(comp.dynamicContent, 'times', stopwatch.getResults())
+              })
+            })
+          })
         },
         20
       )
@@ -359,7 +354,6 @@ export default {
         {value: 'complex', text: 'Complex example'},
         {value: 'kitchenSink', text: 'Kitchen sink example'}
       ],
-
       showSpinner: false,
       example: defaultViewscript,
       viewscript: defaultViewscript,
