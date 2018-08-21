@@ -12,6 +12,7 @@
     "showWhen": {"type": "string", "title": "An expression, that when evaluating to `true` will cause the widget to appear (so the widget will not be shown if evaluated to be `false`)."},
 
     "attributes": {
+      "content": {"type": "string", "title": "Some read only text to display."},
       "heading": {"type": "string", "title": "Some short, strong, punchy text to identify the widget."},
       "placeholder": {"type": "string", "title": "Some example text that can be appear inside a widget ahead of collecting user input. "},
       "minimum": {"type": "number", "title": "The minimum numeric value a user can specify."},
@@ -746,6 +747,27 @@
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"},
               "help": {"$ref": "#/definitions/attributes/help"}
             }
+          }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
+      },
+
+      "expandableNotice": {
+        "title": "Expandable Notice field.",
+        "properties": {
+          "type": {"enum": ["expandableNotice"]},
+          "id": {"$ref": "#/definitions/id"},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "content": {"$ref": "#/definitions/attributes/content"},
+              "enabled": {"$ref": "#/definitions/attributes/enabled"},
+              "help": {"$ref": "#/definitions/attributes/help"}
+            },
+            "additionalProperties": false
           }
         },
         "required": ["id", "type"],

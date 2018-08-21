@@ -7,6 +7,7 @@ module.exports = {
   date: require('./date'),
   endSet: require('./end-set'),
   endSubView: require('./end-sub-view'),
+  expandableNotice: require('./expandable-notice'),
   fileUpload: require('./file-upload'),
   header: require('./header'),
   heading: require('./heading'),

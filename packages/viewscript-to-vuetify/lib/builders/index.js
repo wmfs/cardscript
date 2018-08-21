@@ -23,6 +23,9 @@ module.exports = {
   endSubView: {
     conversionFunction: require('./end-sub-view')
   },
+  expandableNotice: {
+    conversionFunction: require('./expandable-notice')
+  },
   fileUpload: {
     conversionFunction: require('./file-upload')
   },
