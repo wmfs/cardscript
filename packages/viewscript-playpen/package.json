@@ -20,6 +20,7 @@
     "viewscript-vue-component": "^0.0.6",
     "viewscript-vue-sdk": "^0.0.6",
     "viewscript-table-of-contents": "^0.0.6",
+    "viewscript-to-quasar": "^0.0.6",
     "viewscript-to-vuetify": "^0.0.6",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",

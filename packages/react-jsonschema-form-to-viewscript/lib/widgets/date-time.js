@@ -1,6 +1,5 @@
 module.exports = class DateTime {
   constructor (options) {
-    console.log(options)
     this.widget = {
       id: options.id,
       type: 'dateTime',

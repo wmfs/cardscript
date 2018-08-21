@@ -144,8 +144,11 @@
                       be generated too!
                     </blockquote>
                     <hr>
-                    <div class="display-1 grey--text text--darken-1 my-4">Template</div>
-                    <pre class="horizontalScroll">{{dynamicContent.template}}</pre>
+                    <div class="display-1 grey--text text--darken-1 my-4">Vuetify Template</div>
+                    <pre class="horizontalScroll">{{dynamicContent.vuetifyTemplate}}</pre>
+
+                    <div class="display-1 grey--text text--darken-1 my-4">Quasar Template</div>
+                    <pre class="horizontalScroll">{{dynamicContent.quasarTemplate}}</pre>
 
                     <div class="display-1 grey--text text--darken-1 my-4">Lists</div>
                     <pre class="horizontalScroll">{{dynamicContent.lists}}</pre>
@@ -203,7 +206,8 @@ const sdk = require('viewscript-vue-sdk')
 const examples = require('viewscript-examples')
 const parser = require('viewscript-parser')
 const validator = require('viewscript-schema').validateForm
-const templateConverter = require('viewscript-to-vuetify')
+const vuetifyConverter = require('viewscript-to-vuetify')
+const quasarConverter = require('viewscript-to-quasar')
 const extractDefaults = require('viewscript-extract-defaults')
 const extractToc = require('viewscript-table-of-contents')
 const extractLists = require('viewscript-extract-lists')
@@ -248,7 +252,7 @@ class Stopwatch {
 }
 
 function processViewscript (viewscriptString, stopwatch) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const result = {}
     stopwatch.addTime('Parse string into object')
     const parserResult = parser(viewscriptString)
@@ -267,7 +271,8 @@ function processViewscript (viewscriptString, stopwatch) {
         result.defaultInternals = sdk.getDefaultInternals(viewscript)
         result.defaultInternals.subViewDefaults = result.defaultValues.subViews
         stopwatch.addTime('Generate template')
-        result.templateOutput = templateConverter(viewscript)
+        result.vuetifyOutput = vuetifyConverter(viewscript)
+        result.quasarOutput = quasarConverter(viewscript)
       }
     } else {
       result.validatorOutput = {
@@ -309,7 +314,8 @@ export default {
               if (output.validatorOutput.widgetsValid) {
                 comp.$set(comp.validation, 'state', 'valid')
                 comp.$set(comp.validation, 'errors', [])
-                comp.$set(comp.dynamicContent, 'template', output.templateOutput.template)
+                comp.$set(comp.dynamicContent, 'vuetifyTemplate', output.vuetifyOutput.template)
+                comp.$set(comp.dynamicContent, 'quasarTemplate', output.quasarOutput.template)
                 comp.$set(comp.dynamicContent, 'data', output.defaultValues.rootView)
                 comp.$set(comp.dynamicContent, 'internals', output.defaultInternals)
                 comp.$set(comp.dynamicContent, 'lists', output.lists)
