@@ -62,7 +62,7 @@ function convertBoard (board, data) {
     ]
   }
 
-  board.content.map(content => {
+  board.content.forEach(content => {
     if (WIDGET_MAP[content.widget]) {
       const widget = new widgets[WIDGET_MAP[content.widget]](content, 'board').widget
       if (widget) viewscript.widgets.push(widget)
@@ -130,7 +130,7 @@ function convertForm (form) {
         Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
           condition.forEach(c => {
             if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-              // conditionalSchema.push(convertExpression(c.expression))
+              conditionalSchema.push(convertExpression(c.expression))
             }
           })
         })
@@ -160,7 +160,6 @@ function convertForm (form) {
         conditionalSchema: sectionCondition || [],
         mandatory: false // todo: find if required
       })
-
       if (widget) viewscript.widgets.push(widget)
     }
   })
@@ -189,18 +188,14 @@ function generateWidget (options) {
     : null
 }
 
-/*
 function convertExpression (expression) {
-  if (expression[0] === '!') expression = expression.substring(1)
-  if (expression[0] === '(') expression = expression.substring(1)
-  if (expression[expression.length - 1] === ')') expression = expression.substring(0, expression.length - 1)
-
   return expression
     .split(' ')
-    .map(element => {
-      const e = element.split('_')
-      return (e.length > 1) ? 'data.' + e[e.length - 1] : element
+    .map(part => {
+      if (part.split('_')[0][0] === '"') return part
+      else if (part.split('_').length === 2) return `data.${part.split('_')[1]}`
+      else return part
     })
     .join(' ')
+    .replace(/"/g, `'`)
 }
-*/
