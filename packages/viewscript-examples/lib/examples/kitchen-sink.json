@@ -583,6 +583,36 @@
     },
     {
       "type": "set",
+      "id": "stickyNoteSet",
+      "attributes": {
+        "tocTitle": "The 'Sticky Note' widget",
+        "tocIcon": "note"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'Sticky Note' widget",
+        "desc": "Sticky Note widget displays some given text as a notice"
+      }
+    },
+    {
+      "id": "stickyNoteWidget",
+      "type": "stickyNote",
+      "attributes": {
+        "style": "informative",
+        "heading": "Remember!",
+        "desc": "Floor numbering starts with 0 (ground floor)."
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
+      "type": "set",
       "id": "textSet",
       "attributes": {
         "tocTitle": "The 'Text' widget",
