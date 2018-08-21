@@ -36,6 +36,16 @@
       "captureHistoric": {"type": "boolean", "title": "Can the date/time captured by the widget occur in the past (as starting when the for is submitted)?"},
       "historicByAtLeast": {"type": "string", "title": "A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format)."},
       "futuristicByAtMost": {"type": "string", "title": "A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format)."},
+      "actions": {
+        "type": "array",
+        "title": "An array of objects denoting a set of actions the user can take",
+        "items": {
+          "properties": {
+            "title": {"type": "string", "title": "The user-facing text that can describe the action"}
+          },
+          "required": ["title"]
+        }
+      },
       "titleMap": {
         "type": "array",
         "title": "An array of objects denoting a set of values that the user can select from.",
@@ -120,6 +130,22 @@
         },
         "required": ["id", "type"],
         "additionalProperties": false
+      },
+
+      "buttonList": {
+        "title": "A set of buttons that the user can interact with",
+        "properties": {
+          "type": {"enum": ["buttonList"]},
+          "id": {"$ref": "#/definitions/id"},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "actions": {"$ref": "#/definitions/attributes/actions"}
+            }
+          }
+        }
       },
 
       "checkboxList": {
