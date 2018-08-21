@@ -5,6 +5,9 @@ module.exports = {
   apiLookup: {
     conversionFunction: require('./api-lookup')
   },
+  buttonList: {
+    conversionFunction: require('./button-list')
+  },
   checkboxList: {
     conversionFunction: require('./checkbox-list')
   },
