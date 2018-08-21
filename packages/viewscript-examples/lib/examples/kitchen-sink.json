@@ -40,6 +40,45 @@
     },
     {
       "type": "set",
+      "id": "buttonListSet",
+      "attributes": {
+        "tocTitle": "The 'Button List' widget",
+        "tocIcon": "view_list"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'Button List' widget",
+        "desc": "Button List renders multiple buttons"
+      }
+    },
+    {
+      "id": "buttonListWidget",
+      "type": "buttonList",
+      "attributes": {
+        "heading": "Some Actions",
+        "actions": [
+          {
+            "title": "Edit user"
+          },
+          {
+            "title": "Remove user"
+          },
+          {
+            "title": "Create a new user"
+          }
+        ]
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
+      "type": "set",
       "id": "checkSet",
       "attributes": {
         "tocTitle": "The 'Checkbox List' widget",
