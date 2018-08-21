@@ -20,7 +20,8 @@ const WIDGET_MAP = {
   questionnaire: 'Questionnaire',
   richTextArea: 'Richtext',
   numberField: 'Number',
-  addressField: 'Address'
+  addressField: 'Address',
+  expandableNoticeField: 'ExpandableNotice'
 }
 
 // todo: unimplemented widgets
@@ -29,7 +30,6 @@ const WIDGET_MAP = {
 // summary
 // tabularlist
 // taglist
-// expandableNoticeField
 // unknownField
 // galleryField
 // listField

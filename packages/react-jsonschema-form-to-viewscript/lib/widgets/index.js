@@ -5,6 +5,7 @@ module.exports = {
   Date: require('./date'),
   Currency: require('./currency'),
   DateTime: require('./date-time'),
+  ExpandableNotice: require('./expandable-notice'),
   FileUpload: require('./file-upload'),
   Header: require('./header'),
   Image: require('./image'),
