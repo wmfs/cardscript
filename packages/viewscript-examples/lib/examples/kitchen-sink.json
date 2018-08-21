@@ -196,6 +196,35 @@
     },
     {
       "type": "set",
+      "id": "expandableNoticeSet",
+      "attributes": {
+        "tocTitle": "The 'Expandable Notice' widget",
+        "tocIcon": "expand_more"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'Expandable Notice' widget",
+        "desc": "Expandable Notice widget allows us to expand to to show more text"
+      }
+    },
+    {
+      "id": "expandableNoticeWidget",
+      "type": "expandableNotice",
+      "attributes": {
+        "heading": "Expandable Notice",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
+      "type": "set",
       "id": "imgSet",
       "attributes": {
         "tocTitle": "The 'Image' widget",
