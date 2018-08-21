@@ -4,16 +4,8 @@ const {parse} = require('esprima')
 const widgets = require('./widgets')
 
 const WIDGET_MAP = {
-  // buttonlist: '',
-  // diarysummary: '',
-  // markup: '',
   propertylist: 'PropertyList',
-  // summary: '',
-  // tabularlist: '',
-  // taglist: '',
   maplist: 'Map',
-  // expandableNoticeField: '',
-  // unknownField: '',
   textField: 'Text',
   selectField: 'Select',
   switchField: 'Switch',
@@ -23,20 +15,30 @@ const WIDGET_MAP = {
   checkField: 'CheckboxList',
   dateField: 'Date',
   timeField: 'Time',
-  // galleryField: '',
-  // listField: '',
-  // titleField: '',
   mapField: 'Map',
-  // annotationField: '',
   fileUploader: 'FileUpload',
   questionnaire: 'Questionnaire',
   richTextArea: 'Richtext',
   numberField: 'Number',
-  // repeatextFld: '',
   addressField: 'Address'
-  // findField: '',
-  // bookingField: ''
 }
+
+// todo: unimplemented widgets
+// buttonlist
+// markup
+// summary
+// tabularlist
+// taglist
+// expandableNoticeField
+// unknownField
+// galleryField
+// listField
+// titleField
+// annotationField
+// repeatextFld
+// diarysummary
+// findField
+// bookingField
 
 module.exports = function reactJsonSchemaFormToViewScript (view, uiType, data) {
   switch (uiType) {
