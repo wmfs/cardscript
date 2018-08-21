@@ -1,5 +1,5 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+// const GetAttribute = require('./../utils/Get-attribute')
 
 // default
 // desc
