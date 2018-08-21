@@ -21,11 +21,11 @@ const WIDGET_MAP = {
   richTextArea: 'Richtext',
   numberField: 'Number',
   addressField: 'Address',
-  expandableNoticeField: 'ExpandableNotice'
+  expandableNoticeField: 'ExpandableNotice',
+  buttonlist: 'ButtonList'
 }
 
 // todo: unimplemented widgets
-// buttonlist
 // markup
 // summary
 // tabularlist

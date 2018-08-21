@@ -1,7 +1,8 @@
 module.exports = {
-  ApiLookup: require('./api-lookup'),
-  CheckboxList: require('./checkbox-list'),
   Address: require('./address'),
+  ApiLookup: require('./api-lookup'),
+  ButtonList: require('./button-list'),
+  CheckboxList: require('./checkbox-list'),
   Date: require('./date'),
   Currency: require('./currency'),
   DateTime: require('./date-time'),

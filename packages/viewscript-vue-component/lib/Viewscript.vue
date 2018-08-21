@@ -4,14 +4,14 @@
     </div>
 </template>
 <script>
-  export default {
+export default {
   name: 'Viewscript',
   props: ['content'],
   data () {
     const _this = this
     return {
       uiTemplate: {
-        template: this.content.vuetifyTemplate, // quasarTemplate
+        template: this.content.vuetifyTemplate,
         components: {},
         data: function () {
           return {

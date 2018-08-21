@@ -100,17 +100,26 @@
                       <hr class="my-2">
                     </div>
 
-                    <div class="card">
-                      <v-container grid-list-xl>
-                        <v-layout row wrap>
-                          <v-flex xs10 offset-xs1>
-                            <div class="card-body">
-                              <viewscript v-bind:content="dynamicContent"></viewscript>
-                            </div>
-                          </v-flex>
-                        </v-layout>
-                      </v-container>
-                    </div>
+                    <v-tabs v-model="activeView" color="green" dark slider-color="yellow" fixed-tabs>
+                      <v-tab>Vuetify</v-tab>
+                      <v-tab>Quasar</v-tab>
+                      <v-tab-item>
+                        <div class="card">
+                          <v-container grid-list-xl>
+                            <v-layout row wrap>
+                              <v-flex xs10 offset-xs1>
+                                <div class="card-body">
+                                  <viewscript v-bind:content="dynamicContent"></viewscript>
+                                </div>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </div>
+                      </v-tab-item>
+                      <v-tab-item>
+                        Show Quasar view here...
+                      </v-tab-item>
+                    </v-tabs>
                   </v-card>
                 </v-tab-item>
 
@@ -351,6 +360,7 @@ export default {
     const defaultViewscript = JSON.stringify(examples.complex, null, 2)
     return {
       active: null,
+      activeView: null,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       currentExample: 'complex',
       items: [

@@ -104,6 +104,26 @@
           }
         ]
       }
+    },
+    {
+      "widget": "buttonlist",
+      "config": {
+        "launches": [
+          {
+            "title": "Edit the incident",
+            "stateMachineName": "tymly_editIncident_1_0",
+            "input": {
+              "formData": {
+                "incNum": "data.incNum"
+              }
+            }
+          },
+          {
+            "title": "Add incident",
+            "stateMachineName": "tymly_addIncident_1_0"
+          }
+        ]
+      }
     }
   ]
 }
