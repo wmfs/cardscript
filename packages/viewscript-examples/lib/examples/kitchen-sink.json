@@ -40,6 +40,42 @@
     },
     {
       "type": "set",
+      "id": "apiLookupSet",
+      "attributes": {
+        "tocTitle": "The 'API Lookup' widget",
+        "tocIcon": "home"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'API Lookup' widget",
+        "desc": "API Lookup widget allows the user to perform a search against an API"
+      }
+    },
+    {
+      "id": "apiLookupWidget",
+      "type": "apiLookup",
+      "attributes": {
+        "apiName": "fleet",
+        "heading": "Fire Appliance",
+        "labelPath": "$.fireApplianceLabel",
+        "mandatory": true,
+        "resultLimit": 20,
+        "params": {
+          "showCurrentOnly": true,
+          "showOperationalOnly": true
+        }
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
+      "type": "set",
       "id": "buttonListSet",
       "attributes": {
         "tocTitle": "The 'Button List' widget",
