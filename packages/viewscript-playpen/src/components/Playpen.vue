@@ -101,23 +101,34 @@
                     </div>
 
                     <v-tabs v-model="activeView" color="green" dark slider-color="yellow" fixed-tabs>
-                      <v-tab>Vuetify</v-tab>
-                      <v-tab>Quasar</v-tab>
-                      <v-tab-item>
+                      <v-tab key="vuetify">Vuetify</v-tab>
+                      <v-tab key="quasar">Quasar</v-tab>
+                      <v-tab-item key="vuetify">
                         <div class="card">
                           <v-container grid-list-xl>
                             <v-layout row wrap>
                               <v-flex xs10 offset-xs1>
                                 <div class="card-body">
-                                  <viewscript v-bind:content="dynamicContent"></viewscript>
+                                  <viewscript v-bind:content="dynamicContent" v-bind:framework="'vuetify'"></viewscript>
                                 </div>
                               </v-flex>
                             </v-layout>
                           </v-container>
                         </div>
                       </v-tab-item>
-                      <v-tab-item>
-                        Show Quasar view here...
+                      <v-tab-item key="quasar">
+                        <div class="card">
+                          <v-container grid-list-xl>
+                            <v-layout row wrap>
+                              <v-flex xs10 offset-xs1>
+                                <div class="card-body">
+                                  Quasar here...
+                                  <!--<viewscript v-bind:content="dynamicContent" v-bind:framework="'quasar'"></viewscript>-->
+                                </div>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </div>
                       </v-tab-item>
                     </v-tabs>
                   </v-card>

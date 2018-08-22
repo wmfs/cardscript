@@ -16,14 +16,29 @@ module.exports = function tableConverter (widgetDefinition, options) {
   const table = builder.addTag('v-data-table')
   table.addAttribute(':items', `data.${getAttribute('dataPath')}`)
 
-  const headerTemplate = table.addChildTag('template')
-  headerTemplate.addAttribute('slot', 'headers')
+  const header = table.addChildTag('template')
+  header.addAttribute('slot', 'headers')
+  header.addAttribute('slot-scope', 'props')
 
-  const headerTR = headerTemplate.addChildTag('tr')
+  const headerTR = header.addChildTag('tr')
 
   for (const header of headers) {
-    const headerTH = headerTR.addChildTag('th')
-    headerTH.content(header.text)
+    const th = headerTR.addChildTag('th')
+    th.addAttribute(':key', header.value)
+    th.addAttribute('class', 'text-sm-left')
+    th.content(header.text)
+  }
+
+  const items = table.addChildTag('template')
+  items.addAttribute('slot', 'items')
+  items.addAttribute('slot-scope', 'props')
+
+  const itemsTR = items.addChildTag('tr')
+
+  for (const header of headers) {
+    const td = itemsTR.addChildTag('td')
+    td.addAttribute('class', 'text-xs-left')
+    td.content(`{{props.item.${header.value}}}`)
   }
 
   return builder.compile()

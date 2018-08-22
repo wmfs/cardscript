@@ -6,12 +6,12 @@
 <script>
 export default {
   name: 'Viewscript',
-  props: ['content'],
+  props: ['content', 'framework'],
   data () {
     const _this = this
     return {
       uiTemplate: {
-        template: this.content.vuetifyTemplate,
+        template: this.framework === 'quasar' ? this.content.quasarTemplate : this.content.vuetifyTemplate,
         components: {},
         data: function () {
           return {
