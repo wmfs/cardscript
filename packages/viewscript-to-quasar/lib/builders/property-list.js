@@ -16,26 +16,24 @@ module.exports = function propertyListConverter (widgetDefinition, options) {
   header.content(getAttribute('heading'))
 
   const properties = getAttribute('properties')
-  properties.forEach(
-    function (prop) {
-      const item = list.addChildTag('q-item')
+  properties.forEach(prop => {
+    const item = list.addChildTag('q-item')
 
-      const leftSide = item.addChildTag('q-item-side')
-      leftSide.addAttribute('icon', 'chevron_right')
-      leftSide.addAttribute('inverted', null)
-      leftSide.addAttribute('color', 'primary')
+    const leftSide = item.addChildTag('q-item-side')
+    leftSide.addAttribute('icon', 'chevron_right')
+    leftSide.addAttribute('inverted', null)
+    leftSide.addAttribute('color', 'primary')
 
-      const main = item.addChildTag('q-item-main')
+    const main = item.addChildTag('q-item-main')
 
-      const label = main.addChildTag('q-item-tile')
-      label.addAttribute('label', null)
-      label.content(prop.header)
+    const label = main.addChildTag('q-item-tile')
+    label.addAttribute('label', null)
+    label.content(prop.header)
 
-      const subLabel = main.addChildTag('q-item-tile')
-      subLabel.addAttribute('sublabel', null)
-      subLabel.content(`{{data.${prop.dataPath}}}`)
-    }
-  )
+    const subLabel = main.addChildTag('q-item-tile')
+    subLabel.addAttribute('sublabel', null)
+    subLabel.content(`{{data.${prop.dataPath}}}`)
+  })
 
   //
   // const layout = container.addChildTag('v-layout')

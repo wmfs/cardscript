@@ -3,7 +3,7 @@
   "type": "table",
   "attributes": {
     "heading": "Patient Details",
-    "labelPath": "$.patients",
+    "dataPath": "patients",
     "columns": [
       {
         "title": "Full Name",

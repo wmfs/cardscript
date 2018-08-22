@@ -29,6 +29,7 @@
       "enableUnknownOption": {"type": "boolean", "title": "Should the widget allow the user to indicate they don't know enough detail to find the most suitable result from a search API?"},
       "enableLocationAssist": {"type": "boolean", "title": "If supported by the app, should the widget try to find results from a search API by proximity to the user's current location?"},
       "label": {"type": "string", "title": "A short piece of text to help identify what content is required by the user."},
+      "dataPath": {"type": "string", "title": "A path pointing to a key in the data"},
       "labelPath": {"type": "string", "title": "A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data)."},
       "mandatory": {"type": "boolean", "title": "Indicates if a value needs to be supplied by the user, or if it's optional."},
       "desc": {"type": "string", "title": "Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user."},
@@ -750,7 +751,7 @@
               "help": {"$ref": "#/definitions/attributes/help"},
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "desc": {"$ref": "#/definitions/attributes/desc"},
-              "labelPath": {"$ref": "#/definitions/attributes/labelPath"},
+              "dataPath": {"$ref": "#/definitions/attributes/dataPath"},
               "columns": {"$ref": "#/definitions/attributes/columns"},
               "resultLimit": {"$ref": "#/definitions/attributes/resultLimit"}
             },
