@@ -126,7 +126,7 @@
                 <v-tab-item key="model">
                   <v-card flat>
                     <blockquote class="blockquote">
-                      This is the underlying data model for the view (default values were inferred from the Fromscript
+                      This is the underlying data model for the view (default values were inferred from the Viewscript
                       using the
                       <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults">viewscript-extract-defaults</a>
                       package).
