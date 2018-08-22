@@ -17,14 +17,9 @@ import 'vue-nav-tabs/themes/vue-tabs.css'
 import App from './App'
 import router from './router'
 
-// https://github.com/quasarframework/quasar/issues/1576
-// import Quasar from 'quasar-framework/dist/quasar.mat.esm'
-// import 'quasar-framework/dist/umd/quasar.mat.css'
-
 Vue.config.productionTip = false
 Vue.use(VueTabs)
 Vue.use(Vuetify)
-// Vue.use(Quasar)
 Vue.use(Viewscript)
 Vue.use(VueCodemirror, {
   options: {

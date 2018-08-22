@@ -11,7 +11,7 @@ export default {
     const _this = this
     return {
       uiTemplate: {
-        template: this.framework === 'quasar' ? this.content.quasarTemplate : this.content.vuetifyTemplate,
+        template: this.content.vuetifyTemplate,
         components: {},
         data: function () {
           return {
