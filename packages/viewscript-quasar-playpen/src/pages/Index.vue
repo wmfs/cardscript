@@ -18,6 +18,8 @@
         float-label="The JSON would go here, not necessarily this widget..."
         type="textarea"
         v-model="viewscript"
+        :max-height="100"
+        rows="7"
       />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
@@ -35,6 +37,21 @@
           {{err}}
         </q-alert>
       </div>
+
+      <q-tabs no-pane-border>
+        <q-tab default slot="title" name="view-tab" label="view"></q-tab>
+        <q-tab slot="title" name="model-tab" label="model"></q-tab>
+        <q-tab slot="title" name="template-tab" label="template"></q-tab>
+        <q-tab-pane name="view-tab">
+          <viewscript :content="dynamicContent" />
+        </q-tab-pane>
+        <q-tab-pane name="model-tab">
+          <pre>{{dynamicContent.data}}</pre>
+        </q-tab-pane>
+        <q-tab-pane name="template-tab">
+          {{dynamicContent.quasarTemplate}}
+        </q-tab-pane>
+      </q-tabs>
     </div>
   </q-page>
 </template>
@@ -43,10 +60,20 @@
 </style>
 
 <script>
+import Viewscript from './../components/Viewscript'
+
+const quasarConverter = require('viewscript-to-quasar')
+const extractDefaults = require('viewscript-extract-defaults')
+
 export default {
   name: 'PageIndex',
+  components: { Viewscript },
   data: function () {
     return {
+      dynamicContent: {
+        quasarTemplate: '',
+        data: {}
+      },
       errors: [],
       viewscript: '{}',
       exampleSlct: null,
@@ -68,11 +95,20 @@ export default {
       this.errors = []
       try {
         const parsed = JSON.parse(this.viewscript)
-        console.log(parsed)
+        const output = processViewscript(parsed)
+        this.dynamicContent.quasarTemplate = output.quasarOutput.template
+        this.dynamicContent.data = output.defaultValues.rootView
       } catch (e) {
         this.errors.push(e.message)
       }
     }
   }
+}
+
+function processViewscript (viewscript) {
+  const result = {}
+  result.quasarOutput = quasarConverter(viewscript)
+  result.defaultValues = extractDefaults(viewscript)
+  return result
 }
 </script>

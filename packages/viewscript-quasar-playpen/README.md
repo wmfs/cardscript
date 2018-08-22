@@ -5,10 +5,18 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
+cd ../viewscript-examples
+yarn link
 
-# serve with hot reload at localhost:8080
-npm run start
+cd ../viewscript-to-quasar
+yarn link
+
+cd ../viewscript-quasar-playpen
+yarn install
+yarn link viewscript-examples
+yarn link viewscript-to-quasar
+yarn link viewscript-extract-defaults````
+
+quasar dev
 ```
 
