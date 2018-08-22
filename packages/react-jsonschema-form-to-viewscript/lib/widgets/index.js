@@ -21,6 +21,7 @@ module.exports = {
   Slider: require('./slider'),
   StickyNote: require('./sticky-note'),
   Switch: require('./switch'),
+  Table: require('./table'),
   Text: require('./text'),
   Textarea: require('./textarea'),
   Time: require('./time')

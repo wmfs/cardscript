@@ -22,13 +22,13 @@ const WIDGET_MAP = {
   numberField: 'Number',
   addressField: 'Address',
   expandableNoticeField: 'ExpandableNotice',
-  buttonlist: 'ButtonList'
+  buttonlist: 'ButtonList',
+  tabularlist: 'Table'
 }
 
 // todo: unimplemented widgets
 // markup
 // summary
-// tabularlist
 // taglist
 // unknownField
 // galleryField
