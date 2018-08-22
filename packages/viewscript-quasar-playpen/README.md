@@ -4,19 +4,30 @@
 
 ## Build Setup
 
+Packages to be linked: 
+* viewscript-examples
+* viewscript-to-quasar
+* viewscript-extract-defaults
+
+For each package to be linked, do the following:
 ``` bash
-cd ../viewscript-examples
+cd ../<package-name>
 yarn link
+```
 
-cd ../viewscript-to-quasar
-yarn link
-
+Then:
+``` bash
 cd ../viewscript-quasar-playpen
 yarn install
-yarn link viewscript-examples
-yarn link viewscript-to-quasar
-yarn link viewscript-extract-defaults
+```
 
+Then again, for each package to be linked, do the following:
+``` bash
+yarn link <package-name>
+```
+
+Finally:
+``` bash
 quasar dev
 ```
 
