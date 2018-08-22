@@ -15,8 +15,10 @@ cd ../viewscript-quasar-playpen
 yarn install
 yarn link viewscript-examples
 yarn link viewscript-to-quasar
-yarn link viewscript-extract-defaults````
+yarn link viewscript-extract-defaults
 
 quasar dev
 ```
 
+## Environment Variables
+VIEWSCRIPT_ROOT_PATH
