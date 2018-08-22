@@ -36,6 +36,16 @@
       "captureHistoric": {"type": "boolean", "title": "Can the date/time captured by the widget occur in the past (as starting when the for is submitted)?"},
       "historicByAtLeast": {"type": "string", "title": "A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format)."},
       "futuristicByAtMost": {"type": "string", "title": "A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format)."},
+      "columns": {
+        "type": "array",
+        "title": "An array of objects denoting the columns to be shown on a table",
+        "items": {
+          "properties": {
+            "title": {"type": "string", "title": "The user-facing text that can describe the column"},
+            "dataPath": {"type": "string", "title": "The path pointing to where the data can be found for that column"}
+          }
+        }
+      },
       "actions": {
         "type": "array",
         "title": "An array of objects denoting a set of actions the user can take",
@@ -720,6 +730,29 @@
               "default": {"$ref": "#/definitions/attributes/defaultBoolean"},
               "desc": {"$ref": "#/definitions/attributes/desc"},
               "mandatory": {"$ref": "#/definitions/attributes/mandatory"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
+      },
+
+      "table": {
+        "title": "Presents data in format of a table with specified columns.",
+        "properties": {
+          "type": {"enum": ["table"]},
+          "showWhen": {"$ref": "#/definitions/showWhen"},
+          "id": {"$ref": "#/definitions/id"},
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "help": {"$ref": "#/definitions/attributes/help"},
+              "heading": {"$ref": "#/definitions/attributes/heading"},
+              "desc": {"$ref": "#/definitions/attributes/desc"},
+              "labelPath": {"$ref": "#/definitions/attributes/labelPath"},
+              "columns": {"$ref": "#/definitions/attributes/columns"},
+              "resultLimit": {"$ref": "#/definitions/attributes/resultLimit"}
             },
             "additionalProperties": false
           }

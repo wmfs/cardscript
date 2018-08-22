@@ -83,6 +83,9 @@ module.exports = {
   switch: {
     conversionFunction: require('./switch')
   },
+  table: {
+    conversionFunction: require('./table')
+  },
   text: {
     conversionFunction: require('./text')
   },

@@ -27,6 +27,7 @@ module.exports = {
   stickyNote: require('./sticky-note'),
   subView: require('./sub-view'),
   switch: require('./switch'),
+  table: require('./table'),
   text: require('./text'),
   textarea: require('./text-area'),
   time: require('./time')
