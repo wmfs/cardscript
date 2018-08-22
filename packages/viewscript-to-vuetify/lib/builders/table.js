@@ -13,10 +13,10 @@ module.exports = function tableConverter (widgetDefinition, options) {
     }
   })
 
-  const dataTable = builder.addTag('v-data-table')
-  dataTable.addAttribute(':items', `data.${getAttribute('dataPath')}`)
+  const table = builder.addTag('v-data-table')
+  table.addAttribute(':items', `data.${getAttribute('dataPath')}`)
 
-  const headerTemplate = dataTable.addChildTag('template')
+  const headerTemplate = table.addChildTag('template')
   headerTemplate.addAttribute('slot', 'headers')
 
   const headerTR = headerTemplate.addChildTag('tr')
