@@ -12,7 +12,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "quasar-framework": "0.17.9",
     "viewscript-examples": "^0.0.6",
     "viewscript-extract-defaults": "^0.0.6",
     "viewscript-extract-lists": "^0.0.6",
