@@ -1,7 +1,9 @@
+const _ = require('lodash')
+
 module.exports = class Address {
   constructor (options) {
     this.widget = {
-      id: '',
+      id: _.camelCase(options.config.header),
       type: 'table',
       attributes: {
         heading: options.config.header,
