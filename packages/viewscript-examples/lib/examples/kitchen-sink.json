@@ -648,6 +648,50 @@
       "type": "horizontalLine"
     },
     {
+      "id": "tableSet",
+      "type": "set",
+      "attributes": {
+        "tocTitle": "The 'Table' widget",
+        "tocIcon": "table_chart"
+      }
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "heading": "The 'Table' widget",
+        "desc": "Table widget to display data"
+      }
+    },
+    {
+      "id": "tableWidget",
+      "type": "table",
+      "attributes": {
+        "heading": "Patient Details",
+        "dataPath": "patients",
+        "columns": [
+          {
+            "title": "Full Name",
+            "dataPath": "name"
+          },
+          {
+            "title": "Phone Number",
+            "dataPath": "number"
+          },
+          {
+            "title": "Address",
+            "dataPath": "address"
+          }
+        ],
+        "resultLimit": 20
+      }
+    },
+    {
+      "type": "endSet"
+    },
+    {
+      "type": "horizontalLine"
+    },
+    {
       "type": "set",
       "id": "textSet",
       "attributes": {

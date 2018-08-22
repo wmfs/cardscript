@@ -8,8 +8,7 @@ module.exports = function tableConverter (widgetDefinition, options) {
   const headers = getAttribute('columns').map(col => {
     return {
       text: col.title,
-      value: col.dataPath,
-      align: 'left'
+      value: col.dataPath
     }
   })
 
