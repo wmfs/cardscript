@@ -21,9 +21,10 @@
         float-label="Enter some JSON or choose from an example."
         type="textarea"
         v-model="viewscript"
-        :max-height="100"
-        rows="7"
-        class="q-my-md"
+        :max-height="300"
+        rows="10"
+        class="q-my-md q-pa-sm bg-dark"
+        dark
       />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
@@ -45,7 +46,7 @@
       <div v-if="validation.state === 'valid'">
         <q-tabs no-pane-border>
           <q-tab default slot="title" name="view-tab" label="view" icon="dashboard"></q-tab>
-          <q-tab slot="title" name="model-tab" label="model" icon="list"></q-tab>
+          <q-tab slot="title" name="model-tab" label="model" icon="storage"></q-tab>
           <q-tab slot="title" name="template-tab" label="template" icon="code"></q-tab>
           <q-tab slot="title" name="info-tab" label="info" icon="help_outline"></q-tab>
           <q-tab-pane name="view-tab">
