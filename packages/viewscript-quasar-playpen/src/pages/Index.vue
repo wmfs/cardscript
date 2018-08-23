@@ -44,6 +44,21 @@
           <q-tab slot="title" name="model-tab" label="model"></q-tab>
           <q-tab slot="title" name="template-tab" label="template"></q-tab>
           <q-tab-pane name="view-tab">
+            <q-list
+              v-if="dynamicContent.toc.length > 0"
+              highlight
+            >
+              <q-item
+                v-for="entry in dynamicContent.toc"
+                :key="entry.widgetId"
+                @click.native="tocClick(entry.widgetId)"
+                class="cursor-pointer"
+              >
+                <q-item-side left :icon="entry.tocIcon" />
+                <q-item-main>{{entry.tocTitle}}</q-item-main>
+              </q-item>
+            </q-list>
+
             <viewscript :content="dynamicContent" />
           </q-tab-pane>
           <q-tab-pane name="model-tab">
@@ -66,6 +81,12 @@ import Viewscript from './../components/Viewscript'
 
 const quasarConverter = require('viewscript-to-quasar')
 const extractDefaults = require('viewscript-extract-defaults')
+const extractToc = require('viewscript-table-of-contents')
+const extractLists = require('viewscript-extract-lists')
+const sdk = require('viewscript-vue-sdk')
+// const examples = require('viewscript-examples')
+// const parser = require('viewscript-parser')
+// const validator = require('viewscript-schema').validateForm
 
 export default {
   name: 'PageIndex',
@@ -74,7 +95,10 @@ export default {
     return {
       dynamicContent: {
         quasarTemplate: '',
-        data: {}
+        data: {},
+        internals: {},
+        lists: {},
+        toc: []
       },
       validation: {
         state: 'notValidated',
@@ -92,6 +116,9 @@ export default {
     }
   },
   methods: {
+    tocClick (widgetId) {
+      console.log('scroll to widget', widgetId)
+    },
     setExampleContent () {
       console.log('set example as:', this.exampleSlct)
       this.validation.state = 'notValidated'
@@ -99,6 +126,7 @@ export default {
       // this.viewscript = examples[this.exampleSlct]
     },
     renderViewscript () {
+      this.$q.loading.show()
       this.validation.state = 'notValidated'
       this.validation.errors = []
 
@@ -114,13 +142,26 @@ export default {
         }
 
         const output = processViewscript(parsed)
+
         this.dynamicContent.quasarTemplate = output.quasarOutput.template
         this.dynamicContent.data = output.defaultValues.rootView
+        this.dynamicContent.internals = output.defaultInternals
+        this.dynamicContent.lists = output.lists
+        this.dynamicContent.toc = output.toc
+
         this.validation.state = 'valid'
         this.validation.errors = []
+        this.$q.loading.hide()
       } catch (e) {
+        this.dynamicContent.quasarTemplate = ''
+        this.dynamicContent.data = {}
+        this.dynamicContent.internals = {}
+        this.dynamicContent.lists = {}
+        this.dynamicContent.toc = []
+
         this.validation.state = 'invalid'
         this.validation.errors.push(e.message)
+        this.$q.loading.hide()
       }
     }
   }
@@ -128,8 +169,20 @@ export default {
 
 function processViewscript (viewscript) {
   const result = {}
-  result.quasarOutput = quasarConverter(viewscript)
+  // const parserResult = parser(viewscriptString)
+  // if (parserResult.parsed) {
+  // const viewscript = parserResult.parsed
+  // result.validatorOutput = validator(viewscript)
+  // if (result.validatorOutput.widgetsValid) {
   result.defaultValues = extractDefaults(viewscript)
+  result.toc = extractToc(viewscript)
+  result.lists = extractLists(viewscript)
+  result.defaultInternals = sdk.getDefaultInternals(viewscript)
+  result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+  result.quasarOutput = quasarConverter(viewscript)
+  // }
+
+  // } else { ... }
   return result
 }
 </script>

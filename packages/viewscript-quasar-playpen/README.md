@@ -8,6 +8,11 @@ Packages to be linked:
 * viewscript-examples
 * viewscript-to-quasar
 * viewscript-extract-defaults
+* viewscript-parser
+* viewscript-schema
+* viewscript-table-of-contents
+* viewscript-extract-lists
+* viewscript-vue-sdk
 
 For each package to be linked, do the following:
 ``` bash
