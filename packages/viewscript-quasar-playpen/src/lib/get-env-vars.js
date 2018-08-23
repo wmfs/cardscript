@@ -1,7 +1,7 @@
 const ENV_VAR = [
   {
     name: 'VIEWSCRIPT_ROOT_PATH',
-    addQuotes: false
+    addQuotes: true
   }
 ]
 

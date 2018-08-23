@@ -28,9 +28,9 @@
           @click="renderViewscript"
         />
       </div>
-      <div v-if="errors.length > 0">
+      <div v-if="validation.state === 'invalid'">
         <q-alert
-          v-for="(err, idx) in errors"
+          v-for="(err, idx) in validation.errors"
           :key="idx"
           type="negative"
         >
@@ -38,20 +38,22 @@
         </q-alert>
       </div>
 
-      <q-tabs no-pane-border>
-        <q-tab default slot="title" name="view-tab" label="view"></q-tab>
-        <q-tab slot="title" name="model-tab" label="model"></q-tab>
-        <q-tab slot="title" name="template-tab" label="template"></q-tab>
-        <q-tab-pane name="view-tab">
-          <viewscript :content="dynamicContent" />
-        </q-tab-pane>
-        <q-tab-pane name="model-tab">
-          <pre>{{dynamicContent.data}}</pre>
-        </q-tab-pane>
-        <q-tab-pane name="template-tab">
-          {{dynamicContent.quasarTemplate}}
-        </q-tab-pane>
-      </q-tabs>
+      <div v-if="validation.state === 'valid'">
+        <q-tabs no-pane-border>
+          <q-tab default slot="title" name="view-tab" label="view"></q-tab>
+          <q-tab slot="title" name="model-tab" label="model"></q-tab>
+          <q-tab slot="title" name="template-tab" label="template"></q-tab>
+          <q-tab-pane name="view-tab">
+            <viewscript :content="dynamicContent" />
+          </q-tab-pane>
+          <q-tab-pane name="model-tab">
+            <pre>{{dynamicContent.data}}</pre>
+          </q-tab-pane>
+          <q-tab-pane name="template-tab">
+            {{dynamicContent.quasarTemplate}}
+          </q-tab-pane>
+        </q-tabs>
+      </div>
     </div>
   </q-page>
 </template>
@@ -74,7 +76,10 @@ export default {
         quasarTemplate: '',
         data: {}
       },
-      errors: [],
+      validation: {
+        state: 'notValidated',
+        errors: []
+      },
       viewscript: '{}',
       exampleSlct: null,
       exampleOpts: [
@@ -89,17 +94,33 @@ export default {
   methods: {
     setExampleContent () {
       console.log('set example as:', this.exampleSlct)
+      this.validation.state = 'notValidated'
+      this.validation.errors = []
       // this.viewscript = examples[this.exampleSlct]
     },
     renderViewscript () {
-      this.errors = []
+      this.validation.state = 'notValidated'
+      this.validation.errors = []
+
       try {
+        if (this.viewscript.trim().length === 0) {
+          throw new Error('You must enter some data.')
+        }
+
         const parsed = JSON.parse(this.viewscript)
+
+        if (Object.keys(parsed).length === 0) {
+          throw new Error('Cannot convert an empty object.')
+        }
+
         const output = processViewscript(parsed)
         this.dynamicContent.quasarTemplate = output.quasarOutput.template
         this.dynamicContent.data = output.defaultValues.rootView
+        this.validation.state = 'valid'
+        this.validation.errors = []
       } catch (e) {
-        this.errors.push(e.message)
+        this.validation.state = 'invalid'
+        this.validation.errors.push(e.message)
       }
     }
   }

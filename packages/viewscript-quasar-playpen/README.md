@@ -32,4 +32,4 @@ quasar dev
 ```
 
 ## Environment Variables
-VIEWSCRIPT_ROOT_PATH
+VIEWSCRIPT_ROOT_PATH - Where to find the Viewscript repo e.g. c:/development/viewscript
