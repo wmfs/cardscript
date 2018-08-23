@@ -7,6 +7,7 @@ module.exports = function expandableNoticeConverter (widgetDefinition, options) 
 
   const collapsible = builder.addTag('q-collapsible')
   collapsible.addAttribute('label', getAttribute('heading'))
+  collapsible.addAttribute('class', 'q-ma-xl')
 
   const div = collapsible.addChildTag('div')
   div.content(getAttribute('content'))

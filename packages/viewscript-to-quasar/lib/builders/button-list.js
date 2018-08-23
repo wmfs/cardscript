@@ -7,6 +7,7 @@ module.exports = function buttonListConverter (widgetDefinition, options) {
 
   const dropdown = builder.addTag('q-btn-dropdown')
   dropdown.addAttribute('label', getAttribute('heading'))
+  dropdown.addAttribute('class', 'q-ma-xl')
 
   const list = dropdown.addChildTag('q-list')
   list.addAttribute(':link', true)
