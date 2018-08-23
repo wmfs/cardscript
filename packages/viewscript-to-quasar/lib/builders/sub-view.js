@@ -1,109 +1,70 @@
-// const subViewTracker = require('./../utils/sub-view-tracker')
+const subViewTracker = require('./../utils/sub-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
-
-// desc
-// heading
-// help
-// maxAllowed
-// minAllowed
-// pluralEntityText
-// showAtLeastOne
-// singularEntityText
+const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function subViewConverter (widgetDefinition, options) {
-  /*
   const parentSubView = subViewTracker.getCurrentSubView()
   subViewTracker.addSubView(widgetDefinition.id)
+
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
 
   const dialogKey = `internals.dialogControl.${widgetDefinition.id}`
 
   const heading = builder.addTag('div')
-  heading.addAttribute('class', 'display-1 grey--text text--darken-1 mt-4')
+  heading.addAttribute('class', 'q-display-1 q-mt-lg') // grey--text text--darken-1
   heading.content(getAttribute('heading'))
 
   const desc = getAttribute('desc')
   if (desc) {
     const desc = builder.addTag('div')
-    desc.addAttribute('class', 'subheading grey--text text--darken-1 mb-2')
+    desc.addAttribute('class', 'q-subheading q-mt-md') // grey--text text--darken-1
     desc.content(getAttribute('desc'))
   }
 
-  const list = builder.addTag('v-list')
-  list.addAttribute('two-line', null)
-  list.addAttribute('subheader', null)
+  const list = builder.addTag('q-list')
+  list.addAttribute(':no-border', true)
+  const item = list.addChildTag('v-item')
 
-  const tile = list.addChildTag('v-list-tile')
+  const arrayPath = parentSubView
+    ? `internals.currentSubViewData.${parentSubView}.${widgetDefinition.id}`
+    : `data.${widgetDefinition.id}`
 
-  let arrayPath
-  if (parentSubView) {
-    arrayPath = `internals.currentSubViewData.${parentSubView}.${widgetDefinition.id}`
-  } else {
-    arrayPath = `data.${widgetDefinition.id}`
-  }
+  item.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
 
-  tile.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
-  tile.addAttribute('avatar', null)
-  tile.addAttribute('@click', '')
+  const itemSideIcon = item.addChildTag('q-item-side')
+  itemSideIcon.addChildTag('icon', 'note')
 
-  const avatar = tile.addChildTag('v-list-tile-avatar')
-  const icon = avatar.addChildTag('v-icon')
-  icon.content('note')
+  const itemMain = item.addChildTag('q-item-main')
 
-  const tileContent = tile.addChildTag('v-list-tile-content')
-  const tileTitle = tileContent.addChildTag('v-list-tile-title')
+  const label = itemMain.addChildTag('q-item-tile')
+  label.addAttribute(':label', true)
+  label.content(getAttribute('instanceHeadingTemplate'))
 
-  tileTitle.content(getAttribute('instanceHeadingTemplate'))
-  const tileSubTitle = tileContent.addChildTag('v-list-tile-sub-title')
-  tileSubTitle.content(getAttribute('instanceDescTemplate'))
+  const sublabel = itemMain.addChildTag('q-item-tile')
+  sublabel.addAttribute(':sublabel', true)
+  sublabel.content(getAttribute('instanceDescTemplate'))
 
-  const tileAction = tile.addChildTag('v-list-tile-action')
-  const actionButton = tileAction.addChildTag('v-btn')
-  actionButton.addAttribute('icon', null)
-  actionButton.addAttribute('ripple', null)
-  actionButton.addAttribute('@click', `removeSubViewContent('${widgetDefinition.id}', $idx)`)
+  const itemSideAction = item.addChildTag('q-item-side')
+  itemSideAction.addAttribute(':right', true)
 
-  const actionIcon = actionButton.addChildTag('v-icon')
-  actionIcon.addAttribute('color', 'grey lighten-1')
-  actionIcon.content('delete_forever')
+  const itemSideActionBtn = itemSideAction.addChildTag('q-btn')
+  itemSideActionBtn.addAttribute(':flat', true)
+  itemSideActionBtn.addAttribute(':round', true)
+  itemSideActionBtn.addAttribute(':dense', true)
+  itemSideActionBtn.addAttribute('icon', 'delete_forever')
+  itemSideActionBtn.addAttribute('@click', `removeSubViewContent('${widgetDefinition.id}', $idx)`)
 
-  const button = builder.addTag('v-btn')
-  button.addAttribute('color', 'primary')
-  button.addAttribute('@click.native.stop', `createNewSubView('${widgetDefinition.id}')`)
-  button.addAttribute('dark', null)
-  button.content(getAttribute('createButtonText') || 'Add')
+  const addBtn = builder.addTag('q-btn')
+  addBtn.addAttribute('color', 'primary')
+  addBtn.addAttribute('@click.native.stop', `createNewSubView('${widgetDefinition.id}')`)
+  addBtn.addAttribute('label', getAttribute('createButtonText') || 'Add')
 
-  const dialog = builder.addTag(
-    'v-dialog',
-    {
-      includeClosingTag: false
-    }
-  )
-  dialog.addAttribute('scrollable', null)
+  const dialog = builder.addTag('q-dialog', {includeClosingTag: false})
   dialog.addAttribute('v-model', dialogKey)
-  dialog.addAttribute('max-width', '600px')
 
-  const card = dialog.addChildTag('v-card', {includeClosingTag: false})
+  const card = dialog.addChildTag('q-card', {includeClosingTag: false})
+  const cardMain = dialog.addChildTag('q-card-main', {includeClosingTag: false})
 
-  const cardText = card.addChildTag('v-card-text', {includeClosingTag: false})
-  const container = cardText.addChildTag('v-container', {includeClosingTag: false})
-  container.addAttribute('grid-list-md', null)
-
-  const layout = container.addChildTag('v-layout', {includeClosingTag: false})
-  layout.addAttribute('wrap', null)
-
-  const flex = layout.addChildTag('v-flex', {includeClosingTag: false})
-  flex.addAttribute('xs12', null)
-  flex.addAttribute('sm12', null)
-  flex.addAttribute('md10', null)
-  flex.addAttribute('lg10', null)
-  flex.addAttribute('xl10', null)
-  return builder.compile()
-  */
-  const builder = new ComponentBuilder(widgetDefinition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Sub view widget!')
   return builder.compile()
 }

@@ -1,10 +1,8 @@
 const subViewTracker = require('./../utils/sub-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function endSubView (widgetDefinition, options) {
   let template = '</v-flex></v-layout></v-container></v-card-text>'
-  // const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
   const actions = builder.addTag('v-card-actions')
   actions.addChildTag('v-spacer')
