@@ -59,13 +59,17 @@
               </q-item>
             </q-list>
 
-            <viewscript :content="dynamicContent" />
+            <div class="q-my-md q-px-md" style="border: 1px solid #e0e0e0;">
+              <viewscript :content="dynamicContent" />
+            </div>
           </q-tab-pane>
           <q-tab-pane name="model-tab">
             <pre>{{dynamicContent.data}}</pre>
           </q-tab-pane>
           <q-tab-pane name="template-tab">
-            {{dynamicContent.quasarTemplate}}
+            <q-scroll-area style="width: 100%; height: 600px; border: 1px solid #e0e0e0;">
+              <pre>{{dynamicContent.quasarTemplate}}</pre>
+            </q-scroll-area>
           </q-tab-pane>
         </q-tabs>
       </div>
