@@ -40,9 +40,10 @@
 
       <div v-if="validation.state === 'valid'">
         <q-tabs no-pane-border>
-          <q-tab default slot="title" name="view-tab" label="view"></q-tab>
-          <q-tab slot="title" name="model-tab" label="model"></q-tab>
-          <q-tab slot="title" name="template-tab" label="template"></q-tab>
+          <q-tab default slot="title" name="view-tab" label="view" icon="dashboard"></q-tab>
+          <q-tab slot="title" name="model-tab" label="model" icon="list"></q-tab>
+          <q-tab slot="title" name="template-tab" label="template" icon="code"></q-tab>
+          <q-tab slot="title" name="info-tab" label="info" icon="help_outline"></q-tab>
           <q-tab-pane name="view-tab">
             <q-list
               v-if="dynamicContent.toc.length > 0"
@@ -70,6 +71,33 @@
             <div class="horizontalScroll">
               <pre>{{dynamicContent.quasarTemplate}}</pre>
             </div>
+          </q-tab-pane>
+          <q-tab-pane name="info-tab">
+            <div class="q-display-1 q-my-md">Performance</div>
+            <p>
+              This playpen is working with raw Viewscript (parsing, validating and transforming).
+              Most apps wouldn't need to do that kind of heavy lifting in the client.
+              As such, the rendering times inside the playpen are higher than usual... this is where all the
+              time just went:
+            </p>
+            <q-list highlight>
+              <q-item
+                v-for="(time, idx) in dynamicContent.times"
+                :key="idx"
+              >
+                <q-item-main :label="time.label" />
+                <q-item-side right>
+                  <q-item-tile>{{time.duration}}ms</q-item-tile>
+                  <q-item-tile>{{time.percentage}}%</q-item-tile>
+                </q-item-side>
+              </q-item>
+            </q-list>
+
+            <div class="q-display-1 q-my-md">Internals</div>
+            <p>
+              Here are some of the internal workings (for managing dialog states and sub-views especially)
+            </p>
+            <pre>{{dynamicContent.internals}}</pre>
           </q-tab-pane>
         </q-tabs>
       </div>
@@ -104,7 +132,7 @@ export default {
   components: { Viewscript },
   data: function () {
     return {
-      dynamicContent: this.getEmptyDynamicContent(),
+      dynamicContent: getEmptyDynamicContent(),
       validation: {
         state: 'notValidated',
         errors: []
@@ -121,15 +149,6 @@ export default {
     }
   },
   methods: {
-    getEmptyDynamicContent () {
-      return {
-        quasarTemplate: '',
-        data: {},
-        internals: {},
-        lists: {},
-        toc: []
-      }
-    },
     tocClick (elementIdToScrollTo) {
       const e = document.getElementById(elementIdToScrollTo)
       e.scrollIntoView()
@@ -138,7 +157,7 @@ export default {
       console.log('set example as:', this.exampleSlct)
       this.validation.state = 'notValidated'
       this.validation.errors = []
-      this.dynamicContent = this.getEmptyDynamicContent()
+      this.dynamicContent = getEmptyDynamicContent()
       // this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
     },
     renderViewscript () {
@@ -157,7 +176,8 @@ export default {
           throw new Error('Cannot convert an empty object.')
         }
 
-        const output = processViewscript(parsed)
+        const stopwatch = new Stopwatch()
+        const output = processViewscript(parsed, stopwatch)
 
         this.dynamicContent.quasarTemplate = output.quasarOutput.template
         this.dynamicContent.data = output.defaultValues.rootView
@@ -168,8 +188,11 @@ export default {
         this.validation.state = 'valid'
         this.validation.errors = []
         this.$q.loading.hide()
+        // stopwatch.addTime('finished')
+        stopwatch.addTime('Render')
+        this.dynamicContent.times = stopwatch.getResults()
       } catch (e) {
-        this.dynamicContent = this.getEmptyDynamicContent()
+        this.dynamicContent = getEmptyDynamicContent()
 
         this.validation.state = 'invalid'
         this.validation.errors.push(e.message)
@@ -179,22 +202,74 @@ export default {
   }
 }
 
-function processViewscript (viewscript) {
+function getEmptyDynamicContent () {
+  return {
+    quasarTemplate: '',
+    data: {},
+    internals: {},
+    lists: {},
+    toc: [],
+    times: {}
+  }
+}
+
+function processViewscript (viewscript, stopwatch) {
   const result = {}
+  stopwatch.addTime('Parse string into object')
   // const parserResult = parser(viewscriptString)
   // if (parserResult.parsed) {
   // const viewscript = parserResult.parsed
   // result.validatorOutput = validator(viewscript)
   // if (result.validatorOutput.widgetsValid) {
+  stopwatch.addTime('Extract default values')
   result.defaultValues = extractDefaults(viewscript)
+  stopwatch.addTime('Extract TOC')
   result.toc = extractToc(viewscript)
+  stopwatch.addTime('Extract lists')
   result.lists = extractLists(viewscript)
+  stopwatch.addTime('Calculate starting internals')
   result.defaultInternals = sdk.getDefaultInternals(viewscript)
   result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+  stopwatch.addTime('Generate template')
   result.quasarOutput = quasarConverter(viewscript)
   // }
 
   // } else { ... }
   return result
+}
+
+class Stopwatch {
+  constructor () {
+    this.times = [
+      {
+        label: 'init',
+        milliseconds: Date.now()
+      }
+    ]
+  }
+
+  addTime (label) {
+    const previousTime = this.times[this.times.length - 1]
+    const n = Date.now()
+    previousTime.duration = n - previousTime.milliseconds
+    this.times.push(
+      {
+        label: label,
+        milliseconds: n
+      }
+    )
+  }
+
+  getResults () {
+    const trimmed = this.times.slice(1, -1)
+    let total = 0
+    trimmed.forEach(time => {
+      total += time.duration
+    })
+    trimmed.forEach(time => {
+      time.percentage = ((time.duration / total) * 100).toFixed(1)
+    })
+    return trimmed
+  }
 }
 </script>
