@@ -8,22 +8,23 @@ export default {
   name: 'ViewscriptComponent',
   props: ['content'],
   data () {
+    const content = this.content
     return {
       uiTemplate: {
-        template: this.content.quasarTemplate
-        // components: {},
-        // data () {
-        //   return {
-        //     data: {},
-        //     lists: {},
-        //     internals: {}
-        //   }
-        // },
-        // methods: {
-        //   createNewSubView (subViewId) {},
-        //   pushSubViewContent (subViewId) {},
-        //   removeSubViewContent (subViewId, index) {}
-        // }
+        template: content.quasarTemplate,
+        components: {},
+        data () {
+          return {
+            data: content.data,
+            lists: content.lists,
+            internals: content.internals
+          }
+        },
+        methods: {
+          createNewSubView (subViewId) {},
+          pushSubViewContent (subViewId) {},
+          removeSubViewContent (subViewId, index) {}
+        }
       }
     }
   }
