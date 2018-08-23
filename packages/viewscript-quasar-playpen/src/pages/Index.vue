@@ -120,8 +120,9 @@ export default {
     }
   },
   methods: {
-    tocClick (widgetId) {
-      console.log('scroll to widget', widgetId)
+    tocClick (elementIdToScrollTo) {
+      const e = document.getElementById(elementIdToScrollTo)
+      e.scrollIntoView()
     },
     setExampleContent () {
       console.log('set example as:', this.exampleSlct)
