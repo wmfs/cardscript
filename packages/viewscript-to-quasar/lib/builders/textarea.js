@@ -8,5 +8,6 @@ module.exports = function textareaConverter (widgetDefinition, options) {
   input.bindToModel(widgetDefinition)
   input.addAttribute('type', 'textarea')
   input.addAttribute('float-label', getAttribute('heading'))
+  input.addAttribute('class', 'q-ma-xl')
   return builder.compile()
 }
