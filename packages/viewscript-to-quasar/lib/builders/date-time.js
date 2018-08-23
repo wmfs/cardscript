@@ -1,24 +1,13 @@
 const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function dateTimeConverter (widgetDefinition, options) {
-  // captureHistoric
-  // desc
-  // enabled
-  // futuristicByAtMost
-  // heading
-  // help
-  // historicByAtLeast
-  // mandatory
-
-  /*
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Date/Time widget!')
-  return builder.compile()
-  */
-  const builder = new ComponentBuilder(widgetDefinition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Address widget!')
+  const dateTime = builder.addTag('q-datetime')
+  dateTime.bindToModel(widgetDefinition)
+  dateTime.addAttribute('type', 'datetime')
+  dateTime.addAttribute('float-label', getAttribute('heading'))
+  dateTime.addAttribute('class', 'q-ma-xl')
   return builder.compile()
 }
