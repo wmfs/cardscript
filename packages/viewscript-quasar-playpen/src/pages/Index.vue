@@ -67,7 +67,17 @@
             </div>
           </q-tab-pane>
           <q-tab-pane name="model-tab">
-            <pre>{{dynamicContent.data}}</pre>
+            <blockquote>
+              This is the underlying data model for the view (default values were inferred from the Viewscript
+              using the
+              <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults">viewscript-extract-defaults</a>
+              package).
+              Be sure to check back here as you change input fields to see the model change!
+            </blockquote>
+
+            <div class="horizontalScroll q-my-md">
+              <pre>{{dynamicContent.data}}</pre>
+            </div>
           </q-tab-pane>
           <q-tab-pane name="template-tab">
             <blockquote>
