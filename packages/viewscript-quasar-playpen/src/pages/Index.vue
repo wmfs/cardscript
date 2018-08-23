@@ -59,7 +59,7 @@
               </q-item>
             </q-list>
 
-            <div class="q-my-md q-px-md" style="border: 1px solid #e0e0e0;">
+            <div class="q-my-md q-px-md">
               <viewscript :content="dynamicContent" />
             </div>
           </q-tab-pane>

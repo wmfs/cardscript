@@ -24,16 +24,18 @@ module.exports = function subViewConverter (widgetDefinition, options) {
 
   const list = builder.addTag('q-list')
   list.addAttribute(':no-border', true)
-  const item = list.addChildTag('v-item')
+  list.addAttribute(':link', true)
 
   const arrayPath = parentSubView
     ? `internals.currentSubViewData.${parentSubView}.${widgetDefinition.id}`
     : `data.${widgetDefinition.id}`
 
+  const item = list.addChildTag('q-item')
   item.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
+  item.addAttribute(':key', '$idx')
 
   const itemSideIcon = item.addChildTag('q-item-side')
-  itemSideIcon.addChildTag('icon', 'note')
+  itemSideIcon.addAttribute('icon', 'note')
 
   const itemMain = item.addChildTag('q-item-main')
 
