@@ -47,9 +47,17 @@
           <q-tab slot="title" name="template-tab" label="template" icon="code"></q-tab>
           <q-tab slot="title" name="info-tab" label="info" icon="help_outline"></q-tab>
           <q-tab-pane name="view-tab">
+            <blockquote>
+              This is a simple rendering of the parsed Viewscript. Note that this is only meant to be a basic
+              illustration of typical web usage, your app is free to interpret Viewscript and conjure a UI in
+              any way
+              you see fit!
+            </blockquote>
+
             <q-list
               v-if="dynamicContent.toc.length > 0"
               highlight
+              class="q-my-md"
             >
               <q-item
                 v-for="entry in dynamicContent.toc"
