@@ -67,9 +67,9 @@
             <pre>{{dynamicContent.data}}</pre>
           </q-tab-pane>
           <q-tab-pane name="template-tab">
-            <q-scroll-area style="width: 100%; height: 600px; border: 1px solid #e0e0e0;">
+            <div class="horizontalScroll">
               <pre>{{dynamicContent.quasarTemplate}}</pre>
-            </q-scroll-area>
+            </div>
           </q-tab-pane>
         </q-tabs>
       </div>
@@ -78,6 +78,13 @@
 </template>
 
 <style>
+  .horizontalScroll {
+    overflow-x: scroll;
+    display: block;
+    width: 100%;
+    height: 600px;
+    border: 1px solid #e0e0e0;
+  }
 </style>
 
 <script>
