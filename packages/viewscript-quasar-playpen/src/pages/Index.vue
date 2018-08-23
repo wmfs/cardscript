@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <q-jumbotron>
+    <q-jumbotron dark>
       <div class="q-display-3">Viewscript Quasar Playpen</div>
       <div class="q-subheading">
         Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn
@@ -15,6 +15,7 @@
         v-model="exampleSlct"
         :options="exampleOpts"
         @input="setExampleContent"
+        class="q-my-md"
       />
       <q-input
         float-label="Enter some JSON or choose from an example."
@@ -22,6 +23,7 @@
         v-model="viewscript"
         :max-height="100"
         rows="7"
+        class="q-my-md"
       />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
@@ -70,7 +72,7 @@
               </q-item>
             </q-list>
 
-            <div class="q-my-md q-px-md">
+            <div class="q-my-md">
               <viewscript :content="dynamicContent"/>
             </div>
           </q-tab-pane>
@@ -134,7 +136,9 @@
             <p>
               Here are some of the internal workings (for managing dialog states and sub-views especially)
             </p>
-            <pre>{{dynamicContent.internals}}</pre>
+            <div class="horizontalScroll q-my-md">
+              <pre>{{dynamicContent.internals}}</pre>
+            </div>
           </q-tab-pane>
         </q-tabs>
       </div>
@@ -149,6 +153,11 @@
     width: 100%;
     height: 600px;
     border: 1px solid #e0e0e0;
+  }
+
+  pre {
+    padding: 0px;
+    margin: 10px;
   }
 </style>
 
