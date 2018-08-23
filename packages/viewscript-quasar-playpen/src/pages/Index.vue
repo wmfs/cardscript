@@ -15,7 +15,7 @@
         @input="setExampleContent"
       />
       <q-input
-        float-label="The JSON would go here, not necessarily this widget..."
+        float-label="Enter some JSON or choose from an example."
         type="textarea"
         v-model="viewscript"
         :max-height="100"
