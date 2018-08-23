@@ -16,12 +16,14 @@ module.exports = function mapConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
 
   const builder = new ComponentBuilder(widgetDefinition)
-  const map = builder.addTag('q-map')
-  const centreLatitudePath = getAttribute('centreLatitudePath')
-  const centreLongitudePath = getAttribute('centreLongitudePath')
-
-  map.addAttribute(':centreLatitude', `data.${centreLatitudePath}`)
-  map.addAttribute(':centreLongitude', `data.${centreLongitudePath}`)
+  const pre = builder.addTag('pre')
+  pre.content('// TODO: Map widget!')
+  // const map = builder.addTag('q-map')
+  // const centreLatitudePath = getAttribute('centreLatitudePath')
+  // const centreLongitudePath = getAttribute('centreLongitudePath')
+  //
+  // map.addAttribute(':centreLatitude', `data.${centreLatitudePath}`)
+  // map.addAttribute(':centreLongitude', `data.${centreLongitudePath}`)
 
   return builder.compile()
 }

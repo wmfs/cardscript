@@ -15,6 +15,7 @@ module.exports = function tableConverter (widgetDefinition, options) {
   const table = builder.addTag('q-table')
   table.addAttribute('title', getAttribute('heading'))
   table.addAttribute(':data', `data.${getAttribute('dataPath')}`)
+  table.addAttribute('v-if', `data.${getAttribute('dataPath')}`)
 
   const tr = table.addChildTag('q-tr')
   tr.addAttribute('slot', 'header')
