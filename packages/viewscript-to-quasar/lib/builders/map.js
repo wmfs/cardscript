@@ -1,5 +1,5 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function mapConverter (widgetDefinition, options) {
   // collectGeometries
@@ -13,7 +13,7 @@ module.exports = function mapConverter (widgetDefinition, options) {
   // pointIconPalette
   // relatedLayers
 
-  const getAttribute = GetAttribute(widgetDefinition)
+  // const getAttribute = GetAttribute(widgetDefinition)
 
   const builder = new ComponentBuilder(widgetDefinition)
   const pre = builder.addTag('pre')
