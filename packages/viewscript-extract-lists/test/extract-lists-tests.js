@@ -52,7 +52,7 @@ describe('Run some Viewscript list-extracting tests', function () {
             TOFFEE: 'Toffee',
             WHITE_CHOC: 'White Chocolate'
           },
-          'size': {
+          size: {
             L: 'Large',
             M: 'Medium',
             S: 'Small',
@@ -73,151 +73,185 @@ describe('Run some Viewscript list-extracting tests', function () {
         base: [
           {
             value: 'TOMATO',
-            text: 'Tomato Sauce'
+            text: 'Tomato Sauce',
+            label: 'Tomato Sauce'
           },
           {
             value: 'BBQ',
-            text: 'BBQ'
+            text: 'BBQ',
+            label: 'BBQ'
           },
           {
             value: 'SWEETSOUR',
-            text: 'Sweet And Sour'
+            text: 'Sweet And Sour',
+            label: 'Sweet And Sour'
           }
         ],
-        'dietaryReq': [
+        dietaryReq: [
           {
-            'text': 'Peanut Allergy',
-            'value': 'PEANUT'
+            text: 'Peanut Allergy',
+            label: 'Peanut Allergy',
+            value: 'PEANUT'
           },
           {
-            'text': 'Gluten Free',
-            'value': 'GLUTEN_FREE'
+            text: 'Gluten Free',
+            label: 'Gluten Free',
+            value: 'GLUTEN_FREE'
           },
           {
-            'text': 'Dairy Free',
-            'value': 'DAIRY_FREE'
+            text: 'Dairy Free',
+            label: 'Dairy Free',
+            value: 'DAIRY_FREE'
           },
           {
-            'text': 'Other',
-            'value': 'OTHER'
+            text: 'Other',
+            label: 'Other',
+            value: 'OTHER'
           }
         ],
-        'howHot': [
+        howHot: [
           {
-            'text': '1 Chilli',
-            'value': 1
+            text: '1 Chilli',
+            label: '1 Chilli',
+            value: 1
           },
           {
-            'text': '2 Chillies',
-            'value': 2
+            text: '2 Chillies',
+            label: '2 Chillies',
+            value: 2
           },
           {
-            'text': '3 Chillies',
-            'value': 3
+            text: '3 Chillies',
+            label: '3 Chillies',
+            value: 3
           },
           {
-            'text': '4 Chillies',
-            'value': 4
+            text: '4 Chillies',
+            label: '4 Chillies',
+            value: 4
           },
           {
-            'text': '5 Chillies',
-            'value': 5
+            text: '5 Chillies',
+            label: '5 Chillies',
+            value: 5
           },
           {
-            'text': '6 Chillies',
-            'value': 6
+            text: '6 Chillies',
+            label: '6 Chillies',
+            value: 6
           }
         ],
         primary: [
           {
             value: 'MILK_CHOC',
+            label: 'Milk Chocolate',
             text: 'Milk Chocolate'
           },
           {
             value: 'WHITE_CHOC',
+            label: 'White Chocolate',
             text: 'White Chocolate'
           },
           {
             value: 'DARK_CHOC',
+            label: 'Dark Chocolate',
             text: 'Dark Chocolate'
           },
           {
             value: 'TOFFEE',
+            label: 'Toffee',
             text: 'Toffee'
           }
         ],
         secondary: [
           {
             value: 'MILK_CHOC',
+            label: 'Milk Chocolate',
             text: 'Milk Chocolate'
           },
           {
             value: 'WHITE_CHOC',
+            label: 'White Chocolate',
             text: 'White Chocolate'
           },
           {
             value: 'DARK_CHOC',
+            label: 'Dark Chocolate',
             text: 'Dark Chocolate'
           },
           {
             value: 'TOFFEE',
+            label: 'Toffee',
             text: 'Toffee'
           }
         ],
-        'size': [
+        size: [
           {
-            'text': 'Small',
-            'value': 'S'
+            text: 'Small',
+            label: 'Small',
+            value: 'S'
           },
           {
-            'text': 'Medium',
-            'value': 'M'
+            text: 'Medium',
+            label: 'Medium',
+            value: 'M'
           },
           {
-            'text': 'Large',
-            'value': 'L'
+            text: 'Large',
+            label: 'Large',
+            value: 'L'
           },
           {
-            'text': 'Extra Large',
-            'value': 'XL'
+            text: 'Extra Large',
+            label: 'Extra Large',
+            value: 'XL'
           },
           {
-            'text': 'Extra Extra Large',
-            'value': 'XXL'
+            text: 'Extra Extra Large',
+            label: 'Extra Extra Large',
+            value: 'XXL'
           }
         ],
-        'toppings': [
+        toppings: [
           {
-            'text': 'Pepperoni',
-            'value': 'PEPPERONI'
+            text: 'Pepperoni',
+            label: 'Pepperoni',
+            value: 'PEPPERONI'
           },
           {
-            'text': 'Olives',
-            'value': 'OLIVES'
+            text: 'Olives',
+            label: 'Olives',
+            value: 'OLIVES'
           },
           {
-            'text': 'Peppers',
-            'value': 'PEPPERS'
+            text: 'Peppers',
+            label: 'Peppers',
+            value: 'PEPPERS'
           },
           {
-            'text': 'Pineapple',
-            'value': 'PINEAPPLE'
+            text: 'Pineapple',
+            label: 'Pineapple',
+            value: 'PINEAPPLE'
           },
           {
-            'text': 'Ham',
-            'value': 'HAM'
+            text: 'Ham',
+            label: 'Ham',
+            value: 'HAM'
           },
           {
-            'text': 'Chicken',
-            'value': 'CHICKEN'
+            text: 'Chicken',
+            label: 'Chicken',
+            value: 'CHICKEN'
           },
           {
-            'text': 'Spicy Beef',
-            'value': 'SPICY_BEEF'
+            text: 'Spicy Beef',
+            label: 'Spicy Beef',
+            value: 'SPICY_BEEF'
           },
           {
-            'text': 'Jalapenos',
-            'value': 'JALAPENOS'
+            text: 'Jalapenos',
+            label: 'Jalapenos',
+            value: 'JALAPENOS'
           }
         ]
       }

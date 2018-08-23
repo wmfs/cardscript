@@ -97,13 +97,7 @@ export default {
   components: { Viewscript },
   data: function () {
     return {
-      dynamicContent: {
-        quasarTemplate: '',
-        data: {},
-        internals: {},
-        lists: {},
-        toc: []
-      },
+      dynamicContent: this.getEmptyDynamicContent(),
       validation: {
         state: 'notValidated',
         errors: []
@@ -120,6 +114,15 @@ export default {
     }
   },
   methods: {
+    getEmptyDynamicContent () {
+      return {
+        quasarTemplate: '',
+        data: {},
+        internals: {},
+        lists: {},
+        toc: []
+      }
+    },
     tocClick (elementIdToScrollTo) {
       const e = document.getElementById(elementIdToScrollTo)
       e.scrollIntoView()
@@ -128,7 +131,8 @@ export default {
       console.log('set example as:', this.exampleSlct)
       this.validation.state = 'notValidated'
       this.validation.errors = []
-      // this.viewscript = examples[this.exampleSlct]
+      this.dynamicContent = this.getEmptyDynamicContent()
+      // this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
     },
     renderViewscript () {
       this.$q.loading.show()
@@ -158,11 +162,7 @@ export default {
         this.validation.errors = []
         this.$q.loading.hide()
       } catch (e) {
-        this.dynamicContent.quasarTemplate = ''
-        this.dynamicContent.data = {}
-        this.dynamicContent.internals = {}
-        this.dynamicContent.lists = {}
-        this.dynamicContent.toc = []
+        this.dynamicContent = this.getEmptyDynamicContent()
 
         this.validation.state = 'invalid'
         this.validation.errors.push(e.message)
