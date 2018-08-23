@@ -1,19 +1,15 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
-
-// default
-// desc
-// enabled
-// heading
-// help
-// mandatory
-// maxCharacters
-// minCharacters
-// placeholder
+const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function expandableNoticeConverter (widgetDefinition, options) {
+  const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Expandable Notice!')
+
+  const collapsible = builder.addTag('q-collapsible')
+  collapsible.addAttribute('label', getAttribute('heading'))
+
+  const div = collapsible.addChildTag('div')
+  div.content(getAttribute('content'))
+
   return builder.compile()
 }
