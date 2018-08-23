@@ -2,11 +2,13 @@ const subViewTracker = require('./../utils/sub-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function endSubView (widgetDefinition, options) {
-  let template = '</v-card-main>'
+  let template = '</div>'
 
   const builder = new ComponentBuilder(widgetDefinition)
 
-  const actions = builder.addTag('q-card-actions')
+  const actions = builder.addTag('template')
+  actions.addAttribute('slot', 'buttons')
+  actions.addAttribute('slot-scope', 'props')
 
   const subViewId = subViewTracker.removeSubView()
 
@@ -21,6 +23,6 @@ module.exports = function endSubView (widgetDefinition, options) {
   save.content('Save')
 
   template += builder.compile()
-  template += '</q-card></q-dialog>'
+  template += '</q-dialog>'
   return template
 }

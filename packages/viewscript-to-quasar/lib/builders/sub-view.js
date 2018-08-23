@@ -63,8 +63,8 @@ module.exports = function subViewConverter (widgetDefinition, options) {
   const dialog = builder.addTag('q-dialog', {includeClosingTag: false})
   dialog.addAttribute('v-model', dialogKey)
 
-  const card = dialog.addChildTag('q-card', {includeClosingTag: false})
-  const cardMain = dialog.addChildTag('q-card-main', {includeClosingTag: false})
+  const body = dialog.addChildTag('div', {includeClosingTag: false})
+  body.addAttribute('slot', 'body')
 
   return builder.compile()
 }
