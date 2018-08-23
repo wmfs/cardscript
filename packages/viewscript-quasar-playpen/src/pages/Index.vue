@@ -3,8 +3,10 @@
     <q-jumbotron>
       <div class="q-display-3">Viewscript Quasar Playpen</div>
       <div class="q-subheading">
-        Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn it into a UI.
-        Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more information!
+        Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn
+        it into a UI.
+        Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more
+        information!
       </div>
     </q-jumbotron>
     <div class="q-mx-xl q-my-md">
@@ -55,21 +57,38 @@
                 @click.native="tocClick(entry.widgetId)"
                 class="cursor-pointer"
               >
-                <q-item-side left :icon="entry.tocIcon" />
+                <q-item-side left :icon="entry.tocIcon"/>
                 <q-item-main>{{entry.tocTitle}}</q-item-main>
               </q-item>
             </q-list>
 
             <div class="q-my-md q-px-md">
-              <viewscript :content="dynamicContent" />
+              <viewscript :content="dynamicContent"/>
             </div>
           </q-tab-pane>
           <q-tab-pane name="model-tab">
             <pre>{{dynamicContent.data}}</pre>
           </q-tab-pane>
           <q-tab-pane name="template-tab">
-            <div class="horizontalScroll">
+            <blockquote>
+              The content below has been produced using the <a
+              href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify">viewscript-to-vuetify</a>
+              and
+              <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists">viewscript-extract-lists</a>
+              packages. Here we've configured things to output in a Vue.js style, but Angular and React
+              templates
+              can
+              be generated too!
+            </blockquote>
+
+            <div class="q-display-1 q-my-md">Quasar Template</div>
+            <div class="horizontalScroll q-my-md">
               <pre>{{dynamicContent.quasarTemplate}}</pre>
+            </div>
+
+            <div class="q-display-1 q-my-md">Lists</div>
+            <div class="horizontalScroll q-my-md">
+              <pre>{{dynamicContent.lists}}</pre>
             </div>
           </q-tab-pane>
           <q-tab-pane name="info-tab">
@@ -85,7 +104,7 @@
                 v-for="(time, idx) in dynamicContent.times"
                 :key="idx"
               >
-                <q-item-main :label="time.label" />
+                <q-item-main :label="time.label"/>
                 <q-item-side right>
                   <q-item-tile>{{time.duration}}ms</q-item-tile>
                   <q-item-tile>{{time.percentage}}%</q-item-tile>
@@ -116,160 +135,148 @@
 </style>
 
 <script>
-import Viewscript from './../components/Viewscript'
+  import Viewscript from './../components/Viewscript'
 
-const quasarConverter = require('viewscript-to-quasar')
-const extractDefaults = require('viewscript-extract-defaults')
-const extractToc = require('viewscript-table-of-contents')
-const extractLists = require('viewscript-extract-lists')
-const sdk = require('viewscript-vue-sdk')
-// const examples = require('viewscript-examples')
-// const parser = require('viewscript-parser')
-// const validator = require('viewscript-schema').validateForm
+  const quasarConverter = require('viewscript-to-quasar')
+  const extractDefaults = require('viewscript-extract-defaults')
+  const extractToc = require('viewscript-table-of-contents')
+  const extractLists = require('viewscript-extract-lists')
+  const sdk = require('viewscript-vue-sdk')
+  // const examples = require('viewscript-examples')
+  // const parser = require('viewscript-parser')
+  // const validator = require('viewscript-schema').validateForm
 
-export default {
-  name: 'PageIndex',
-  components: { Viewscript },
-  data: function () {
-    return {
-      dynamicContent: getEmptyDynamicContent(),
-      validation: {
-        state: 'notValidated',
-        errors: []
+  export default {
+    name: 'PageIndex',
+    components: {Viewscript},
+    data: function () {
+      return {
+        dynamicContent: getEmptyDynamicContent(),
+        validation: {
+          state: 'notValidated',
+          errors: []
+        },
+        viewscript: '{}',
+        exampleSlct: null,
+        exampleOpts: [
+          {label: 'Simple example', value: 'simple'},
+          {label: 'Expression example', value: 'expression'},
+          {label: 'Sub-view example', value: 'subView'},
+          {label: 'Complex example', value: 'complex'},
+          {label: 'Kitchen sink example', value: 'kitchenSink'}
+        ]
+      }
+    },
+    methods: {
+      tocClick (elementIdToScrollTo) {
+        const e = document.getElementById(elementIdToScrollTo)
+        e.scrollIntoView()
       },
-      viewscript: '{}',
-      exampleSlct: null,
-      exampleOpts: [
-        { label: 'Simple example', value: 'simple' },
-        { label: 'Expression example', value: 'expression' },
-        { label: 'Sub-view example', value: 'subView' },
-        { label: 'Complex example', value: 'complex' },
-        { label: 'Kitchen sink example', value: 'kitchenSink' }
-      ]
-    }
-  },
-  methods: {
-    tocClick (elementIdToScrollTo) {
-      const e = document.getElementById(elementIdToScrollTo)
-      e.scrollIntoView()
-    },
-    setExampleContent () {
-      console.log('set example as:', this.exampleSlct)
-      this.validation.state = 'notValidated'
-      this.validation.errors = []
-      this.dynamicContent = getEmptyDynamicContent()
-      // this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
-    },
-    renderViewscript () {
-      this.$q.loading.show()
-      this.validation.state = 'notValidated'
-      this.validation.errors = []
-
-      try {
-        if (this.viewscript.trim().length === 0) {
-          throw new Error('You must enter some data.')
-        }
-
-        const parsed = JSON.parse(this.viewscript)
-
-        if (Object.keys(parsed).length === 0) {
-          throw new Error('Cannot convert an empty object.')
-        }
-
-        const stopwatch = new Stopwatch()
-        const output = processViewscript(parsed, stopwatch)
-
-        this.dynamicContent.quasarTemplate = output.quasarOutput.template
-        this.dynamicContent.data = output.defaultValues.rootView
-        this.dynamicContent.internals = output.defaultInternals
-        this.dynamicContent.lists = output.lists
-        this.dynamicContent.toc = output.toc
-
-        this.validation.state = 'valid'
+      setExampleContent () {
+        console.log('set example as:', this.exampleSlct)
+        this.validation.state = 'notValidated'
         this.validation.errors = []
-        this.$q.loading.hide()
-        // stopwatch.addTime('finished')
-        stopwatch.addTime('Render')
-        this.dynamicContent.times = stopwatch.getResults()
-      } catch (e) {
         this.dynamicContent = getEmptyDynamicContent()
+        // this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
+      },
+      renderViewscript () {
+        this.$q.loading.show()
+        this.validation.state = 'notValidated'
+        this.validation.errors = []
 
-        this.validation.state = 'invalid'
-        this.validation.errors.push(e.message)
+        try {
+          if (this.viewscript.trim().length === 0) {
+            throw new Error('You must enter some data.')
+          }
+
+          const parsed = JSON.parse(this.viewscript)
+
+          if (Object.keys(parsed).length === 0) {
+            throw new Error('Cannot convert an empty object.')
+          }
+
+          const stopwatch = new Stopwatch()
+          const output = processViewscript(parsed, stopwatch)
+
+          this.dynamicContent.quasarTemplate = output.quasarOutput.template
+          this.dynamicContent.data = output.defaultValues.rootView
+          this.dynamicContent.internals = output.defaultInternals
+          this.dynamicContent.lists = output.lists
+          this.dynamicContent.toc = output.toc
+
+          this.validation.state = 'valid'
+          this.validation.errors = []
+          stopwatch.addTime('Finished')
+          this.dynamicContent.times = stopwatch.getResults()
+        } catch (e) {
+          this.dynamicContent = getEmptyDynamicContent()
+          this.validation.state = 'invalid'
+          this.validation.errors.push(e.message)
+        }
         this.$q.loading.hide()
       }
     }
   }
-}
 
-function getEmptyDynamicContent () {
-  return {
-    quasarTemplate: '',
-    data: {},
-    internals: {},
-    lists: {},
-    toc: [],
-    times: {}
+  function getEmptyDynamicContent () {
+    return {
+      quasarTemplate: '',
+      data: {},
+      internals: {},
+      lists: {},
+      toc: [],
+      times: {}
+    }
   }
-}
 
-function processViewscript (viewscript, stopwatch) {
-  const result = {}
-  stopwatch.addTime('Parse string into object')
-  // const parserResult = parser(viewscriptString)
-  // if (parserResult.parsed) {
-  // const viewscript = parserResult.parsed
-  // result.validatorOutput = validator(viewscript)
-  // if (result.validatorOutput.widgetsValid) {
-  stopwatch.addTime('Extract default values')
-  result.defaultValues = extractDefaults(viewscript)
-  stopwatch.addTime('Extract TOC')
-  result.toc = extractToc(viewscript)
-  stopwatch.addTime('Extract lists')
-  result.lists = extractLists(viewscript)
-  stopwatch.addTime('Calculate starting internals')
-  result.defaultInternals = sdk.getDefaultInternals(viewscript)
-  result.defaultInternals.subViewDefaults = result.defaultValues.subViews
-  stopwatch.addTime('Generate template')
-  result.quasarOutput = quasarConverter(viewscript)
-  // }
+  function processViewscript (viewscript, stopwatch) {
+    const result = {}
+    // const parserResult = parser(viewscriptString)
+    // if (parserResult.parsed) {
+    // const viewscript = parserResult.parsed
+    // result.validatorOutput = validator(viewscript)
+    // if (result.validatorOutput.widgetsValid) {
+    stopwatch.addTime('Extract default values')
+    result.defaultValues = extractDefaults(viewscript)
+    stopwatch.addTime('Extract TOC')
+    result.toc = extractToc(viewscript)
+    stopwatch.addTime('Extract lists')
+    result.lists = extractLists(viewscript)
+    stopwatch.addTime('Calculate starting internals')
+    result.defaultInternals = sdk.getDefaultInternals(viewscript)
+    result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+    stopwatch.addTime('Generate template')
+    result.quasarOutput = quasarConverter(viewscript)
+    // }
 
-  // } else { ... }
-  return result
-}
+    // } else { ... }
+    return result
+  }
 
-class Stopwatch {
-  constructor () {
-    this.times = [
-      {
+  class Stopwatch {
+    constructor () {
+      this.times = [{
         label: 'init',
         milliseconds: Date.now()
-      }
-    ]
-  }
+      }]
+    }
 
-  addTime (label) {
-    const previousTime = this.times[this.times.length - 1]
-    const n = Date.now()
-    previousTime.duration = n - previousTime.milliseconds
-    this.times.push(
-      {
+    addTime (label) {
+      const previousTime = this.times[this.times.length - 1]
+      const n = Date.now()
+      previousTime.duration = n - previousTime.milliseconds
+      this.times.push({
         label: label,
         milliseconds: n
-      }
-    )
-  }
+      })
+    }
 
-  getResults () {
-    const trimmed = this.times.slice(1, -1)
-    let total = 0
-    trimmed.forEach(time => {
-      total += time.duration
-    })
-    trimmed.forEach(time => {
-      time.percentage = ((time.duration / total) * 100).toFixed(1)
-    })
-    return trimmed
+    getResults () {
+      const trimmed = this.times.slice(1, -1)
+      let total = 0
+      trimmed.forEach(time => { total += time.duration })
+      trimmed.forEach(time => { time.percentage = ((time.duration / total) * 100).toFixed(1) })
+      return trimmed
+    }
   }
-}
 </script>
