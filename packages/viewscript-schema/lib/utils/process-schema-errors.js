@@ -1,7 +1,7 @@
 const validator = require('jsonschema').validate
 const dottie = require('dottie')
 const _ = require('lodash')
-const schema = require('./../schema')
+const schema = require('./../schema.json')
 const extractWidgetIndexFromSchemaError = require('./extract-widget-index-from-schema-error')
 const widgetTypes = require('./widget-types')
 

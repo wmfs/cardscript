@@ -1,4 +1,4 @@
-const viewscriptSchema = require('../schema')
+const viewscriptSchema = require('../schema.json')
 const validator = require('jsonschema').validate
 const formatters = require('./formatters')
 module.exports = function validateForm (formDefinition, options) {
