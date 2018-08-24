@@ -252,25 +252,30 @@
 
   function processViewscript (viewscriptStr, stopwatch) {
     const result = {}
+    stopwatch.addTime('Parse string into object')
     const parserResult = parser(viewscriptStr)
     if (parserResult.parsed) {
       const viewscript = parserResult.parsed
       if (Object.keys(viewscript).length === 0) {
         throw new Error('Cannot convert an empty object.')
       }
-      // result.validatorOutput = validator(viewscript)
-      // if (result.validatorOutput.widgetsValid) {
-      stopwatch.addTime('Extract default values')
-      result.defaultValues = extractDefaults(viewscript)
-      stopwatch.addTime('Extract TOC')
-      result.toc = extractToc(viewscript)
-      stopwatch.addTime('Extract lists')
-      result.lists = extractLists(viewscript)
-      stopwatch.addTime('Calculate starting internals')
-      result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
-      result.defaultInternals.subViewDefaults = result.defaultValues.subViews
-      stopwatch.addTime('Generate template')
-      result.quasarOutput = quasarConverter(viewscript)
+      stopwatch.addTime('Validate object')
+      result.validatorOutput = validator(viewscript)
+      if (result.validatorOutput.widgetsValid) {
+        stopwatch.addTime('Extract default values')
+        result.defaultValues = extractDefaults(viewscript)
+        stopwatch.addTime('Extract TOC')
+        result.toc = extractToc(viewscript)
+        stopwatch.addTime('Extract lists')
+        result.lists = extractLists(viewscript)
+        stopwatch.addTime('Calculate starting internals')
+        result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
+        result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+        stopwatch.addTime('Generate template')
+        result.quasarOutput = quasarConverter(viewscript)
+      } else {
+        throw new Error(`${result.validatorOutput.errors[0].property} ${result.validatorOutput.errors[0].message}`)
+      }
     } else {
       throw new Error(parserResult.errors[0].message)
     }

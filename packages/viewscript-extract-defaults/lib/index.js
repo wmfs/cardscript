@@ -22,33 +22,31 @@ export default function extractDefaults (viewscript) {
     }
   }
 
-  viewscript.widgets.forEach(
-    function (widget) {
-      let defaultValue
-      switch (widget.type) {
-        case 'subView':
-          addDefault(widget.id, [])
-          defaultValues.subViews[widget.id] = {}
-          subViewPath.push(widget.id)
-          break
+  viewscript.widgets.forEach(widget => {
+    let defaultValue
+    switch (widget.type) {
+      case 'subView':
+        addDefault(widget.id, [])
+        defaultValues.subViews[widget.id] = {}
+        subViewPath.push(widget.id)
+        break
 
-        case 'endSubView':
-          subViewPath.pop()
-          break
+      case 'endSubView':
+        subViewPath.pop()
+        break
 
-        default:
-          defaultValue = widgetTypeDefaults[widget.type]
-          if (widget.hasOwnProperty('attributes')) {
-            if (widget.attributes.hasOwnProperty('default')) {
-              defaultValue = widget.attributes.default
-            }
+      default:
+        defaultValue = widgetTypeDefaults[widget.type]
+        if (widget.hasOwnProperty('attributes')) {
+          if (widget.attributes.hasOwnProperty('default')) {
+            defaultValue = widget.attributes.default
           }
+        }
 
-          addDefault(widget.id, defaultValue)
-          break
-      }
+        addDefault(widget.id, defaultValue)
+        break
     }
-  )
+  })
 
   return defaultValues
 }
