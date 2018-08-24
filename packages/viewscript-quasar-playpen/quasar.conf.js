@@ -1,11 +1,4 @@
-// todo: check https://github.com/wmfs/tymly-quasar/commit/a71a1c606b1ffe538e18ec779edbd41783f9286d#diff-f96a949babb32e8348caf0e1a2298a68
-// todo: check https://github.com/wmfs/tymly-quasar/commit/49c192ff1a332265c7e134156d8c4cbb182c3d8b#diff-f96a949babb32e8348caf0e1a2298a68R6
-
-const getEnvVars = require('./src/lib/get-env-vars')
-
 module.exports = function (ctx) {
-  const envVars = getEnvVars()
-  const viewscriptRoot = envVars.$VIEWSCRIPT_ROOT_PATH.slice(1, -1)
   return {
     plugins: [],
     css: [
@@ -17,7 +10,6 @@ module.exports = function (ctx) {
     ],
     supportIE: false,
     build: {
-      env: envVars,
       scopeHoisting: true,
       vueRouterMode: 'history',
       // vueCompiler: true,
