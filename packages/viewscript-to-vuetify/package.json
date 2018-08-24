@@ -13,10 +13,6 @@
     "standard": "11.0.1",
     "viewscript-examples": "^0.0.6"
   },
-  "scripts": {
-    "lint": "standard",
-    "test": "standard && mocha"
-  },
   "license": "GPLv3",
   "repository": {
     "type": "git",
