@@ -7,8 +7,7 @@ module.exports = function (ctx) {
   const envVars = getEnvVars()
   const viewscriptRoot = envVars.$VIEWSCRIPT_ROOT_PATH.slice(1, -1)
   return {
-    plugins: [
-    ],
+    plugins: [],
     css: [
       'app.styl'
     ],
@@ -20,7 +19,7 @@ module.exports = function (ctx) {
     build: {
       env: envVars,
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,

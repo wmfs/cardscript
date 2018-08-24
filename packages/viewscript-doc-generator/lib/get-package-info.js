@@ -3,7 +3,6 @@ const {resolve} = require('path')
 const {readFileSync} = require('jsonfile')
 
 module.exports = function getPackageInfo () {
-
   const packages = []
   const packageDirs = readdirSync(resolve(__dirname, '../../'))
 

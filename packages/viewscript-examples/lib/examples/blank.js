@@ -1,10 +1,10 @@
 module.exports = {
-  "title": "",
-  "widgets": [
+  'title': '',
+  'widgets': [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "Change me!"
+      'type': 'header',
+      'attributes': {
+        'heading': 'Change me!'
       }
     }
   ]

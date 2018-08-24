@@ -165,15 +165,6 @@
 <script>
   import Viewscript from './../components/Viewscript'
 
-  // const quasarConverter = require('./../../../viewscript-to-quasar').default
-  // const extractDefaults = require('./../../../viewscript-extract-defaults').default
-  // const extractToc = require('./../../../viewscript-table-of-contents').default
-  // const extractLists = require('./../../../viewscript-extract-lists').default
-  // const sdk = require('./../../../viewscript-vue-sdk').default
-  // const examples = require('./../../../viewscript-examples')
-  // const parser = require('./../../../viewscript-parser')
-  // const validator = require('./../../../viewscript-schema').validateForm
-
   const quasarConverter = require('viewscript-to-quasar').default
   const extractDefaults = require('viewscript-extract-defaults').default
   const extractToc = require('viewscript-table-of-contents').default
@@ -193,7 +184,7 @@
           state: 'notValidated',
           errors: []
         },
-        viewscript: '{}',
+        viewscript: '',
         exampleSlct: null,
         exampleOpts: [
           {label: 'Simple example', value: 'simple'},
