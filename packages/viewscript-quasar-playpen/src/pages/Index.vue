@@ -205,7 +205,7 @@
         this.validation.state = 'notValidated'
         this.validation.errors = []
         this.dynamicContent = getEmptyDynamicContent()
-        // this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
+        this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
       },
       renderViewscript () {
         this.$q.loading.show()
