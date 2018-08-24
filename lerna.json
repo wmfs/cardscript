@@ -3,7 +3,7 @@
   "packages": [
     "packages/*"
   ],
-  "hoist": false,
+  "hoist": true,
   "command": {
     "init": {
       "exact": false

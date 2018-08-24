@@ -1,14 +1,24 @@
 <template>
   <q-page>
-    <q-jumbotron dark>
-      <div class="q-display-3">Viewscript Quasar Playpen</div>
-      <div class="q-subheading">
-        Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn
-        it into a UI.
-        Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more
-        information!
+    <!--<q-jumbotron dark>-->
+      <!--<div class="q-display-3">Viewscript Quasar Playpen</div>-->
+      <!--<div class="q-subheading">-->
+        <!--Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn-->
+        <!--it into a UI.-->
+        <!--Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more-->
+        <!--information!-->
+      <!--</div>-->
+    <!--</q-jumbotron>-->
+
+
+    <q-jumbotron class="bg-primary" dark>
+      <div class="q-display-3">Viewscript playpen!</div>
+      <div class="q-subheading q-my-lg">
+        Use the editor below to write some of your own Viewscript JSON/YAML, then click <strong>Go</strong> to turn it into a UI!
       </div>
+      <q-btn color="white" text-color="primary" class="q-py-sm q-px-xl" label="Learn more" @click="learnMore()"/>
     </q-jumbotron>
+
     <div class="q-mx-xl q-my-md">
       <q-select
         float-label="Try an example"
@@ -29,7 +39,7 @@
       <div class="q-my-md" style="text-align: right;">
         <q-btn
           label="Go"
-          color="primary"
+          color="positive"
           @click="renderViewscript"
         />
       </div>
@@ -163,6 +173,7 @@
 </style>
 
 <script>
+  import { openURL } from 'quasar'
   import Viewscript from './../components/Viewscript'
 
   const quasarConverter = require('viewscript-to-quasar').default
@@ -196,6 +207,10 @@
       }
     },
     methods: {
+
+      learnMore() {
+        openURL('https://github.com/wmfs/viewscript')
+      },
       tocClick (elementIdToScrollTo) {
         const e = document.getElementById(elementIdToScrollTo)
         e.scrollIntoView()

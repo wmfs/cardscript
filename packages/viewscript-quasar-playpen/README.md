@@ -4,7 +4,11 @@
 
 ## Build Setup
 
+* Install Lerna
+* Install Quasar
+
 ``` bash
-yarn install
+lerna bootstrap
 quasar dev
+
 ```
