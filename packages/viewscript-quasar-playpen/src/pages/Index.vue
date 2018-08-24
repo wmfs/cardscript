@@ -216,14 +216,8 @@
             throw new Error('You must enter some data.')
           }
 
-          const parsed = JSON.parse(this.viewscript)
-
-          if (Object.keys(parsed).length === 0) {
-            throw new Error('Cannot convert an empty object.')
-          }
-
           const stopwatch = new Stopwatch()
-          const output = processViewscript(parsed, stopwatch)
+          const output = processViewscript(this.viewscript, stopwatch)
 
           this.dynamicContent.quasarTemplate = output.quasarOutput.template
           this.dynamicContent.data = output.defaultValues.rootView
@@ -256,27 +250,30 @@
     }
   }
 
-  function processViewscript (viewscript, stopwatch) {
+  function processViewscript (viewscriptStr, stopwatch) {
     const result = {}
-    // const parserResult = parser(viewscriptString)
-    // if (parserResult.parsed) {
-    // const viewscript = parserResult.parsed
-    // result.validatorOutput = validator(viewscript)
-    // if (result.validatorOutput.widgetsValid) {
-    stopwatch.addTime('Extract default values')
-    result.defaultValues = extractDefaults(viewscript)
-    stopwatch.addTime('Extract TOC')
-    result.toc = extractToc(viewscript)
-    stopwatch.addTime('Extract lists')
-    result.lists = extractLists(viewscript)
-    stopwatch.addTime('Calculate starting internals')
-    result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
-    result.defaultInternals.subViewDefaults = result.defaultValues.subViews
-    stopwatch.addTime('Generate template')
-    result.quasarOutput = quasarConverter(viewscript)
-    // }
-
-    // } else { ... }
+    const parserResult = parser(viewscriptStr)
+    if (parserResult.parsed) {
+      const viewscript = parserResult.parsed
+      if (Object.keys(viewscript).length === 0) {
+        throw new Error('Cannot convert an empty object.')
+      }
+      // result.validatorOutput = validator(viewscript)
+      // if (result.validatorOutput.widgetsValid) {
+      stopwatch.addTime('Extract default values')
+      result.defaultValues = extractDefaults(viewscript)
+      stopwatch.addTime('Extract TOC')
+      result.toc = extractToc(viewscript)
+      stopwatch.addTime('Extract lists')
+      result.lists = extractLists(viewscript)
+      stopwatch.addTime('Calculate starting internals')
+      result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
+      result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+      stopwatch.addTime('Generate template')
+      result.quasarOutput = quasarConverter(viewscript)
+    } else {
+      throw new Error(parserResult.errors[0].message)
+    }
     return result
   }
 
