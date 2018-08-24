@@ -379,7 +379,7 @@ module.exports = {
               },
               'singularEntityText': {
                 'type': 'string',
-                'title': "What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'."
+                'title': 'What is _one_ of these forms termed? Consider using it in a sentence such as "_Click here to create a new `${singularEntityText}`._".'  // eslint-disable-line
               },
               'instanceHeadingTemplate': {
                 'type': 'string',
