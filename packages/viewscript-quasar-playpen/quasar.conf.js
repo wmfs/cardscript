@@ -19,12 +19,10 @@ module.exports = function (ctx) {
       extendWebpack (cfg) {
         cfg.resolve.symlinks = false
         cfg.resolve.alias.vue$ = 'vue/dist/vue.js'
-        // cfg.resolveLoader.modules.push(`${viewscriptRoot}/node_modules`)
-        // cfg.resolveLoader.modules.push('c:\\development\\viewscript\\packages')
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
-          // loader: 'eslint-loader',
+          loader: 'eslint-loader',
           exclude: /(node_modules|quasar)/
         })
       }
