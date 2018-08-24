@@ -12,7 +12,7 @@
 
 
     <q-jumbotron class="bg-primary" dark>
-      <div class="q-display-3">Viewscript playpen!</div>
+      <div class="q-display-3">Viewscript playpen</div>
       <div class="q-subheading q-my-lg">
         Use the editor below to write some of your own Viewscript JSON/YAML, then click <strong>Go</strong> to turn it into a UI!
       </div>
@@ -177,7 +177,7 @@
   import Viewscript from './../components/Viewscript'
 
   const quasarConverter = require('viewscript-to-quasar').default
-  const extractDefaults = require('viewscript-extract-defaults').default
+  const extractDefaults = require('viewscript-extract-defaults')
   const extractToc = require('viewscript-table-of-contents').default
   const extractLists = require('viewscript-extract-lists').default
   const sdk = require('viewscript-vue-sdk').default

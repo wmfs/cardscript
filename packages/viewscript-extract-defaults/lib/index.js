@@ -4,7 +4,7 @@ const widgetTypeDefaults = {
   richtext: ''
 }
 
-export default function extractDefaults (viewscript) {
+module.exports = function extractDefaults (viewscript) {
   const subViewPath = []
   const defaultValues = {
     rootView: {},
