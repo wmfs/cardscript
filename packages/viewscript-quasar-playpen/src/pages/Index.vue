@@ -176,10 +176,10 @@
   import { openURL } from 'quasar'
   import Viewscript from './../components/Viewscript'
 
-  const quasarConverter = require('viewscript-to-quasar').default
+  const quasarConverter = require('viewscript-to-quasar')
   const extractDefaults = require('viewscript-extract-defaults')
-  const extractToc = require('viewscript-table-of-contents').default
-  const extractLists = require('viewscript-extract-lists').default
+  const extractToc = require('viewscript-table-of-contents')
+  const extractLists = require('viewscript-extract-lists')
   const sdk = require('viewscript-vue-sdk').default
   const examples = require('viewscript-examples')
   const parser = require('viewscript-parser')

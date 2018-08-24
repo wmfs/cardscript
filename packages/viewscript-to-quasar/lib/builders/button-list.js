@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function buttonListConverter (widgetDefinition, options) {
+module.exports = function buttonListConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
 

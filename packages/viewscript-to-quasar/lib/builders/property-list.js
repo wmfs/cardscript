@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function propertyListConverter (widgetDefinition, options) {
+module.exports = function propertyListConverter (widgetDefinition, options) {
   // heading
   // properties
   // properties[0].dataPath

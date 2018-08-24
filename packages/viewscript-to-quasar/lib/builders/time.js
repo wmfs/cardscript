@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function timeConverter (widgetDefinition, options) {
+module.exports = function timeConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
   const dateTime = builder.addTag('q-datetime')

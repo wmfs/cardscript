@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
+const ComponentBuilder = require('./../utils/Component-builder')
 // const GetAttribute = require('./../utils/Get-attribute')
 
-export default function signatureConverter (widgetDefinition, options) {
+module.exports = function signatureConverter (widgetDefinition, options) {
   // desc
   // enabled
   // heading

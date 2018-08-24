@@ -1,8 +1,8 @@
-const subViewTracker = require('./../utils/sub-view-tracker').default
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const subViewTracker = require('./../utils/sub-view-tracker')
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function subViewConverter (widgetDefinition, options) {
+module.exports = function subViewConverter (widgetDefinition, options) {
   const parentSubView = subViewTracker.getCurrentSubView()
   subViewTracker.addSubView(widgetDefinition.id)
 

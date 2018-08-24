@@ -1,7 +1,7 @@
-const subViewTracker = require('./../utils/sub-view-tracker').default
-const ComponentBuilder = require('./../utils/Component-builder').default
+const subViewTracker = require('./../utils/sub-view-tracker')
+const ComponentBuilder = require('./../utils/Component-builder')
 
-export default function endSubView (widgetDefinition, options) {
+module.exports = function endSubView (widgetDefinition, options) {
   let template = '</div>'
 
   const builder = new ComponentBuilder(widgetDefinition)

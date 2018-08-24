@@ -1,98 +1,98 @@
 module.exports = {
   address: {
-    conversionFunction: require('./address').default
+    conversionFunction: require('./address')
   },
   apiLookup: {
-    conversionFunction: require('./api-lookup').default
+    conversionFunction: require('./api-lookup')
   },
   buttonList: {
-    conversionFunction: require('./button-list').default
+    conversionFunction: require('./button-list')
   },
   checkboxList: {
-    conversionFunction: require('./checkbox-list').default
+    conversionFunction: require('./checkbox-list')
   },
   currency: {
-    conversionFunction: require('./currency').default
+    conversionFunction: require('./currency')
   },
   dateTime: {
-    conversionFunction: require('./date-time').default
+    conversionFunction: require('./date-time')
   },
   date: {
-    conversionFunction: require('./date').default
+    conversionFunction: require('./date')
   },
   endSet: {
-    conversionFunction: require('./end-set').default
+    conversionFunction: require('./end-set')
   },
   endSubView: {
-    conversionFunction: require('./end-sub-view').default
+    conversionFunction: require('./end-sub-view')
   },
   expandableNotice: {
-    conversionFunction: require('./expandable-notice').default
+    conversionFunction: require('./expandable-notice')
   },
   fileUpload: {
-    conversionFunction: require('./file-upload').default
+    conversionFunction: require('./file-upload')
   },
   header: {
-    conversionFunction: require('./header').default
+    conversionFunction: require('./header')
   },
   heading: {
-    conversionFunction: require('./heading').default
+    conversionFunction: require('./heading')
   },
   horizontalLine: {
-    conversionFunction: require('./horizontal-line').default
+    conversionFunction: require('./horizontal-line')
   },
   image: {
-    conversionFunction: require('./image').default
+    conversionFunction: require('./image')
   },
   map: {
-    conversionFunction: require('./map').default
+    conversionFunction: require('./map')
   },
   number: {
-    conversionFunction: require('./number').default
+    conversionFunction: require('./number')
   },
   propertyList: {
-    conversionFunction: require('./property-list').default
+    conversionFunction: require('./property-list')
   },
   questionnaire: {
-    conversionFunction: require('./questionnaire').default
+    conversionFunction: require('./questionnaire')
   },
   radio: {
-    conversionFunction: require('./radio').default
+    conversionFunction: require('./radio')
   },
   richtext: {
-    conversionFunction: require('./richtext').default
+    conversionFunction: require('./richtext')
   },
   select: {
-    conversionFunction: require('./select').default
+    conversionFunction: require('./select')
   },
   set: {
-    conversionFunction: require('./set').default
+    conversionFunction: require('./set')
   },
   signature: {
-    conversionFunction: require('./signature').default
+    conversionFunction: require('./signature')
   },
   slider: {
-    conversionFunction: require('./slider').default
+    conversionFunction: require('./slider')
   },
   stickyNote: {
-    conversionFunction: require('./sticky-note').default
+    conversionFunction: require('./sticky-note')
   },
   subView: {
-    conversionFunction: require('./sub-view').default
+    conversionFunction: require('./sub-view')
   },
   switch: {
-    conversionFunction: require('./switch').default
+    conversionFunction: require('./switch')
   },
   table: {
-    conversionFunction: require('./table').default
+    conversionFunction: require('./table')
   },
   text: {
-    conversionFunction: require('./text').default
+    conversionFunction: require('./text')
   },
   textarea: {
-    conversionFunction: require('./textarea').default
+    conversionFunction: require('./textarea')
   },
   time: {
-    conversionFunction: require('./time').default
+    conversionFunction: require('./time')
   }
 }

@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function radioConverter (widgetDefinition, options) {
+module.exports = function radioConverter (widgetDefinition, options) {
   // desc
   // enabled
   // heading

@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder').default
-const GetAttribute = require('./../utils/Get-attribute').default
+const ComponentBuilder = require('./../utils/Component-builder')
+const GetAttribute = require('./../utils/Get-attribute')
 
-export default function selectConverter (widgetDefinition, options) {
+module.exports = function selectConverter (widgetDefinition, options) {
   // default
   // desc
   // enabled
