@@ -28,4 +28,4 @@ class SubViewTracker {
   }
 }
 
-module.exports = new SubViewTracker()
+export default new SubViewTracker()

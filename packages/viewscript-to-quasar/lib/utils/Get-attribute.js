@@ -1,4 +1,4 @@
-module.exports = function getAttribute (widgetDefinition) {
+export default function getAttribute (widgetDefinition) {
   let attributes
   if (widgetDefinition && widgetDefinition.hasOwnProperty('attributes')) {
     attributes = widgetDefinition.attributes

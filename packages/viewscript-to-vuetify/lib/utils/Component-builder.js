@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const subViewTracker = require('./sub-view-tracker')
+const subViewTracker = require('./sub-view-tracker').default
 
 class TagNode {
   constructor (name, providedOptions) {

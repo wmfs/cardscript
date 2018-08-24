@@ -1,4 +1,4 @@
-module.exports = function extractTableOfContents (viewscript) {
+export default function extractTableOfContents (viewscript) {
   const toc = []
   let depth = 0
   viewscript.widgets.forEach(

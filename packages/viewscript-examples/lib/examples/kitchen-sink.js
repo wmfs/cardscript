@@ -1,4 +1,4 @@
-{
+module.exports = {
   "title": "The Kitchen Sink",
   "widgets": [
     {

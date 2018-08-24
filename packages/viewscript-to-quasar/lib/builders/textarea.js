@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+const ComponentBuilder = require('./../utils/Component-builder').default
+const GetAttribute = require('./../utils/Get-attribute').default
 
-module.exports = function textareaConverter (widgetDefinition, options) {
+export default function textareaConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
   const input = builder.addTag('q-input')

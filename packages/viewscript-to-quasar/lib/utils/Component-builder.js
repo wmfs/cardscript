@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const subViewTracker = require('./sub-view-tracker')
+const subViewTracker = require('./sub-view-tracker').default
 
 class TagNode {
   constructor (name, providedOptions) {
@@ -61,7 +61,7 @@ class TagNode {
   }
 }
 
-module.exports = class ComponentBuilder {
+export default class ComponentBuilder {
   constructor (widgetDefiniton, providedOptions) {
     this.rootTags = []
     if (widgetDefiniton) {

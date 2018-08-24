@@ -1,3 +1,4 @@
+const path = require('path')
 const validator = require('jsonschema').validate
 const dottie = require('dottie')
 const _ = require('lodash')

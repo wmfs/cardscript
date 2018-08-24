@@ -1,6 +1,6 @@
 const DEFAULT_CANDIDATE_WIDGET_TYPES = ['select', 'checkboxList', 'questionnaire']
 
-module.exports = function extractLists (viewscript, options) {
+export default function extractLists (viewscript, options) {
   const candidateWidgetTypes = options && options.hasOwnProperty('candidateWidgetTypes')
     ? options.candidateWidgetTypes
     : DEFAULT_CANDIDATE_WIDGET_TYPES

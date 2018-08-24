@@ -1,13 +1,10 @@
-{
-  "title": "Simple demo view!",
+module.exports = {
+  "title": "Simple set demo!",
   "widgets": [
     {
-      "type": "header",
+      "type": "set",
       "attributes": {
-        "heading": "Register!",
-        "desc": "Let's get to know each other a bit better...",
-        "backgroundImage": "happyPeople.jpg",
-        "backgroundImageAltText": "Beautiful people smiling around a laptop"
+        "tocTitle": "Profile"
       }
     },
     {
@@ -21,6 +18,9 @@
         "maxCharacters": 100,
         "help": "Enter your full name here"
       }
+    },
+    {
+      "type": "endSet"
     }
   ]
 }

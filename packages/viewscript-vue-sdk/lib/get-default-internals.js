@@ -1,4 +1,4 @@
-module.exports = function getDefaultInternals (viewscript) {
+export default function getDefaultInternals (viewscript) {
   const internals = {
     dialogControl: {},
     currentSubViewData: {},

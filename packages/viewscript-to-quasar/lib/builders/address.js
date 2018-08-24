@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
+const ComponentBuilder = require('./../utils/Component-builder').default
 // const GetAttribute = require('./../utils/Get-attribute')
 
-module.exports = function addressConverter (widgetDefinition, options) {
+export default function addressConverter (widgetDefinition, options) {
   // enableLocationAssist
   // enableUnknownOption
   // enabled

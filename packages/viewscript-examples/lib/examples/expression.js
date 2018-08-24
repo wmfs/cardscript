@@ -1,4 +1,4 @@
-{
+module.exports = {
   "title": "Simple expression demo!",
   "widgets": [
     {

@@ -1,6 +1,6 @@
 // const ComponentBuilder = require('./../utils/Component-builder')
 // const GetAttribute = require('./../utils/Get-attribute')
 
-module.exports = function endSetConverter (widgetDefinition, options) {
+export default function endSetConverter (widgetDefinition, options) {
   return '</div>'
 }

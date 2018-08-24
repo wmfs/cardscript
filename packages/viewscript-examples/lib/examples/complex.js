@@ -1,4 +1,4 @@
-{
+module.exports = {
   "title": "Pizza Place",
   "widgets": [
     {

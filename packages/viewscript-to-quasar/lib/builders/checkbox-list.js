@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+const ComponentBuilder = require('./../utils/Component-builder').default
+const GetAttribute = require('./../utils/Get-attribute').default
 
-module.exports = function checkboxList (widgetDefinition, options) {
+export default function checkboxList (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
 
   const builder = new ComponentBuilder(widgetDefinition)

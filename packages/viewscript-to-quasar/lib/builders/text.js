@@ -1,5 +1,5 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+const ComponentBuilder = require('./../utils/Component-builder').default
+const GetAttribute = require('./../utils/Get-attribute').default
 
 // default
 // desc
@@ -11,7 +11,7 @@ const GetAttribute = require('./../utils/Get-attribute')
 // minCharacters
 // placeholder
 
-module.exports = function textConverter (widgetDefinition, options) {
+export default function textConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
   const textField = builder.addTag('q-input')

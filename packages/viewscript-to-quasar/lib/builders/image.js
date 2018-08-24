@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
+const ComponentBuilder = require('./../utils/Component-builder').default
 // const GetAttribute = require('./../utils/Get-attribute')
 
-module.exports = function imageConverter (widgetDefinition, options) {
+export default function imageConverter (widgetDefinition, options) {
   // altText
   // desc
   // heading

@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+const ComponentBuilder = require('./../utils/Component-builder').default
+const GetAttribute = require('./../utils/Get-attribute').default
 
-module.exports = function stickyNoteConverter (widgetDefinition, options) {
+export default function stickyNoteConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   // desc
   // heading

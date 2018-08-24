@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-const GetAttribute = require('./../utils/Get-attribute')
+const ComponentBuilder = require('./../utils/Component-builder').default
+const GetAttribute = require('./../utils/Get-attribute').default
 
-module.exports = function headerConverter (widgetDefinition, options) {
+export default function headerConverter (widgetDefinition, options) {
   const builder = new ComponentBuilder(widgetDefinition)
   const getAttribute = GetAttribute(widgetDefinition)
 

@@ -1,7 +1,7 @@
 const builders = require('./builders')
 const ONE_TAB = '  '
 
-module.exports = function extractDefaults (viewscript, options) {
+export default function extractDefaults (viewscript, options) {
   let indent = '  '
   let quasarTemplate = '<div>\n'
 

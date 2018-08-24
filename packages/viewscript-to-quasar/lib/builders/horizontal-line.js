@@ -1,6 +1,6 @@
-const ComponentBuilder = require('./../utils/Component-builder')
+const ComponentBuilder = require('./../utils/Component-builder').default
 
-module.exports = function horizontalLineConverter (widgetDefinition, options) {
+export default function horizontalLineConverter (widgetDefinition, options) {
   const builder = new ComponentBuilder(widgetDefinition)
   const heading = builder.addTag('hr')
   heading.addAttribute('class', 'q-my-xl')

@@ -165,14 +165,23 @@
 <script>
   import Viewscript from './../components/Viewscript'
 
-  const quasarConverter = require('viewscript-to-quasar')
-  const extractDefaults = require('viewscript-extract-defaults')
-  const extractToc = require('viewscript-table-of-contents')
-  const extractLists = require('viewscript-extract-lists')
-  const sdk = require('viewscript-vue-sdk')
-  // const examples = require('viewscript-examples')
-  // const parser = require('viewscript-parser')
-  // const validator = require('viewscript-schema').validateForm
+  // const quasarConverter = require('./../../../viewscript-to-quasar').default
+  // const extractDefaults = require('./../../../viewscript-extract-defaults').default
+  // const extractToc = require('./../../../viewscript-table-of-contents').default
+  // const extractLists = require('./../../../viewscript-extract-lists').default
+  // const sdk = require('./../../../viewscript-vue-sdk').default
+  // const examples = require('./../../../viewscript-examples')
+  // const parser = require('./../../../viewscript-parser')
+  // const validator = require('./../../../viewscript-schema').validateForm
+
+  const quasarConverter = require('viewscript-to-quasar').default
+  const extractDefaults = require('viewscript-extract-defaults').default
+  const extractToc = require('viewscript-table-of-contents').default
+  const extractLists = require('viewscript-extract-lists').default
+  const sdk = require('viewscript-vue-sdk').default
+  const examples = require('viewscript-examples')
+  const parser = require('viewscript-parser')
+  const validator = require('viewscript-schema').validateForm
 
   export default {
     name: 'PageIndex',
@@ -271,7 +280,7 @@
     stopwatch.addTime('Extract lists')
     result.lists = extractLists(viewscript)
     stopwatch.addTime('Calculate starting internals')
-    result.defaultInternals = sdk.getDefaultInternals(viewscript)
+    result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
     result.defaultInternals.subViewDefaults = result.defaultValues.subViews
     stopwatch.addTime('Generate template')
     result.quasarOutput = quasarConverter(viewscript)

@@ -1,7 +1,7 @@
-const ComponentBuilder = require('./../utils/Component-builder')
+const ComponentBuilder = require('./../utils/Component-builder').default
 // const GetAttribute = require('./../utils/Get-attribute')
 
-module.exports = function mapConverter (widgetDefinition, options) {
+export default function mapConverter (widgetDefinition, options) {
   // collectGeometries
   // enableLocationAssist
   // enabled

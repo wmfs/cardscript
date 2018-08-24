@@ -1,4 +1,4 @@
-{
+module.exports = {
   "title": "Simple sub-view demo!",
   "widgets": [
     {
