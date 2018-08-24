@@ -201,7 +201,6 @@
         e.scrollIntoView()
       },
       setExampleContent () {
-        console.log('set example as:', this.exampleSlct)
         this.validation.state = 'notValidated'
         this.validation.errors = []
         this.dynamicContent = getEmptyDynamicContent()
