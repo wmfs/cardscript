@@ -17,15 +17,17 @@
         @input="setExampleContent"
         class="q-my-md"
       />
-      <!--<q-input-->
-      <!--float-label="Enter some JSON or choose from an example."-->
-      <!--type="textarea"-->
-      <!--v-model="viewscript"-->
-      <!--:max-height="300"-->
-      <!--rows="10"-->
-      <!--class="q-my-md q-pa-sm bg-dark code"-->
-      <!--dark-->
-      <!--/>-->
+      <brace
+        :fontsize="'12px'"
+        :theme="'monokai'"
+        :mode="'json'"
+        :codefolding="'markbegin'"
+        :softwrap="'free'"
+        :selectionstyle="'text'"
+        :highlightline="true"
+        style="height: 500px; width: 100%"
+        @code-change="codeChange"
+      />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
           label="Go"
@@ -188,6 +190,8 @@
 <script>
   import { openURL } from 'quasar'
   import Viewscript from './../components/Viewscript'
+  import Brace from 'vue-bulma-brace'
+  import * as brace from 'brace'
 
   const quasarConverter = require('viewscript-to-quasar')
   const extractDefaults = require('viewscript-extract-defaults')
@@ -202,7 +206,7 @@
     name: 'PageIndex',
     components: {
       Viewscript,
-      MonacoEditor
+      Brace
     },
     data: function () {
       return {
@@ -227,7 +231,14 @@
     filters: {
       pretty: json => JSON.stringify(json, null, 2)
     },
+    mounted () {
+      this.editor = brace.edit('vue-bulma-editor')
+    },
     methods: {
+      codeChange (e) {
+        console.log('>>', e)
+        this.viewscript = e
+      },
       learnMore () {
         openURL('https://github.com/wmfs/viewscript')
       },
@@ -240,6 +251,7 @@
         this.validation.errors = []
         this.dynamicContent = getEmptyDynamicContent()
         this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
+        this.editor.session.setValue(this.viewscript)
       },
       renderViewscript () {
         this.$q.loading.show()
