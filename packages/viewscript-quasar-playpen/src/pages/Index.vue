@@ -1,16 +1,5 @@
 <template>
   <q-page>
-    <!--<q-jumbotron dark>-->
-    <!--<div class="q-display-3">Viewscript Quasar Playpen</div>-->
-    <!--<div class="q-subheading">-->
-    <!--Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn-->
-    <!--it into a UI.-->
-    <!--Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more-->
-    <!--information!-->
-    <!--</div>-->
-    <!--</q-jumbotron>-->
-
-
     <q-jumbotron class="bg-primary" dark>
       <div class="q-display-3">Viewscript playpen</div>
       <div class="q-subheading q-my-lg">
@@ -34,7 +23,7 @@
         v-model="viewscript"
         :max-height="300"
         rows="10"
-        class="q-my-md q-pa-sm bg-dark"
+        class="q-my-md q-pa-sm bg-dark code"
         dark
       />
       <div class="q-my-md" style="text-align: right;">
@@ -97,9 +86,15 @@
               Be sure to check back here as you change input fields to see the model change!
             </blockquote>
 
-            <div class="horizontalScroll q-my-md">
-              <pre>{{dynamicContent.data}}</pre>
-            </div>
+            <q-input
+              type="textarea"
+              readonly
+              v-bind:value="dynamicContent.data | pretty"
+              :max-height="300"
+              rows="10"
+              class="q-my-md q-pa-sm bg-dark code"
+              dark
+            />
           </q-tab-pane>
           <q-tab-pane name="template-tab">
             <blockquote>
@@ -114,14 +109,26 @@
             </blockquote>
 
             <div class="q-display-1 q-my-md">Quasar Template</div>
-            <div class="horizontalScroll q-my-md">
-              <pre>{{dynamicContent.quasarTemplate}}</pre>
-            </div>
+            <q-input
+              type="textarea"
+              readonly
+              v-bind:value="dynamicContent.quasarTemplate"
+              :max-height="300"
+              rows="10"
+              class="q-my-md q-pa-sm bg-dark code"
+              dark
+            />
 
             <div class="q-display-1 q-my-md">Lists</div>
-            <div class="horizontalScroll q-my-md">
-              <pre>{{dynamicContent.lists}}</pre>
-            </div>
+            <q-input
+              type="textarea"
+              readonly
+              v-bind:value="dynamicContent.lists | pretty"
+              :max-height="300"
+              rows="10"
+              class="q-my-md q-pa-sm bg-dark code"
+              dark
+            />
           </q-tab-pane>
           <q-tab-pane name="info-tab">
             <div class="q-display-1 q-my-md">Performance</div>
@@ -155,9 +162,15 @@
             <p>
               Here are some of the internal workings (for managing dialog states and sub-views especially)
             </p>
-            <div class="horizontalScroll q-my-md">
-              <pre>{{dynamicContent.internals}}</pre>
-            </div>
+            <q-input
+              type="textarea"
+              readonly
+              v-bind:value="dynamicContent.internals | pretty"
+              :max-height="300"
+              rows="10"
+              class="q-my-md q-pa-sm bg-dark code"
+              dark
+            />
           </q-tab-pane>
         </q-tabs>
       </div>
@@ -166,17 +179,9 @@
 </template>
 
 <style>
-  .horizontalScroll {
-    overflow-x: scroll;
-    display: block;
-    width: 100%;
-    height: 600px;
-    border: 1px solid #e0e0e0;
-  }
-
-  pre {
-    padding: 0px;
-    margin: 10px;
+  .code {
+    font-family: monospace, monospace;
+    font-size: 1em;
   }
 </style>
 
@@ -216,8 +221,10 @@
         ]
       }
     },
+    filters: {
+      pretty: json => JSON.stringify(json, null, 2)
+    },
     methods: {
-
       learnMore () {
         openURL('https://github.com/wmfs/viewscript')
       },
