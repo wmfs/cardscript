@@ -13,7 +13,6 @@
   "dependencies": {
     "dottie": "2.0.0",
     "jsonschema": "1.2.4",
-    "monaco-editor-webpack-plugin": "1.5.1",
     "viewscript-examples": "0.0.6",
     "viewscript-extract-defaults": "0.0.6",
     "viewscript-extract-lists": "0.0.6",
@@ -22,7 +21,6 @@
     "viewscript-table-of-contents": "0.0.6",
     "viewscript-to-quasar": "0.0.6",
     "viewscript-vue-sdk": "0.0.6",
-    "vue-monaco": "0.2.0",
     "yamljs": "0.3.0"
   },
   "devDependencies": {

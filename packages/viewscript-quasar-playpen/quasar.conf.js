@@ -1,9 +1,6 @@
-const MonacoEditorPlugin = require('monaco-editor-webpack-plugin')
-
 module.exports = function (ctx) {
   return {
     plugins: [
-      new MonacoEditorPlugin()
     ],
     css: [
       'app.styl'

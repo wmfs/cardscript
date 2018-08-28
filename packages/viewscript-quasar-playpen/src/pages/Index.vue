@@ -26,14 +26,6 @@
       <!--class="q-my-md q-pa-sm bg-dark code"-->
       <!--dark-->
       <!--/>-->
-      <monaco-editor
-        ref="editor"
-        class="monaco-editor"
-        v-model="viewscript"
-        theme="vs-dark"
-        language="json"
-        :options="{validate: true}"
-      />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
           label="Go"
@@ -191,17 +183,11 @@
     font-family: monospace, monospace;
     font-size: 1em;
   }
-
-  .monaco-editor {
-    width: 100%;
-    height: 600px;
-  }
 </style>
 
 <script>
   import { openURL } from 'quasar'
   import Viewscript from './../components/Viewscript'
-  import MonacoEditor from 'vue-monaco'
 
   const quasarConverter = require('viewscript-to-quasar')
   const extractDefaults = require('viewscript-extract-defaults')
@@ -311,11 +297,6 @@
       totalTime: 0
     }
   }
-
-  // function getMonaco () {
-  //   // monaco = this.$refs.editor.getMonaco()
-  //   this.$refs.editor.options.validate = true
-  // }
 
   function processViewscript (viewscriptStr, stopwatch) {
     const result = {}
