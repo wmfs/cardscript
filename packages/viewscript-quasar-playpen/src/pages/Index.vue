@@ -198,10 +198,12 @@
         viewscript: '',
         exampleSlct: null,
         exampleOpts: [
-          {label: 'Simple example', value: 'simple'},
+          {label: 'Complex example', value: 'complex'},
           {label: 'Expression example', value: 'expression'},
           {label: 'Sub-view example', value: 'subView'},
-          {label: 'Complex example', value: 'complex'},
+          {label: 'Simple example', value: 'simple'},
+          {label: 'Basic problems example', value: 'simpleFormWithBasicProblems'},
+          {label: 'Blank example', value: 'blank'},
           {label: 'Kitchen sink example', value: 'kitchenSink'}
         ]
       }
