@@ -225,33 +225,42 @@
       },
       renderViewscript () {
         this.$q.loading.show()
-        this.validation.state = 'notValidated'
-        this.validation.errors = []
 
-        try {
-          if (this.viewscript.trim().length === 0) {
-            throw new Error('You must enter some data.')
-          }
-
-          const stopwatch = new Stopwatch()
-          const output = processViewscript(this.viewscript, stopwatch)
-
-          this.dynamicContent.quasarTemplate = output.quasarOutput.template
-          this.dynamicContent.data = output.defaultValues.rootView
-          this.dynamicContent.internals = output.defaultInternals
-          this.dynamicContent.lists = output.lists
-          this.dynamicContent.toc = output.toc
-
-          this.validation.state = 'valid'
+        setTimeout(() => {
+          this.validation.state = 'notValidated'
           this.validation.errors = []
-          stopwatch.addTime('Finished')
-          this.dynamicContent.times = stopwatch.getResults()
-        } catch (e) {
-          this.dynamicContent = getEmptyDynamicContent()
-          this.validation.state = 'invalid'
-          this.validation.errors.push(e.message)
-        }
-        this.$q.loading.hide()
+
+          this.$nextTick(() => {
+            try {
+              if (this.viewscript.trim().length === 0) {
+                throw new Error('You must enter some data.')
+              }
+
+              const stopwatch = new Stopwatch()
+              const output = processViewscript(this.viewscript, stopwatch)
+
+              this.dynamicContent.quasarTemplate = output.quasarOutput.template
+              this.dynamicContent.data = output.defaultValues.rootView
+              this.dynamicContent.internals = output.defaultInternals
+              this.dynamicContent.lists = output.lists
+              this.dynamicContent.toc = output.toc
+
+              this.validation.state = 'valid'
+              this.validation.errors = []
+
+              this.$nextTick(() => {
+                stopwatch.addTime('Finished')
+                this.dynamicContent.times = stopwatch.getResults()
+                this.$q.loading.hide()
+              })
+            } catch (e) {
+              this.dynamicContent = getEmptyDynamicContent()
+              this.validation.state = 'invalid'
+              this.validation.errors.push(e.message)
+              this.$q.loading.hide()
+            }
+          })
+        }, 20)
       }
     }
   }
