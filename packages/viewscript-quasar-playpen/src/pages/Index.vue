@@ -54,7 +54,7 @@
       </div>
 
       <div v-if="validation.state === 'valid'">
-        <q-tabs no-pane-border>
+        <q-tabs no-pane-border id="tabs">
           <q-tab default slot="title" name="view-tab" label="view" icon="dashboard"></q-tab>
           <q-tab slot="title" name="model-tab" label="model" icon="storage"></q-tab>
           <q-tab slot="title" name="template-tab" label="template" icon="code"></q-tab>
@@ -249,9 +249,11 @@
               this.validation.errors = []
 
               this.$nextTick(() => {
+                this.$q.loading.hide()
+                const e = document.getElementById('tabs')
+                e.scrollIntoView()
                 stopwatch.addTime('Finished')
                 this.dynamicContent.times = stopwatch.getResults()
-                this.$q.loading.hide()
               })
             } catch (e) {
               this.dynamicContent = getEmptyDynamicContent()
