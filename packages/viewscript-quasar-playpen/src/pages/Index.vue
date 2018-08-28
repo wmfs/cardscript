@@ -17,14 +17,22 @@
         @input="setExampleContent"
         class="q-my-md"
       />
-      <q-input
-        float-label="Enter some JSON or choose from an example."
-        type="textarea"
+      <!--<q-input-->
+      <!--float-label="Enter some JSON or choose from an example."-->
+      <!--type="textarea"-->
+      <!--v-model="viewscript"-->
+      <!--:max-height="300"-->
+      <!--rows="10"-->
+      <!--class="q-my-md q-pa-sm bg-dark code"-->
+      <!--dark-->
+      <!--/>-->
+      <monaco-editor
+        ref="editor"
+        class="monaco-editor"
         v-model="viewscript"
-        :max-height="300"
-        rows="10"
-        class="q-my-md q-pa-sm bg-dark code"
-        dark
+        theme="vs-dark"
+        language="json"
+        :options="{validate: true}"
       />
       <div class="q-my-md" style="text-align: right;">
         <q-btn
@@ -143,15 +151,15 @@
                 v-for="(time, idx) in dynamicContent.times"
                 :key="idx"
               >
-                <q-item-main :label="time.label" />
+                <q-item-main :label="time.label"/>
                 <q-item-side right>
                   <q-item-tile>{{time.duration}}ms</q-item-tile>
                   <q-item-tile>{{time.percentage}}%</q-item-tile>
                 </q-item-side>
               </q-item>
-              <q-item-separator />
+              <q-item-separator/>
               <q-item>
-                <q-item-main label="Total" />
+                <q-item-main label="Total"/>
                 <q-item-side right>
                   <q-item-tile>{{dynamicContent.totalTime}}ms</q-item-tile>
                 </q-item-side>
@@ -183,11 +191,17 @@
     font-family: monospace, monospace;
     font-size: 1em;
   }
+
+  .monaco-editor {
+    width: 70%;
+    height: 600px;
+  }
 </style>
 
 <script>
   import { openURL } from 'quasar'
   import Viewscript from './../components/Viewscript'
+  import MonacoEditor from 'vue-monaco'
 
   const quasarConverter = require('viewscript-to-quasar')
   const extractDefaults = require('viewscript-extract-defaults')
@@ -200,7 +214,10 @@
 
   export default {
     name: 'PageIndex',
-    components: {Viewscript},
+    components: {
+      Viewscript,
+      MonacoEditor
+    },
     data: function () {
       return {
         dynamicContent: getEmptyDynamicContent(),
@@ -295,6 +312,11 @@
     }
   }
 
+  // function getMonaco () {
+  //   // monaco = this.$refs.editor.getMonaco()
+  //   this.$refs.editor.options.validate = true
+  // }
+
   function processViewscript (viewscriptStr, stopwatch) {
     const result = {}
     stopwatch.addTime('Parse string into object')
@@ -357,6 +379,12 @@
       return this.times
         .map(time => time.duration || 0)
         .reduce((acc, time) => acc + time)
+    }
+
+    data () {
+      return {
+        code: '{"Help" : "Enter some JSON or choose from an example."}'
+      }
     }
   }
 </script>
