@@ -1,14 +1,5 @@
 <template>
   <q-page>
-    <q-jumbotron class="bg-primary" dark>
-      <div class="q-display-3">Viewscript playpen</div>
-      <div class="q-subheading q-my-lg">
-        Use the editor below to write some of your own Viewscript JSON/YAML, then click <strong>Go</strong> to turn it
-        into a UI!
-      </div>
-      <q-btn color="white" text-color="primary" class="q-py-sm q-px-xl" label="Learn more" @click="learnMore()"/>
-    </q-jumbotron>
-
     <div class="q-mx-xl q-my-md">
       <q-select
         float-label="Try an example"
@@ -371,12 +362,6 @@
       return this.times
         .map(time => time.duration || 0)
         .reduce((acc, time) => acc + time)
-    }
-
-    data () {
-      return {
-        code: '{"Help" : "Enter some JSON or choose from an example."}'
-      }
     }
   }
 </script>
