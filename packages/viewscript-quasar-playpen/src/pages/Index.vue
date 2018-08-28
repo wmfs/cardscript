@@ -236,7 +236,6 @@
     },
     methods: {
       codeChange (e) {
-        console.log('>>', e)
         this.viewscript = e
       },
       learnMore () {
