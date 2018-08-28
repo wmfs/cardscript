@@ -1,20 +1,21 @@
 <template>
   <q-page>
     <!--<q-jumbotron dark>-->
-      <!--<div class="q-display-3">Viewscript Quasar Playpen</div>-->
-      <!--<div class="q-subheading">-->
-        <!--Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn-->
-        <!--it into a UI.-->
-        <!--Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more-->
-        <!--information!-->
-      <!--</div>-->
+    <!--<div class="q-display-3">Viewscript Quasar Playpen</div>-->
+    <!--<div class="q-subheading">-->
+    <!--Use the editor below to write some of your own Viewscript JSON/YAML, then click "<strong>Go!</strong>" to turn-->
+    <!--it into a UI.-->
+    <!--Take a look at the <a href="https://github.com/wmfs/viewscript">Viewscript documentation</a> for more-->
+    <!--information!-->
+    <!--</div>-->
     <!--</q-jumbotron>-->
 
 
     <q-jumbotron class="bg-primary" dark>
       <div class="q-display-3">Viewscript playpen</div>
       <div class="q-subheading q-my-lg">
-        Use the editor below to write some of your own Viewscript JSON/YAML, then click <strong>Go</strong> to turn it into a UI!
+        Use the editor below to write some of your own Viewscript JSON/YAML, then click <strong>Go</strong> to turn it
+        into a UI!
       </div>
       <q-btn color="white" text-color="primary" class="q-py-sm q-px-xl" label="Learn more" @click="learnMore()"/>
     </q-jumbotron>
@@ -135,10 +136,17 @@
                 v-for="(time, idx) in dynamicContent.times"
                 :key="idx"
               >
-                <q-item-main :label="time.label"/>
+                <q-item-main :label="time.label" />
                 <q-item-side right>
                   <q-item-tile>{{time.duration}}ms</q-item-tile>
                   <q-item-tile>{{time.percentage}}%</q-item-tile>
+                </q-item-side>
+              </q-item>
+              <q-item-separator />
+              <q-item>
+                <q-item-main label="Total" />
+                <q-item-side right>
+                  <q-item-tile>{{dynamicContent.totalTime}}ms</q-item-tile>
                 </q-item-side>
               </q-item>
             </q-list>
@@ -210,7 +218,7 @@
     },
     methods: {
 
-      learnMore() {
+      learnMore () {
         openURL('https://github.com/wmfs/viewscript')
       },
       tocClick (elementIdToScrollTo) {
@@ -254,6 +262,7 @@
                 e.scrollIntoView()
                 stopwatch.addTime('Finished')
                 this.dynamicContent.times = stopwatch.getResults()
+                this.dynamicContent.totalTime = stopwatch.getTotal()
               })
             } catch (e) {
               this.dynamicContent = getEmptyDynamicContent()
@@ -274,7 +283,8 @@
       internals: {},
       lists: {},
       toc: [],
-      times: {}
+      times: {},
+      totalTime: 0
     }
   }
 
@@ -334,6 +344,12 @@
       trimmed.forEach(time => { total += time.duration })
       trimmed.forEach(time => { time.percentage = ((time.duration / total) * 100).toFixed(1) })
       return trimmed
+    }
+
+    getTotal () {
+      return this.times
+        .map(time => time.duration || 0)
+        .reduce((acc, time) => acc + time)
     }
   }
 </script>
