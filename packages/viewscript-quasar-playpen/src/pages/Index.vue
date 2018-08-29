@@ -1,5 +1,16 @@
 <template>
   <q-page>
+    <q-layout-header>
+      <q-toolbar>
+        <img style="max-width:75px;" :src="'./../assets/logo.svg' "/>
+        <q-toolbar-title>
+          Viewscript Quasar Playpen
+        </q-toolbar-title>
+        <q-btn round dense icon="play_arrow" color="positive" @click="renderViewscript" class="q-mr-sm"/>
+        <q-btn outline text-color="white" label="Learn More" @click="learnMore"/>
+      </q-toolbar>
+    </q-layout-header>
+
     <div class="row" style="min-height: calc(100vh - 100px);">
       <div class="col-6">
         <brace
@@ -27,7 +38,8 @@
 
         <div v-if="validation.state === 'notValidated'">
           <div class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
-            Use the editor to write some of your own Viewscript JSON or choose from an example, then click <strong>Go</strong> to turn it into a UI!
+            Use the editor to write some of your own Viewscript JSON or choose from an example, then click
+            <strong>Go</strong> to turn it into a UI!
           </div>
         </div>
 
@@ -169,6 +181,7 @@
     <q-layout-footer>
       <q-toolbar>
         <q-toolbar-title>
+          <q-btn outline text-color="white" label="Clear" icon-right="clear" @click="clear" class="q-mr-sm"/>
           <q-btn-dropdown label="Choose from an example" class="q-mr-sm" outline text-color="white">
             <q-list link>
               <q-item
@@ -184,11 +197,6 @@
             </q-list>
           </q-btn-dropdown>
         </q-toolbar-title>
-        <q-btn
-          label="Go"
-          color="positive"
-          @click="renderViewscript"
-        />
       </q-toolbar>
     </q-layout-footer>
   </q-page>
@@ -200,14 +208,27 @@
     font-size: 1em;
     background-color: #272822 !important;
   }
+
   .tab-pane {
     height: 84vh;
     overflow-y: scroll;
   }
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #272822; }
-  ::-webkit-scrollbar-thumb { background: #888; }
-  ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #272822;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 </style>
 
 <script>
@@ -258,6 +279,13 @@
       this.editor = brace.edit('vue-bulma-editor')
     },
     methods: {
+      clear () {
+        this.validation.state = 'notValidated'
+        this.validation.errors = []
+        this.dynamicContent = getEmptyDynamicContent()
+        this.viewscript = ''
+        this.editor.session.setValue(this.viewscript)
+      },
       codeChange (e) {
         this.viewscript = e
       },
