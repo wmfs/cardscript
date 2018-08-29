@@ -42,24 +42,26 @@
               button
               to turn it into a UI!
             </div>
-            <hr class="q-my-lg"/>
-            <div class="q-title text-weight-light q-mt-sm">
-              Try one of these examples to get started quickly:
+            <div id="none-mobile">
+              <hr class="q-my-lg"/>
+              <div class="q-title text-weight-light q-mt-sm">
+                Try one of these examples to get started quickly:
+              </div>
+              <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
+                <q-list link>
+                  <q-item
+                    v-for="opt in exampleOpts"
+                    :key="opt.value"
+                    v-close-overlay
+                    @click.native="setExampleContent(opt.value)"
+                  >
+                    <q-item-main>
+                      <q-item-tile label>{{opt.label}}</q-item-tile>
+                    </q-item-main>
+                  </q-item>
+                </q-list>
+              </q-btn-dropdown>
             </div>
-            <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
-              <q-list link>
-                <q-item
-                  v-for="opt in exampleOpts"
-                  :key="opt.value"
-                  v-close-overlay
-                  @click.native="setExampleContent(opt.value)"
-                >
-                  <q-item-main>
-                    <q-item-tile label>{{opt.label}}</q-item-tile>
-                  </q-item-main>
-                </q-item>
-              </q-list>
-            </q-btn-dropdown>
           </div>
         </div>
 
@@ -272,6 +274,10 @@
     #instructions {
       padding: 24px !important;
       text-align: initial !important;
+    }
+
+    #none-mobile {
+      display: none;
     }
   }
 </style>
