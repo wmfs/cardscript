@@ -1,7 +1,5 @@
 module.exports = function (ctx) {
   return {
-    plugins: [
-    ],
     css: [
       'app.styl'
     ],
