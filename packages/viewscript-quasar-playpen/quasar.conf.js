@@ -11,6 +11,7 @@ module.exports = function (ctx) {
     ],
     supportIE: false,
     build: {
+      publicPath: 'viewscript',
       scopeHoisting: true,
       vueRouterMode: 'history',
       // vueCompiler: true,
