@@ -12,7 +12,7 @@
     </q-layout-header>
 
     <div class="row" style="min-height: calc(100vh - 100px);">
-      <div class="col-6">
+      <div class="col-xs-12 col-md-6">
         <brace
           fontsize="12px"
           theme="monokai"
@@ -25,7 +25,7 @@
           @code-change="codeChange"
         />
       </div>
-      <div class="col-6">
+      <div class="col-xs-12 col-md-6">
         <div v-if="validation.state === 'invalid'">
           <q-alert
             v-for="(err, idx) in validation.errors"
@@ -234,6 +234,12 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+  @media only screen and (max-width: 767px) {
+    #vue-bulma-editor {
+      height: 300px !important;
+    }
   }
 </style>
 
