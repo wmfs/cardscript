@@ -15,13 +15,8 @@ module.exports = function stickyNoteConverter (widgetDefinition, options) {
   // informative  info
   //              warning
   // danger       error
-  let viewscriptStyle = getAttribute('style')
-  let color
-  if (viewscriptStyle === 'danger') {
-    color = 'error'
-  } else {
-    color = 'primary'
-  }
+  const viewscriptStyle = getAttribute('style')
+  const color = viewscriptStyle === 'danger' ? 'negative' : 'primary'
 
   const builder = new ComponentBuilder(widgetDefinition)
   const alert = builder.addTag('q-alert')
