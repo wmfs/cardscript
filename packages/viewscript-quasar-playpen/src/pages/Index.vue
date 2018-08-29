@@ -1,180 +1,196 @@
 <template>
   <q-page>
-    <div class="q-mx-xl q-my-md">
-      <div class="q-mb-sm" style="text-align: right;">
-        <q-btn-dropdown label="Choose from an example" class="q-mr-sm" outline text-color="primary">
-          <q-list link>
-            <q-item
-              v-for="opt in exampleOpts"
-              :key="opt.value"
-              v-close-overlay
-              @click.native="setExampleContent(opt.value)"
-            >
-              <q-item-main>
-                <q-item-tile label>{{opt.label}}</q-item-tile>
-              </q-item-main>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
+    <div class="row" style="min-height: calc(100vh - 100px);">
+      <div class="col-6">
+        <brace
+          fontsize="12px"
+          theme="monokai"
+          mode="json"
+          codefolding="markbegin"
+          softwrap="free"
+          selectionstyle="text"
+          highlightline
+          style="height: 100%; width: 100%"
+          @code-change="codeChange"
+        />
+      </div>
+      <div class="col-6">
+        <div v-if="validation.state === 'invalid'">
+          <q-alert
+            v-for="(err, idx) in validation.errors"
+            :key="idx"
+            type="negative"
+          >
+            {{err}}
+          </q-alert>
+        </div>
+
+        <div v-if="validation.state === 'notValidated'">
+          <div class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
+            Use the editor to write some of your own Viewscript JSON or choose from an example, then click <strong>Go</strong> to turn it into a UI!
+          </div>
+        </div>
+
+        <div v-if="validation.state === 'valid'">
+          <q-tabs no-pane-border id="tabs" inverted>
+            <q-tab default slot="title" name="view-tab" label="view"></q-tab>
+            <q-tab slot="title" name="model-tab" label="model"></q-tab>
+            <q-tab slot="title" name="template-tab" label="template"></q-tab>
+            <q-tab slot="title" name="info-tab" label="info"></q-tab>
+            <q-tab-pane name="view-tab" class="tab-pane">
+              <blockquote>
+                This is a simple rendering of the parsed Viewscript. Note that this is only meant to be a basic
+                illustration of typical web usage, your app is free to interpret Viewscript and conjure a UI in
+                any way
+                you see fit!
+              </blockquote>
+
+              <q-list
+                v-if="dynamicContent.toc.length > 0"
+                highlight
+                class="q-my-md"
+              >
+                <q-item
+                  v-for="entry in dynamicContent.toc"
+                  :key="entry.widgetId"
+                  @click.native="tocClick(entry.widgetId)"
+                  class="cursor-pointer"
+                >
+                  <q-item-side left :icon="entry.tocIcon"/>
+                  <q-item-main>{{entry.tocTitle}}</q-item-main>
+                </q-item>
+              </q-list>
+
+              <q-card>
+                <q-card-main>
+                  <viewscript :content="dynamicContent"/>
+                </q-card-main>
+              </q-card>
+            </q-tab-pane>
+            <q-tab-pane name="model-tab" class="tab-pane">
+              <blockquote>
+                This is the underlying data model for the view (default values were inferred from the Viewscript
+                using the
+                <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults">viewscript-extract-defaults</a>
+                package).
+                Be sure to check back here as you change input fields to see the model change!
+              </blockquote>
+
+              <q-input
+                type="textarea"
+                readonly
+                v-bind:value="dynamicContent.data | pretty"
+                :max-height="300"
+                rows="10"
+                class="q-mt-md q-pa-sm bg-dark code"
+                dark
+              />
+            </q-tab-pane>
+            <q-tab-pane name="template-tab" class="tab-pane">
+              <blockquote>
+                The content below has been produced using the <a
+                href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify">viewscript-to-vuetify</a>
+                and
+                <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists">viewscript-extract-lists</a>
+                packages. Here we've configured things to output in a Vue.js style, but Angular and React
+                templates
+                can
+                be generated too!
+              </blockquote>
+
+              <div class="q-display-1 q-my-md">Quasar Template</div>
+              <q-input
+                type="textarea"
+                readonly
+                v-bind:value="dynamicContent.quasarTemplate"
+                :max-height="300"
+                rows="10"
+                class="q-mt-md q-pa-sm bg-dark code"
+                dark
+              />
+
+              <div class="q-display-1 q-my-md">Lists</div>
+              <q-input
+                type="textarea"
+                readonly
+                v-bind:value="dynamicContent.lists | pretty"
+                :max-height="300"
+                rows="10"
+                class="q-mt-md q-pa-sm bg-dark code"
+                dark
+              />
+            </q-tab-pane>
+            <q-tab-pane name="info-tab" class="tab-pane">
+              <div class="q-display-1 q-my-md">Performance</div>
+              <p>
+                This playpen is working with raw Viewscript (parsing, validating and transforming).
+                Most apps wouldn't need to do that kind of heavy lifting in the client.
+                As such, the rendering times inside the playpen are higher than usual... this is where all the
+                time just went:
+              </p>
+              <q-list highlight>
+                <q-item
+                  v-for="(time, idx) in dynamicContent.times"
+                  :key="idx"
+                >
+                  <q-item-main :label="time.label"/>
+                  <q-item-side right>
+                    <q-item-tile>{{time.duration}}ms</q-item-tile>
+                    <q-item-tile>{{time.percentage}}%</q-item-tile>
+                  </q-item-side>
+                </q-item>
+                <q-item-separator/>
+                <q-item>
+                  <q-item-main label="Total"/>
+                  <q-item-side right>
+                    <q-item-tile>{{dynamicContent.totalTime}}ms</q-item-tile>
+                  </q-item-side>
+                </q-item>
+              </q-list>
+
+              <div class="q-display-1 q-my-md">Internals</div>
+              <p>
+                Here are some of the internal workings (for managing dialog states and sub-views especially)
+              </p>
+              <q-input
+                type="textarea"
+                readonly
+                v-bind:value="dynamicContent.internals | pretty"
+                :max-height="300"
+                rows="10"
+                class="q-mt-md q-pa-sm bg-dark code"
+                dark
+              />
+            </q-tab-pane>
+          </q-tabs>
+        </div>
+      </div>
+    </div>
+    <q-layout-footer>
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-btn-dropdown label="Choose from an example" class="q-mr-sm" outline text-color="white">
+            <q-list link>
+              <q-item
+                v-for="opt in exampleOpts"
+                :key="opt.value"
+                v-close-overlay
+                @click.native="setExampleContent(opt.value)"
+              >
+                <q-item-main>
+                  <q-item-tile label>{{opt.label}}</q-item-tile>
+                </q-item-main>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </q-toolbar-title>
         <q-btn
           label="Go"
           color="positive"
           @click="renderViewscript"
         />
-      </div>
-      <brace
-        :fontsize="'12px'"
-        :theme="'monokai'"
-        :mode="'json'"
-        :codefolding="'markbegin'"
-        :softwrap="'free'"
-        :selectionstyle="'text'"
-        :highlightline="true"
-        style="height: 500px; width: 100%"
-        @code-change="codeChange"
-      />
-      <div v-if="validation.state === 'invalid'">
-        <q-alert
-          v-for="(err, idx) in validation.errors"
-          :key="idx"
-          type="negative"
-        >
-          {{err}}
-        </q-alert>
-      </div>
-
-      <div v-if="validation.state === 'valid'">
-        <q-tabs id="tabs">
-          <q-tab default slot="title" name="view-tab" label="view"></q-tab>
-          <q-tab slot="title" name="model-tab" label="model"></q-tab>
-          <q-tab slot="title" name="template-tab" label="template"></q-tab>
-          <q-tab slot="title" name="info-tab" label="info"></q-tab>
-          <q-tab-pane name="view-tab">
-            <blockquote>
-              This is a simple rendering of the parsed Viewscript. Note that this is only meant to be a basic
-              illustration of typical web usage, your app is free to interpret Viewscript and conjure a UI in
-              any way
-              you see fit!
-            </blockquote>
-
-            <q-list
-              v-if="dynamicContent.toc.length > 0"
-              highlight
-              class="q-my-md"
-            >
-              <q-item
-                v-for="entry in dynamicContent.toc"
-                :key="entry.widgetId"
-                @click.native="tocClick(entry.widgetId)"
-                class="cursor-pointer"
-              >
-                <q-item-side left :icon="entry.tocIcon"/>
-                <q-item-main>{{entry.tocTitle}}</q-item-main>
-              </q-item>
-            </q-list>
-
-            <div class="q-my-md">
-              <viewscript :content="dynamicContent"/>
-            </div>
-          </q-tab-pane>
-          <q-tab-pane name="model-tab">
-            <blockquote>
-              This is the underlying data model for the view (default values were inferred from the Viewscript
-              using the
-              <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults">viewscript-extract-defaults</a>
-              package).
-              Be sure to check back here as you change input fields to see the model change!
-            </blockquote>
-
-            <q-input
-              type="textarea"
-              readonly
-              v-bind:value="dynamicContent.data | pretty"
-              :max-height="300"
-              rows="10"
-              class="q-mt-md q-pa-sm bg-dark code"
-              dark
-            />
-          </q-tab-pane>
-          <q-tab-pane name="template-tab">
-            <blockquote>
-              The content below has been produced using the <a
-              href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify">viewscript-to-vuetify</a>
-              and
-              <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists">viewscript-extract-lists</a>
-              packages. Here we've configured things to output in a Vue.js style, but Angular and React
-              templates
-              can
-              be generated too!
-            </blockquote>
-
-            <div class="q-display-1 q-my-md">Quasar Template</div>
-            <q-input
-              type="textarea"
-              readonly
-              v-bind:value="dynamicContent.quasarTemplate"
-              :max-height="300"
-              rows="10"
-              class="q-mt-md q-pa-sm bg-dark code"
-              dark
-            />
-
-            <div class="q-display-1 q-my-md">Lists</div>
-            <q-input
-              type="textarea"
-              readonly
-              v-bind:value="dynamicContent.lists | pretty"
-              :max-height="300"
-              rows="10"
-              class="q-mt-md q-pa-sm bg-dark code"
-              dark
-            />
-          </q-tab-pane>
-          <q-tab-pane name="info-tab">
-            <div class="q-display-1 q-my-md">Performance</div>
-            <p>
-              This playpen is working with raw Viewscript (parsing, validating and transforming).
-              Most apps wouldn't need to do that kind of heavy lifting in the client.
-              As such, the rendering times inside the playpen are higher than usual... this is where all the
-              time just went:
-            </p>
-            <q-list highlight>
-              <q-item
-                v-for="(time, idx) in dynamicContent.times"
-                :key="idx"
-              >
-                <q-item-main :label="time.label"/>
-                <q-item-side right>
-                  <q-item-tile>{{time.duration}}ms</q-item-tile>
-                  <q-item-tile>{{time.percentage}}%</q-item-tile>
-                </q-item-side>
-              </q-item>
-              <q-item-separator/>
-              <q-item>
-                <q-item-main label="Total"/>
-                <q-item-side right>
-                  <q-item-tile>{{dynamicContent.totalTime}}ms</q-item-tile>
-                </q-item-side>
-              </q-item>
-            </q-list>
-
-            <div class="q-display-1 q-my-md">Internals</div>
-            <p>
-              Here are some of the internal workings (for managing dialog states and sub-views especially)
-            </p>
-            <q-input
-              type="textarea"
-              readonly
-              v-bind:value="dynamicContent.internals | pretty"
-              :max-height="300"
-              rows="10"
-              class="q-mt-md q-pa-sm bg-dark code"
-              dark
-            />
-          </q-tab-pane>
-        </q-tabs>
-      </div>
-    </div>
+      </q-toolbar>
+    </q-layout-footer>
   </q-page>
 </template>
 
@@ -182,7 +198,16 @@
   .code {
     font-family: monospace, monospace;
     font-size: 1em;
+    background-color: #272822 !important;
   }
+  .tab-pane {
+    height: 84vh;
+    overflow-y: scroll;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #272822; }
+  ::-webkit-scrollbar-thumb { background: #888; }
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
 </style>
 
 <script>
