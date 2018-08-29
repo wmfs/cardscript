@@ -36,9 +36,30 @@
         </div>
 
         <div v-if="validation.state === 'notValidated'">
-          <div id="instructions" class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
-            Use the editor to write some of your own Viewscript JSON or choose from an example, then hit the play button
-            to turn it into a UI!
+          <div id="instructions" style="padding: 96px; text-align: justify;">
+            <div class="q-display-1 text-weight-light">
+              Use the editor to write some of your own Viewscript JSON or choose from an example, then hit the refresh
+              button
+              to turn it into a UI!
+            </div>
+            <hr/>
+            <div class="q-title text-weight-light q-mt-sm">
+              Try one of these examples to get started quickly:
+            </div>
+            <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
+              <q-list link>
+                <q-item
+                  v-for="opt in exampleOpts"
+                  :key="opt.value"
+                  v-close-overlay
+                  @click.native="setExampleContent(opt.value)"
+                >
+                  <q-item-main>
+                    <q-item-tile label>{{opt.label}}</q-item-tile>
+                  </q-item-main>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
         </div>
 
@@ -205,8 +226,12 @@
     </q-layout-footer>
 
     <div style="position: fixed; bottom: 18px; right: 18px; text-align: right;">
-      <q-btn round color="primary" icon="clear" style="bottom: 50px; margin-right: 10px;" @click="clear"><q-tooltip>Clear</q-tooltip></q-btn>
-      <q-btn round color="positive" icon="play_arrow" style="bottom: 50px" @click="renderViewscript"><q-tooltip>Run</q-tooltip></q-btn>
+      <q-btn round color="primary" icon="clear" style="bottom: 50px; margin-right: 10px;" @click="clear">
+        <q-tooltip>Clear</q-tooltip>
+      </q-btn>
+      <q-btn round color="positive" icon="refresh" style="bottom: 50px" @click="renderViewscript">
+        <q-tooltip>Refresh</q-tooltip>
+      </q-btn>
     </div>
   </q-page>
 </template>
