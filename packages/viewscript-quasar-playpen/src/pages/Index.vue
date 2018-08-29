@@ -42,7 +42,7 @@
               button
               to turn it into a UI!
             </div>
-            <hr/>
+            <hr class="q-my-lg"/>
             <div class="q-title text-weight-light q-mt-sm">
               Try one of these examples to get started quickly:
             </div>
@@ -342,11 +342,9 @@
         this.editor.session.setValue(this.viewscript)
       },
       setExampleContent (val) {
-        this.validation.state = 'notValidated'
-        this.validation.errors = []
-        this.dynamicContent = getEmptyDynamicContent()
         this.viewscript = JSON.stringify(examples[val], null, 2)
         this.editor.session.setValue(this.viewscript)
+        this.renderViewscript()
       },
       renderViewscript () {
         this.$q.loading.show()
