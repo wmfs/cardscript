@@ -38,8 +38,7 @@
 
         <div v-if="validation.state === 'notValidated'">
           <div class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
-            Use the editor to write some of your own Viewscript JSON or choose from an example, then click
-            <strong>Go</strong> to turn it into a UI!
+            Use the editor to write some of your own Viewscript JSON or choose from an example, then hit the play button to turn it into a UI!
           </div>
         </div>
 
