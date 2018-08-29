@@ -6,7 +6,6 @@
       "attributes": {
         "heading": "The Widget Showcase",
         "desc": "This view is to demonstrate the capabilities of Viewscript",
-        "backgroundImage": "viewscript/img.jpg",
         "backgroundImageAltText": "Image representing the glory of Viewscript"
       }
     },
