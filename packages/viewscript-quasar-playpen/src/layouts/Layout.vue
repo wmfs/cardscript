@@ -7,15 +7,8 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
-
 export default {
   name: 'Layout',
-  methods: {
-    learnMore () {
-      openURL('https://github.com/wmfs/viewscript')
-    }
-  }
 }
 </script>
 

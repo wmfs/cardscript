@@ -285,6 +285,9 @@
       this.editor = brace.edit('vue-bulma-editor')
     },
     methods: {
+      learnMore () {
+        openURL('https://github.com/wmfs/viewscript')
+      },
       codeChange (e) {
         this.viewscript = e
       },
