@@ -2,11 +2,10 @@
   <q-page>
     <q-layout-header>
       <q-toolbar>
-        <img style="max-width:75px;" :src="'./../assets/logo.svg' "/>
+        <img style="max-width:75px;" :src="'./../statics/logo-icon-dark.svg' "/>
         <q-toolbar-title>
           Viewscript Quasar Playpen
         </q-toolbar-title>
-        <!--<q-btn round dense icon="play_arrow" color="positive" @click="renderViewscript" class="q-mr-sm"/>-->
         <q-btn outline text-color="white" label="Learn More" @click="learnMore"/>
       </q-toolbar>
     </q-layout-header>
@@ -187,7 +186,6 @@
     <q-layout-footer>
       <q-toolbar>
         <q-toolbar-title>
-          <!--<q-btn outline text-color="white" label="Clear" icon-right="clear" @click="clear" class="q-mr-sm"/>-->
           <q-btn-dropdown label="Examples" class="q-mr-sm" outline text-color="white">
             <q-list link>
               <q-item
