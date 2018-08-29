@@ -85,7 +85,7 @@
                 <q-list
                   v-if="dynamicContent.toc.length > 0"
                   highlight
-                  class="q-my-md"
+                  class="q-mt-md"
                 >
                   <q-item
                     v-for="entry in dynamicContent.toc"
@@ -98,7 +98,7 @@
                   </q-item>
                 </q-list>
 
-                <q-card>
+                <q-card class="q-mt-md">
                   <q-card-main>
                     <viewscript :content="dynamicContent"/>
                   </q-card-main>

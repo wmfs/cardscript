@@ -6,7 +6,7 @@ module.exports = function headerConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
 
   const jumbotron = builder.addTag('q-jumbotron')
-  jumbotron.addAttribute('class', 'bg-primary')
+  // jumbotron.addAttribute('class', 'bg-primary')
   jumbotron.addAttribute('dark', null)
 
   const backgroundImage = getAttribute('backgroundImage')
