@@ -2,7 +2,7 @@
   <q-page>
     <q-layout-header>
       <q-toolbar>
-        <img style="max-width:75px;" :src="'./../statics/logo-icon-dark.svg' "/>
+        <img style="max-width:75px;" src="~assets/logo-icon-dark.svg"/>
         <q-toolbar-title>
           Viewscript Quasar Playpen
         </q-toolbar-title>
