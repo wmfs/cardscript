@@ -48,7 +48,7 @@
             enter-active-class="animated fadeIn"
             leave-active-class="animated fadeOut"
           >
-            <q-tabs no-pane-border inverted>
+            <q-tabs no-pane-border inverted class="q-pt-md">
               <q-tab default slot="title" name="view-tab" label="view"></q-tab>
               <q-tab slot="title" name="model-tab" label="model"></q-tab>
               <q-tab slot="title" name="template-tab" label="template"></q-tab>
