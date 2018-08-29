@@ -281,8 +281,7 @@
           state: 'notValidated',
           errors: []
         },
-        viewscript: '',
-        exampleSlct: null,
+        viewscript: JSON.stringify(examples['blank'], null, 2),
         exampleOpts: [
           {label: 'Complex example', value: 'complex'},
           {label: 'Expression example', value: 'expression'},
@@ -299,6 +298,7 @@
     },
     mounted () {
       this.editor = brace.edit('vue-bulma-editor')
+      this.editor.session.setValue(this.viewscript)
     },
     methods: {
       learnMore () {
