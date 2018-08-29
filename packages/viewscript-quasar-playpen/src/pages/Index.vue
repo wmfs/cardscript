@@ -1,13 +1,27 @@
 <template>
   <q-page>
     <div class="q-mx-xl q-my-md">
-      <q-select
-        float-label="Try an example"
-        v-model="exampleSlct"
-        :options="exampleOpts"
-        @input="setExampleContent"
-        class="q-my-md"
-      />
+      <div class="q-mb-sm" style="text-align: right;">
+        <q-btn-dropdown label="Choose from an example" class="q-mr-sm" outline text-color="primary">
+          <q-list link>
+            <q-item
+              v-for="opt in exampleOpts"
+              :key="opt.value"
+              v-close-overlay
+              @click.native="setExampleContent(opt.value)"
+            >
+              <q-item-main>
+                <q-item-tile label>{{opt.label}}</q-item-tile>
+              </q-item-main>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+        <q-btn
+          label="Go"
+          color="positive"
+          @click="renderViewscript"
+        />
+      </div>
       <brace
         :fontsize="'12px'"
         :theme="'monokai'"
@@ -19,13 +33,6 @@
         style="height: 500px; width: 100%"
         @code-change="codeChange"
       />
-      <div class="q-my-md" style="text-align: right;">
-        <q-btn
-          label="Go"
-          color="positive"
-          @click="renderViewscript"
-        />
-      </div>
       <div v-if="validation.state === 'invalid'">
         <q-alert
           v-for="(err, idx) in validation.errors"
@@ -37,11 +44,11 @@
       </div>
 
       <div v-if="validation.state === 'valid'">
-        <q-tabs no-pane-border id="tabs">
-          <q-tab default slot="title" name="view-tab" label="view" icon="dashboard"></q-tab>
-          <q-tab slot="title" name="model-tab" label="model" icon="storage"></q-tab>
-          <q-tab slot="title" name="template-tab" label="template" icon="code"></q-tab>
-          <q-tab slot="title" name="info-tab" label="info" icon="help_outline"></q-tab>
+        <q-tabs id="tabs">
+          <q-tab default slot="title" name="view-tab" label="view"></q-tab>
+          <q-tab slot="title" name="model-tab" label="model"></q-tab>
+          <q-tab slot="title" name="template-tab" label="template"></q-tab>
+          <q-tab slot="title" name="info-tab" label="info"></q-tab>
           <q-tab-pane name="view-tab">
             <blockquote>
               This is a simple rendering of the parsed Viewscript. Note that this is only meant to be a basic
@@ -85,7 +92,7 @@
               v-bind:value="dynamicContent.data | pretty"
               :max-height="300"
               rows="10"
-              class="q-my-md q-pa-sm bg-dark code"
+              class="q-mt-md q-pa-sm bg-dark code"
               dark
             />
           </q-tab-pane>
@@ -108,7 +115,7 @@
               v-bind:value="dynamicContent.quasarTemplate"
               :max-height="300"
               rows="10"
-              class="q-my-md q-pa-sm bg-dark code"
+              class="q-mt-md q-pa-sm bg-dark code"
               dark
             />
 
@@ -119,7 +126,7 @@
               v-bind:value="dynamicContent.lists | pretty"
               :max-height="300"
               rows="10"
-              class="q-my-md q-pa-sm bg-dark code"
+              class="q-mt-md q-pa-sm bg-dark code"
               dark
             />
           </q-tab-pane>
@@ -161,7 +168,7 @@
               v-bind:value="dynamicContent.internals | pretty"
               :max-height="300"
               rows="10"
-              class="q-my-md q-pa-sm bg-dark code"
+              class="q-mt-md q-pa-sm bg-dark code"
               dark
             />
           </q-tab-pane>
@@ -229,18 +236,15 @@
       codeChange (e) {
         this.viewscript = e
       },
-      learnMore () {
-        openURL('https://github.com/wmfs/viewscript')
-      },
       tocClick (elementIdToScrollTo) {
         const e = document.getElementById(elementIdToScrollTo)
         e.scrollIntoView()
       },
-      setExampleContent () {
+      setExampleContent (val) {
         this.validation.state = 'notValidated'
         this.validation.errors = []
         this.dynamicContent = getEmptyDynamicContent()
-        this.viewscript = JSON.stringify(examples[this.exampleSlct], null, 2)
+        this.viewscript = JSON.stringify(examples[val], null, 2)
         this.editor.session.setValue(this.viewscript)
       },
       renderViewscript () {
