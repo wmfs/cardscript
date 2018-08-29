@@ -11,7 +11,7 @@ module.exports = function headerConverter (widgetDefinition, options) {
 
   const backgroundImage = getAttribute('backgroundImage')
   if (backgroundImage) {
-    jumbotron.addAttribute('img-src', backgroundImage)
+    jumbotron.addAttribute('img-src', `statics/${backgroundImage}`)
   }
 
   const heading = jumbotron.addChildTag('div')
