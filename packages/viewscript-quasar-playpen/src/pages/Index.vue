@@ -6,7 +6,7 @@
         <q-toolbar-title>
           Viewscript Quasar Playpen
         </q-toolbar-title>
-        <q-btn round dense icon="play_arrow" color="positive" @click="renderViewscript" class="q-mr-sm"/>
+        <!--<q-btn round dense icon="play_arrow" color="positive" @click="renderViewscript" class="q-mr-sm"/>-->
         <q-btn outline text-color="white" label="Learn More" @click="learnMore"/>
       </q-toolbar>
     </q-layout-header>
@@ -37,7 +37,7 @@
         </div>
 
         <div v-if="validation.state === 'notValidated'">
-          <div class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
+          <div id="instructions" class="q-display-1 text-weight-light" style="padding: 96px; text-align: justify;">
             Use the editor to write some of your own Viewscript JSON or choose from an example, then hit the play button
             to turn it into a UI!
           </div>
@@ -187,8 +187,8 @@
     <q-layout-footer>
       <q-toolbar>
         <q-toolbar-title>
-          <q-btn outline text-color="white" label="Clear" icon-right="clear" @click="clear" class="q-mr-sm"/>
-          <q-btn-dropdown label="Choose from an example" class="q-mr-sm" outline text-color="white">
+          <!--<q-btn outline text-color="white" label="Clear" icon-right="clear" @click="clear" class="q-mr-sm"/>-->
+          <q-btn-dropdown label="Examples" class="q-mr-sm" outline text-color="white">
             <q-list link>
               <q-item
                 v-for="opt in exampleOpts"
@@ -205,6 +205,11 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-layout-footer>
+
+    <div style="position: fixed; bottom: 18px; right: 18px; text-align: right;">
+      <q-btn round color="primary" icon="clear" style="bottom: 50px; margin-right: 10px;" @click="clear"><q-tooltip>Clear</q-tooltip></q-btn>
+      <q-btn round color="positive" icon="play_arrow" style="bottom: 50px" @click="renderViewscript"><q-tooltip>Run</q-tooltip></q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -239,6 +244,11 @@
   @media only screen and (max-width: 767px) {
     #vue-bulma-editor {
       height: 300px !important;
+    }
+
+    #instructions {
+      padding: 24px !important;
+      text-align: initial !important;
     }
   }
 </style>
