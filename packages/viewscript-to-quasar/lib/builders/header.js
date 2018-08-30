@@ -9,8 +9,11 @@ module.exports = function headerConverter (widgetDefinition, options) {
   jumbotron.addAttribute('dark', null)
 
   const backgroundImage = getAttribute('backgroundImage')
+  const url = `url(statics/${backgroundImage});`
+  const blackWash = 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5))'
+  // const whiteWash = 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5))'
   if (backgroundImage) {
-    jumbotron.addAttribute('img-src', `statics/${backgroundImage}`)
+    jumbotron.addAttribute('style', `background: ${blackWash}, ${url};`)
   } else {
     jumbotron.addAttribute('class', 'bg-primary')
   }
