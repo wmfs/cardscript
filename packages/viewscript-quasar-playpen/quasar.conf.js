@@ -1,5 +1,8 @@
 module.exports = function (ctx) {
   return {
+    plugins: [
+      'vuelidate'
+    ],
     css: [
       'app.styl'
     ],
