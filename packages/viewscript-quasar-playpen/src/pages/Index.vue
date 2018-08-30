@@ -129,7 +129,7 @@
               <q-tab-pane name="template-tab" class="tab-pane">
                 <blockquote>
                   The content below has been produced using the <a
-                  href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify">viewscript-to-vuetify</a>
+                  href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-quasar">viewscript-to-quasar</a>
                   and
                   <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists">viewscript-extract-lists</a>
                   packages. Here we've configured things to output in a Vue.js style, but Angular and React
