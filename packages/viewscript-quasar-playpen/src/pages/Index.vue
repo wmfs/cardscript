@@ -2,11 +2,12 @@
   <q-page>
     <q-layout-header>
       <q-toolbar>
-        <img style="max-width:75px;" src="~assets/logo-icon-dark.svg"/>
+        <img style="max-width: 32px;" src="~assets/tymly-dark.svg"/>
         <q-toolbar-title>
           Viewscript Playpen
         </q-toolbar-title>
-        <img style="max-width:75px;" src="~assets/github-mark-light-32x32.png" @click="learnMore" class="cursor-pointer"/>
+        <img style="max-width: 32px;" src="~assets/twitter-white.svg" @click="goTwitter" class="cursor-pointer q-mr-sm"/>
+        <img style="max-width: 32px;" src="~assets/github-mark-light-32x32.png" @click="goGithub" class="cursor-pointer"/>
       </q-toolbar>
     </q-layout-header>
 
@@ -330,8 +331,11 @@
       this.editor.session.setValue(this.viewscript)
     },
     methods: {
-      learnMore () {
+      goGithub () {
         openURL('https://github.com/wmfs/viewscript')
+      },
+      goTwitter() {
+        openURL('https://twitter.com/tymlyjs')
       },
       codeChange (e) {
         this.viewscript = e
