@@ -6,7 +6,7 @@ module.exports = function headerConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
 
   const jumbotron = builder.addTag('q-jumbotron')
-  jumbotron.addAttribute('dark', null)
+  jumbotron.addAttribute(':dark', true)
 
   const backgroundImage = getAttribute('backgroundImage')
 
@@ -15,9 +15,14 @@ module.exports = function headerConverter (widgetDefinition, options) {
     const blackWash = 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5))'
     const whiteWash = 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5))'
 
-    if (getAttribute('wash') === 'black') jumbotron.addAttribute('style', `background-image: ${blackWash}, ${url};`)
-    else if (getAttribute('wash') === 'white') jumbotron.addAttribute('style', `background-image: ${whiteWash}, ${url};`)
-    else jumbotron.addAttribute('style', `background-image: ${url};`)
+    if (getAttribute('wash') === 'black') {
+      jumbotron.addAttribute('style', `background-image: ${blackWash}, ${url};`)
+    } else if (getAttribute('wash') === 'white') {
+      jumbotron.addAttribute('style', `background-image: ${whiteWash}, ${url};`)
+      jumbotron.addAttribute(':dark', false)
+    } else {
+      jumbotron.addAttribute('style', `background-image: ${url};`)
+    }
   } else {
     jumbotron.addAttribute('class', 'bg-primary')
   }
