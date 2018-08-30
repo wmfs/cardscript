@@ -18,6 +18,8 @@ module.exports = function switchConverter (widgetDefinition, options) {
   const toggle = builder.addTag('q-toggle')
   toggle.addAttribute('label', getAttribute('heading'))
   toggle.addAttribute('class', 'q-ma-xl')
+  toggle.addAttribute('checked-icon', 'done')
+  toggle.addAttribute('unchecked-icon', 'close')
   toggle.bindToModel(widgetDefinition)
   return builder.compile()
 }
