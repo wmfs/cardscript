@@ -4,9 +4,9 @@
       <q-toolbar>
         <img style="max-width:75px;" src="~assets/logo-icon-dark.svg"/>
         <q-toolbar-title>
-          Viewscript Quasar Playpen
+          Viewscript Playpen
         </q-toolbar-title>
-        <q-btn outline text-color="white" label="Learn More" @click="learnMore"/>
+        <img style="max-width:75px;" src="~assets/github-mark-light-32x32.png" @click="learnMore" class="cursor-pointer"/>
       </q-toolbar>
     </q-layout-header>
 
