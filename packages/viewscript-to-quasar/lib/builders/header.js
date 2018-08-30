@@ -9,14 +9,15 @@ module.exports = function headerConverter (widgetDefinition, options) {
   jumbotron.addAttribute('dark', null)
 
   const backgroundImage = getAttribute('backgroundImage')
-  const url = `url(statics/${backgroundImage});`
-  const blackWash = 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5))'
-  const whiteWash = 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5))'
 
   if (backgroundImage) {
-    if (getAttribute('wash') === 'black') jumbotron.addAttribute('style', `background: ${blackWash}, ${url};`)
-    else if (getAttribute('wash') === 'white') jumbotron.addAttribute('style', `background: ${whiteWash}, ${url};`)
-    else jumbotron.addAttribute('style', `background: ${url};`)
+    const url = `url(statics/${backgroundImage})`
+    const blackWash = 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5))'
+    const whiteWash = 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5))'
+
+    if (getAttribute('wash') === 'black') jumbotron.addAttribute('style', `background-image: ${blackWash}, ${url};`)
+    else if (getAttribute('wash') === 'white') jumbotron.addAttribute('style', `background-image: ${whiteWash}, ${url};`)
+    else jumbotron.addAttribute('style', `background-image: ${url};`)
   } else {
     jumbotron.addAttribute('class', 'bg-primary')
   }
