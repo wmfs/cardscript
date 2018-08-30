@@ -2,13 +2,13 @@
   <q-page>
     <q-layout-header>
       <q-toolbar>
-        <img style="max-width: 32px;" src="~assets/tymly-dark.svg"/>
+        <img style="max-width: 32px;" src="~assets/tymly-light.svg"/>
         <q-toolbar-title>
           Viewscript Playpen
         </q-toolbar-title>
-        <img style="max-width: 32px;" src="~assets/twitter-white.svg" @click="goTwitter"
+        <img style="max-width: 32px;" src="~assets/twitter-light.svg" @click="goTwitter"
              class="cursor-pointer q-mr-sm"/>
-        <img style="max-width: 32px;" src="~assets/github-mark-light-32x32.png" @click="goGithub"
+        <img style="max-width: 32px;" src="~assets/github-light.png" @click="goGithub"
              class="cursor-pointer"/>
       </q-toolbar>
     </q-layout-header>
