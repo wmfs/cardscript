@@ -207,6 +207,7 @@
         </div>
       </div>
     </div>
+
     <q-layout-footer>
       <q-toolbar>
         <q-toolbar-title>
@@ -225,6 +226,8 @@
             </q-list>
           </q-btn-dropdown>
         </q-toolbar-title>
+
+        <div class="text-weight-thin">Built with ♡ at West Midlands Fire Service</div>
       </q-toolbar>
     </q-layout-footer>
 
