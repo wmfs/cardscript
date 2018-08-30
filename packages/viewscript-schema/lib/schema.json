@@ -937,6 +937,32 @@
           {"$ref": "#/definitions/widgets/image"}
         ]
       }
+    },
+
+    "actions": {
+      "type": "array",
+      "title": "A view can have multiple actions for the user to interact with",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title of the action"
+          },
+          "type": {
+            "type": {"enum": ["OpenURL", "Submit", "ShowView"]},
+            "title": "Type of the action"
+          },
+          "style": {
+            "type": "string",
+            "title": "Style of the action to determine the colours e.g. positive, primary, negative"
+          },
+          "config": {
+            "type": "object",
+            "title": "Config depending on the type of action"
+          }
+        }
+      }
     }
   },
   "required": ["widgets"],

@@ -11,7 +11,7 @@
       </q-toolbar>
     </q-layout-header>
 
-    <div class="row" style="min-height: calc(100vh - 100px);">
+    <div class="row" style="max-height: calc(100vh - 100px); min-height: calc(100vh - 100px);">
       <div class="col-xs-12 col-md-6">
         <brace
           fontsize="12px"
@@ -101,7 +101,7 @@
 
                 <q-card class="q-mt-md">
                   <q-card-main>
-                    <viewscript :content="dynamicContent"/>
+                    <viewscript :content="dynamicContent" @openURL="onOpenURL" @submit="onSubmit" @showView="onShowView"/>
                   </q-card-main>
                 </q-card>
               </q-tab-pane>
@@ -338,6 +338,15 @@
       this.editor.session.setValue(this.viewscript)
     },
     methods: {
+      onOpenURL (url) {
+        openURL(url)
+      },
+      onShowView (payload) {
+        console.log('show view')
+      },
+      onSubmit (payload) {
+        console.log('submit')
+      },
       goGithub () {
         openURL('https://github.com/wmfs/viewscript')
       },

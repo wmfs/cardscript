@@ -8,6 +8,7 @@ export default {
   name: 'ViewscriptComponent',
   props: ['content'],
   data () {
+    const that = this
     const content = this.content
     return {
       uiTemplate: {
@@ -39,6 +40,15 @@ export default {
           },
           removeSubViewContent (subViewId, index) {
             alert(`REMOVE index ${index} from ${subViewId}`)
+          },
+          openURL (url) {
+            that.$emit('openURL', url)
+          },
+          submit (payload) {
+            that.$emit('submit', payload)
+          },
+          showView (payload) {
+            that.$emit('showView', payload)
           }
         }
       }
