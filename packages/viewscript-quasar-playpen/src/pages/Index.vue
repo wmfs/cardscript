@@ -6,10 +6,8 @@
         <q-toolbar-title>
           Viewscript Playpen
         </q-toolbar-title>
-        <img style="max-width: 32px;" src="~assets/twitter-light.svg" @click="goTwitter"
-             class="cursor-pointer q-mr-sm"/>
-        <img style="max-width: 32px;" src="~assets/github-light.png" @click="goGithub"
-             class="cursor-pointer"/>
+        <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub" />
+        <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter" />
       </q-toolbar>
     </q-layout-header>
 
