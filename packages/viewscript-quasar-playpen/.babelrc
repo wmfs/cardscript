@@ -18,10 +18,7 @@
   ],
   "plugins": [
     [
-      "@babel/transform-runtime", {
-        "polyfill": false,
-        "regenerator": false
-      }
+      "@babel/plugin-transform-runtime"
     ]
   ],
   "comments": false
