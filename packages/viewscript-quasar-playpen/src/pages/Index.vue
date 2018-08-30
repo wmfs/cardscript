@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div v-if="validation.state === 'valid'" id="generatedContent">
+        <div v-if="validation.state === 'valid'">
           <transition
             appear
             enter-active-class="animated fadeIn"
@@ -348,7 +348,7 @@
         this.validation.state = 'notValidated'
         this.validation.errors = []
         this.dynamicContent = getEmptyDynamicContent()
-        this.viewscript = ''
+        this.viewscript = JSON.stringify(examples['blank'], null, 2)
         this.editor.session.setValue(this.viewscript)
       },
       setExampleContent (val) {
@@ -383,8 +383,6 @@
 
               this.$nextTick(() => {
                 this.$q.loading.hide()
-                const e = document.getElementById('generatedContent')
-                e.scrollIntoView()
                 stopwatch.addTime('Finished')
                 this.dynamicContent.times = stopwatch.getResults()
                 this.dynamicContent.totalTime = stopwatch.getTotal()
