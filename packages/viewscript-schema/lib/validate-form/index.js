@@ -1,6 +1,7 @@
 const viewscriptSchema = require('../schema.json')
 const validator = require('jsonschema').validate
 const formatters = require('./formatters')
+
 module.exports = function validateForm (formDefinition, options) {
   const result = validator(formDefinition, viewscriptSchema)
 
@@ -9,14 +10,10 @@ module.exports = function validateForm (formDefinition, options) {
     options = {}
   }
 
-  let formatter
-  if (options.format) {
-    formatter = formatters[options.format]
-    if (!formatter) {
-      throw new Error(`Unknown format '${options.format}'`)
-    }
-  } else {
-    formatter = formatters.simple
+  const formatter = options.format ? formatters[options.format] : formatters.simple
+
+  if (!formatter) {
+    throw new Error(`Unknown format '${options.format}'`)
   }
 
   return formatter(result)
