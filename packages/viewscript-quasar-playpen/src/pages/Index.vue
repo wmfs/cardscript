@@ -210,7 +210,7 @@
 
     <q-layout-footer>
       <q-toolbar>
-        <q-toolbar-title>
+        <div class="col">
           <q-btn-dropdown label="Examples" class="q-mr-sm" outline text-color="white">
             <q-list link>
               <q-item
@@ -225,9 +225,9 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-        </q-toolbar-title>
+        </div>
 
-        <div class="text-weight-thin">Built with ♡ at West Midlands Fire Service</div>
+        <div class="col footer-text text-right text-weight-thin">Built with ♡ at West Midlands Fire Service</div>
       </q-toolbar>
     </q-layout-footer>
 
@@ -282,6 +282,12 @@
 
     #none-mobile {
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 593px) {
+    .footer-text {
+      font-size: 12px;
     }
   }
 </style>
