@@ -6,6 +6,7 @@
       "attributes": {
         "heading": "Register!",
         "desc": "Let's get to know each other a bit better...",
+        "wash": "black",
         "backgroundImage": "wmfs/happy-people.jpg",
         "backgroundImageAltText": "Beautiful people smiling around a laptop"
       }

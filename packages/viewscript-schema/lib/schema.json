@@ -275,6 +275,7 @@
             "properties": {
               "heading": {"$ref": "#/definitions/attributes/heading"},
               "desc": {"$ref": "#/definitions/attributes/desc"},
+              "wash": {"type": "string", "title": "Whether the background image should have a black or white wash."},
               "backgroundImage": {"type": "string", "title": "A path to an image file that should be resolved from the app's base image URL or similar."},
               "backgroundImageAltText": {"type": "string", "title": "Text that describes the `backgroundImage` image."}
             },

@@ -6,6 +6,7 @@
       "attributes": {
         "heading": "Pizza Place",
         "desc": "This is an example view where you can order some imaginary pizza.",
+        "wash": "black",
         "backgroundImage": "wmfs/pizza.jpg",
         "backgroundImageAltText": "Photograph of a pizza"
       }
