@@ -32,14 +32,14 @@ module.exports = function extractDefaults (viewscript, options) {
           click = `@click="openURL('${actionDefinition.config.url}')"`
           break
         case 'Submit':
-          click = `@click="submit"`
+          click = `@click="submit(data)"`
           break
         case 'ShowView':
           click = `@click="showView"`
           break
       }
 
-      const btn = `<q-btn ${label} ${colour} class="q-mt-sm" ${click} />`
+      const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
       quasarTemplate += `${indent}${btn}\n`
     })
   }

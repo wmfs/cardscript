@@ -342,10 +342,21 @@
         openURL(url)
       },
       onShowView (payload) {
-        console.log('show view')
+        console.log('show view', payload)
+        this.$q.notify({
+          message: 'Going to the other view.',
+          type: 'positive',
+          position: 'top'
+        })
       },
-      onSubmit (payload) {
-        console.log('submit')
+      onSubmit (data) {
+        console.log('submit', data)
+        // todo: try out vuelidate here
+        this.$q.notify({
+          message: 'Your data has been submitted.',
+          type: 'positive',
+          position: 'top'
+        })
       },
       goGithub () {
         openURL('https://github.com/wmfs/viewscript')

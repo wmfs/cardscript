@@ -749,7 +749,7 @@
       "title": "Go to github",
       "type": "OpenURL",
       "config": {
-        "url": "https://github.com/wmfs"
+        "url": "https://github.com/wmfs/viewscript"
       }
     },
     {
