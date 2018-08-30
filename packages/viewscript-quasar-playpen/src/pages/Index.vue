@@ -230,10 +230,10 @@
     </q-layout-footer>
 
     <div style="position: fixed; bottom: 18px; right: 18px; text-align: right;">
-      <q-btn round color="primary" icon="clear" style="bottom: 50px; margin-right: 10px;" @click="clear">
+      <q-btn round color="primary" icon="clear" size="lg" style="bottom: 50px; margin-right: 10px;" @click="clear">
         <q-tooltip>Clear</q-tooltip>
       </q-btn>
-      <q-btn round color="positive" icon="refresh" style="bottom: 50px" @click="renderViewscript">
+      <q-btn round color="positive" icon="refresh" size="lg" style="bottom: 50px" @click="renderViewscript">
         <q-tooltip>Refresh</q-tooltip>
       </q-btn>
     </div>
