@@ -1,4 +1,5 @@
 const builders = require('./builders')
+const util = require('util')
 const ONE_TAB = '  '
 
 module.exports = function extractDefaults (viewscript, options) {
@@ -25,20 +26,7 @@ module.exports = function extractDefaults (viewscript, options) {
     viewscript.actions.forEach(actionDefinition => {
       const label = `label="${actionDefinition.title}"`
       const colour = actionDefinition.style ? `color="${actionDefinition.style}"` : `color="primary"`
-      let click = ``
-
-      switch (actionDefinition.type) {
-        case 'OpenURL':
-          click = `@click="openURL('${actionDefinition.config.url}')"`
-          break
-        case 'Submit':
-          click = `@click="submit(data)"`
-          break
-        case 'ShowView':
-          click = `@click="showView"`
-          break
-      }
-
+      const click = `@click="action('${actionDefinition.type}', ${util.inspect(actionDefinition.config)})"`
       const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
       quasarTemplate += `${indent}${btn}\n`
     })

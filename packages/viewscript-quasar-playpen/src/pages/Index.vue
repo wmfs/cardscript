@@ -6,8 +6,8 @@
         <q-toolbar-title>
           Viewscript Playpen
         </q-toolbar-title>
-        <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub" />
-        <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter" />
+        <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub"/>
+        <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter"/>
       </q-toolbar>
     </q-layout-header>
 
@@ -99,11 +99,13 @@
                   </q-item>
                 </q-list>
 
-                <q-card class="q-mt-md">
+                <q-card class="q-mt-md q-mb-xl">
                   <q-card-main>
-                    <viewscript :content="dynamicContent" @openURL="onOpenURL" @submit="onSubmit" @showView="onShowView"/>
+                    <viewscript :content="dynamicContent" @OpenURL="onOpenURL" @Submit="onSubmit"
+                                @ShowView="onShowView"/>
                   </q-card-main>
                 </q-card>
+
               </q-tab-pane>
               <q-tab-pane name="model-tab" class="tab-pane">
                 <blockquote>
@@ -338,19 +340,19 @@
       this.editor.session.setValue(this.viewscript)
     },
     methods: {
-      onOpenURL (url) {
-        openURL(url)
+      onOpenURL (config) {
+        openURL(config.url)
       },
-      onShowView (payload) {
-        console.log('show view', payload)
+      onShowView (config) {
+        console.log('show view', config)
         this.$q.notify({
           message: 'Going to the other view.',
           type: 'positive',
           position: 'top'
         })
       },
-      onSubmit (data) {
-        console.log('submit', data)
+      onSubmit (config) {
+        console.log('submit', config)
         // todo: try out vuelidate here
         this.$q.notify({
           message: 'Your data has been submitted.',

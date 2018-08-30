@@ -41,14 +41,8 @@ export default {
           removeSubViewContent (subViewId, index) {
             alert(`REMOVE index ${index} from ${subViewId}`)
           },
-          openURL (url) {
-            that.$emit('openURL', url)
-          },
-          submit (payload) {
-            that.$emit('submit', payload)
-          },
-          showView (payload) {
-            that.$emit('showView', payload)
+          action (type, config) {
+            that.$emit(type, config)
           }
         }
       }
