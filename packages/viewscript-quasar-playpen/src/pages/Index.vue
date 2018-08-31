@@ -36,31 +36,29 @@
           </q-alert>
         </div>
 
-        <div v-if="validation.state === 'notValidated'">
-          <div id="instructions" style="padding: 96px; text-align: justify;">
-            <div class="q-display-1 text-weight-light">
-              Use the editor to write some Viewscript JSON, then hit the refresh button to turn it into a UI!
+        <div id="instructions" style="padding: 96px; text-align: justify;" v-if="validation.state === 'notValidated'">
+          <div class="q-display-1 text-weight-light">
+            Use the editor to write some Viewscript JSON, then hit the refresh button to turn it into a UI!
+          </div>
+          <div id="none-mobile">
+            <hr class="q-my-lg"/>
+            <div class="q-title text-weight-light q-mt-sm">
+              Try one of these examples to get started quickly:
             </div>
-            <div id="none-mobile">
-              <hr class="q-my-lg"/>
-              <div class="q-title text-weight-light q-mt-sm">
-                Try one of these examples to get started quickly:
-              </div>
-              <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
-                <q-list link>
-                  <q-item
-                    v-for="opt in exampleOpts"
-                    :key="opt.value"
-                    v-close-overlay
-                    @click.native="setExampleContent(opt.value)"
-                  >
-                    <q-item-main>
-                      <q-item-tile label>{{opt.label}}</q-item-tile>
-                    </q-item-main>
-                  </q-item>
-                </q-list>
-              </q-btn-dropdown>
-            </div>
+            <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
+              <q-list link>
+                <q-item
+                  v-for="opt in exampleOpts"
+                  :key="opt.value"
+                  v-close-overlay
+                  @click.native="setExampleContent(opt.value)"
+                >
+                  <q-item-main>
+                    <q-item-tile label>{{opt.label}}</q-item-tile>
+                  </q-item-main>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
         </div>
 
@@ -270,6 +268,12 @@
     background: #555;
   }
 
+  @media only screen and (max-width: 864px) {
+    #none-mobile {
+      display: none;
+    }
+  }
+
   @media only screen and (max-width: 767px) {
     #vue-bulma-editor {
       height: 300px !important;
@@ -278,10 +282,6 @@
     #instructions {
       padding: 24px !important;
       text-align: initial !important;
-    }
-
-    #none-mobile {
-      display: none;
     }
   }
 
