@@ -156,7 +156,9 @@
               "actions": {"$ref": "#/definitions/attributes/actions"}
             }
           }
-        }
+        },
+        "required": ["id", "type"],
+        "additionalProperties": false
       },
 
       "checkboxList": {

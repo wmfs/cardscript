@@ -10,7 +10,7 @@ module.exports = function viewscriptDocGenerator (options) {
     path.resolve(__dirname, './template.md.ejs'),
     collateData(),
     {},
-    function (err, str) {
+    (err, str) => {
       if (err) {
         console.error(err)
       } else {

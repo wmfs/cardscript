@@ -50,5 +50,12 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 10"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-quasar-playpen"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/viewscript/issues"
+  }
 }
