@@ -108,7 +108,7 @@ __Viewscript is built on a handful of key concepts...__
 
 The purpose of Viewscript is to define a user interface, referred to as a "__view__".
 
-* In Viewscript, the term "view" refers to the "V" in [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
+* In Viewscript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
 * With Viewscript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
 * Viewscript definitions are naturally stored in `.json` files (typically one-file-per-view).
 * In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Viewscript definitions (the [viewscript-parser](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) utility supports both)..
@@ -327,7 +327,7 @@ Each `widget` object comprise of some properties:
 
 Viewscript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
- 
+
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
 | `actions` | `array` | An array of objects denoting a set of actions the user can take |
