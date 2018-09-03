@@ -18,7 +18,7 @@
     },
     {
       "id": "feedback",
-      "showWhen": "data.userWantsToGiveFeedback",
+      "showWhen": "data.userWantsToGiveFeedback === true",
       "type": "textarea",
       "attributes": {
         "heading": "Feedback",

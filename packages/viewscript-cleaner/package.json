@@ -4,14 +4,17 @@
   "version": "0.0.1",
   "author": "Reece Brend",
   "main": "./lib/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "esprima": "4.0.1",
+    "static-eval": "2.0.0"
+  },
   "devDependencies": {
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1"
   },
   "scripts": {
-    "generate": "node ./scripts/clean.js",
+    "generate": "node ./lib",
     "lint": "standard"
   },
   "license": "GPLv3",
