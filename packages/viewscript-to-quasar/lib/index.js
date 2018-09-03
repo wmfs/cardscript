@@ -26,10 +26,10 @@ module.exports = function extractDefaults (viewscript, options) {
     viewscript.actions.forEach(actionDefinition => {
       const label = `label="${actionDefinition.title}"`
       const colour = actionDefinition.style ? `color="${actionDefinition.style}"` : `color="primary"`
-      let click = `@click="action('${actionDefinition.type}', ${util.inspect(actionDefinition.config)})"`
+      let click = `@click="action('${actionDefinition.type}', ${util.inspect({config: actionDefinition.config})})"`
 
       if (actionDefinition.type === 'Submit') {
-        click = `@click="action('${actionDefinition.type}', {data})"`
+        click = `@click="action('${actionDefinition.type}', {data, config: ${util.inspect(actionDefinition.config)}})"`
       }
 
       const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
