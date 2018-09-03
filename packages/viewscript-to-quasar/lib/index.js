@@ -1,5 +1,5 @@
 const builders = require('./builders')
-const util = require('util')
+const {inspect} = require('util')
 const ONE_TAB = '  '
 
 module.exports = function extractDefaults (viewscript, options) {
@@ -26,10 +26,10 @@ module.exports = function extractDefaults (viewscript, options) {
     viewscript.actions.forEach(actionDefinition => {
       const label = `label="${actionDefinition.title}"`
       const colour = actionDefinition.style ? `color="${actionDefinition.style}"` : `color="primary"`
-      let click = `@click="action('${actionDefinition.type}', ${util.inspect(actionDefinition.config)})"`
+      let click = `@click="action('${actionDefinition.type}', ${inspect({config: actionDefinition.config})})"`
 
       if (actionDefinition.type === 'Submit') {
-        click = `@click="action('${actionDefinition.type}', {data})"`
+        click = `@click="action('${actionDefinition.type}', {data, config: ${inspect(actionDefinition.config)}})"`
       }
 
       const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
