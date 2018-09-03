@@ -340,19 +340,19 @@
       this.editor.session.setValue(this.viewscript)
     },
     methods: {
-      onOpenURL (config) {
-        openURL(config.url)
+      onOpenURL (payload) {
+        openURL(payload.config.url)
       },
-      onShowView (config) {
-        console.log('show view', config)
+      onShowView (payload) {
+        console.log('show view', payload)
         this.$q.notify({
           message: 'Going to the other view.',
           type: 'positive',
           position: 'top'
         })
       },
-      onSubmit (config) {
-        console.log('submit', config)
+      onSubmit (payload) {
+        console.log('submit', payload)
         // todo: try out vuelidate here
         this.$q.notify({
           message: 'Your data has been submitted.',
