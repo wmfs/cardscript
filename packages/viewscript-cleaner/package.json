@@ -1,0 +1,25 @@
+{
+  "name": "viewscript-cleaner",
+  "description": "Cleans Viewscript form data to ensure we only submit the data that we should.",
+  "version": "0.0.1",
+  "author": "Reece Brend",
+  "main": "./lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.1.1",
+    "standard": "11.0.1"
+  },
+  "scripts": {
+    "generate": "node ./scripts/clean.js",
+    "lint": "standard"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-cleaner"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/viewscript/issues"
+  }
+}
