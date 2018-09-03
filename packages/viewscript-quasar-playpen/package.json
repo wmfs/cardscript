@@ -25,6 +25,7 @@
     "viewscript-to-quasar": "0.0.6",
     "viewscript-vue-sdk": "0.0.6",
     "vue-bulma-brace": "0.1.0",
+    "vuelidate": "0.7.4",
     "yamljs": "0.3.0"
   },
   "devDependencies": {
@@ -55,5 +56,12 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 10"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-quasar-playpen"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/viewscript/issues"
+  }
 }

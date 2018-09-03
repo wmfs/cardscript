@@ -6,144 +6,51 @@ const snippets = require('./snippets')
 const stopText = require('./stop-text')
 const getPackageInfo = require('./get-package-info')
 
-function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
-  const rawProps = rawWidgetDefinition.properties
-  const summary = []
-  widgetProperties.forEach(
-    function (prop) {
-      if (rawProps.hasOwnProperty(prop.name)) {
-        let text
-        if (rawWidgetDefinition.required.indexOf(prop.name) === -1) {
-          text = '_Optional_'
-        } else {
-          text = '_Required_'
-        }
-
-        if (prop.name === 'type') {
-          text += ` (\`"${widgetType}"\`)`
-        }
-        summary.push(
-          {
-            name: prop.name,
-            text: text
-          }
-        )
-      }
-    }
-  )
-  return summary
-}
-
-function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDefinition) {
-  const rawAttribs = rawWidgetDefinition.properties.attributes
-  const summary = []
-  if (rawAttribs) {
-    _.forEach(
-      rawAttribs.properties,
-      function (value, key) {
-        let attributeSchema
-        if (_.isObject(value) && value.hasOwnProperty('$ref')) {
-          const refKey = value.$ref.slice(25) // Remove: #/definitions/attributes/
-          attributeSchema = attributeProperties[refKey]
-        } else {
-          attributeSchema = value
-        }
-
-        let required = 'No'
-        const requiredAttributes = rawWidgetDefinition.properties.attributes.required
-        if (requiredAttributes) {
-          if (requiredAttributes.indexOf(key) !== -1) {
-            required = 'Yes'
-          }
-        }
-
-        let attributeType = attributeSchema.type
-        if (_.isUndefined(attributeType) && _.isArray(attributeSchema.enum)) {
-          attributeType = `__enum:__<br>`
-          attributeSchema.enum.forEach(
-            function (value) {
-              attributeType += `\`${value}\`<br>`
-            }
-          )
-        } else {
-          attributeType = '`' + attributeType + '`'
-        }
-
-        summary.push(
-          {
-            name: key,
-            type: attributeType,
-            text: attributeSchema.title,
-            required: required
-          }
-        )
-      }
-    )
-  }
-
-  return summary
-}
-
 module.exports = function collateData () {
   const schema = jsonfile.readFileSync(
     path.resolve(__dirname, './../../../packages/viewscript-schema/lib/schema.json')
   )
 
-  const topLevelProperties = []
-  _.forEach(
-    schema.properties,
-    function (value, name) {
-      topLevelProperties.push(
-        {
-          name: name,
-          type: value.type,
-          required: schema.required.indexOf(name) !== -1,
-          desc: value.title
-        }
-      )
+  const topLevelProperties = Object.keys(schema.properties).map(key => {
+    const value = schema.properties[key]
+    return {
+      name: key,
+      type: value.type,
+      required: schema.required.indexOf(key) !== -1,
+      desc: value.title
     }
-  )
+  })
 
   const propertyInfo = []
-  _.forEach(
-    schema.definitions,
-    function (rawPropertyCandidate, key) {
-      if (key !== 'attributes' && key !== 'widgets') {
-        const propertyDefinition = _.cloneDeep(rawPropertyCandidate)
-        propertyDefinition.name = key
-        propertyInfo.push(propertyDefinition)
-      }
+  Object.keys(schema.definitions).forEach(key => {
+    if (key !== 'attributes' && key !== 'widgets') {
+      const propertyDef = _.cloneDeep(schema.definitions[key])
+      propertyDef.name = key
+      propertyInfo.push(propertyDef)
     }
-  )
+  })
 
-  const widgetInfo = []
-  _.forEach(
-    schema.definitions.widgets,
-    function (rawWidgetDefinition, widgetType) {
-      const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
-      widgetDefinition.type = widgetType
-      widgetDefinition.example = JSON.stringify(snippets[widgetType], null, 2)
-      widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
-      widgetDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(widgetType, schema.definitions.attributes, rawWidgetDefinition), 'name')
-      widgetInfo.push(widgetDefinition)
-    }
-  )
+  const widgetInfo = Object.keys(schema.definitions.widgets).map(widgetType => {
+    const rawWidgetDefinition = schema.definitions.widgets[widgetType]
+    const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
+    widgetDefinition.type = widgetType
+    widgetDefinition.example = JSON.stringify(snippets[widgetType], null, 2)
+    widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
+    widgetDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(widgetType, schema.definitions.attributes, rawWidgetDefinition), 'name')
+    return widgetDefinition
+  })
 
-  const attributeInfo = []
-  _.forEach(
-    schema.definitions.attributes,
-    function (rawAttributeDefinition, attributeName) {
-      const attributeDefinition = _.cloneDeep(rawAttributeDefinition)
-      attributeDefinition.name = attributeName
-      attributeInfo.push(attributeDefinition)
-    }
-  )
+  const attributeInfo = Object.keys(schema.definitions.attributes).map(attributeName => {
+    const attributeDefinition = _.cloneDeep(schema.definitions.attributes[attributeName])
+    attributeDefinition.name = attributeName
+    return attributeDefinition
+  })
 
   const lernaJson = jsonfile.readFileSync(
     path.resolve(__dirname, './../../../lerna.json')
   )
 
-  const data = {
+  return {
     stopText: stopText,
     year: new Date().getFullYear(),
     version: lernaJson.version,
@@ -156,5 +63,56 @@ module.exports = function collateData () {
     topLevelProperties: topLevelProperties,
     packages: getPackageInfo()
   }
-  return data
+}
+
+function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
+  const rawProps = rawWidgetDefinition.properties
+  const summary = []
+  widgetProperties.forEach(prop => {
+    if (rawProps.hasOwnProperty(prop.name)) {
+      let text = rawWidgetDefinition.required.includes(prop.name) ? '_Required_' : '_Optional_'
+
+      if (prop.name === 'type') {
+        text += ` (\`"${widgetType}"\`)`
+      }
+
+      summary.push({name: prop.name, text})
+    }
+  })
+  return summary
+}
+
+function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDefinition) {
+  const rawAttribs = rawWidgetDefinition.properties.attributes
+  const summary = []
+  if (rawAttribs) {
+    Object.keys(rawAttribs.properties).map(key => {
+      const value = rawAttribs.properties[key]
+
+      const attributeSchema = _.isObject(value) && value.hasOwnProperty('$ref')
+        ? attributeProperties[value.$ref.slice(25)] // Remove: #/definitions/attributes/
+        : value
+
+      const requiredAttributes = rawWidgetDefinition.properties.attributes.required
+      const required = requiredAttributes && requiredAttributes.indexOf(key) !== -1
+        ? 'Yes' : 'No'
+
+      let attributeType = attributeSchema.type
+      if (_.isUndefined(attributeType) && _.isArray(attributeSchema.enum)) {
+        attributeType = `__enum:__<br>`
+        attributeSchema.enum.forEach(value => { attributeType += `\`${value}\`<br>` })
+      } else {
+        attributeType = '`' + attributeType + '`'
+      }
+
+      summary.push({
+        name: key,
+        type: attributeType,
+        text: attributeSchema.title,
+        required: required
+      })
+    })
+  }
+
+  return summary
 }

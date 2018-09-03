@@ -79,7 +79,8 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
       "attributes": {
         "heading": "Register!",
         "desc": "Let's get to know each other a bit better...",
-        "backgroundImage": "happyPeople.jpg",
+        "wash": "black",
+        "backgroundImage": "wmfs/happy-people.jpg",
         "backgroundImageAltText": "Beautiful people smiling around a laptop"
       }
     },
@@ -107,7 +108,7 @@ __Viewscript is built on a handful of key concepts...__
 
 The purpose of Viewscript is to define a user interface, referred to as a "__view__".
 
-* In Viewscript, the term "view" refers to the "V" in [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
+* In Viewscript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
 * With Viewscript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
 * Viewscript definitions are naturally stored in `.json` files (typically one-file-per-view).
 * In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Viewscript definitions (the [viewscript-parser](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) utility supports both)..
@@ -132,9 +133,9 @@ Views are constructed from an ordered list of "__widgets__".
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* Viewscript is a delightful walled-garden, offering a fixed set of 29 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
+* Viewscript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 29 widgets supported in Viewscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in Viewscript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -142,12 +143,14 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 29
 | -----------      | ----------- |
 | [`address`](#list-address) | Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar. |
 | [`apiLookup`](#list-apiLookup) | Allows the user to select a specific value from an API endpoint |
+| [`buttonList`](#list-buttonList) | A set of buttons that the user can interact with |
 | [`checkboxList`](#list-checkboxList) | Offer a related set of checkboxes with accompanying labels for the user to switch on and off. |
 | [`currency`](#list-currency) | Just like a `number` widget, but for specifically collecting a monetary value. |
 | [`date`](#list-date) | Allows the user to provide a specific date - without a time portion. |
 | [`dateTime`](#list-dateTime) | Collects a specific date and time from the user. |
 | [`endSet`](#list-endSet) | Marks the end of a set of related widgets - see the [Sets](#set) section for more information. |
 | [`endSubView`](#list-endSubView) | Marks the end of a sub-view - see the [Sets](#set) section for more information. |
+| [`expandableNotice`](#list-expandableNotice) | Expandable Notice field. |
 | [`fileUpload`](#list-fileUpload) | Allows the user to upload a file. |
 | [`header`](#list-header) | A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/). |
 | [`heading`](#list-heading) | Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience. |
@@ -166,6 +169,7 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 29
 | [`stickyNote`](#list-stickyNote) | A panel for putting helpful text or other informative text |
 | [`subView`](#list-subView) | Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.) |
 | [`switch`](#list-switch) | Presents a on/off style switch to the user. |
+| [`table`](#list-table) | Presents data in format of a table with specified columns. |
 | [`text`](#list-text) | A bread-and-butter box for collecting textual information from the user. |
 | [`textarea`](#list-textarea) | Collects simple multi-line text input from the user. |
 | [`time`](#list-time) | Allows the user to provide a specific time (without being tied to a particular date) |
@@ -304,6 +308,7 @@ The top-level object defining a view comprises of several properties:
 | `title` | `string` | A short-as-possible label to associate with the form. | `false` |
 | `version` | `string` | Denotes the current version of the form definition. This will be assigned by whatever tooling and processes conjure your forms. There is a strong preference that form version strings adhere to [Semantic Versioning](http://nodesource.com/blog/semver-a-primer/). | `false` |
 | `widgets` | `array` | The main event, 1 or more `widget` objects which an app should render to produce a form. | `true` |
+| `actions` | `array` | A view can have multiple actions for the user to interact with | `false` |
 
 
 
@@ -320,12 +325,16 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Viewscript `0.0.6` supports a set of 25 common attributes from which widgets can be configured.
+Viewscript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
- 
+
 | Attribute Name | Type | Description |
 | -------------- | -----| ----------- |
+| `actions` | `array` | An array of objects denoting a set of actions the user can take |
 | `captureHistoric` | `boolean` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
+| `columns` | `array` | An array of objects denoting the columns to be shown on a table |
+| `content` | `string` | Some read only text to display. |
+| `dataPath` | `string` | A path pointing to a key in the data |
 | `default` | `any` | A value to default a widget to if not supplied by other mechanisms. |
 | `defaultBoolean` | `boolean` | A boolean value to default a widget to if not supplied by other mechanisms. |
 | `defaultNumber` | `number` | A numeric value to default a widget to if not supplied by other mechanisms. |
@@ -354,7 +363,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the full list of all 29 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 32 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -463,6 +472,58 @@ __Attributes__
 | `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
 | `params` | `object` | `No` | Key/value pairs which will be passed to the API endpoint. As such, contents will vary depending on the API involved. |
 | `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-buttonList"></a>`buttonList` widget
+
+__A set of buttons that the user can interact with__
+
+__Example JSON__
+
+``` json
+{
+  "id": "actions",
+  "type": "buttonList",
+  "attributes": {
+    "heading": "Some Actions",
+    "actions": [
+      {
+        "title": "Edit user"
+      },
+      {
+        "title": "Remove user"
+      },
+      {
+        "title": "Create a new user"
+      }
+    ]
+  }
+}
+
+```
+
+__Properties__
+
+
+__`id`:__ _Required_
+
+__`type`:__ _Required_ (`"buttonList"`)
+
+__`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `actions` | `array` | `No` | An array of objects denoting a set of actions the user can take |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
 
 
 
@@ -740,6 +801,50 @@ __`type`:__ _Required_ (`"endSubView"`)
 
 <hr>
 
+## The <a name="list-expandableNotice"></a>`expandableNotice` widget
+
+__Expandable Notice field.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "privacy notice",
+  "type": "expandableNotice",
+  "attributes": {
+    "heading": "Click to view information",
+    "content": "This is some expandable information you might want to hide"
+  }
+}
+
+```
+
+__Properties__
+
+
+__`id`:__ _Required_
+
+__`type`:__ _Required_ (`"expandableNotice"`)
+
+__`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `content` | `string` | `No` | Some read only text to display. |
+| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+
+
+
+
+
+<hr>
+
 ## The <a name="list-fileUpload"></a>`fileUpload` widget
 
 __Allows the user to upload a file.__
@@ -833,6 +938,7 @@ __Attributes__
 | `backgroundImageAltText` | `string` | `No` | Text that describes the `backgroundImage` image. |
 | `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
 | `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
+| `wash` | `string` | `No` | Whether the background image should have a black or white wash. |
 
 
 
@@ -1666,6 +1772,67 @@ __Attributes__
 
 <hr>
 
+## The <a name="list-table"></a>`table` widget
+
+__Presents data in format of a table with specified columns.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "patientDetails",
+  "type": "table",
+  "attributes": {
+    "heading": "Patient Details",
+    "dataPath": "patients",
+    "columns": [
+      {
+        "title": "Full Name",
+        "dataPath": "name"
+      },
+      {
+        "title": "Phone Number",
+        "dataPath": "number"
+      },
+      {
+        "title": "Address",
+        "dataPath": "address"
+      }
+    ],
+    "resultLimit": 20
+  }
+}
+
+```
+
+__Properties__
+
+
+__`id`:__ _Required_
+
+__`type`:__ _Required_ (`"table"`)
+
+__`showWhen`:__ _Optional_
+
+
+
+__Attributes__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `columns` | `array` | `No` | An array of objects denoting the columns to be shown on a table |
+| `dataPath` | `string` | `No` | A path pointing to a key in the data |
+| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
+| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
+
+
+
+
+
+<hr>
+
 ## The <a name="list-text"></a>`text` widget
 
 __A bread-and-butter box for collecting textual information from the user.__
@@ -1894,12 +2061,11 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `viewscript-extract-defaults` | Extracts sensible defaults from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-extract-defaults)  |
 | `viewscript-extract-lists` | Extracts list objects from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists) | [Here](https://www.npmjs.com/package/viewscript-extract-lists)  |
 | `viewscript-parser` | Like JSON.parse(), but for Viewscript. And it supports YAML. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) | [Here](https://www.npmjs.com/package/viewscript-parser)  |
-| `viewscript-playpen` | A playpen to try-out some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-playpen) | [Here](https://www.npmjs.com/package/viewscript-playpen)  |
+| `viewscript-quasar-playpen` | Viewscript Playpen | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-quasar-playpen) | [Here](https://www.npmjs.com/package/viewscript-quasar-playpen)  |
 | `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
 | `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
 | `viewscript-to-quasar` | Produces a template for use with Quasar from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-quasar) | [Here](https://www.npmjs.com/package/viewscript-to-quasar)  |
 | `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
-| `viewscript-to-vuetify` | Produces a template for use with Vuetify from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify) | [Here](https://www.npmjs.com/package/viewscript-to-vuetify)  |
 | `viewscript-vue-component` | A simple Vue component to render dynamic Viewscript content using Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-vue-component) | [Here](https://www.npmjs.com/package/viewscript-vue-component)  |
 | `viewscript-vue-sdk` | An SDK for using Viewscript with Vue/Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-vue-sdk)  |
 

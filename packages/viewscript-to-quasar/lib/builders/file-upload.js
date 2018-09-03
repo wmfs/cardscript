@@ -20,5 +20,7 @@ module.exports = function fileUploadConverter (widgetDefinition, options) {
 
   const uploader = builder.addTag('q-uploader')
   uploader.addAttribute('class', 'q-ma-xl')
+  uploader.addAttribute('url', '""')
+
   return builder.compile()
 }

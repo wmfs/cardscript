@@ -743,5 +743,26 @@
     {
       "type": "endSet"
     }
+  ],
+  "actions": [
+    {
+      "title": "Go to github",
+      "type": "OpenURL",
+      "config": {
+        "url": "https://github.com/wmfs/viewscript"
+      }
+    },
+    {
+      "title": "Submit",
+      "type": "Submit",
+      "style": "positive",
+      "config": {}
+    },
+    {
+      "title": "Show another view",
+      "type": "ShowView",
+      "style": "negative",
+      "config": {}
+    }
   ]
 }

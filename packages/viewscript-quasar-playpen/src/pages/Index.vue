@@ -6,12 +6,12 @@
         <q-toolbar-title>
           Viewscript Playpen
         </q-toolbar-title>
-        <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub" />
-        <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter" />
+        <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub"/>
+        <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter"/>
       </q-toolbar>
     </q-layout-header>
 
-    <div class="row" style="min-height: calc(100vh - 100px);">
+    <div class="row" style="max-height: calc(100vh - 100px); min-height: calc(100vh - 100px);">
       <div class="col-xs-12 col-md-6">
         <brace
           fontsize="12px"
@@ -36,31 +36,29 @@
           </q-alert>
         </div>
 
-        <div v-if="validation.state === 'notValidated'">
-          <div id="instructions" style="padding: 96px; text-align: justify;">
-            <div class="q-display-1 text-weight-light">
-              Use the editor to write some Viewscript JSON, then hit the refresh button to turn it into a UI!
+        <div id="instructions" style="padding: 96px; text-align: justify;" v-if="validation.state === 'notValidated'">
+          <div class="q-display-1 text-weight-light">
+            Use the editor to write some Viewscript JSON, then hit the refresh button to turn it into a UI!
+          </div>
+          <div id="none-mobile">
+            <hr class="q-my-lg"/>
+            <div class="q-title text-weight-light q-mt-sm">
+              Try one of these examples to get started quickly:
             </div>
-            <div id="none-mobile">
-              <hr class="q-my-lg"/>
-              <div class="q-title text-weight-light q-mt-sm">
-                Try one of these examples to get started quickly:
-              </div>
-              <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
-                <q-list link>
-                  <q-item
-                    v-for="opt in exampleOpts"
-                    :key="opt.value"
-                    v-close-overlay
-                    @click.native="setExampleContent(opt.value)"
-                  >
-                    <q-item-main>
-                      <q-item-tile label>{{opt.label}}</q-item-tile>
-                    </q-item-main>
-                  </q-item>
-                </q-list>
-              </q-btn-dropdown>
-            </div>
+            <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
+              <q-list link>
+                <q-item
+                  v-for="opt in exampleOpts"
+                  :key="opt.value"
+                  v-close-overlay
+                  @click.native="setExampleContent(opt.value)"
+                >
+                  <q-item-main>
+                    <q-item-tile label>{{opt.label}}</q-item-tile>
+                  </q-item-main>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
         </div>
 
@@ -99,11 +97,13 @@
                   </q-item>
                 </q-list>
 
-                <q-card class="q-mt-md">
+                <q-card class="q-mt-md q-mb-xl">
                   <q-card-main>
-                    <viewscript :content="dynamicContent"/>
+                    <viewscript :content="dynamicContent" @OpenURL="onOpenURL" @Submit="onSubmit"
+                                @ShowView="onShowView"/>
                   </q-card-main>
                 </q-card>
+
               </q-tab-pane>
               <q-tab-pane name="model-tab" class="tab-pane">
                 <blockquote>
@@ -127,7 +127,7 @@
               <q-tab-pane name="template-tab" class="tab-pane">
                 <blockquote>
                   The content below has been produced using the <a
-                  href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-vuetify">viewscript-to-vuetify</a>
+                  href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-quasar">viewscript-to-quasar</a>
                   and
                   <a href="https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists">viewscript-extract-lists</a>
                   packages. Here we've configured things to output in a Vue.js style, but Angular and React
@@ -268,6 +268,12 @@
     background: #555;
   }
 
+  @media only screen and (max-width: 864px) {
+    #none-mobile {
+      display: none;
+    }
+  }
+
   @media only screen and (max-width: 767px) {
     #vue-bulma-editor {
       height: 300px !important;
@@ -276,10 +282,6 @@
     #instructions {
       padding: 24px !important;
       text-align: initial !important;
-    }
-
-    #none-mobile {
-      display: none;
     }
   }
 
@@ -338,6 +340,26 @@
       this.editor.session.setValue(this.viewscript)
     },
     methods: {
+      onOpenURL (config) {
+        openURL(config.url)
+      },
+      onShowView (config) {
+        console.log('show view', config)
+        this.$q.notify({
+          message: 'Going to the other view.',
+          type: 'positive',
+          position: 'top'
+        })
+      },
+      onSubmit (config) {
+        console.log('submit', config)
+        // todo: try out vuelidate here
+        this.$q.notify({
+          message: 'Your data has been submitted.',
+          type: 'positive',
+          position: 'top'
+        })
+      },
       goGithub () {
         openURL('https://github.com/wmfs/viewscript')
       },
