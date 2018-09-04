@@ -1,0 +1,6 @@
+{
+  "chromeWebSecurity": false,
+  "env": {
+    "PLAYPEN_URL": "http://localhost:8080/"
+  }
+}
