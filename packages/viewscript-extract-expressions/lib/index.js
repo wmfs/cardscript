@@ -1,4 +1,4 @@
-module.exports = function getExpressions (viewscript) {
+module.exports = function extractExpressions (viewscript) {
   try {
     return viewscript.widgets
       .filter(widget => widget.showWhen)
