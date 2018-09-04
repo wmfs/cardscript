@@ -1,4 +1,3 @@
-const parse = require('esprima').parse
 const evaluate = require('static-eval')
 
 module.exports = function (viewscript, data, asts) {
@@ -18,12 +17,11 @@ module.exports = function (viewscript, data, asts) {
       // console.log('this widget has showWhen and is equal to', isVis, widget.id)
       widgetList[widget.id] = isVis
       if (widget.type === 'set') {
-        // console.log('this widget is of type set and is equal to ', isVis, widget.id)
+        console.log('this widget is of type set and is equal to ', isVis, widget.id)
         setVisible.push(isVis)
-        if (widget.type === 'endSet') {
-          // console.log('I found the end of the set for ', widget.id)
-          setVisible.pop()
-        }
+      } else if (widget.type === 'endSet') {
+        console.log('I found the end of the set for ', widget.id)
+        setVisible.pop()
       } else {
         console.log('widget not set')
       }
