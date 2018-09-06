@@ -3,7 +3,7 @@
   "description": "Cleans Viewscript form data to ensure we only submit the data that we should.",
   "version": "0.0.1",
   "author": "Reece Brend",
-  "main": "lib/old-index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "esprima": "4.0.1",
     "static-eval": "2.0.0"
@@ -20,7 +20,7 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-cleaner"
+    "url": "https://github.com/wmfs/viewscript/tree/master/packages/viewscript-expressions"
   },
   "bugs": {
     "url": "https://github.com/wmfs/viewscript/issues"
