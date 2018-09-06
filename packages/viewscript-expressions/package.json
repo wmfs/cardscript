@@ -3,7 +3,7 @@
   "description": "Cleans Viewscript form data to ensure we only submit the data that we should.",
   "version": "0.0.1",
   "author": "Reece Brend",
-  "main": "./lib/index.js",
+  "main": "lib/old-index.js",
   "dependencies": {
     "esprima": "4.0.1",
     "static-eval": "2.0.0"
