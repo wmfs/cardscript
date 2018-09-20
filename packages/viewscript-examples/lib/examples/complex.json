@@ -403,5 +403,13 @@
     {
       "type": "endSet"
     }
+  ],
+  "actions": [
+    {
+      "title": "Submit",
+      "type": "Submit",
+      "style": "positive",
+      "config": {}
+    }
   ]
 }

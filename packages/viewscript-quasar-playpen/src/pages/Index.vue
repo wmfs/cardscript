@@ -68,7 +68,7 @@
             enter-active-class="animated fadeIn"
             leave-active-class="animated fadeOut"
           >
-            <q-tabs no-pane-border inverted class="q-pt-md">
+            <q-tabs no-pane-border inverted class="q-pt-md" align="justify">
               <q-tab default slot="title" name="view-tab" label="view"></q-tab>
               <q-tab slot="title" name="model-tab" label="model"></q-tab>
               <q-tab slot="title" name="template-tab" label="template"></q-tab>
@@ -297,6 +297,7 @@
   import Viewscript from './../components/Viewscript'
   import Brace from 'vue-bulma-brace'
   import * as brace from 'brace'
+  import * as validators from 'vuelidate/lib/validators'
 
   const quasarConverter = require('viewscript-to-quasar')
   const extractDefaults = require('viewscript-extract-defaults')
@@ -306,6 +307,7 @@
   const examples = require('viewscript-examples')
   const parser = require('viewscript-parser')
   const validator = require('viewscript-schema').validateForm
+  const vuelidateConverter = require('viewscript-to-vuelidate')
 
   export default {
     name: 'PageIndex',
@@ -351,14 +353,24 @@
           position: 'top'
         })
       },
-      onSubmit (payload) {
+      onSubmit (payload, that) {
         console.log('submit', payload)
-        // todo: try out vuelidate here
-        this.$q.notify({
-          message: 'Your data has been submitted.',
-          type: 'positive',
-          position: 'top'
-        })
+        that.$v.data.$touch()
+        if (that.$v.data.$error) {
+          // todo: need to highlight errors
+
+          this.$q.notify({
+            message: 'Please review fields again.',
+            type: 'warning',
+            position: 'top'
+          })
+        } else {
+          this.$q.notify({
+            message: 'Your data has been submitted.',
+            type: 'positive',
+            position: 'top'
+          })
+        }
       },
       goGithub () {
         openURL('https://github.com/wmfs/viewscript')
@@ -406,6 +418,7 @@
               this.dynamicContent.internals = output.defaultInternals
               this.dynamicContent.lists = output.lists
               this.dynamicContent.toc = output.toc
+              this.dynamicContent.validations = output.validations
 
               this.validation.state = 'valid'
               this.validation.errors = []
@@ -436,7 +449,8 @@
       lists: {},
       toc: [],
       times: {},
-      totalTime: 0
+      totalTime: 0,
+      validations: {}
     }
   }
 
@@ -461,6 +475,8 @@
         stopwatch.addTime('Calculate starting internals')
         result.defaultInternals = sdk.getDefaultInternals.default(viewscript)
         result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+        stopwatch.addTime('Generating Vuelidate validations')
+        result.validations = vuelidateConverter(viewscript, validators)
         stopwatch.addTime('Generate template')
         result.quasarOutput = quasarConverter(viewscript)
       } else {

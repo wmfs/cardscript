@@ -21,6 +21,7 @@
     "viewscript-schema": "0.0.6",
     "viewscript-table-of-contents": "0.0.6",
     "viewscript-to-quasar": "0.0.6",
+    "viewscript-to-vuelidate": "0.0.1",
     "viewscript-vue-sdk": "0.0.6",
     "vue-bulma-brace": "0.1.0",
     "vuelidate": "0.7.4",
