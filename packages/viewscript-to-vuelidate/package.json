@@ -11,7 +11,8 @@
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1",
-    "viewscript-examples": "^0.0.6"
+    "viewscript-examples": "^0.0.6",
+    "vuelidate": "0.7.4"
   },
   "scripts": {
     "lint": "standard",
