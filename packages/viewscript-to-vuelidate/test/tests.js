@@ -6,9 +6,39 @@ import * as validators from 'vuelidate/lib/validators'
 const extract = require('./../lib/')
 const chai = require('chai')
 const expect = chai.expect
-// const examples = require('viewscript-examples')
+const examples = require('viewscript-examples')
 
 describe('Run Viewscript to validation schema tests', function () {
+  it('Complex example', () => {
+    const validations = extract(examples['complex'], validators)
+
+    expect(Object.keys(validations).length).to.eql(7)
+
+    expect(validations).to.have.property('firstName')
+    expect(validations).to.have.property('lastName')
+    expect(validations).to.have.property('phoneNumber')
+    expect(validations).to.have.property('address')
+    expect(validations).to.have.property('size')
+    expect(validations).to.have.property('savouryOrSweet')
+    expect(validations).to.have.property('toppings')
+
+    expect(validations.firstName).to.have.property('required')
+    expect(validations.lastName).to.have.property('required')
+    expect(validations.phoneNumber).to.have.property('required')
+    expect(validations.address).to.have.property('required')
+    expect(validations.size).to.have.property('required')
+    expect(validations.savouryOrSweet).to.have.property('required')
+    expect(validations.toppings).to.have.property('maxLength')
+
+    expect(validations.firstName.required).to.be.a('function')
+    expect(validations.firstName.required).to.be.a('function')
+    expect(validations.phoneNumber.required).to.be.a('function')
+    expect(validations.address.required).to.be.a('function')
+    expect(validations.size.required).to.be.a('function')
+    expect(validations.savouryOrSweet.required).to.be.a('function')
+    expect(validations.toppings.maxLength).to.be.a('function')
+  })
+
   it('Number widget with min and max values', () => {
     const validations = extract({
       title: 'Title',
