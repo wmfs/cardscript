@@ -46,6 +46,7 @@ module.exports = function questionnaireConverter (widgetDefinition, options) {
   const field = builder.addTag('q-field')
   field.addAttribute('class', 'q-ma-xl')
   field.addAttribute('label', getAttribute('heading'))
+  field.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
 
   const titleMap = getAttribute('titleMap')
   titleMap.forEach(function (titleMap) {

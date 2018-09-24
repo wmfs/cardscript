@@ -11,6 +11,7 @@ module.exports = function currencyConverter (widgetDefinition, options) {
   input.addAttribute('stack-label', getAttribute('heading'))
   // textField.addAttribute('placeholder', getAttribute('placeholder'))
   // textField.addAttribute('hint', getAttribute('desc'))
+  input.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
   input.addAttribute('class', 'q-ma-xl')
   return builder.compile()
 }

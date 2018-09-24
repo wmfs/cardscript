@@ -26,5 +26,7 @@ module.exports = function radioConverter (widgetDefinition, options) {
     field.addChildTag('br')
   })
 
+  field.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
+
   return builder.compile()
 }

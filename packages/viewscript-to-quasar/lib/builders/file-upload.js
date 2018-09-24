@@ -14,12 +14,12 @@ module.exports = function fileUploadConverter (widgetDefinition, options) {
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
 
-  const caption = builder.addTag('p')
-  caption.addAttribute('class', 'q-ml-xl caption')
-  caption.content(getAttribute('heading'))
+  const field = builder.addTag('q-field')
+  field.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
 
-  const uploader = builder.addTag('q-uploader')
+  const uploader = field.addChildTag('q-uploader')
   uploader.addAttribute('class', 'q-ma-xl')
+  uploader.addAttribute('float-label', getAttribute('heading'))
   uploader.addAttribute('url', '""')
 
   return builder.compile()

@@ -56,7 +56,9 @@ module.exports = function dateConverter (widgetDefinition, options) {
   */
   const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(widgetDefinition)
-  const dateTime = builder.addTag('q-datetime')
+  const field = builder.addTag('q-field')
+  field.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
+  const dateTime = field.addChildTag('q-datetime')
   dateTime.bindToModel(widgetDefinition)
   dateTime.addAttribute('type', 'date')
   dateTime.addAttribute('float-label', getAttribute('heading'))
