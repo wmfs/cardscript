@@ -19,6 +19,7 @@ module.exports = function textConverter (widgetDefinition, options) {
   textField.bindToModel(widgetDefinition)
   textField.addAttribute('class', 'q-ma-xl')
   textField.addAttribute('float-label', getAttribute('heading'))
+  textField.addAttribute(':error', `$v.data.${widgetDefinition.id} && $v.data.${widgetDefinition.id}.$error`)
   // textField.addAttribute(':dark', 'dark')
   return builder.compile()
 }
