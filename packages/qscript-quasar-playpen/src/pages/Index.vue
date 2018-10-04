@@ -268,7 +268,7 @@
     background: #555;
   }
 
-  @media only screen and (max-width: 864px) {
+  @media only screen and (max-width: 434px) {
     #none-mobile {
       display: none;
     }
