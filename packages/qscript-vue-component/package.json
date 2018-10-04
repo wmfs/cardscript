@@ -1,0 +1,13 @@
+{
+  "name": "qscript-vue-component",
+  "version": "0.0.6",
+  "description": "A simple Vue component to render dynamic QScript content using Vuetify",
+  "main": "lib/QScript.vue",
+  "scripts": {},
+  "author": "Tim Needham",
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-vue-component"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "qscript-table-of-contents",
+  "description": "Extracts a table-of-contents from some QScript.",
+  "version": "0.0.6",
+  "author": "Tim Needham",
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "chai": "4.1.0",
+    "mocha": "5.0.5",
+    "standard": "11.0.0",
+    "qscript-examples": "^0.0.6"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "standard && mocha"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-defaults"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/qscript/issues"
+  }
+}
