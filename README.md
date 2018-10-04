@@ -23,20 +23,20 @@
 <!---                                                                                        --->
 
 
-# Viewscript
+# QScript
 ### Version `0.0.6`
 
-[![Build Status](https://travis-ci.org/wmfs/viewscript.svg?branch=master)](https://travis-ci.org/wmfs/viewscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/viewscript/badge)](https://www.codefactor.io/repository/github/wmfs/viewscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/viewscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/viewscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/viewscript/blob/master/CONTRIBUTING.md)
+[![Build Status](https://travis-ci.org/wmfs/qscript.svg?branch=master)](https://travis-ci.org/wmfs/qscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/qscript/badge)](https://www.codefactor.io/repository/github/wmfs/qscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fqscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fqscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/qscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/qscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/qscript/blob/master/CONTRIBUTING.md)
 
-#### The goal of Viewscript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
+#### The goal of QScript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
 
 ## Getting started
 
-#### Get hands-on with Viewscript using the online [Viewscript Playpen](https://wmfs.github.io/viewscript/)!
+#### Get hands-on with QScript using the online [QScript Playpen](https://wmfs.github.io/qscript/)!
 
-* For some introductory context around why we developed Viewscript, please see [Appendix A: Viewscript Motivation](#motivation).
-* A [JSON Schema (Draft-07)](http://json-schema.org/) for Viewscript is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json).
-* The Viewscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/viewscript)) provides several utilities to help work with the language. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
+* For some introductory context around why we developed QScript, please see [Appendix A: QScript Motivation](#motivation).
+* A [JSON Schema (Draft-07)](http://json-schema.org/) for QScript is available [here](https://raw.githubusercontent.com/wmfs/qscript/master/packages/qscript-schema/lib/schema.json).
+* The QScript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/qscript)) provides several utilities to help work with the language. Please see [Appendix B: QScript Utilities](#utilities) for further information.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -56,12 +56,12 @@
   * [Widget List](#list)
 * [License (GPLv3)](#license)
 * [Appendices](#appendices)
-  * [Appendix A: Viewscript Motivation](#motivation)
-  * [Appendix B: Viewscript Utilities](#utilities)
+  * [Appendix A: QScript Motivation](#motivation)
+  * [Appendix B: QScript Utilities](#utilities)
 
 ## <a name="structure"></a>Structure of a View
 
-__In Viewscript, a _view_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
+__In QScript, a _view_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
 
 ### <a name="example"></a>Example: Simple View
 
@@ -102,40 +102,40 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 ## <a name="concepts"></a>Concepts
 
-__Viewscript is built on a handful of key concepts...__
+__QScript is built on a handful of key concepts...__
 
 ### <a name="view"></a>Views
 
-The purpose of Viewscript is to define a user interface, referred to as a "__view__".
+The purpose of QScript is to define a user interface, referred to as a "__view__".
 
-* In Viewscript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
-* With Viewscript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
-* Viewscript definitions are naturally stored in `.json` files (typically one-file-per-view).
-* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Viewscript definitions (the [viewscript-parser](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) utility supports both)..
-* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/viewscript/master/packages/viewscript-schema/lib/schema.json), which may be used to validate the basic integrity of Viewscript content.
-* For more comprehensive Viewscript validation, please refer to the [viewscript-schema](https://www.npmjs.com/package/viewscript-schema) package.
+* In QScript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
+* With QScript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
+* QScript definitions are naturally stored in `.json` files (typically one-file-per-view).
+* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising QScript definitions (the [qscript-parser](https://github.com/wmfs/qscript/tree/master/packages/qscript-parser) utility supports both)..
+* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/qscript/master/packages/qscript-schema/lib/schema.json), which may be used to validate the basic integrity of QScript content.
+* For more comprehensive QScript validation, please refer to the [qscript-schema](https://www.npmjs.com/package/qscript-schema) package.
 
 ### <a name="app"></a>Apps
 
-Views defined in Viewscript may be rendered and executed by software.
+Views defined in QScript may be rendered and executed by software.
 In this document, such software is referred to an "__app__".
 
 * Apps can be implemented in any frontend-framework, language or library.
-* Viewscript does not impose any aesthetic or UI constraints onto apps which implement it.
-* Viewscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
-* Please note several utilities are available to help embed Viewscript into apps. Please see [Appendix B: Viewscript Utilities](#utilities) for further information.
+* QScript does not impose any aesthetic or UI constraints onto apps which implement it.
+* QScript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
+* Please note several utilities are available to help embed QScript into apps. Please see [Appendix B: QScript Utilities](#utilities) for further information.
 
 ### <a name="widget"></a>Widgets
 
 Views are constructed from an ordered list of "__widgets__".
 
-* To avoid overloading frontend-terms like 'component', Viewscript refers to each object in the `widgets` array as a __widget__.
+* To avoid overloading frontend-terms like 'component', QScript refers to each object in the `widgets` array as a __widget__.
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* Viewscript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Viewscript/blob/master/CONTRIBUTING.md) :blush:
+* QScript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/QScript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in Viewscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in QScript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -178,10 +178,10 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 32
 ### <a name="set"></a>Sets
 
 All the [widgets](#widget) that define a [view](#view)'s content are specified in a simple array.
-This design helps align Viewscript with vertical-scrolling interfaces with very little friction.
+This design helps align QScript with vertical-scrolling interfaces with very little friction.
 To assist with navigation (especially around larger, more complex content) it might be useful to split a view into more manageable pieces.
 
-* __In Viewscript,  _sets_ allow widgets to be grouped into related chunks.__
+* __In QScript,  _sets_ allow widgets to be grouped into related chunks.__
 
 __Example JSON__
 
@@ -223,7 +223,7 @@ __Example JSON__
 
 ### <a name="expression"></a>Expressions
 
-Viewscript uses __expressions__ to deliver dynamic content. Expressions are used to:
+QScript uses __expressions__ to deliver dynamic content. Expressions are used to:
 
 * Conditionally show/hide widgets depending on values as they change.
 * Validate view content based on more complex business rules.
@@ -254,7 +254,7 @@ Consider an expression to be something that could be evaluated in a Javascript `
     },
     {
       "id": "feedback",
-      "showWhen": "data.userWantsToGiveFeedback",
+      "showWhen": "data.userWantsToGiveFeedback === true",
       "type": "textarea",
       "attributes": {
         "heading": "Feedback",
@@ -275,7 +275,7 @@ The `feedback` widget should only show if the `userWantsToGiveFeedback` switch i
 
 There are a few new things going on here.
 Most types of widget (here the `switch` and `textarea` types) expect an app to read and write their values to an underlying `data` object (using their respective `id` values as keys).
-It is also expected that any app implementing Viewscript should also make this `data` object available within a safe sandbox while evaluating expressions.
+It is also expected that any app implementing QScript should also make this `data` object available within a safe sandbox while evaluating expressions.
 
 In the previous example we can see the `showWhen` attribute is being used on the `feedback` widget. The string value here is an _expression_, which will control the visibility of the widget (i.e. it should only be shown to the user when the expression evaluates to `true`).
 
@@ -325,7 +325,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-Viewscript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
+QScript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
 
 | Attribute Name | Type | Description |
@@ -363,7 +363,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the full list of all 32 widgets supported in Viewscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 32 widgets supported in QScript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -1983,17 +1983,17 @@ __Attributes__
 
 # <a name="license"></a>License (GPLv3)
 
-The Viewscript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/viewscript/blob/master/LICENSE).
+The QScript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/qscript/blob/master/LICENSE).
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fviewscript?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fqscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fqscript?ref=badge_large)
 
 <hr>
 
 # <a name="appendices"></a>Appendices
 
-## <a name="motivation"></a>Appendix A: Viewscript Motivation
+## <a name="motivation"></a>Appendix A: QScript Motivation
 
-__Viewscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
+__QScript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
 Our work over the last 20 years has often involved collecting data from a variety of teams and environments.
 During this time, our best experiences have come from taking a declarative approach to defining form content.__
 
@@ -2045,27 +2045,29 @@ It was becoming evident we didn't have a good fit for what we wanted to do, and 
 
 * The XML used in our outgoing generation had some problems: requiring it's own expression-language was a particular mis-step and XML feels ancient if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
-### So... __Viewscript__!
+### So... __QScript__!
 
 * __It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.__
 
-## <a name="utilities"></a>Appendix B: Viewscript Utilities
+## <a name="utilities"></a>Appendix B: QScript Utilities
 
-__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Viewscript:__
+__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with QScript:__
 
 | Package | Description | Github | NPM  |
 | ------- | ------------| ------ | ---- |
-| `react-jsonschema-form-to-viewscript` | Produces Viewscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/react-jsonschema-form-to-viewscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-viewscript)  |
-| `viewscript-doc-generator` | Produces Viewscript's main README.md file using Viewscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-doc-generator) | [Here](https://www.npmjs.com/package/viewscript-doc-generator)  |
-| `viewscript-examples` | Example Viewscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-examples) | [Here](https://www.npmjs.com/package/viewscript-examples)  |
-| `viewscript-extract-defaults` | Extracts sensible defaults from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-extract-defaults)  |
-| `viewscript-extract-lists` | Extracts list objects from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-lists) | [Here](https://www.npmjs.com/package/viewscript-extract-lists)  |
-| `viewscript-parser` | Like JSON.parse(), but for Viewscript. And it supports YAML. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-parser) | [Here](https://www.npmjs.com/package/viewscript-parser)  |
-| `viewscript-quasar-playpen` | Viewscript Playpen | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-quasar-playpen) | [Here](https://www.npmjs.com/package/viewscript-quasar-playpen)  |
-| `viewscript-schema` | Contains a JSON Schema for Viewscript, along with a validation utility. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-schema) | [Here](https://www.npmjs.com/package/viewscript-schema)  |
-| `viewscript-table-of-contents` | Extracts a table-of-contents from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-extract-defaults) | [Here](https://www.npmjs.com/package/viewscript-table-of-contents)  |
-| `viewscript-to-quasar` | Produces a template for use with Quasar from some Viewscript. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-quasar) | [Here](https://www.npmjs.com/package/viewscript-to-quasar)  |
-| `viewscript-to-template` | Takes some Viewscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-to-template) | [Here](https://www.npmjs.com/package/viewscript-to-template)  |
-| `viewscript-vue-component` | A simple Vue component to render dynamic Viewscript content using Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-vue-component) | [Here](https://www.npmjs.com/package/viewscript-vue-component)  |
-| `viewscript-vue-sdk` | An SDK for using Viewscript with Vue/Vuetify | [Here](https://github.com/wmfs/viewscript/tree/master/packages/viewscript-simple-vue) | [Here](https://www.npmjs.com/package/viewscript-vue-sdk)  |
+| `qscript-doc-generator` | Produces QScript's main README.md file using QScript's JSON Schema and other sources. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-doc-generator) | [Here](https://www.npmjs.com/package/qscript-doc-generator)  |
+| `qscript-examples` | Example QScript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-examples) | [Here](https://www.npmjs.com/package/qscript-examples)  |
+| `qscript-cleaner` | Cleans QScript form data to ensure we only submit the data that we should. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-expressions) | [Here](https://www.npmjs.com/package/qscript-cleaner)  |
+| `qscript-extract-defaults` | Extracts sensible defaults from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-defaults) | [Here](https://www.npmjs.com/package/qscript-extract-defaults)  |
+| `qscript-extract-lists` | Extracts list objects from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-lists) | [Here](https://www.npmjs.com/package/qscript-extract-lists)  |
+| `qscript-parser` | Like JSON.parse(), but for QScript. And it supports YAML. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-parser) | [Here](https://www.npmjs.com/package/qscript-parser)  |
+| `qscript-quasar-playpen` | QScript Playpen | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-quasar-playpen) | [Here](https://www.npmjs.com/package/qscript-quasar-playpen)  |
+| `qscript-schema` | Contains a JSON Schema for QScript, along with a validation utility. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-schema) | [Here](https://www.npmjs.com/package/qscript-schema)  |
+| `qscript-table-of-contents` | Extracts a table-of-contents from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-defaults) | [Here](https://www.npmjs.com/package/qscript-table-of-contents)  |
+| `qscript-to-quasar` | Produces a template for use with Quasar from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-quasar) | [Here](https://www.npmjs.com/package/qscript-to-quasar)  |
+| `qscript-to-template` | Takes some QScript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-template) | [Here](https://www.npmjs.com/package/qscript-to-template)  |
+| `qscript-to-vuelidate` | Takes in a QScript JSON object and attempts to extract validation schema from the widgets. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-validation-schema) | [Here](https://www.npmjs.com/package/qscript-to-vuelidate)  |
+| `qscript-vue-component` | A simple Vue component to render dynamic QScript content using Vuetify | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-vue-component) | [Here](https://www.npmjs.com/package/qscript-vue-component)  |
+| `qscript-vue-sdk` | An SDK for using QScript with Vue/Vuetify | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-simple-vue) | [Here](https://www.npmjs.com/package/qscript-vue-sdk)  |
+| `react-jsonschema-form-to-qscript` | Produces QScript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/qscript/tree/master/packages/react-jsonschema-form-to-qscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-qscript)  |
 

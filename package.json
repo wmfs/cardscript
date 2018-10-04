@@ -1,6 +1,6 @@
 {
-  "name": "viewscript",
-  "description": "The goal of Viewscript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
+  "name": "qscript",
+  "description": "The goal of QScript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
   "version": "0.0.5",
   "author": "Tim Needham",
   "devDependencies": {
@@ -13,9 +13,9 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmfs/viewscript"
+    "url": "https://github.com/wmfs/qscript"
   },
   "bugs": {
-    "url": "https://github.com/wmfs/viewscript/issues"
+    "url": "https://github.com/wmfs/qscript/issues"
   }
 }

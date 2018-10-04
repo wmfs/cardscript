@@ -1,0 +1,13 @@
+{
+  "name": "qscript-vue-sdk",
+  "version": "0.0.6",
+  "description": "An SDK for using QScript with Vue/Vuetify",
+  "main": "./lib/index.js",
+  "scripts": {},
+  "author": "Tim Needham",
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-simple-vue"
+  }
+}

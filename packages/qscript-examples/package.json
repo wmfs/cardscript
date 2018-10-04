@@ -1,0 +1,24 @@
+{
+  "name": "qscript-examples",
+  "description": "Example QScript JSON files, to help with testing and documentation. Includes loader utility.",
+  "version": "0.0.6",
+  "author": "Tim Needham",
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.1.1",
+    "standard": "11.0.1"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "standard && mocha"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-examples"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/qscript/issues"
+  }
+}
