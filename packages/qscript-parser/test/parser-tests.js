@@ -80,7 +80,7 @@ describe('Run QScript parsing tests', function () {
   })
 
   it('should fail to parse nonsense', function () {
-    const result = parse('THIS IS NOT VALID VIEWSCRIPT!')
+    const result = parse('THIS IS NOT VALID QSCRIPT!')
     expect(result.errors[0].property).to.eql('string')
     expect(result.errors[0].message.toString()).to.eql('SyntaxError: Unexpected token T in JSON at position 0')
   })

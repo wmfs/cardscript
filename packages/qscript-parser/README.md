@@ -12,7 +12,7 @@ $ npm install qscript-parser --save
 ```javascript
 const parser = require('qscript-parser')
 
-const viewscriptObject = parser(
+const qscriptObject = parser(
   '  {' +
   "    title: 'Simple demo form!'" +
   '    widgets: []' +
@@ -27,4 +27,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/viewscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)

@@ -1,6 +1,6 @@
 # qscript-schema
 
-[![Known Vulnerabilities](https://snyk.io/test/github/wmfs/viewscript/badge.svg?targetFile=packages%2Fqscript-schema%2Fpackage.json)](https://snyk.io/test/github/wmfs/viewscript?targetFile=packages%2Fqscript-schema%2Fpackage.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/wmfs/qscript/badge.svg?targetFile=packages%2Fqscript-schema%2Fpackage.json)](https://snyk.io/test/github/wmfs/qscript?targetFile=packages%2Fqscript-schema%2Fpackage.json)
 
 > Contains a JSON Schema for QScript, along with a validation utility.
 
@@ -58,4 +58,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/viewscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)

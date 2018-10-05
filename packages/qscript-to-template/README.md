@@ -10,9 +10,9 @@ $ npm install qscript-to-template --save
 ## <a name="usage"></a>Usage
 
 ``` javascript
-const viewscriptToTemplate = require('qscript-to-template')
+const qscriptToTemplate = require('qscript-to-template')
 
-const result = viewscriptToTemplate.convert(
+const result = qscriptToTemplate.convert(
   // QScript!
   {
     title: 'Simple demo form!',
@@ -69,4 +69,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/viewscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)

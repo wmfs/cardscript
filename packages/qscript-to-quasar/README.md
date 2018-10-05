@@ -10,9 +10,9 @@ $ npm install qscript-to-quasar --save
 ## <a name="usage"></a>Usage
 
 ```javascript
-const viewscriptToQuasar = require('qscript-extract-defaults')
+const qscriptToQuasar = require('qscript-extract-defaults')
 
-const quasarTemplate = viewscriptToQuasar(
+const quasarTemplate = qscriptToQuasar(
 {
   title: 'Simple demo form!',
   widgets: []
@@ -27,4 +27,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/viewscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)

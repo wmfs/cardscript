@@ -28,4 +28,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/viewscript/blob/master/LICENSE)
+[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)

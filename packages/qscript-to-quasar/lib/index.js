@@ -2,12 +2,12 @@ const builders = require('./builders')
 const {inspect} = require('util')
 const ONE_TAB = '  '
 
-module.exports = function extractDefaults (viewscript, options) {
+module.exports = function extractDefaults (qscript, options) {
   let indent = '  '
   let quasarTemplate = '<div>\n'
 
-  if (viewscript.widgets) {
-    viewscript.widgets.forEach(widgetDefinition => {
+  if (qscript.widgets) {
+    qscript.widgets.forEach(widgetDefinition => {
       const widgetType = widgetDefinition.type
       const lines = builders[widgetType].conversionFunction(widgetDefinition, options)
 
@@ -22,8 +22,8 @@ module.exports = function extractDefaults (viewscript, options) {
     })
   }
 
-  if (viewscript.actions) {
-    viewscript.actions.forEach(actionDefinition => {
+  if (qscript.actions) {
+    qscript.actions.forEach(actionDefinition => {
       const label = `label="${actionDefinition.title}"`
       const colour = actionDefinition.style ? `color="${actionDefinition.style}"` : `color="primary"`
       let click = `@click="action('${actionDefinition.type}', ${inspect({config: actionDefinition.config})})"`
