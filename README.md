@@ -54,7 +54,7 @@
   * [Widget Properties](#properties)
   * [Widget Attributes](#attributes)
   * [Widget List](#list)
-* [License (GPLv3)](#license)
+* [License (MIT)](#license)
 * [Appendices](#appendices)
   * [Appendix A: QScript Motivation](#motivation)
   * [Appendix B: QScript Utilities](#utilities)
