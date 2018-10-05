@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "start": "quasar dev"
+    "start": "quasar dev",
+    "build": "quasar build"
   },
   "dependencies": {
     "brace": "0.11.1",
