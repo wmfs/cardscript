@@ -26,7 +26,7 @@
 # QScript
 ### Version `0.0.6`
 
-[![Build Status](https://travis-ci.org/wmfs/qscript.svg?branch=master)](https://travis-ci.org/wmfs/qscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/qscript/badge)](https://www.codefactor.io/repository/github/wmfs/qscript) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fqscript.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fqscript?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/qscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/qscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/qscript/blob/master/CONTRIBUTING.md)
+[![Build Status](https://travis-ci.org/wmfs/qscript.svg?branch=master)](https://travis-ci.org/wmfs/qscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/qscript/badge)](https://www.codefactor.io/repository/github/wmfs/qscript) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/qscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/qscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/qscript/blob/master/CONTRIBUTING.md)
 
 #### The goal of QScript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
 
@@ -1981,11 +1981,9 @@ __Attributes__
 
 <hr>
 
-# <a name="license"></a>License (GPLv3)
+# <a name="license"></a>License (MIT)
 
-The QScript specification and related tooling is provided under [__GNU General Public License v3.0__](https://github.com/wmfs/qscript/blob/master/LICENSE).
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwmfs%2Fqscript.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwmfs%2Fqscript?ref=badge_large)
+The QScript specification and related tooling is provided under [__MIT__](https://github.com/wmfs/qscript/blob/master/LICENSE).
 
 <hr>
 
