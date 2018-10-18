@@ -58,4 +58,4 @@ $ npm test
 ```
 
 ## <a name="license"></a>License
-[GPLv3](https://github.com/wmfs/qscript/blob/master/LICENSE)
+[MIT](https://github.com/wmfs/qscript/blob/master/LICENSE)

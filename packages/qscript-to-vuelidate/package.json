@@ -21,7 +21,7 @@
     "lint": "standard",
     "test": "mocha --require babel-register"
   },
-  "license": "GPLv3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-to-validation-schema"

@@ -21,7 +21,7 @@
     "generate": "node ./scripts/generate.js",
     "lint": "standard"
   },
-  "license": "GPLv3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmfs/qscript/tree/master/packages/qscript-doc-generator"

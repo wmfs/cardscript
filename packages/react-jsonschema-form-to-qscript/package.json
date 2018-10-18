@@ -17,7 +17,7 @@
     "lint": "standard",
     "test": "standard && mocha"
   },
-  "license": "GPLv3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmfs/qscript/tree/master/packages/react-jsonschema-form-to-qscript"
