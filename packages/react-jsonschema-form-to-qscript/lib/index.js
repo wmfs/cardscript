@@ -1,5 +1,5 @@
 const evaluate = require('static-eval')
-const {parse} = require('esprima')
+const { parse } = require('esprima')
 
 const widgets = require('./widgets')
 
@@ -132,7 +132,7 @@ function convertForm (form) {
         Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
           condition.forEach(c => {
             if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-              conditionalSchema.push(convertExpression(c.expression))
+              // conditionalSchema.push(convertExpression(c.expression))
             }
           })
         })
