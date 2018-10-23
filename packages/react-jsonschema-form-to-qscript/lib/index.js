@@ -45,8 +45,22 @@ module.exports = function reactJsonSchemaFormToQscript (view, uiType, data) {
     case 'board':
       return convertBoard(view, data)
     case 'form':
-      return convertForm(view)
+      return convertForm(view, getPropertyKeyMap(view))
   }
+}
+
+function getPropertyKeyMap (json) {
+  const keys = {}
+  try {
+    Object.entries(json.jsonSchema.schema.properties).forEach(([key, { properties }]) => {
+      Object.keys(properties).forEach(prop => {
+        keys[`${key}_${prop}`] = `data.${prop}`
+      })
+    })
+  } catch (e) {
+    console.log('WARNING! Cannot get property key map')
+  }
+  return keys
 }
 
 function convertBoard (board, data) {
@@ -80,33 +94,36 @@ function parseBoardTitle (template, data) {
   return evaluate(exp, data)
 }
 
-function convertForm (form) {
+function convertForm (form, keymap) {
+  const { schema, uiSchema, conditionalSchema } = form.jsonSchema
+
   const qscript = {
-    title: form.jsonSchema.schema.formtitle,
-    widgets: [
-      {
-        type: 'header',
-        attributes: {
-          heading: form.jsonSchema.schema.formtitle,
-          desc: form.jsonSchema.schema.formdescription,
-          backgroundImage: form.jsonSchema.schema.formimage,
-          backgroundImageAltText: 'Alt Text Here'
-        }
+    title: schema.formtitle,
+    widgets: [{
+      type: 'header',
+      attributes: {
+        heading: schema.formtitle,
+        desc: schema.formdescription,
+        backgroundImage: schema.formimage,
+        backgroundImageAltText: 'Alt Text Here'
       }
-    ]
+    }]
   }
 
-  Object.keys(form.jsonSchema.schema.properties).forEach(sectionId => {
-    let sectionCondition
-    form.jsonSchema.conditionalSchema && Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
-      condition.forEach(c => {
-        if (c.dependents.includes(sectionId)) {
-          // sectionCondition = convertExpression(c.expression)
-        }
-      })
-    })
+  const newConditionalSchema = {}
 
-    const section = form.jsonSchema.schema.properties[sectionId]
+  Object.entries(conditionalSchema).forEach(([k, conditions]) => {
+    newConditionalSchema[k] = []
+    conditions.forEach(({ expression }) => {
+      Object.entries(keymap).forEach(([key, value]) => {
+        expression = expression.replace(key, value)
+      })
+      newConditionalSchema[k].push(expression)
+    })
+  })
+
+  Object.keys(schema.properties).forEach(sectionId => {
+    const section = schema.properties[sectionId]
     const set = {
       id: sectionId,
       type: 'set',
@@ -114,39 +131,28 @@ function convertForm (form) {
         tocTitle: section.title
       }
     }
-    if (sectionCondition) set.showWhen = sectionCondition
     if (section.properties) {
       qscript.widgets.push(
         set,
         {
           type: 'heading',
-          attributes: {
-            heading: section.title
-          }
+          attributes: { heading: section.title }
         }
       )
 
       Object.keys(section.properties).forEach(propertyId => {
-        const uiSchema = form.jsonSchema.uiSchema[sectionId][propertyId]
-        const conditionalSchema = []
-        Object.values(form.jsonSchema.conditionalSchema).forEach(condition => {
-          condition.forEach(c => {
-            if (c.dependents.includes(`${sectionId}_${propertyId}`)) {
-              // conditionalSchema.push(convertExpression(c.expression))
-            }
-          })
-        })
+        const uiSchema_ = uiSchema[sectionId][propertyId]
 
         let sectionRequired = section.required
         if (!sectionRequired) {
-          console.log(`WARNING! The ${section.title} in ${form.jsonSchema.schema.formtitle} has no required array?`)
+          console.log(`WARNING! The ${section.title} in ${schema.formtitle} has no required array?`)
           sectionRequired = []
         }
         const widget = generateWidget({
           id: propertyId,
           schema: section.properties[propertyId],
-          uiSchema,
-          conditionalSchema,
+          uiSchema: uiSchema_,
+          conditionalSchema: newConditionalSchema[`${sectionId}_${propertyId}`] || [],
           mandatory: sectionRequired.includes(propertyId)
         })
         if (widget) qscript.widgets.push(widget)
@@ -158,9 +164,9 @@ function convertForm (form) {
       const widget = generateWidget({
         id: sectionId,
         schema: section,
-        uiSchema: form.jsonSchema.uiSchema[sectionId],
-        conditionalSchema: sectionCondition || [],
-        mandatory: false // todo: find if required
+        uiSchema: uiSchema[sectionId],
+        conditionalSchema: [],
+        mandatory: false
       })
       if (widget) qscript.widgets.push(widget)
     }
@@ -189,15 +195,3 @@ function generateWidget (options) {
     ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
     : null
 }
-
-// function convertExpression (expression) {
-//   return expression
-//     .split(' ')
-//     .map(part => {
-//       if (part.split('_')[0][0] === '"') return part
-//       else if (part.split('_').length === 2) return `data.${part.split('_')[1]}`
-//       else return part
-//     })
-//     .join(' ')
-//     .replace(/"/g, `'`)
-// }
