@@ -190,14 +190,14 @@ function generateWidget (options) {
     : null
 }
 
-function convertExpression (expression) {
-  return expression
-    .split(' ')
-    .map(part => {
-      if (part.split('_')[0][0] === '"') return part
-      else if (part.split('_').length === 2) return `data.${part.split('_')[1]}`
-      else return part
-    })
-    .join(' ')
-    .replace(/"/g, `'`)
-}
+// function convertExpression (expression) {
+//   return expression
+//     .split(' ')
+//     .map(part => {
+//       if (part.split('_')[0][0] === '"') return part
+//       else if (part.split('_').length === 2) return `data.${part.split('_')[1]}`
+//       else return part
+//     })
+//     .join(' ')
+//     .replace(/"/g, `'`)
+// }
