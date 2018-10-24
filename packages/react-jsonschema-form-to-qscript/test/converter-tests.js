@@ -8,6 +8,13 @@ const path = require('path')
 const Converter = require('./../lib')
 
 describe('Run some React-jsonschema-form-to-qscript conversions', function () {
+  it('should convert generic form', async () => {
+    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'generic.json')))
+    const result = Converter(reactJsonSchemaForm, 'form')
+    expect(result.title).to.eql('Add Incident Log edit!!!')
+    expect(result.widgets.length).to.eql(24)
+  })
+
   it('should convert casualty care form', async () => {
     const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'casualty-care.json')))
     const result = Converter(reactJsonSchemaForm, 'form')

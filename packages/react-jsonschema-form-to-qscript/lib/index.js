@@ -109,17 +109,19 @@ function convertForm (form, keymap) {
   }
 
   const newConditionalSchema = {}
-  Object.entries(conditionalSchema).forEach(([k, conditions]) => {
-    conditions.forEach(({ expression, dependents }) => {
-      dependents.forEach(dep => {
-        newConditionalSchema[dep] = []
-        Object.entries(keymap).forEach(([key, value]) => {
-          expression = expression.replace(key, value)
+  if (conditionalSchema) {
+    Object.entries(conditionalSchema).forEach(([k, conditions]) => {
+      conditions.forEach(({ expression, dependents }) => {
+        dependents.forEach(dep => {
+          newConditionalSchema[dep] = []
+          Object.entries(keymap).forEach(([key, value]) => {
+            expression = expression.replace(key, value)
+          })
+          newConditionalSchema[dep].push(expression)
         })
-        newConditionalSchema[dep].push(expression)
       })
     })
-  })
+  }
 
   Object.keys(schema.properties).forEach(sectionId => {
     const section = schema.properties[sectionId]
@@ -142,11 +144,7 @@ function convertForm (form, keymap) {
       Object.keys(section.properties).forEach(propertyId => {
         const uiSchema_ = uiSchema[sectionId][propertyId]
 
-        let sectionRequired = section.required
-        if (!sectionRequired) {
-          console.log(`WARNING! The ${section.title} in ${schema.formtitle} has no required array?`)
-          sectionRequired = []
-        }
+        const sectionRequired = section.required || []
 
         const widget = generateWidget({
           id: propertyId,
@@ -184,10 +182,14 @@ function generateWidget (options) {
     } else if (uiSchema.items) {
       let isCheckBoxList = false
       uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' || i['ui:widget'] === 'switchField' })
-      if (isCheckBoxList) return new widgets['CheckboxList'](options, 'form').widget
+      if (isCheckBoxList) {
+        return new widgets['CheckboxList'](options, 'form').widget
+      } else {
+        console.log(`WARNING: Cannot implement ${options.id} array widget right now.`)
+        // subview?
+      }
     }
   }
-  // else parse as subform
 
   if (!uiSchema) throw new Error(`No uiSchema on ${id}`)
 
