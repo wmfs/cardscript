@@ -111,14 +111,15 @@ function convertForm (form, keymap) {
   }
 
   const newConditionalSchema = {}
-
   Object.entries(conditionalSchema).forEach(([k, conditions]) => {
-    newConditionalSchema[k] = []
-    conditions.forEach(({ expression }) => {
-      Object.entries(keymap).forEach(([key, value]) => {
-        expression = expression.replace(key, value)
+    conditions.forEach(({ expression, dependents }) => {
+      dependents.forEach(dep => {
+        newConditionalSchema[dep] = []
+        Object.entries(keymap).forEach(([key, value]) => {
+          expression = expression.replace(key, value)
+        })
+        newConditionalSchema[dep].push(expression)
       })
-      newConditionalSchema[k].push(expression)
     })
   })
 
@@ -148,6 +149,7 @@ function convertForm (form, keymap) {
           console.log(`WARNING! The ${section.title} in ${schema.formtitle} has no required array?`)
           sectionRequired = []
         }
+
         const widget = generateWidget({
           id: propertyId,
           schema: section.properties[propertyId],
