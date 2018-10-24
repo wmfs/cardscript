@@ -68,14 +68,12 @@ function convertBoard (board, data) {
 
   const qscript = {
     title,
-    widgets: [
-      {
-        type: 'header',
-        attributes: {
-          heading: title
-        }
+    widgets: [{
+      type: 'header',
+      attributes: {
+        heading: title
       }
-    ]
+    }]
   }
 
   board.content.forEach(content => {
@@ -178,22 +176,22 @@ function convertForm (form, keymap) {
 }
 
 function generateWidget (options) {
-  if (options.schema.type === 'array') {
-    if (options.uiSchema['ui:widget'] && WIDGET_MAP[options.uiSchema['ui:widget']]) {
-      return new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
-    } else if (options.uiSchema.items) {
+  const { id, schema, uiSchema } = options
+
+  if (schema.type === 'array') {
+    if (uiSchema['ui:widget'] && WIDGET_MAP[uiSchema['ui:widget']]) {
+      return new widgets[WIDGET_MAP[uiSchema['ui:widget']]](options, 'form').widget
+    } else if (uiSchema.items) {
       let isCheckBoxList = false
-      options.uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' })
-      if (isCheckBoxList) {
-        return new widgets['CheckboxList'](options, 'form').widget
-      }
+      uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' || i['ui:widget'] === 'switchField' })
+      if (isCheckBoxList) return new widgets['CheckboxList'](options, 'form').widget
     }
   }
   // else parse as subform
 
-  if (!options.uiSchema) throw new Error(`No uiSchema on ${options.id}`)
+  if (!uiSchema) throw new Error(`No uiSchema on ${id}`)
 
-  return WIDGET_MAP[options.uiSchema['ui:widget']]
-    ? new widgets[WIDGET_MAP[options.uiSchema['ui:widget']]](options, 'form').widget
+  return WIDGET_MAP[uiSchema['ui:widget']]
+    ? new widgets[WIDGET_MAP[uiSchema['ui:widget']]](options, 'form').widget
     : null
 }

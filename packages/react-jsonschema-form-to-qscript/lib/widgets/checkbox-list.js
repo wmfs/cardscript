@@ -6,7 +6,7 @@ module.exports = class CheckboxList {
       attributes: {
         heading: options.schema.title,
         titleMap: options.schema.items.map(i => {
-          return {value: i.key, title: i.title}
+          return { value: i.key, title: i.title }
         }),
         mandatory: options.mandatory
       }
