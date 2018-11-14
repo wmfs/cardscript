@@ -1,0 +1,728 @@
+{
+  "jsonSchema": {
+    "schema": {
+      "formtitle": "Safe and Strong",
+      "formdescription": "This is an early-access version of a form to collect 'Safe and Strong' data. Please note both form content and this app may change considerably ahead of a wider roll-out.",
+      "formimage": "wmfs/safe-and-strong.jpg",
+      "formcolorscheme": "lightblue",
+      "type": "object",
+      "properties": {
+        "assessment": {
+          "type": "object",
+          "title": "Assessment",
+          "description": "Please use this section to provide details about the assessment...",
+          "required": [
+            "address"
+          ],
+          "properties": {
+            "address": {
+              "type": "string",
+              "title": "Business address",
+              "description": "Please provide the address where this assessment took place"
+            },
+            "creationDate": {
+              "type": "string",
+              "title": "Assessment date",
+              "description": "When did this assessment take place?"
+            }
+          }
+        },
+        "safe": {
+          "type": "object",
+          "title": "Safe questions",
+          "description": "The questions here are to be asked to the representative of the business",
+          "required": [],
+          "properties": {
+            "actionWhenFire": {
+              "type": "string",
+              "title": "If there was a fire in the premises what would you (and or your employees) do?"
+            },
+            "howWarnFire": {
+              "type": "string",
+              "title": "If you saw a fire start before anyone else, how would you warn other employees or customers that there was a fire?"
+            },
+            "howEscape": {
+              "type": "string",
+              "title": "What escape route/routes would you use?"
+            },
+            "adviceGivenToMakeSafe": {
+              "type": "array",
+              "title": "What advice have you given to make the premises safe from fire?",
+              "items": [
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to help reduce the risk of fire on the premises",
+                  "key": "reduceRisk"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to limit the risk of fire spreading around the property",
+                  "key": "limitRisk"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure people are able to escape from possible fires",
+                  "key": "ensurePeople"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure people can safely reach a place of safety",
+                  "key": "safePlace"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure some employees are trained to use extinguishers in the right circumstances",
+                  "key": "trainedExtinguishers"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to warn people in the premises that there is a fire or to know what to do when the alarm has been raised",
+                  "key": "alarmRaised"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to train employees of what to do in a fire",
+                  "key": "trainEmployees"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to help mitigate the effect of fire",
+                  "key": "mitigateEffect"
+                }
+              ]
+            },
+            "consideredAFireRisk": {
+              "type": "boolean",
+              "title": "Is this premise at risk from fire?",
+              "description": "From your observations, and the responses to previous questions, do you consider the premises unsafe and at risk from fire?"
+            },
+            "canGiveFirePreventionAdvice": {
+              "type": "string",
+              "title": "Can you give any advice that adds to their understanding of preventing a fire from starting, warning of fire or escape routes that will make them safe from fire?",
+              "enum": [
+                "No",
+                "Yes"
+              ],
+              "enumNames": [
+                "No",
+                "Yes"
+              ]
+            },
+            "contactIfNotFireSafe": {
+              "type": "string",
+              "title": "If your advice will not make this premises safe from fire, who do you need to contact?",
+              "enum": [
+                "The property needs non-urgent specialist advice from a Fire Safety Officer, so I need to make a referral",
+                "The property is dangerous and I am contacting the Duty Fire Safety Officer"
+              ],
+              "enumNames": [
+                "The property needs non-urgent specialist advice from a Fire Safety Officer, so I need to make a referral",
+                "The property is dangerous and I am contacting the Duty Fire Safety Officer"
+              ]
+            },
+            "whoToSendReferralTo": {
+              "type": "string",
+              "title": "Who do you want to send the referral to?",
+              "enum": [
+                "Station-based Fire Safety Officers",
+                "LEEPS",
+                "Building Regulations"
+              ],
+              "enumNames": [
+                "Station-based Fire Safety Officers",
+                "LEEPS",
+                "Building Regulations"
+              ]
+            },
+            "reasonsToReferToFireSafety": {
+              "type": "array",
+              "title": "What is the reason for referring this to Fire Safety? (SELECT ALL THAT APPLY)",
+              "items": [
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to help reduce the risk of fire on the premises",
+                  "key": "reduceRisk"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to limit the risk of fire spreading around the property",
+                  "key": "limitRisk"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure people are able to escape from possible fires",
+                  "key": "fireEscape"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure people can safely reach a place of safety",
+                  "key": "reachSafePlace"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to ensure some employees are trained to use extinguishers in the right circumstances",
+                  "key": "trainedExtinguishers"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to warn people in the premises that there is a fire or to know what to do when the alarm has been raised",
+                  "key": "warnPeople"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to train employees of what to do in a fire",
+                  "key": "trainEmployees"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Measures to help mitigate the effect of a fire",
+                  "key": "mitigateEffect"
+                }
+              ]
+            },
+            "furtherCommentsSafe": {
+              "type": "string",
+              "title": "Please add in further comments"
+            }
+          }
+        },
+        "strong": {
+          "type": "object",
+          "title": "Strong questions",
+          "description": "Again, the questions here are to be asked to the representative of the business...",
+          "required": [],
+          "properties": {
+            "concernOfArson": {
+              "type": "boolean",
+              "title": "Are you concerned with the risk of ARSON to your property?"
+            },
+            "arsonMeasures": {
+              "type": "string",
+              "title": "Have you put measures in place to deal with the threat of arson?",
+              "enum": [
+                "No",
+                "Yes"
+              ],
+              "enumNames": [
+                "No",
+                "Yes"
+              ]
+            },
+            "arsonAdvice": {
+              "type": "string",
+              "title": "Do you want us to provide you with written arson advice?",
+              "enum": [
+                "No",
+                "Yes"
+              ],
+              "enumNames": [
+                "No",
+                "Yes"
+              ]
+            },
+            "businessContinuityProcedures": {
+              "type": "string",
+              "title": "If you were unfortunate to have a fire in the premises, do you have (business continuity) procedures in place which would allow you to carry on trading elsewhere or quickly get back in business?",
+              "enum": [
+                "No",
+                "Yes"
+              ],
+              "enumNames": [
+                "No",
+                "Yes"
+              ]
+            },
+            "extraBusinessAdvice": {
+              "type": "array",
+              "title": "Do you want any advice for your business on the following?",
+              "items": [
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Business Continuity",
+                  "key": "BUSINESS_CONTINUITY"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Crime reduction in the area",
+                  "key": "CRIME_REDUCTION"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Business growth in the area",
+                  "key": "BUSINESS_GROWTH"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Business disruption",
+                  "key": "BUSINESS_DISRUPTION"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Safe & Well visits for your employees in their homes",
+                  "key": "SAFE_AND_WELL"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "AFA Reduction",
+                  "key": "AFA_REDUCTION"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Better regulation",
+                  "key": "REGULATION"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "BEST training",
+                  "key": "BEST"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Dying to Drive",
+                  "key": "DYING_TO_DRIVE"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Storage of petrol",
+                  "key": "PETROL"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Storage of fireworks",
+                  "key": "FIREWORKS"
+                }
+              ]
+            },
+            "extraFireServiceActivity": {
+              "type": "array",
+              "title": "While you are at this property, do you want to complete any of the following Fire Service Activities with the occupants?",
+              "items": [
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Safe & Well",
+                  "key": "SAFE_AND_WELL"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Site Specific Risk Information (SSRI)",
+                  "key": "SSRI"
+                },
+                {
+                  "type": "string",
+                  "default": "",
+                  "title": "Vulnerable Persons Officer",
+                  "key": "VPO"
+                }
+              ]
+            }
+          }
+        },
+        "conclusion": {
+          "type": "object",
+          "title": "Conclusion",
+          "required": [],
+          "properties": {
+            "hoursSpentAtPremises": {
+              "type": "number",
+              "title": "Enter the number of hours that you have spent at this premises"
+            },
+            "furtherCommentsAdvice": {
+              "type": "string",
+              "title": "Please provide any further comments"
+            },
+            "fileUploads": {
+              "type": "array",
+              "title": "File Upload?",
+              "description": "Do you want to upload any documents to support any of the advice given in this assessment?",
+              "DocumentFormat": {
+                "value": [
+                  "jpg",
+                  "jpeg",
+                  "pdf",
+                  "doc",
+                  "txt"
+                ],
+                "errorMessages": ".pdf, .doc and .txt are allowed type. Try Again!!"
+              },
+              "allowedDocumentSize": {
+                "value": "5120",
+                "errorMessages": "Upload exceeds 5MB. Try again!!"
+              },
+              "numberOfDocument": {
+                "value": "5",
+                "errorMessages": "5 files are allowed. Try Again!!"
+              }
+            }
+          }
+        }
+      }
+    },
+    "uiSchema": {
+      "assessment": {
+        "address": {
+          "ui:section:field": "Address",
+          "ui:widget": "addressField",
+          "ui:field": "StandardField"
+        },
+        "creationDate": {
+          "ui:section:field": "Assessment Date",
+          "ui:widget": "dateField",
+          "ui:field": "StandardField",
+          "ui:help": "This should be the current date"
+        }
+      },
+      "safe": {
+        "ui:section": true,
+        "actionWhenFire": {
+          "ui:section:field": "Response to a Fire",
+          "ui:widget": "textField",
+          "ui:field": "StandardField",
+          "ui:placeholder": "Actions?",
+          "ui:help": "By Listening for information such as :- Secure the till / make it safe to move away from my positionDial 999 and ask for fire – is there a phone available to do this ; is there an alarm either manual or with detection; is the alarm linked to an alarm receiving centre for FIRE (not INTRUDER), Direct customers out, Move to the nearest exit, See if a colleague has identified if /where the fire is.- especially if there is a fire alarm with smoke detection, If it’s a fire, from the training I have had know the right kind of extinguisher to use and how to use it. Be aware if I haven’t been trained to do so that I don’t attempt to use an extinguisher."
+        },
+        "howWarnFire": {
+          "ui:section:field": "Warning Others",
+          "ui:widget": "textField",
+          "ui:field": "StandardField",
+          "ui:placeholder": "How will alarm be raised?",
+          "ui:help": "By Listening for information such as :- Warn everyone by (shouting, ringing a bell, whistle, hand gong, tannoy system, air horn, break glass, etc. – method of warning in the property. If the person is a lone worker there may not be anyone else for them to warn so they may need to leave the premises after dialling 999"
+        },
+        "howEscape": {
+          "ui:section:field": "Escape Routes",
+          "ui:widget": "textField",
+          "ui:field": "StandardField",
+          "ui:placeholder": "Escape Routes?",
+          "ui:help": "By Listening for information such as :- There may only be one – the way they entered the building, if so , is the route to it clear. If more than one, do they know to direct themselves and others to the nearest exit, rather than the one they entered the building from. Is there a safe place ( not on road ) outside for them to wait for the fire service. Will someone be able to tell the officer in charge where the fire is. Do the alternative routes have locks or fastenings that are not easily openable. Are all exits clear from obstructions- slip, trip hazards"
+        },
+        "adviceGivenToMakeSafe": {
+          "ui:section:field": "Advice Given",
+          "ui:field": "ArrayField",
+          "items": [
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            }
+          ]
+        },
+        "consideredAFireRisk": {
+          "ui:section:field": "Risk",
+          "ui:widget": "switchField",
+          "ui:field": "StandardField",
+          "ui:help": "Considering you are in a low risk premises - Do you need to have a look around the premises or are you happy with what you have seen and heard?"
+        },
+        "canGiveFirePreventionAdvice": {
+          "ui:section:field": "Advice on Fire Prevention",
+          "ui:widget": "radioField",
+          "ui:field": "StandardField"
+        },
+        "contactIfNotFireSafe": {
+          "ui:section:field": "Who to Contact",
+          "ui:widget": "radioField",
+          "ui:field": "StandardField"
+        },
+        "whoToSendReferralTo": {
+          "ui:section:field": "Referral",
+          "ui:widget": "selectField",
+          "ui:placeholder": "Contact?",
+          "ui:field": "StandardField"
+        },
+        "reasonsToReferToFireSafety": {
+          "ui:section:field": "Reason for Referral",
+          "ui:field": "ArrayField",
+          "items": [
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            }
+          ]
+        },
+        "furtherCommentsSafe": {
+          "ui:section:field": "Referral Comments",
+          "ui:placeholder": "Anything else to add?",
+          "ui:widget": "textField",
+          "ui:field": "StandardField"
+        }
+      },
+      "strong": {
+        "ui:section": true,
+        "concernOfArson": {
+          "ui:section:field": "Arson Concern",
+          "ui:widget": "switchField",
+          "ui:field": "StandardField"
+        },
+        "arsonMeasures": {
+          "ui:section:field": "Arson Measures",
+          "ui:widget": "radioField",
+          "ui:field": "StandardField"
+        },
+        "arsonAdvice": {
+          "ui:section:field": "Written Advice",
+          "ui:widget": "radioField",
+          "ui:field": "StandardField"
+        },
+        "businessContinuityProcedures": {
+          "ui:section:field": "Business Continuity",
+          "ui:widget": "radioField",
+          "ui:field": "StandardField"
+        },
+        "extraBusinessAdvice": {
+          "ui:section:field": "Extra business advice",
+          "ui:field": "ArrayField",
+          "items": [
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            }
+          ]
+        },
+        "extraFireServiceActivity": {
+          "ui:section:field": "Fire Service Activities",
+          "ui:field": "ArrayField",
+          "items": [
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            },
+            {
+              "ui:widget": "checkField",
+              "ui:options": {
+                "removable": false
+              }
+            }
+          ]
+        }
+      },
+      "conclusion": {
+        "ui:section": true,
+        "hoursSpentAtPremises": {
+          "ui:section:field": "Time at Premises",
+          "ui:placeholder": "Number of hours",
+          "ui:widget": "numberField",
+          "ui:field": "StandardField"
+        },
+        "furtherCommentsAdvice": {
+          "ui:section:field": "furtherCommentsAdvice",
+          "ui:widget": "richTextArea",
+          "ui:field": "StandardField"
+        },
+        "fileUploads": {
+          "ui:section:field": "Advice Attachments",
+          "ui:widget": "fileUploader",
+          "ui:field": "StandardField",
+          "ui:help": "You can upload multiple files"
+        }
+      }
+    },
+    "validationSchema": {},
+    "conditionalSchema": {
+      "safe_consideredAFireRisk": [
+        {
+          "expression": "safe_consideredAFireRisk === true",
+          "dependents": [
+            "safe_canGiveFirePreventionAdvice",
+            "safe_contactIfNotFireSafe",
+            "safe_whoToSendReferralTo",
+            "safe_reasonsToReferToFireSafety",
+            "safe_furtherCommentsSafe"
+          ]
+        }
+      ],
+      "strong_concernOfArson": [
+        {
+          "expression": "strong_concernOfArson === true",
+          "dependents": [
+            "strong_arsonMeasures",
+            "strong_arsonAdvice"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "widgets": [
+    {
+      "type": "header",
+      "attributes": {
+        "heading": 1,
+        "desc": "Let's get to know each other a bit better...",
+        "backgroundImage": "wmfs/happy-people.jpg",
+        "backgroundImageAltText": "Beautiful people smiling around a laptop"
+      }
+    },
+    {
+      "type": "text",
+      "attributes": {
+        "heading": "First name",
+        "placeholder": "e.g. Lucy",
+        "mandatory": true,
+        "minCharacters": 1,
+        "maxCharacters": 100,
+        "help": "Enter your first name here"
+      }
+    },
+    {
+      "id": "secondName",
+      "type": "silly",
+      "attributes": {
+        "label": "Second name",
+        "placeholder": "e.g. Smith",
+        "mandatory": true,
+        "minCharacters": 1,
+        "maxCharacters": 100
+      }
+    },
+    {
+      "type": "number",
+      "attributes": {
+        "label": "Age",
+        "default": "NaN!"
+      }
+    },
+    {
+      "id": "numberOfPets",
+      "type": "number",
+      "attributes": {
+        "label": "Number of pets",
+        "default": "NaN!"
+      }
+    }
+  ]
+}

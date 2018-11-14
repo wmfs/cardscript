@@ -23,20 +23,20 @@
 <!---                                                                                        --->
 
 
-# QScript
+# Cardscript
 ### Version `0.0.6`
 
-[![Build Status](https://travis-ci.org/wmfs/qscript.svg?branch=master)](https://travis-ci.org/wmfs/qscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/qscript/badge)](https://www.codefactor.io/repository/github/wmfs/qscript) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/qscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/qscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/qscript/blob/master/CONTRIBUTING.md)
+[![Build Status](https://travis-ci.org/wmfs/cardscript.svg?branch=master)](https://travis-ci.org/wmfs/cardscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/cardscript/badge)](https://www.codefactor.io/repository/github/wmfs/cardscript) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/cardscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/cardscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/cardscript/blob/master/CONTRIBUTING.md)
 
-#### The goal of QScript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
+#### The goal of Cardscript is to provide a [JSON](https://tools.ietf.org/html/rfc7159)-based language to describe User Interfaces (especially those which form part of a digital service).
 
 ## Getting started
 
-#### Get hands-on with QScript using the online [QScript Playpen](https://wmfs.github.io/qscript/)!
+#### Get hands-on with Cardscript using the online [Cardscript Playpen](https://wmfs.github.io/cardscript/)!
 
-* For some introductory context around why we developed QScript, please see [Appendix A: QScript Motivation](#motivation).
-* A [JSON Schema (Draft-07)](http://json-schema.org/) for QScript is available [here](https://raw.githubusercontent.com/wmfs/qscript/master/packages/qscript-schema/lib/schema.json).
-* The QScript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/qscript)) provides several utilities to help work with the language. Please see [Appendix B: QScript Utilities](#utilities) for further information.
+* For some introductory context around why we developed Cardscript, please see [Appendix A: Cardscript Motivation](#motivation).
+* A [JSON Schema (Draft-07)](http://json-schema.org/) for Cardscript is available [here](https://raw.githubusercontent.com/wmfs/cardscript/master/packages/cardscript-schema/lib/schema.json).
+* The Cardscript [Lerna](https://lernajs.io/) multi-package repository (developed in the open on [Github](https://github.com/wmfs/cardscript)) provides several utilities to help work with the language. Please see [Appendix B: Cardscript Utilities](#utilities) for further information.
 
 ## <a name="toc"></a>Table of Contents
 
@@ -56,12 +56,12 @@
   * [Widget List](#list)
 * [License (MIT)](#license)
 * [Appendices](#appendices)
-  * [Appendix A: QScript Motivation](#motivation)
-  * [Appendix B: QScript Utilities](#utilities)
+  * [Appendix A: Cardscript Motivation](#motivation)
+  * [Appendix B: Cardscript Utilities](#utilities)
 
 ## <a name="structure"></a>Structure of a View
 
-__In QScript, a _view_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
+__In Cardscript, a _view_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
 
 ### <a name="example"></a>Example: Simple View
 
@@ -102,40 +102,40 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 ## <a name="concepts"></a>Concepts
 
-__QScript is built on a handful of key concepts...__
+__Cardscript is built on a handful of key concepts...__
 
 ### <a name="view"></a>Views
 
-The purpose of QScript is to define a user interface, referred to as a "__view__".
+The purpose of Cardscript is to define a user interface, referred to as a "__view__".
 
-* In QScript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
-* With QScript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
-* QScript definitions are naturally stored in `.json` files (typically one-file-per-view).
-* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising QScript definitions (the [qscript-parser](https://github.com/wmfs/qscript/tree/master/packages/qscript-parser) utility supports both)..
-* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/qscript/master/packages/qscript-schema/lib/schema.json), which may be used to validate the basic integrity of QScript content.
-* For more comprehensive QScript validation, please refer to the [qscript-schema](https://www.npmjs.com/package/qscript-schema) package.
+* In Cardscript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
+* With Cardscript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
+* Cardscript definitions are naturally stored in `.json` files (typically one-file-per-view).
+* In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Cardscript definitions (the [cardscript-parser](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-parser) utility supports both)..
+* Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/cardscript/master/packages/cardscript-schema/lib/schema.json), which may be used to validate the basic integrity of Cardscript content.
+* For more comprehensive Cardscript validation, please refer to the [cardscript-schema](https://www.npmjs.com/package/cardscript-schema) package.
 
 ### <a name="app"></a>Apps
 
-Views defined in QScript may be rendered and executed by software.
+Views defined in Cardscript may be rendered and executed by software.
 In this document, such software is referred to an "__app__".
 
 * Apps can be implemented in any frontend-framework, language or library.
-* QScript does not impose any aesthetic or UI constraints onto apps which implement it.
-* QScript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
-* Please note several utilities are available to help embed QScript into apps. Please see [Appendix B: QScript Utilities](#utilities) for further information.
+* Cardscript does not impose any aesthetic or UI constraints onto apps which implement it.
+* Cardscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
+* Please note several utilities are available to help embed Cardscript into apps. Please see [Appendix B: Cardscript Utilities](#utilities) for further information.
 
 ### <a name="widget"></a>Widgets
 
 Views are constructed from an ordered list of "__widgets__".
 
-* To avoid overloading frontend-terms like 'component', QScript refers to each object in the `widgets` array as a __widget__.
+* To avoid overloading frontend-terms like 'component', Cardscript refers to each object in the `widgets` array as a __widget__.
 * Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
 * The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* QScript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/QScript/blob/master/CONTRIBUTING.md) :blush:
+* Cardscript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Cardscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in QScript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in Cardscript `0.0.6`:__
 
 #### <a name="widget-summary"></a>Widget summary
 
@@ -178,10 +178,10 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 32
 ### <a name="set"></a>Sets
 
 All the [widgets](#widget) that define a [view](#view)'s content are specified in a simple array.
-This design helps align QScript with vertical-scrolling interfaces with very little friction.
+This design helps align Cardscript with vertical-scrolling interfaces with very little friction.
 To assist with navigation (especially around larger, more complex content) it might be useful to split a view into more manageable pieces.
 
-* __In QScript,  _sets_ allow widgets to be grouped into related chunks.__
+* __In Cardscript,  _sets_ allow widgets to be grouped into related chunks.__
 
 __Example JSON__
 
@@ -223,7 +223,7 @@ __Example JSON__
 
 ### <a name="expression"></a>Expressions
 
-QScript uses __expressions__ to deliver dynamic content. Expressions are used to:
+Cardscript uses __expressions__ to deliver dynamic content. Expressions are used to:
 
 * Conditionally show/hide widgets depending on values as they change.
 * Validate view content based on more complex business rules.
@@ -275,7 +275,7 @@ The `feedback` widget should only show if the `userWantsToGiveFeedback` switch i
 
 There are a few new things going on here.
 Most types of widget (here the `switch` and `textarea` types) expect an app to read and write their values to an underlying `data` object (using their respective `id` values as keys).
-It is also expected that any app implementing QScript should also make this `data` object available within a safe sandbox while evaluating expressions.
+It is also expected that any app implementing Cardscript should also make this `data` object available within a safe sandbox while evaluating expressions.
 
 In the previous example we can see the `showWhen` attribute is being used on the `feedback` widget. The string value here is an _expression_, which will control the visibility of the widget (i.e. it should only be shown to the user when the expression evaluates to `true`).
 
@@ -325,7 +325,7 @@ Each `widget` object comprise of some properties:
 
 ### <a name="attributes"></a>Widget Attributes
 
-QScript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
+Cardscript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
 Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
 
 | Attribute Name | Type | Description |
@@ -363,7 +363,7 @@ Not one widget-type requires all these attributes. Attributes are often optional
 
 # <a name="list"></a>Widget List
 
-Here is the full list of all 32 widgets supported in QScript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 32 widgets supported in Cardscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
 
 
 <hr>
@@ -1983,15 +1983,15 @@ __Attributes__
 
 # <a name="license"></a>License (MIT)
 
-The QScript specification and related tooling is provided under [__MIT__](https://github.com/wmfs/qscript/blob/master/LICENSE).
+The Cardscript specification and related tooling is provided under [__MIT__](https://github.com/wmfs/cardscript/blob/master/LICENSE).
 
 <hr>
 
 # <a name="appendices"></a>Appendices
 
-## <a name="motivation"></a>Appendix A: QScript Motivation
+## <a name="motivation"></a>Appendix A: Cardscript Motivation
 
-__QScript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
+__Cardscript is the product of a small in-house development team at [West Midlands Fire Service](http://www.wmfs.net).
 Our work over the last 20 years has often involved collecting data from a variety of teams and environments.
 During this time, our best experiences have come from taking a declarative approach to defining form content.__
 
@@ -2043,29 +2043,29 @@ It was becoming evident we didn't have a good fit for what we wanted to do, and 
 
 * The XML used in our outgoing generation had some problems: requiring it's own expression-language was a particular mis-step and XML feels ancient if used directly on the client app (especially in [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application) and [Progressive Web Apps](https://en.wikipedia.org/wiki/Progressive_Web_Apps) contexts).
 
-### So... __QScript__!
+### So... __Cardscript__!
 
 * __It does all the things _we_ need, and we think it might be useful to other organisations if it became a standard.__
 
-## <a name="utilities"></a>Appendix B: QScript Utilities
+## <a name="utilities"></a>Appendix B: Cardscript Utilities
 
-__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with QScript:__
+__Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Cardscript:__
 
 | Package | Description | Github | NPM  |
 | ------- | ------------| ------ | ---- |
-| `qscript-doc-generator` | Produces QScript's main README.md file using QScript's JSON Schema and other sources. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-doc-generator) | [Here](https://www.npmjs.com/package/qscript-doc-generator)  |
-| `qscript-examples` | Example QScript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-examples) | [Here](https://www.npmjs.com/package/qscript-examples)  |
-| `qscript-cleaner` | Cleans QScript form data to ensure we only submit the data that we should. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-expressions) | [Here](https://www.npmjs.com/package/qscript-cleaner)  |
-| `qscript-extract-defaults` | Extracts sensible defaults from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-defaults) | [Here](https://www.npmjs.com/package/qscript-extract-defaults)  |
-| `qscript-extract-lists` | Extracts list objects from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-lists) | [Here](https://www.npmjs.com/package/qscript-extract-lists)  |
-| `qscript-parser` | Like JSON.parse(), but for QScript. And it supports YAML. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-parser) | [Here](https://www.npmjs.com/package/qscript-parser)  |
-| `qscript-quasar-playpen` | QScript Playpen | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-quasar-playpen) | [Here](https://www.npmjs.com/package/qscript-quasar-playpen)  |
-| `qscript-schema` | Contains a JSON Schema for QScript, along with a validation utility. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-schema) | [Here](https://www.npmjs.com/package/qscript-schema)  |
-| `qscript-table-of-contents` | Extracts a table-of-contents from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-extract-defaults) | [Here](https://www.npmjs.com/package/qscript-table-of-contents)  |
-| `qscript-to-quasar` | Produces a template for use with Quasar from some QScript. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-quasar) | [Here](https://www.npmjs.com/package/qscript-to-quasar)  |
-| `qscript-to-template` | Takes some QScript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-template) | [Here](https://www.npmjs.com/package/qscript-to-template)  |
-| `qscript-to-vuelidate` | Takes in a QScript JSON object and attempts to extract validation schema from the widgets. | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-to-validation-schema) | [Here](https://www.npmjs.com/package/qscript-to-vuelidate)  |
-| `qscript-vue-component` | A simple Vue component to render dynamic QScript content using Vuetify | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-vue-component) | [Here](https://www.npmjs.com/package/qscript-vue-component)  |
-| `qscript-vue-sdk` | An SDK for using QScript with Vue/Vuetify | [Here](https://github.com/wmfs/qscript/tree/master/packages/qscript-simple-vue) | [Here](https://www.npmjs.com/package/qscript-vue-sdk)  |
-| `react-jsonschema-form-to-qscript` | Produces QScript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/qscript/tree/master/packages/react-jsonschema-form-to-qscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-qscript)  |
+| `cardscript-doc-generator` | Produces Cardscript's main README.md file using Cardscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-doc-generator) | [Here](https://www.npmjs.com/package/cardscript-doc-generator)  |
+| `cardscript-examples` | Example Cardscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-examples) | [Here](https://www.npmjs.com/package/cardscript-examples)  |
+| `cardscript-cleaner` | Cleans Cardscript form data to ensure we only submit the data that we should. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-expressions) | [Here](https://www.npmjs.com/package/cardscript-cleaner)  |
+| `cardscript-extract-defaults` | Extracts sensible defaults from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults) | [Here](https://www.npmjs.com/package/cardscript-extract-defaults)  |
+| `cardscript-extract-lists` | Extracts list objects from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-lists) | [Here](https://www.npmjs.com/package/cardscript-extract-lists)  |
+| `cardscript-parser` | Like JSON.parse(), but for Cardscript. And it supports YAML. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-parser) | [Here](https://www.npmjs.com/package/cardscript-parser)  |
+| `cardscript-quasar-playpen` | Cardscript Playpen | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-quasar-playpen) | [Here](https://www.npmjs.com/package/cardscript-quasar-playpen)  |
+| `cardscript-schema` | Contains a JSON Schema for Cardscript, along with a validation utility. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-schema) | [Here](https://www.npmjs.com/package/cardscript-schema)  |
+| `cardscript-table-of-contents` | Extracts a table-of-contents from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults) | [Here](https://www.npmjs.com/package/cardscript-table-of-contents)  |
+| `cardscript-to-quasar` | Produces a template for use with Quasar from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-quasar) | [Here](https://www.npmjs.com/package/cardscript-to-quasar)  |
+| `cardscript-to-template` | Takes some Cardscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-template) | [Here](https://www.npmjs.com/package/cardscript-to-template)  |
+| `cardscript-to-vuelidate` | Takes in a Cardscript JSON object and attempts to extract validation schema from the widgets. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-validation-schema) | [Here](https://www.npmjs.com/package/cardscript-to-vuelidate)  |
+| `cardscript-vue-component` | A simple Vue component to render dynamic Cardscript content using Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-vue-component) | [Here](https://www.npmjs.com/package/cardscript-vue-component)  |
+| `cardscript-vue-sdk` | An SDK for using Cardscript with Vue/Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-simple-vue) | [Here](https://www.npmjs.com/package/cardscript-vue-sdk)  |
+| `react-jsonschema-form-to-cardscript` | Produces Cardscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/react-jsonschema-form-to-cardscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-cardscript)  |
 

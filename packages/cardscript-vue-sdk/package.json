@@ -1,0 +1,13 @@
+{
+  "name": "cardscript-vue-sdk",
+  "version": "0.0.6",
+  "description": "An SDK for using Cardscript with Vue/Vuetify",
+  "main": "./lib/index.js",
+  "scripts": {},
+  "author": "Tim Needham",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/cardscript/tree/master/packages/cardscript-simple-vue"
+  }
+}

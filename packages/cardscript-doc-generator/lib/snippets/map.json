@@ -1,0 +1,23 @@
+{
+  "id": "incidentCoordinates",
+  "type": "map",
+  "attributes": {
+    "heading": "Point of ignition",
+    "mandatory": true,
+    "desc": "Please indicate the exact position of where the fire started.",
+    "enableLocationAssist": true,
+    "collectGeometries": ["points"],
+    "minGeometries": 1,
+    "maxGeometries": 1,
+    "pointIconPalette": [
+      {"file": "wmfs/flame.png", "label": "Flame"}
+    ],
+    "relatedLayers": [
+      {
+        "name": "gaz",
+        "label": "Gazetteer",
+        "visibleByDefault": false
+      }
+    ]
+  }
+}

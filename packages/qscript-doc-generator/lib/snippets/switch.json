@@ -1,8 +1,0 @@
-{
-  "id": "burns",
-  "type": "switch",
-  "attributes": {
-    "heading": "Did the patient suffer burns?",
-    "default": false
-  }
-}

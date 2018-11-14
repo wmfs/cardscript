@@ -1,0 +1,16 @@
+{
+  "id": "photographicEvidence",
+  "type": "fileUpload",
+  "attributes": {
+    "heading": "Any photographic evidence?",
+    "desc": "Upload any digital photographs supporting your observations",
+    "captionPath": "$.evidenceDescription",
+    "formatRestriction": [
+      "jpg",
+      "jpeg"
+    ],
+    "maxFileSize": "15mb",
+    "minNumberOfFiles": 0,
+    "maxNumberOfFiles": 10
+  }
+}

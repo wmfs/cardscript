@@ -1,0 +1,10 @@
+{
+  "id": "dateOfBirth",
+  "type": "date",
+  "attributes": {
+    "mandatory": true,
+    "heading": "Date of birth",
+    "desc": "Date the employee was born",
+    "historicByAtLeast": "P18Y"
+  }
+}

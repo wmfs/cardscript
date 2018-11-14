@@ -1,0 +1,23 @@
+{
+  "id": "patientDetails",
+  "type": "table",
+  "attributes": {
+    "heading": "Patient Details",
+    "dataPath": "patients",
+    "columns": [
+      {
+        "title": "Full Name",
+        "dataPath": "name"
+      },
+      {
+        "title": "Phone Number",
+        "dataPath": "number"
+      },
+      {
+        "title": "Address",
+        "dataPath": "address"
+      }
+    ],
+    "resultLimit": 20
+  }
+}

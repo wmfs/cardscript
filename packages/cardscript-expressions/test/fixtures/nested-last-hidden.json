@@ -1,0 +1,7 @@
+{
+  "userWantsToGiveFeedback": true,
+  "feedback": false,
+  "useAgain": true,
+  "name": "The other test",
+  "feedbackReason": "Don't show this feedback though"
+}

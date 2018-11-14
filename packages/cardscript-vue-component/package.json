@@ -1,0 +1,13 @@
+{
+  "name": "cardscript-vue-component",
+  "version": "0.0.6",
+  "description": "A simple Vue component to render dynamic Cardscript content using Vuetify",
+  "main": "lib/Cardscript.vue",
+  "scripts": {},
+  "author": "Tim Needham",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/cardscript/tree/master/packages/cardscript-vue-component"
+  }
+}

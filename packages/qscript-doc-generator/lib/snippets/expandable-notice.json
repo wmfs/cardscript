@@ -1,8 +1,0 @@
-{
-  "id": "privacy notice",
-  "type": "expandableNotice",
-  "attributes": {
-    "heading": "Click to view information",
-    "content": "This is some expandable information you might want to hide"
-  }
-}

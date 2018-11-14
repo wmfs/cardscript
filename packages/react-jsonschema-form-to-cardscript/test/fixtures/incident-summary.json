@@ -1,0 +1,129 @@
+{
+  "boardTitleTemplate": "Incident ${incidentNumber}/${incidentYear}",
+  "watchable": true,
+  "category": "incidents",
+  "content": [
+    {
+      "widget": "maplist",
+      "config": {
+        "header": "Map",
+        "map": {
+          "latProperty": "location_latitude",
+          "lonProperty": "location_longitude",
+          "editable": false,
+          "drawing": false,
+          "layers": [],
+          "3d": false,
+          "initialZoom": "4",
+          "marker": true
+        }
+      }
+    },
+    {
+      "widget": "propertylist",
+      "config": {
+        "header": "Location",
+        "properties": [
+          {
+            "prompt": "Station Area",
+            "dataPath": "location_brigade_location_alias",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Station Area",
+            "dataPath": "location_brigade_location",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Location Details",
+            "dataPath": "location_details",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Latitude",
+            "dataPath": "location_latitude",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Longitude",
+            "dataPath": "location_longitude",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "X",
+            "dataPath": "location_x",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Y",
+            "dataPath": "location_y",
+            "showIfUndefined": true
+          }
+        ]
+      }
+    },
+    {
+      "widget": "propertylist",
+      "config": {
+        "header": "Details",
+        "properties": [
+          {
+            "prompt": "VIS Incident Number",
+            "dataPath": "vis_inc_num",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "UPRN",
+            "dataPath": "uprn",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Closed Time",
+            "dataPath": "closed_time",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Initial Type",
+            "dataPath": "initial_incident_type",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Incident Result Type",
+            "dataPath": "revised_incident_type",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Property Type",
+            "dataPath": "property_group_label",
+            "showIfUndefined": true
+          },
+          {
+            "prompt": "Sensitivity",
+            "dataPath": "sensitivity",
+            "showIfUndefined": true
+          }
+        ]
+      }
+    },
+    {
+      "widget": "buttonlist",
+      "config": {
+        "launches": [
+          {
+            "title": "Edit the incident",
+            "stateMachineName": "tymly_editIncident_1_0",
+            "input": {
+              "formData": {
+                "incNum": "data.incNum"
+              }
+            }
+          },
+          {
+            "title": "Add incident",
+            "stateMachineName": "tymly_addIncident_1_0"
+          }
+        ]
+      }
+    }
+  ]
+}

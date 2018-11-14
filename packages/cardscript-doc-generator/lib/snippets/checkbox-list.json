@@ -1,0 +1,16 @@
+{
+  "id": "limbMovement",
+  "type": "checkboxList",
+  "attributes": {
+    "heading": "Which limbs were seen to move?",
+    "default": ["LEFT_ARM", "RIGHT_ARM", "LEFT_LEG", "RIGHT_LEG"],
+    "minLimit": 0,
+    "maxLimit": 4,
+    "titleMap": [
+      {"value": "LEFT_ARM", "title": "Left arm"},
+      {"value": "RIGHT_ARM", "title": "Right arm"},
+      {"value": "LEFT_LEG", "title": "Left leg"},
+      {"value": "RIGHT_LEG", "title": "Right leg"}
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "qscript",
-  "description": "The goal of QScript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
+  "name": "cardscript",
+  "description": "The goal of Cardscript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
   "version": "0.0.5",
   "author": "Tim Needham",
   "devDependencies": {
@@ -13,9 +13,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmfs/qscript"
+    "url": "https://github.com/wmfs/cardscript"
   },
   "bugs": {
-    "url": "https://github.com/wmfs/qscript/issues"
+    "url": "https://github.com/wmfs/cardscript/issues"
   }
 }

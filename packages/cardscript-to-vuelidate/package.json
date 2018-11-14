@@ -1,0 +1,32 @@
+{
+  "name": "cardscript-to-vuelidate",
+  "description": "Takes in a Cardscript JSON object and attempts to extract validation schema from the widgets.",
+  "version": "0.0.1",
+  "author": "Meena Hoda",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "esprima": "4.0.1",
+    "static-eval": "wmfs/static-eval"
+  },
+  "devDependencies": {
+    "babel-register": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "chai": "4.1.2",
+    "mocha": "5.1.1",
+    "standard": "11.0.1",
+    "cardscript-examples": "^0.0.6",
+    "vuelidate": "0.7.4"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "mocha --require babel-register"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-validation-schema"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/cardscript/issues"
+  }
+}

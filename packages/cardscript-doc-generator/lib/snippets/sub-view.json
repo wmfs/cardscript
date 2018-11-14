@@ -1,0 +1,12 @@
+{
+  "type": "subView",
+  "attributes": {
+    "heading": "Explosions",
+    "desc": "Please provide details of the explosions which occurred.",
+    "minAllowed": 1,
+    "maxAllowed": 10,
+    "showAtLeastOne": true,
+    "singularEntityText": "explosion",
+    "pluralEntityText": "explosions"
+  }
+}

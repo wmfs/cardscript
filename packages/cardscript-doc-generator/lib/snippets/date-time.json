@@ -1,0 +1,11 @@
+{
+  "id": "appointment",
+  "type": "dateTime",
+  "attributes": {
+    "mandatory": true,
+    "heading": "Appointment",
+    "desc": "The date and time this visit is scheduled for",
+    "captureHistoric": false,
+    "futuristicByAtMost": "P3M"
+  }
+}
