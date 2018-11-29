@@ -2,7 +2,7 @@ const _ = require('lodash')
 const widgetProcessors = require('./widgets')
 const dottie = require('dottie')
 const replacementTagNames = {}
-const geteModelBindingTagFunction = require('./utils/get-model-binding-tag-function')
+const getModelBindingTagFunction = require('./utils/get-model-binding-tag-function')
 
 module.exports.convert = function convert (cardscript, options) {
   if (!options) {
@@ -33,7 +33,7 @@ module.exports.convert = function convert (cardscript, options) {
     bindingTag = options.modelBindingAttributeTemplate[0]
     bindingTemplate = options.modelBindingAttributeTemplate[1]
   }
-  const makeModelBindingTag = geteModelBindingTagFunction(bindingTag, bindingTemplate)
+  const makeModelBindingTag = getModelBindingTagFunction(bindingTag, bindingTemplate)
 
   const showWhenTag = options.showWhenTag || 'v-if'
 
