@@ -1,4 +1,4 @@
-const _ = require('lodash')
+const { kebabCase } = require('lodash')
 const widgetProcessors = require('./widgets')
 const dottie = require('dottie')
 const replacementTagNames = {}
@@ -45,7 +45,7 @@ module.exports.convert = function convert (cardscript, options) {
       if (replacementTagNames.hasOwnProperty(widgetType)) {
         tagName = replacementTagNames[widgetType]
       } else {
-        tagName = `${tagPrefix}-${_.kebabCase(widgetType)}`
+        tagName = `${tagPrefix}-${kebabCase(widgetType)}`
       }
       if (widgetType === 'endSet') {
         indent = indent.slice(2)
@@ -83,19 +83,16 @@ module.exports.convert = function convert (cardscript, options) {
         }
 
         if (widgetDefinition.hasOwnProperty('attributes')) {
-          _.forEach(
-            widgetDefinition.attributes,
-            function (value, key) {
-              if (key !== 'titleMap' && key !== 'tocTitle') {
-                attributes.push(
-                  {
-                    propName: _.kebabCase(key),
-                    propString: value
-                  }
-                )
-              }
+          Object.entries(widgetDefinition.attributes).forEach(([key, value]) => {
+            if (key !== 'titleMap' && key !== 'tocTitle') {
+              attributes.push(
+                {
+                  propName: kebabCase(key),
+                  propString: value
+                }
+              )
             }
-          )
+          })
         }
 
         if (attributes.length === 0) {
