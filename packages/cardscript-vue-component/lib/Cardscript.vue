@@ -1,32 +1,36 @@
 <template>
-    <div>
-    <component :is="uiTemplate"></component>
-    </div>
+  <div>
+    <component :is="uiTemplate"/>
+  </div>
 </template>
 <script>
 export default {
   name: 'Cardscript',
-  props: ['content', 'framework'],
+  props: ['content'],
   data () {
-    const _this = this
+    const that = this
+    const content = this.content
     return {
       uiTemplate: {
-        template: this.content.vuetifyTemplate,
+        template: content.quasarTemplate,
         components: {},
-        data: function () {
+        validations: {
+          data: content.validations
+        },
+        data () {
           return {
-            data: _this.content.data,
-            lists: _this.content.lists,
-            internals: _this.content.internals
+            data: content.data,
+            lists: content.lists,
+            internals: content.internals
           }
         },
         methods: {
-          createNewSubView: function launchSubView(subViewId) {
+          createNewSubView (subViewId) {
             const subViewDefaultValues = JSON.parse(JSON.stringify(this.internals.subViewDefaults[subViewId]))
             this.internals.currentSubViewData[subViewId] = subViewDefaultValues
             this.internals.dialogControl[subViewId] = true
           },
-          pushSubViewContent: function pushSubViewContent(subViewId) {
+          pushSubViewContent (subViewId) {
             const parentSubViewId = this.internals.subViewParents[subViewId]
             const clone = JSON.parse(JSON.stringify(this.internals.currentSubViewData[subViewId]))
 
@@ -37,8 +41,11 @@ export default {
             }
             this.internals.dialogControl[subViewId] = false
           },
-          removeSubViewContent: function removeSubViewContent(subViewId, index) {
+          removeSubViewContent (subViewId, index) {
             alert(`REMOVE index ${index} from ${subViewId}`)
+          },
+          action (type, config) {
+            that.$emit(type, config, this)
           }
         }
       }
