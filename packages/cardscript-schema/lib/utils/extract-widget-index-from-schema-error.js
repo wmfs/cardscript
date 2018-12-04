@@ -1,10 +1,10 @@
-const _ = require('lodash')
+const { isString } = require('lodash')
 
 module.exports = function extractWidgetIndexFromSchemaError (rawError) {
   let index
-  if (rawError && _.isString(rawError.property)) {
+  if (rawError && isString(rawError.property)) {
     const match = rawError.property.match(/^instance.widgets\[([0-9]+)/)[1]
-    if (_.isString(match)) {
+    if (isString(match)) {
       try {
         index = parseInt(match)
       } catch (err) {

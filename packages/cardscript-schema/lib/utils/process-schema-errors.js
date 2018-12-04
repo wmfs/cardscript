@@ -1,6 +1,6 @@
 const validator = require('jsonschema').validate
 const dottie = require('dottie')
-const _ = require('lodash')
+const { cloneDeep, isNumber } = require('lodash')
 const schema = require('./../schema.json')
 const extractWidgetIndexFromSchemaError = require('./extract-widget-index-from-schema-error')
 const widgetTypes = require('./widget-types')
@@ -11,11 +11,11 @@ module.exports = function processSchemaErrors (rawErrors) {
   const processedErrors = []
   rawErrors.forEach(
     rawError => {
-      let replacementError = _.cloneDeep(rawError)
+      let replacementError = cloneDeep(rawError)
 
       // Extract widgets array index
       let idx = extractWidgetIndexFromSchemaError(rawError)
-      if (_.isNumber(idx)) {
+      if (isNumber(idx)) {
         replacementError.widgetIndex = idx
         replacementError.property = `The widget defined at index ${idx}`
         const widgetType = dottie.get(rawError, 'instance.type')
@@ -26,13 +26,13 @@ module.exports = function processSchemaErrors (rawErrors) {
             // Type is known, so validate the widget specifically against its own
             // schema as to derive a more precise message.
             const widgetId = dottie.get(replacementError, 'instance.id')
-            const widgetTypeSchema = _.cloneDeep(dottie.get(schema, `definitions.widgets.${widgetType}`))
+            const widgetTypeSchema = cloneDeep(dottie.get(schema, `definitions.widgets.${widgetType}`))
             widgetTypeSchema.definitions = schema.definitions
             const result = validator(replacementError.instance, widgetTypeSchema)
 
             result.errors.forEach(
               function (originalWidgetError) {
-                const clonedWidgetError = _.cloneDeep(originalWidgetError)
+                const clonedWidgetError = cloneDeep(originalWidgetError)
                 clonedWidgetError.widgetId = dottie.get(replacementError, 'instance.id')
                 clonedWidgetError.widgetIndex = replacementError.widgetIndex
                 if (clonedWidgetError.widgetId) {
