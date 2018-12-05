@@ -1,8 +1,5 @@
 {
   "type": "AdaptiveCard",
-  "actions": [
-
-  ],
   "body": [
     {
       "type": "Container",
@@ -10,8 +7,8 @@
       "items": [
         {
           "type": "TextBlock",
-          "size": "large",
-          "color": "light",
+          "size": "Large",
+          "color": "Light",
           "text": "Pizza Place"
         },
         {
@@ -28,8 +25,8 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "Your Details",
-          "size": "large"
+          "size": "Large",
+          "text": "Your Details"
         },
         {
           "type": "Input.Text",
@@ -48,35 +45,31 @@
         },
         {
           "type": "TextBlock",
-          "text": "Dietary Requirements",
-          "size": "medium"
+          "size": "Medium",
+          "text": "Dietary Requirements"
         },
         {
           "type": "Input.ChoiceSet",
-          "isMultiSelect": true,
+          "id": "dietaryRequirements",
           "choices": [
             {
-              "type": "Input.Choice",
               "title": "Peanut Allergy",
               "value": "PEANUT"
             },
             {
-              "type": "Input.Choice",
               "title": "Gluten Free",
               "value": "GLUTEN_FREE"
             },
             {
-              "type": "Input.Choice",
               "title": "Dairy Free",
               "value": "DAIRY_FREE"
             },
             {
-              "type": "Input.Choice",
               "title": "Other",
               "value": "OTHER"
             }
           ],
-          "id": "dietaryRequirements"
+          "isMultiSelect": true
         }
       ]
     },
@@ -86,88 +79,83 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "The Pizza",
-          "size": "large"
+          "size": "Large",
+          "text": "The Pizza"
         },
         {
           "type": "TextBlock",
-          "text": "What size pizza?",
-          "size": "medium"
+          "size": "Medium",
+          "text": "What size pizza?"
         },
         {
           "type": "Input.ChoiceSet",
-          "style": "expanded",
+          "id": "size",
           "value": "M",
           "choices": [
             {
-              "type": "Input.Choice",
               "title": "Small",
               "value": "S"
             },
             {
-              "type": "Input.Choice",
               "title": "Medium",
               "value": "M"
             },
             {
-              "type": "Input.Choice",
               "title": "Large",
               "value": "L"
             },
             {
-              "type": "Input.Choice",
               "title": "Extra Large",
               "value": "XL"
             },
             {
-              "type": "Input.Choice",
               "title": "Extra Extra Large",
               "value": "XXL"
             }
-          ]
+          ],
+          "style": "expanded"
         },
         {
           "type": "TextBlock",
-          "text": "Would you like it savoury or sweet?",
-          "size": "medium"
+          "size": "Medium",
+          "text": "Would you like it savoury or sweet?"
         },
         {
           "type": "Input.ChoiceSet",
-          "style": "expanded",
+          "id": "savouryOrSweet",
           "choices": [
             {
-              "type": "Input.Choice",
               "title": "Savoury",
               "value": "SAVOURY"
             },
             {
-              "type": "Input.Choice",
               "title": "Sweet",
               "value": "SWEET"
             }
-          ]
+          ],
+          "style": "expanded"
         },
         {
           "type": "TextBlock",
-          "text": "Would you like to collect your pizza or have it delivered",
-          "size": "medium"
+          "size": "Medium",
+          "text": "Would you like to collect your pizza or have it delivered?",
+          "wrap": true
         },
         {
           "type": "Input.ChoiceSet",
-          "style": "expanded",
+          "id": "deliveryOrCollection",
           "value": "COLLECT",
           "choices": [
             {
-              "type": "Input.Choice",
               "title": "Collect",
               "value": "COLLECT"
             },
             {
-              "type": "Input.Choice",
               "title": "Deliver",
               "value": "DELIVER"
             }
-          ]
+          ],
+          "style": "expanded"
         }
       ]
     }
