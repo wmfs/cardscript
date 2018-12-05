@@ -4,27 +4,27 @@
 const extractLists = require('./../lib/')
 const chai = require('chai')
 const expect = chai.expect
-const examples = require('cardscript-examples')
+const {simple, complex} = require('cardscript-examples')
 
 describe('Run some Cardscript list-extracting tests', function () {
   it('should extract no list from some simple Cardscript', function () {
-    const result = extractLists(examples.simple)
-    expect(result).to.eql(
-      {
-        $simpleTitleMaps: {}
-      }
-    )
+    const result = extractLists(simple)
+    expect(result).to.eql({$simpleTitleMaps: {}})
   })
 
   it('should extract some lists from complex Cardscript', function () {
-    const result = extractLists(examples.complex)
+    const result = extractLists(complex)
     expect(result).to.eql(
       {
-        '$simpleTitleMaps': {
+        $simpleTitleMaps: {
           base: {
             BBQ: 'BBQ',
-            SWEETSOUR: 'Sweet And Sour',
+            SWEETSOUR: 'Sweet and Sour',
             TOMATO: 'Tomato Sauce'
+          },
+          deliveryOrCollection: {
+            COLLECT: 'Collect',
+            DELIVER: 'Deliver'
           },
           dietaryReq: {
             DAIRY_FREE: 'Dairy Free',
@@ -45,6 +45,10 @@ describe('Run some Cardscript list-extracting tests', function () {
             MILK_CHOC: 'Milk Chocolate',
             TOFFEE: 'Toffee',
             WHITE_CHOC: 'White Chocolate'
+          },
+          savouryOrSweet: {
+            SAVOURY: 'Savoury',
+            SWEET: 'Sweet'
           },
           secondary: {
             DARK_CHOC: 'Dark Chocolate',
@@ -83,8 +87,20 @@ describe('Run some Cardscript list-extracting tests', function () {
           },
           {
             value: 'SWEETSOUR',
-            text: 'Sweet And Sour',
-            label: 'Sweet And Sour'
+            text: 'Sweet and Sour',
+            label: 'Sweet and Sour'
+          }
+        ],
+        deliveryOrCollection: [
+          {
+            label: 'Collect',
+            text: 'Collect',
+            value: 'COLLECT'
+          },
+          {
+            label: 'Deliver',
+            text: 'Deliver',
+            value: 'DELIVER'
           }
         ],
         dietaryReq: [
@@ -252,6 +268,18 @@ describe('Run some Cardscript list-extracting tests', function () {
             text: 'Jalapenos',
             label: 'Jalapenos',
             value: 'JALAPENOS'
+          }
+        ],
+        savouryOrSweet: [
+          {
+            label: 'Savoury',
+            text: 'Savoury',
+            value: 'SAVOURY'
+          },
+          {
+            label: 'Sweet',
+            text: 'Sweet',
+            value: 'SWEET'
           }
         ]
       }

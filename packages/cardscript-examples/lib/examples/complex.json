@@ -50,7 +50,7 @@
         },
         {
           "type": "Input.ChoiceSet",
-          "id": "dietaryRequirements",
+          "id": "dietaryReq",
           "choices": [
             {
               "title": "Peanut Allergy",
@@ -180,27 +180,27 @@
               "choices": [
                 {
                   "title": "1 Chilli",
-                  "value": "1"
+                  "value": 1
                 },
                 {
                   "title": "2 Chillies",
-                  "value": "2"
+                  "value": 2
                 },
                 {
                   "title": "3 Chillies",
-                  "value": "3"
+                  "value": 3
                 },
                 {
                   "title": "4 Chillies",
-                  "value": "4"
+                  "value": 4
                 },
                 {
                   "title": "5 Chillies",
-                  "value": "5"
+                  "value": 5
                 },
                 {
                   "title": "6 Chillies",
-                  "value": "6"
+                  "value": 6
                 }
               ],
               "style": "expanded"

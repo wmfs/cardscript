@@ -18,7 +18,6 @@ describe('Run some Cardscript default-extracting tests', function () {
 
   it('should extract some defaults from complex Cardscript', function () {
     const result = extractDefaults(complex)
-    console.log(result)
     expect(result).to.eql(
       {
         rootView: {
