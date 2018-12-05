@@ -4,7 +4,7 @@
 const validator = require('./../lib/').validateForm
 const chai = require('chai')
 const expect = chai.expect
-const { simple } = require('cardscript-examples')
+const { simple, complex } = require('cardscript-examples')
 
 describe('Run some schema validation tests', () => {
   it('should prove a simple form validates correctly using default (simple) formatter', () => {
@@ -17,11 +17,11 @@ describe('Run some schema validation tests', () => {
     expect(result.errors).to.have.length(0)
   })
 
-  // it('should prove the more complex Patient Care form validates', function () {
-  //   const result = validator(examples.complex)
-  //   expect(result.widgetsValid).to.equal(true)
-  // })
-  //
+  it('should prove the more complex form validates', function () {
+    const result = validator(complex)
+    expect(result.widgetsValid).to.equal(true)
+  })
+
   // it('should fail validation with some basic problems', function () {
   //   const result = validator(examples.simpleFormWithBasicProblems)
   //   expect(result.widgetsValid).to.equal(false)

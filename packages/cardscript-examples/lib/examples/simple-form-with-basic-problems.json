@@ -1,50 +1,37 @@
 {
-  "widgets": [
+  "type": "AdaptiveCard",
+  "body": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": 1,
-        "desc": "Let's get to know each other a bit better...",
-        "backgroundImage": "wmfs/happy-people.jpg",
-        "backgroundImageAltText": "Beautiful people smiling around a laptop"
-      }
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Register!"
     },
     {
-      "type": "text",
-      "attributes": {
-        "heading": "First name",
-        "placeholder": "e.g. Lucy",
-        "mandatory": true,
-        "minCharacters": 1,
-        "maxCharacters": 100,
-        "help": "Enter your first name here"
-      }
+      "type": "TextBlock",
+      "size": "Medium",
+      "weight": "Lighter",
+      "text": "Let's get to know each other a bit better..."
     },
     {
-      "id": "secondName",
-      "type": "silly",
-      "attributes": {
-        "label": "Second name",
-        "placeholder": "e.g. Smith",
-        "mandatory": true,
-        "minCharacters": 1,
-        "maxCharacters": 100
-      }
+      "type": "Input.Text",
+      "id": "name",
+      "title": "Name",
+      "placeholder": "e.g. Lucy Smith"
     },
     {
-      "type": "number",
-      "attributes": {
-        "label": "Age",
-        "default": "NaN!"
-      }
+      "type": "TextBlock",
+      "size": "Small",
+      "weight": "Lighter",
+      "text": "Enter your full name here"
     },
     {
-      "id": "numberOfPets",
-      "type": "number",
-      "attributes": {
-        "label": "Number of pets",
-        "default": "NaN!"
-      }
-    }
-  ]
+      "type": "Fact",
+      "title": "hello",
+      "value": "world"
+    },
+    {}
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
 }

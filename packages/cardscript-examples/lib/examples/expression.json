@@ -1,29 +1,42 @@
 {
-  "title": "Simple expression demo!",
-  "widgets": [
+  "type": "AdaptiveCard",
+  "actions": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "All done!",
-        "desc": "We're all done here, we would really appreciate some feedback though!"
-      }
-    },
-    {
-      "id": "userWantsToGiveFeedback",
-      "type": "switch",
-      "attributes": {
-        "default": false,
-        "heading": "I would like to leave some feedback"
-      }
-    },
-    {
-      "id": "feedback",
-      "showWhen": "data.userWantsToGiveFeedback === true",
-      "type": "textarea",
-      "attributes": {
-        "heading": "Feedback",
-        "desc": "How did you feel using our app?"
+      "type": "Action.ShowCard",
+      "title": "I would like to leave some feedback",
+      "card": {
+        "type": "AdaptiveCard",
+        "body": [
+          {
+            "type": "Input.Text",
+            "id": "feedback",
+            "isMultiline": true,
+            "placeholder": "Feedback"
+          }
+        ]
       }
     }
-  ]
+  ],
+  "body": [
+    {
+      "type": "Container",
+      "backgroundImage": "<Insert blue image here> (as far as i can tell you can't have a background colour on a container, just an image",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "large",
+          "color": "light",
+          "text": "All done!"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Small",
+          "color": "Light",
+          "text": "We're all done here, we would really appreciate some feedback though!"
+        }
+      ]
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
 }
