@@ -4,12 +4,12 @@
 const extractLists = require('./../lib/')
 const chai = require('chai')
 const expect = chai.expect
-const {simple, complex} = require('cardscript-examples')
+const { simple, complex } = require('cardscript-examples')
 
 describe('Run some Cardscript list-extracting tests', function () {
   it('should extract no list from some simple Cardscript', function () {
     const result = extractLists(simple)
-    expect(result).to.eql({$simpleTitleMaps: {}})
+    expect(result).to.eql({ $simpleTitleMaps: {} })
   })
 
   it('should extract some lists from complex Cardscript', function () {
