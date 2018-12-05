@@ -1,0 +1,177 @@
+{
+  "type": "AdaptiveCard",
+  "actions": [
+
+  ],
+  "body": [
+    {
+      "type": "Container",
+      "backgroundImage": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/quick_pepperoni_pizza_64616_16x9.jpg",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "large",
+          "color": "light",
+          "text": "Pizza Place"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Small",
+          "color": "Light",
+          "text": "This is an example view where you can order some imaginary pizza."
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Your Details",
+          "size": "large"
+        },
+        {
+          "type": "Input.Text",
+          "id": "firstName",
+          "placeholder": "First Name"
+        },
+        {
+          "type": "Input.Text",
+          "id": "lastName",
+          "placeholder": "Last Name"
+        },
+        {
+          "type": "Input.Number",
+          "id": "phoneNumber",
+          "placeholder": "Phone Number"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Dietary Requirements",
+          "size": "medium"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "isMultiSelect": true,
+          "choices": [
+            {
+              "type": "Input.Choice",
+              "title": "Peanut Allergy",
+              "value": "PEANUT"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Gluten Free",
+              "value": "GLUTEN_FREE"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Dairy Free",
+              "value": "DAIRY_FREE"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Other",
+              "value": "OTHER"
+            }
+          ],
+          "id": "dietaryRequirements"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "The Pizza",
+          "size": "large"
+        },
+        {
+          "type": "TextBlock",
+          "text": "What size pizza?",
+          "size": "medium"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "style": "expanded",
+          "value": "M",
+          "choices": [
+            {
+              "type": "Input.Choice",
+              "title": "Small",
+              "value": "S"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Medium",
+              "value": "M"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Large",
+              "value": "L"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Extra Large",
+              "value": "XL"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Extra Extra Large",
+              "value": "XXL"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "Would you like it savoury or sweet?",
+          "size": "medium"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "style": "expanded",
+          "choices": [
+            {
+              "type": "Input.Choice",
+              "title": "Savoury",
+              "value": "SAVOURY"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Sweet",
+              "value": "SWEET"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "Would you like to collect your pizza or have it delivered",
+          "size": "medium"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "style": "expanded",
+          "value": "COLLECT",
+          "choices": [
+            {
+              "type": "Input.Choice",
+              "title": "Collect",
+              "value": "COLLECT"
+            },
+            {
+              "type": "Input.Choice",
+              "title": "Deliver",
+              "value": "DELIVER"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
+}

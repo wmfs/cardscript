@@ -1,0 +1,31 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "backgroundImage": "wmfs/happy-people.jpg",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "large",
+          "color": "light",
+          "text": "Register!"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Small",
+          "color": "Light",
+          "text": "Lets get to know each other a little better..."
+        }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "name",
+      "placeholder": "e.g. Lucy Smith",
+      "maxLength": 100
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
+}
