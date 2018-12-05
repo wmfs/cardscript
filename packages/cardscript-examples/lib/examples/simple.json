@@ -1,27 +1,40 @@
 {
-  "title": "Simple demo view!",
-  "widgets": [
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "Register!",
-        "desc": "Let's get to know each other a bit better...",
-        "wash": "black",
-        "backgroundImage": "wmfs/happy-people.jpg",
-        "backgroundImageAltText": "Beautiful people smiling around a laptop"
-      }
-    },
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Register!",
+          "weight": "bolder",
+          "size": "medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Let's get to know each other a bit better...",
+          "isSubtle": true,
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "Name",
+          "wrap": true
+        },
+        {
+          "type": "Input.Text",
+          "id": "name",
+          "placeholder": "e.g. Lucy Smith"
+        }
+      ]
+    }
+  ],
+  "actions": [
     {
-      "id": "name",
-      "type": "text",
-      "attributes": {
-        "heading": "Name",
-        "placeholder": "e.g. Lucy Smith",
-        "mandatory": true,
-        "minCharacters": 1,
-        "maxCharacters": 100,
-        "help": "Enter your full name here"
-      }
+      "type": "Action.Submit",
+      "title": "Submit"
     }
   ]
 }
