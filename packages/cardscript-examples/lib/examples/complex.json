@@ -148,7 +148,6 @@
               "type": "Input.ChoiceSet",
               "id": "base",
               "value": "TOMATO",
-              "placeholder": "Placeholder text",
               "choices": [
                 {
                   "title": "Tomato Sauce",
@@ -178,7 +177,6 @@
             {
               "type": "Input.ChoiceSet",
               "id": "howHot",
-              "placeholder": "Placeholder text",
               "choices": [
                 {
                   "title": "1 Chilli",
@@ -221,7 +219,6 @@
             {
               "type": "Input.ChoiceSet",
               "id": "toppings",
-              "placeholder": "Placeholder text",
               "choices": [
                 {
                   "title": "Pepperoni",
@@ -258,6 +255,72 @@
               ],
               "style": "expanded",
               "isMultiSelect": true
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "id": "sweetSet",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "medium",
+              "text": "What primary flavour would you like?"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "secondary",
+              "choices": [
+                {
+                  "title": "Milk Chocolate",
+                  "value": "MILK_CHOC"
+                },
+                {
+                  "title": "White Chocolate",
+                  "value": "WHITE_CHOC"
+                },
+                {
+                  "title": "Dark Chocolate",
+                  "value": "DARK_CHOC"
+                },
+                {
+                  "title": "Toffee",
+                  "value": "TOFFEE"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "size": "medium",
+              "text": "What secondary flavour would you like?"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "primary",
+              "choices": [
+                {
+                  "title": "Milk Chocolate",
+                  "value": "MILK_CHOC"
+                },
+                {
+                  "title": "White Chocolate",
+                  "value": "WHITE_CHOC"
+                },
+                {
+                  "title": "Dark Chocolate",
+                  "value": "DARK_CHOC"
+                },
+                {
+                  "title": "Toffee",
+                  "value": "TOFFEE"
+                }
+              ]
+            },
+            {
+              "id": "sprinkles",
+              "type": "Input.Toggle",
+              "title": "Would you like hundreds and thousands sprinkles on your pizza?",
+              "value": "false"
             }
           ]
         },

@@ -25,7 +25,8 @@ describe('Run some Cardscript default-extracting tests', function () {
           base: 'TOMATO',
           size: 'M',
           hot: false,
-          deliveryOrCollection: 'COLLECT'
+          deliveryOrCollection: 'COLLECT',
+          sprinkles: false
         }
       }
     )
