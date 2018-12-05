@@ -9,7 +9,7 @@ const { simple, complex } = require('cardscript-examples')
 describe('Run some schema validation tests', () => {
   it('should prove a simple form validates correctly using default (simple) formatter', () => {
     const result = validator(simple)
-    expect(result.widgetsValid).to.equal(true)
+    expect(result.elementsValid).to.equal(true)
   })
 
   it('should prove a simple form validates correctly using raw jsonschema output', function () {
@@ -19,7 +19,7 @@ describe('Run some schema validation tests', () => {
 
   it('should prove the more complex form validates', function () {
     const result = validator(complex)
-    expect(result.widgetsValid).to.equal(true)
+    expect(result.elementsValid).to.equal(true)
   })
 
   // it('should fail validation with some basic problems', function () {

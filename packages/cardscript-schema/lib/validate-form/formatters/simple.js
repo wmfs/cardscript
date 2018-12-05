@@ -8,7 +8,7 @@ module.exports = function simpleFormatter (validationResult) {
   // }
 
   return {
-    widgetsValid: validationResult.errors.length === 0,
+    elementsValid: validationResult.errors.length === 0,
     errors: validationResult.errors
   }
 }
