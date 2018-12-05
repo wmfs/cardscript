@@ -138,6 +138,126 @@
         {
           "type": "TextBlock",
           "size": "Medium",
+          "text": "What base would you like?"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "base",
+          "value": "TOMATO",
+          "placeholder": "Placeholder text",
+          "choices": [
+            {
+              "title": "Tomato Sauce",
+              "value": "TOMATO"
+            },
+            {
+              "title": "BBQ",
+              "value": "BBQ"
+            },
+            {
+              "title": "Sweet and Sour",
+              "value": "SWEETSOUR"
+            }
+          ]
+        },
+        {
+          "type": "Input.Toggle",
+          "id": "hot",
+          "title": "Do you like it hot?",
+          "value": "false"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Medium",
+          "text": "How hot do you like it?"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "howHot",
+          "placeholder": "Placeholder text",
+          "choices": [
+            {
+              "title": "1 Chilli",
+              "value": "1"
+            },
+            {
+              "title": "2 Chillies",
+              "value": "2"
+            },
+            {
+              "title": "3 Chillies",
+              "value": "3"
+            },
+            {
+              "title": "4 Chillies",
+              "value": "4"
+            },
+            {
+              "title": "5 Chillies",
+              "value": "5"
+            },
+            {
+              "title": "6 Chillies",
+              "value": "6"
+            }
+          ],
+          "style": "expanded"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Small",
+          "color": "Attention",
+          "text": "We will not be held responsible if you can't handle the heat!"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Medium",
+          "text": "Select what toppings you would like (up to 3)"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "toppings",
+          "placeholder": "Placeholder text",
+          "choices": [
+            {
+              "title": "Pepperoni",
+              "value": "PEPPERONI"
+            },
+            {
+              "title": "Olives",
+              "value": "OLIVES"
+            },
+            {
+              "title": "Peppers",
+              "value": "PEPPERS"
+            },
+            {
+              "title": "Pineapple",
+              "value": "PINEAPPLE"
+            },
+            {
+              "title": "Ham",
+              "value": "HAM"
+            },
+            {
+              "title": "Chicken",
+              "value": "CHICKEN"
+            },
+            {
+              "title": "Spicy Beef",
+              "value": "SPICY_BEEF"
+            },
+            {
+              "title": "Jalapenos",
+              "value": "JALAPENOS"
+            }
+          ],
+          "style": "expanded",
+          "isMultiSelect": true
+        },
+        {
+          "type": "TextBlock",
+          "size": "Medium",
           "text": "Would you like to collect your pizza or have it delivered?",
           "wrap": true
         },

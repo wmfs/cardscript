@@ -22,7 +22,9 @@ describe('Run some Cardscript default-extracting tests', function () {
     expect(result).to.eql(
       {
         rootView: {
+          base: 'TOMATO',
           size: 'M',
+          hot: false,
           deliveryOrCollection: 'COLLECT'
         }
       }

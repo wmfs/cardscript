@@ -23,9 +23,17 @@ module.exports = function extractDefaults (cardscript) {
         element.items.forEach(parseElement)
         break
       case 'Input.Text':
-      case 'Input.Toggle':
         if (element.default) {
           defaultValues.rootView[element.id] = element.default
+        }
+        break
+      case 'Input.Toggle':
+        if (element.value === 'false') {
+          defaultValues.rootView[element.id] = false
+        } else if (element.value === 'true') {
+          defaultValues.rootView[element.id] = true
+        } else if (element.value) {
+          defaultValues.rootView[element.id] = element.value
         }
         break
       case 'Input.ChoiceSet':
