@@ -164,6 +164,7 @@
         {
           "type": "Container",
           "id": "savourySet",
+          "showWhen": "data.savouryOrSweet === 'SAVOURY'",
           "spacing": "small",
           "items": [
             {
@@ -199,11 +200,13 @@
             {
               "type": "TextBlock",
               "size": "medium",
-              "text": "How hot do you like it?"
+              "text": "How hot do you like it?",
+              "showWhen": "data.hot"
             },
             {
               "type": "Input.ChoiceSet",
               "id": "howHot",
+              "showWhen": "data.hot",
               "choices": [
                 {
                   "title": "1 Chilli",
@@ -236,7 +239,8 @@
               "type": "TextBlock",
               "size": "small",
               "color": "attention",
-              "text": "We will not be held responsible if you can't handle the heat!"
+              "text": "We will not be held responsible if you can't handle the heat!",
+              "showWhen": "data.hot"
             },
             {
               "type": "TextBlock",
@@ -288,6 +292,7 @@
         {
           "type": "Container",
           "id": "sweetSet",
+          "showWhen": "data.savouryOrSweet === 'SWEET'",
           "spacing": "small",
           "items": [
             {
@@ -297,7 +302,7 @@
             },
             {
               "type": "Input.ChoiceSet",
-              "id": "secondary",
+              "id": "primary",
               "choices": [
                 {
                   "title": "Milk Chocolate",
@@ -324,7 +329,8 @@
             },
             {
               "type": "Input.ChoiceSet",
-              "id": "primary",
+              "id": "secondary",
+              "showWhen": "data.primary",
               "choices": [
                 {
                   "title": "Milk Chocolate",
@@ -346,6 +352,7 @@
             },
             {
               "id": "sprinkles",
+              "showWhen": "data.secondary",
               "type": "Input.Toggle",
               "title": "Would you like hundreds and thousands sprinkles on your pizza?",
               "value": "false"
