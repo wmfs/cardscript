@@ -18,14 +18,14 @@ const CONFIG = {
 }
 
 describe('Run some simple conversion tests', function () {
-  it('should prove simple Cardscript converts correctly', function () {
+  xit('should prove simple Cardscript converts correctly', function () {
     const result = cardscriptToTemplate.convert(examples.simple, CONFIG)
     // expect(result.widgetsValid).to.equal(true)
     expect(result.template).to.be.a('string')
     console.log(result.template)
   })
 
-  it('should prove the patientCare Cardscript converts correctly', function () {
+  xit('should prove the patientCare Cardscript converts correctly', function () {
     const result = cardscriptToTemplate.convert(examples.complex, CONFIG)
     // expect(result.widgetsValid).to.equal(true)
     expect(result.template).to.be.a('string')
