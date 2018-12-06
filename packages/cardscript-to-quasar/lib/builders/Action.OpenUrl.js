@@ -1,10 +1,13 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const {
+    title
+    // iconUrl
+    // url
+  } = definition
   const builder = new ComponentBuilder(definition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Action.OpenUrl!')
+  const button = builder.addTag('q-btn')
+  button.addAttribute('label', title)
   return builder.compile()
 }
