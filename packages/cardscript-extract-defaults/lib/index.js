@@ -39,10 +39,10 @@ module.exports = function extractDefaults (cardscript) {
         }
         break
       case 'Input.ChoiceSet':
-        if (element.value) {
+        if (element.isMultiSelect) {
+          defaultValues.rootView[element.id] = element.value ? element.value.split(',') : []
+        } else if (element.value) {
           defaultValues.rootView[element.id] = element.value
-        } else if (element.isMultiSelect) {
-          defaultValues.rootView[element.id] = []
         }
         break
     }
