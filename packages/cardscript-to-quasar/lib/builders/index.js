@@ -1,6 +1,7 @@
 module.exports = {
   Container: { conversionFunction: require('./Container') },
   TextBlock: { conversionFunction: require('./TextBlock') },
+  Image: { conversionFunction: require('./Image') },
   Media: { conversionFunction: require('./Media') },
   MediaSource: { conversionFunction: require('./MediaSource') },
   ColumnSet: { conversionFunction: require('./ColumnSet') },
