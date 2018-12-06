@@ -9,13 +9,12 @@ const COLORS = {
   dark: 'dark'
 }
 
-// const SIZES = {
-//   small: '',
-//   default: '',
-//   medium: '',
-//   large: '',
-//   extraLarge: ''
-// }
+const SIZES = {
+  small: 16,
+  medium: 18,
+  large: 24,
+  extraLarge: 32
+}
 
 const WEIGHTS = {
   lighter: 'light',
@@ -35,7 +34,7 @@ module.exports = function (definition, options) {
     horizontalAlignment,
     isSubtle,
     // maxLines,
-    // size,
+    size,
     text,
     weight,
     // wrap,
@@ -50,6 +49,7 @@ module.exports = function (definition, options) {
   if (id) div.addAttribute('id', id)
 
   const classes = []
+  const styles = []
 
   if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
   if (color && COLORS[color]) classes.push(`text-${COLORS[color]}`)
@@ -62,6 +62,9 @@ module.exports = function (definition, options) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
 
+  if (size && SIZES[size]) styles.push(`font-size: ${SIZES[size]}px;`)
+
+  if (styles.length > 0) div.addAttribute('style', styles.join(' '))
   if (classes.length > 0) div.addAttribute('class', classes.join(' '))
 
   div.content(text)
