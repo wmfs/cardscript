@@ -214,7 +214,7 @@
             {
               "type": "TextBlock",
               "size": "small",
-              "color": "Attention",
+              "color": "attention",
               "text": "We will not be held responsible if you can't handle the heat!"
             },
             {
@@ -353,6 +353,12 @@
           "style": "expanded"
         }
       ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

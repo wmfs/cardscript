@@ -1,9 +1,9 @@
 module.exports = function (definition, options) {
-  let div = '<div'
+  let card = '<q-card class="q-mb-md"'
 
-  if (definition.hasOwnProperty('showWhen')) div += ` v-if="${definition.showWhen}"`
-  if (definition.hasOwnProperty('id')) div += ` id="${definition.id}"`
+  if (definition.hasOwnProperty('showWhen')) card += ` v-if="${definition.showWhen}"`
+  if (definition.hasOwnProperty('id')) card += ` id="${definition.id}"`
 
-  div += '>'
-  return div
+  card += '> <q-card-main>'
+  return card
 }

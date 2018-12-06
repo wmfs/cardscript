@@ -24,7 +24,7 @@ module.exports = function extractDefaults (cardscript, options) {
       depth++
       element.items.forEach(parseElement)
       depth--
-      template += `${indent}</div>`
+      template += `${indent}</q-card-main></q-card>`
     }
 
     if (element.type === 'ColumnSet') {
