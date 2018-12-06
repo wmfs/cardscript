@@ -1,768 +1,114 @@
 {
-  "title": "The Kitchen Sink",
-  "widgets": [
+  "type": "AdaptiveCard",
+  "body": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "The Widget Showcase",
-        "desc": "This view is to demonstrate the capabilities of Cardscript",
-        "backgroundImageAltText": "Image representing the glory of Cardscript"
-      }
+      "type": "TextBlock",
+      "text": "Card Elements",
+      "size": "large"
     },
     {
-      "type": "set",
-      "id": "addressSet",
-      "attributes": {
-        "tocTitle": "The 'Address' widget",
-        "tocIcon": "home"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Address'' widget",
-        "desc": "Address widgets let us locate addresses"
-      }
-    },
-    {
-      "id": "addressWidget",
-      "type": "address",
-      "attributes": {
-        "heading": "Address"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "apiLookupSet",
-      "attributes": {
-        "tocTitle": "The 'API Lookup' widget",
-        "tocIcon": "home"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'API Lookup' widget",
-        "desc": "API Lookup widget allows the user to perform a search against an API"
-      }
-    },
-    {
-      "id": "apiLookupWidget",
-      "type": "apiLookup",
-      "attributes": {
-        "apiName": "fleet",
-        "heading": "Fire Appliance",
-        "labelPath": "$.fireApplianceLabel",
-        "mandatory": true,
-        "resultLimit": 20,
-        "params": {
-          "showCurrentOnly": true,
-          "showOperationalOnly": true
+      "type": "Container",
+      "id": "cardElements",
+      "title": "Card Elements",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "TextBlock",
+          "size": "medium",
+          "spacing": "medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Change me!"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Image",
+          "size": "medium",
+          "spacing": "medium"
+        },
+        {
+          "type": "Image"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Media",
+          "size": "medium",
+          "spacing": "medium"
+        },
+        {
+          "type": "Media"
         }
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "buttonListSet",
-      "attributes": {
-        "tocTitle": "The 'Button List' widget",
-        "tocIcon": "view_list"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Button List' widget",
-        "desc": "Button List renders multiple buttons"
-      }
-    },
-    {
-      "id": "buttonListWidget",
-      "type": "buttonList",
-      "attributes": {
-        "heading": "Some Actions",
-        "actions": [
-          {
-            "title": "Edit user"
-          },
-          {
-            "title": "Remove user"
-          },
-          {
-            "title": "Create a new user"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "checkSet",
-      "attributes": {
-        "tocTitle": "The 'Checkbox List' widget",
-        "tocIcon": "check_box"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Checkbox List' widget",
-        "desc": "Checkbox List widgets allow us to select multiple options"
-      }
-    },
-    {
-      "id": "checkboxWidget",
-      "type": "checkboxList",
-      "attributes": {
-        "heading": "Checkbox List",
-        "default": ["FIRST"],
-        "titleMap": [
-          {
-            "value": "FIRST",
-            "title": "First Option"
-          },
-          {
-            "value": "SECOND",
-            "title": "Second Option"
-          },
-          {
-            "value": "THIRD",
-            "title": "Third Option"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "currencySet",
-      "attributes": {
-        "tocTitle": "The 'Currency' widget",
-        "tocIcon": "attach_money"
-
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Currency' widget",
-        "desc": "Currency widgets are similar to number widgets, but for collecting a monetary value"
-      }
-    },
-    {
-      "id": "currencyWidget",
-      "type": "currency",
-      "attributes": {
-        "heading": "Currency"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "dateSet",
-      "attributes": {
-        "tocTitle": "The 'Date' widget",
-        "tocIcon": "today"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Date' widget",
-        "desc": "Date widgets allow us to choose a date without a time attached"
-      }
-    },
-    {
-      "id": "dateWidget",
-      "type": "date",
-      "attributes": {
-        "heading": "Date"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "dateTimeSet",
-      "attributes": {
-        "tocTitle": "The 'Date-Time' widget",
-        "tocIcon": "today"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Date-Time' widget",
-        "desc": "Date-time widgets allow us to choose a date-time"
-      }
-    },
-    {
-      "id": "dateTimeWidget",
-      "type": "dateTime",
-      "attributes": {
-        "heading": "Date-Time"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "uploadSet",
-      "attributes": {
-        "tocTitle": "The 'File Upload' widget",
-        "tocIcon": "file_upload"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Upload' widget",
-        "desc": "Upload widgets let us attach supporting documents to a view"
-      }
-    },
-    {
-      "id": "uploadWidget",
-      "type": "fileUpload",
-      "attributes": {
-        "heading": "File Upload"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "expandableNoticeSet",
-      "attributes": {
-        "tocTitle": "The 'Expandable Notice' widget",
-        "tocIcon": "expand_more"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Expandable Notice' widget",
-        "desc": "Expandable Notice widget allows us to expand to to show more text"
-      }
-    },
-    {
-      "id": "expandableNoticeWidget",
-      "type": "expandableNotice",
-      "attributes": {
-        "heading": "Expandable Notice",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "imgSet",
-      "attributes": {
-        "tocTitle": "The 'Image' widget",
-        "tocIcon": "insert_photo"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Image' widget",
-        "desc": "Image widgets let us display static images in a view"
-      }
-    },
-    {
-      "id": "imageWidget",
-      "type": "image",
-      "attributes": {
-        "heading": "Image",
-        "image": "img.jpg",
-        "altText": "Alt text can be placed on images too"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "mapSet",
-      "attributes": {
-        "tocTitle": "The 'Map' widget",
-        "tocIcon": "place"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Map' widget",
-        "desc": "Map widgets let us visualise maps and locations"
-      }
-    },
-    {
-      "id": "mapWidget",
-      "type": "map",
-      "attributes": {
-        "heading": "Map"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "numberSet",
-      "attributes": {
-        "tocTitle": "The 'Number' widget",
-        "tocIcon": "text_fields"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Number' widget",
-        "desc": "Number widgets are similar to text widgets, but only allow numerical input"
-      }
-    },
-    {
-      "id": "numberWidget",
-      "type": "number",
-      "attributes": {
-        "heading": "Number"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "propertyListSet",
-      "attributes": {
-        "tocTitle": "The 'Property List' widget",
-        "tocIcon": "list"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Property List' widget",
-        "desc": "Property List widget displays a list of specified data."
-      }
-    },
-    {
-      "id": "propertyListWidget",
-      "type": "propertyList",
-      "attributes": {
-        "heading": "Contact Details",
-        "properties": [
-          {
-            "dataPath": "firstName",
-            "header": "First Name"
-          },
-          {
-            "dataPath": "lastName",
-            "header": "Last Name"
-          },
-          {
-            "dataPath": "mobileNumber",
-            "header": "Mobile Number"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "questionnaireSet",
-      "attributes": {
-        "tocTitle": "The 'Questionnaire' widget",
-        "tocIcon": "question_answer"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Questionnaire' widget",
-        "desc": "Questionnaire widgets let us display possible responses on an appropriate scale"
-      }
-    },
-    {
-      "id": "questionnaireWidget",
-      "type": "questionnaire",
-      "attributes": {
-        "heading": "Questionnaire",
-        "default": "FIRST",
-        "titleMap": [
-          {
-            "value": "FIRST",
-            "title": "First Option",
-            "desc": "First"
-          },
-          {
-            "value": "SECOND",
-            "title": "Second Option",
-            "desc": "Second"
-          },
-          {
-            "value": "THIRD",
-            "title": "Third Option",
-            "desc": "Third"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "radioSet",
-      "attributes": {
-        "tocTitle": "The 'Radio' widget",
-        "tocIcon": "radio_button_checked"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Radio' widget",
-        "desc": "Radio widgets allow one selection, but not in a drop down list"
-      }
-    },
-    {
-      "id": "radioWidget",
-      "type": "radio",
-      "attributes": {
-        "heading": "Radio",
-        "default": "FIRST",
-        "titleMap": [
-          {
-            "value": "FIRST",
-            "title": "First Option"
-          },
-          {
-            "value": "SECOND",
-            "title": "Second Option"
-          },
-          {
-            "value": "THIRD",
-            "title": "Third Option"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "selectSet",
-      "attributes": {
-        "tocTitle": "The 'Select' widget",
-        "tocIcon": "arrow_drop_down"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Select' widget",
-        "desc": "Radio widgets allow one selection in a drop down list"
-      }
-    },
-    {
-      "id": "selectWidget",
-      "type": "select",
-      "attributes": {
-        "heading": "Select",
-        "titleMap": [
-          {
-            "value": "FIRST",
-            "title": "First Option"
-          },
-          {
-            "value": "SECOND",
-            "title": "Second Option"
-          },
-          {
-            "value": "THIRD",
-            "title": "Third Option"
-          }
-        ]
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "id": "switchSet",
-      "type": "set",
-      "attributes": {
-        "tocTitle": "The 'Switch' widget",
-        "tocIcon": "check_box"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Switch' widget",
-        "desc": "Switch widgets allow you to record boolean values"
-      }
-    },
-    {
-      "id": "switchWidget",
-      "type": "switch",
-      "attributes": {
-        "heading": "Switch",
-        "default": false
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "sliderSet",
-      "attributes": {
-        "tocTitle": "The 'Slider' widget",
-        "tocIcon": "linear_scale"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Slider' widget",
-        "desc": "Slider widgets let us select a value from a range, at certain 'step' points"
-      }
-    },
-    {
-      "id": "sliderWidget",
-      "type": "slider",
-      "attributes": {
-        "heading": "Slider",
-        "minimum": 0,
-        "maximum": 10,
-        "step": 1
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "stickyNoteSet",
-      "attributes": {
-        "tocTitle": "The 'Sticky Note' widget",
-        "tocIcon": "note"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Sticky Note' widget",
-        "desc": "Sticky Note widget displays some given text as a notice"
-      }
-    },
-    {
-      "id": "stickyNoteWidget",
-      "type": "stickyNote",
-      "attributes": {
-        "style": "informative",
-        "heading": "Remember!",
-        "desc": "Floor numbering starts with 0 (ground floor)."
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "id": "tableSet",
-      "type": "set",
-      "attributes": {
-        "tocTitle": "The 'Table' widget",
-        "tocIcon": "table_chart"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Table' widget",
-        "desc": "Table widget to display data"
-      }
-    },
-    {
-      "id": "tableWidget",
-      "type": "table",
-      "attributes": {
-        "heading": "Patient Details",
-        "dataPath": "patients",
-        "columns": [
-          {
-            "title": "Full Name",
-            "dataPath": "name"
-          },
-          {
-            "title": "Phone Number",
-            "dataPath": "number"
-          },
-          {
-            "title": "Address",
-            "dataPath": "address"
-          }
-        ],
-        "resultLimit": 20
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "textSet",
-      "attributes": {
-        "tocTitle": "The 'Text' widget",
-        "tocIcon": "text_fields"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Text' widget",
-        "desc": "Text widgets can collect information in the form of a string from us"
-      }
-    },
-    {
-      "id": "textWidget",
-      "type": "text",
-      "attributes": {
-        "heading": "Text"
-      }
-    },
-    {
-      "type": "endSet"
-    },
-    {
-      "type": "horizontalLine"
-    },
-    {
-      "type": "set",
-      "id": "timeSet",
-      "attributes": {
-        "tocTitle": "The 'Time' widget",
-        "tocIcon": "watch"
-      }
-    },
-    {
-      "type": "heading",
-      "attributes": {
-        "heading": "The 'Time' widget",
-        "desc": "Time widgets allow us to choose a time without a date attached"
-      }
-    },
-    {
-      "id": "timeWidget",
-      "type": "time",
-      "attributes": {
-        "heading": "Time"
-      }
-    },
-    {
-      "type": "endSet"
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Containers",
+      "size": "large"
+    },
+    {
+      "type": "Container",
+      "id": "containers",
+      "title": "Containers",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "ColumnSet",
+          "size": "medium",
+          "spacing": "medium"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "TextBlock",
+              "text": "col-1"
+            },
+            {
+              "type": "TextBlock",
+              "text": "col-2"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "FactSet",
+          "size": "medium",
+          "spacing": "medium"
+        },
+        {
+          "type": "FactSet",
+          "facts": [
+            {
+              "title": "Hello:",
+              "value": "World"
+            },
+            {
+              "title": "HELLO:",
+              "value": "WORLD"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Inputs",
+      "size": "large"
+    },
+    {
+      "type": "Container",
+      "id": "inputs",
+      "title": "Inputs",
+      "items": [
+        {
+          "id": "text",
+          "type": "Input.Text",
+          "placeholder": "Input.Text"
+        }
+      ]
     }
   ],
-  "actions": [
-    {
-      "title": "Go to github",
-      "type": "OpenURL",
-      "config": {
-        "url": "https://github.com/wmfs/cardscript"
-      }
-    },
-    {
-      "title": "Submit",
-      "type": "Submit",
-      "style": "positive",
-      "config": {}
-    },
-    {
-      "title": "Show another view",
-      "type": "ShowView",
-      "style": "negative",
-      "config": {}
-    }
-  ]
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
 }
