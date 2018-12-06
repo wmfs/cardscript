@@ -34,9 +34,9 @@ module.exports = function extractDefaults (cardscript, options) {
       template += `${indent}</div>`
     }
 
-    if (element.type === 'FactSet') {
+    if (element.type === 'Column') {
       depth++
-      element.facts.forEach(parseElement)
+      element.items.forEach(parseElement)
       depth--
       template += `${indent}</div>`
     }

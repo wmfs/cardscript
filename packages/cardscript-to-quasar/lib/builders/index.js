@@ -7,7 +7,6 @@ module.exports = {
   ColumnSet: { conversionFunction: require('./ColumnSet') },
   Column: { conversionFunction: require('./Column') },
   FactSet: { conversionFunction: require('./FactSet') },
-  Fact: { conversionFunction: require('./Fact') },
   ImageSet: { conversionFunction: require('./ImageSet') },
   'Action.OpenUrl': { conversionFunction: require('./Action.OpenUrl') },
   'Action.Submit': { conversionFunction: require('./Action.Submit') },
