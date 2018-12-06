@@ -1,5 +1,14 @@
 const ComponentBuilder = require('./../utils/Component-builder')
 
+const COLORS = {
+  accent: 'primary',
+  good: 'positive',
+  warning: 'warning',
+  attention: 'negative',
+  light: 'light',
+  dark: 'dark'
+}
+
 module.exports = function (definition, options) {
   const {
     color,
@@ -22,16 +31,9 @@ module.exports = function (definition, options) {
 
   const classes = []
 
-  if (horizontalAlignment === 'left') classes.push('text-left')
-  if (horizontalAlignment === 'center') classes.push('text-center')
-  if (horizontalAlignment === 'right') classes.push('text-right')
+  if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
 
-  if (color === 'primary') classes.push('text-primary')
-  if (color === 'good') classes.push('text-positive')
-  if (color === 'warning') classes.push('text-warning')
-  if (color === 'attention') classes.push('text-negative')
-  if (color === 'light') classes.push('text-light')
-  if (color === 'dark') classes.push('text-dark')
+  if (color && COLORS[color]) classes.push(`text-${COLORS[color]}`)
 
   if (classes.length > 0) div.addAttribute('class', classes.join(' '))
 
