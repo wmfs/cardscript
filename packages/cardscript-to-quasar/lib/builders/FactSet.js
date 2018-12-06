@@ -1,13 +1,15 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
   const builder = new ComponentBuilder(definition)
-  const div = builder.addTag('div')
+  const list = builder.addTag('q-list')
+  list.addAttribute(':no-border', true)
   definition.facts.forEach(({ title, value }) => {
-    const fact = div.addChildTag('div')
-    fact.content(`${title} ${value}`)
+    const item = list.addChildTag('q-item')
+    const itemSide = item.addChildTag('q-item-side')
+    itemSide.content(title)
+    const itemMain = item.addChildTag('q-item-main')
+    itemMain.content(value)
   })
   return builder.compile()
 }
