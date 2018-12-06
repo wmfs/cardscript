@@ -20,7 +20,7 @@ module.exports = function (definition, options) {
   if (definition.hasOwnProperty('id')) card += ` id="${definition.id}"`
 
   // if (selectAction) card += ` @click=""`
-  const classes = []
+  const classes = ['no-shadow']
 
   if (style === 'emphasis') classes.push('bg-light')
 
