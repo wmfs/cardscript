@@ -88,8 +88,8 @@
                 >
                   <q-item
                     v-for="entry in dynamicContent.toc"
-                    :key="entry.widgetId"
-                    @click.native="tocClick(entry.widgetId)"
+                    :key="entry.elementId"
+                    @click.native="tocClick(entry.elementId)"
                     class="cursor-pointer"
                   >
                     <q-item-side left :icon="entry.tocIcon"/>
