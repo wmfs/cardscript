@@ -1,10 +1,19 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const {
+    title
+    // valueOff,
+    // valueOn,
+    // spacing,
+    // separator
+  } = definition
+
   const builder = new ComponentBuilder(definition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Input.Toggle!')
+
+  const toggle = builder.addTag('q-toggle')
+  toggle.bindToModel(definition)
+  toggle.addAttribute('label', title)
+
   return builder.compile()
 }

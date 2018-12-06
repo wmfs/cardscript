@@ -34,6 +34,8 @@ module.exports = function extractDefaults (cardscript) {
           defaultValues.rootView[element.id] = true
         } else if (element.value) {
           defaultValues.rootView[element.id] = element.value
+        } else {
+          defaultValues.rootView[element.id] = false
         }
         break
       case 'Input.ChoiceSet':
