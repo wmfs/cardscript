@@ -1,10 +1,28 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
 
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const {
+    // choices,
+    id,
+    isMultiSelect,
+    style
+    // value,
+    // spacing,
+    // separator
+  } = definition
+
   const builder = new ComponentBuilder(definition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Input.ChoiceSet!')
+
+  if (isMultiSelect) {
+    // CHECKBOX
+  } else if (style === 'expanded') {
+    // RADIO
+  } else {
+    // SELECT
+    const select = builder.addTag('q-select')
+    select.addAttribute(':options', `lists.${id}`)
+    select.bindToModel(definition)
+  }
+
   return builder.compile()
 }
