@@ -27,7 +27,7 @@
       "tocIcon": "account_box",
       "type": "Container",
       "separator": true,
-      "spacing": "large",
+      "spacing": "small",
       "items": [
         {
           "type": "TextBlock",
@@ -80,12 +80,28 @@
       ]
     },
     {
+      "type": "Container",
+      "showWhen": "data.dietaryReq.includes('OTHER')",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "medium",
+          "text": "Please enter your other dietary requirements..."
+        },
+        {
+          "type": "Input.Text",
+          "id": "dietaryReqOther",
+          "isMultiline": true
+        }
+      ]
+    },
+    {
       "id": "thePizza",
       "title": "The Pizza",
       "tocIcon": "local_pizza",
       "type": "Container",
       "separator": true,
-      "spacing": "large",
+      "spacing": "small",
       "items": [
         {
           "type": "TextBlock",
@@ -148,6 +164,7 @@
         {
           "type": "Container",
           "id": "savourySet",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -271,6 +288,7 @@
         {
           "type": "Container",
           "id": "sweetSet",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -335,26 +353,32 @@
           ]
         },
         {
-          "type": "TextBlock",
-          "size": "medium",
-          "text": "Would you like to collect your pizza or have it delivered?",
-          "wrap": true
-        },
-        {
-          "type": "Input.ChoiceSet",
-          "id": "deliveryOrCollection",
-          "value": "COLLECT",
-          "choices": [
+          "type": "Container",
+          "spacing": "small",
+          "items": [
             {
-              "title": "Collect",
-              "value": "COLLECT"
+              "type": "TextBlock",
+              "size": "medium",
+              "text": "Would you like to collect your pizza or have it delivered?",
+              "wrap": true
             },
             {
-              "title": "Deliver",
-              "value": "DELIVER"
+              "type": "Input.ChoiceSet",
+              "id": "deliveryOrCollection",
+              "value": "COLLECT",
+              "choices": [
+                {
+                  "title": "Collect",
+                  "value": "COLLECT"
+                },
+                {
+                  "title": "Deliver",
+                  "value": "DELIVER"
+                }
+              ],
+              "style": "expanded"
             }
-          ],
-          "style": "expanded"
+          ]
         }
       ]
     }
