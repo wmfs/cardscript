@@ -7,7 +7,7 @@
       "backgroundImage": "blue",
       "heading": "All done!",
       "subHeading": "We're all done here, we would really appreciate some feedback though!",
-      "textColour": "white"
+      "textColor": "white"
     },
     {
       "type": "Input.Toggle",

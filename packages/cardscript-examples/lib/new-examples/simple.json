@@ -8,7 +8,7 @@
       "wash": "white",
       "heading": "Register!",
       "subHeading": "Lets get to know each other a little better...",
-      "textColour": "white"
+      "textColor": "white"
     },
     {
       "type": "Input.Text",

@@ -7,7 +7,7 @@
       "backgroundImage": "wmfs/pizza",
       "heading": "Pizza Place",
       "subHeading": "This is an example of how sub-views work",
-      "textColour": "white"
+      "textColor": "white"
     },
     {
       "type": "TextBlock",
