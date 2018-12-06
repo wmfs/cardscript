@@ -1,5 +1,5 @@
 const builders = require('./builders')
-const { inspect } = require('util')
+// const { inspect } = require('util')
 const ONE_TAB = '  '
 const INDENT = '  '
 
@@ -24,8 +24,20 @@ module.exports = function extractDefaults (cardscript, options) {
       depth++
       element.items.forEach(parseElement)
       depth--
+      template += `${indent}</div>`
+    }
 
-      // close the container
+    if (element.type === 'ColumnSet') {
+      depth++
+      element.columns.forEach(parseElement)
+      depth--
+      template += `${indent}</div>`
+    }
+
+    if (element.type === 'FactSet') {
+      depth++
+      element.facts.forEach(parseElement)
+      depth--
       template += `${indent}</div>`
     }
   }

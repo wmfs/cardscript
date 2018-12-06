@@ -1,10 +1,9 @@
-const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
-
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
-  const builder = new ComponentBuilder(definition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: FactSet!')
-  return builder.compile()
+  let div = '<div'
+
+  if (definition.hasOwnProperty('showWhen')) div += ` v-if="${definition.showWhen}"`
+  if (definition.hasOwnProperty('id')) div += ` id="${definition.id}"`
+
+  div += '>'
+  return div
 }

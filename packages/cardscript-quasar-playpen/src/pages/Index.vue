@@ -464,7 +464,7 @@
       }
       stopwatch.addTime('Validate object')
       result.validatorOutput = validator(cardscript)
-      if (result.validatorOutput.widgetsValid) {
+      if (result.validatorOutput.elementsValid) {
         stopwatch.addTime('Extract default values')
         result.defaultValues = extractDefaults(cardscript)
         stopwatch.addTime('Extract TOC')
