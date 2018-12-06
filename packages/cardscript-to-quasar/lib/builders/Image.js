@@ -23,7 +23,7 @@ module.exports = function (definition, options) {
     size,
     style,
     url,
-    spacing,
+    spacing
     // separator
   } = definition
 
