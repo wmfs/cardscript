@@ -3,7 +3,9 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "Change me!"
+      "text": "Change me!",
+      "color": "attention",
+      "horizontalAlignment": "center"
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
