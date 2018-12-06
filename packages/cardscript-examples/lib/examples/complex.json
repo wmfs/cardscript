@@ -3,18 +3,20 @@
   "body": [
     {
       "type": "Container",
+      "spacing": "padding",
       "backgroundImage": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/quick_pepperoni_pizza_64616_16x9.jpg",
+      "style": "emphasis",
       "items": [
         {
           "type": "TextBlock",
           "size": "large",
-          "color": "light",
+          "color": "dark",
           "text": "Pizza Place"
         },
         {
           "type": "TextBlock",
           "size": "small",
-          "color": "light",
+          "color": "dark",
           "text": "This is an example view where you can order some imaginary pizza."
         }
       ]
@@ -25,6 +27,7 @@
       "tocIcon": "account_box",
       "type": "Container",
       "separator": true,
+      "spacing": "large",
       "items": [
         {
           "type": "TextBlock",
@@ -82,6 +85,7 @@
       "tocIcon": "local_pizza",
       "type": "Container",
       "separator": true,
+      "spacing": "large",
       "items": [
         {
           "type": "TextBlock",

@@ -57,7 +57,7 @@ module.exports = function (definition, options) {
   if (weight && WEIGHTS[weight]) classes.push(`text-weight-${WEIGHTS[weight]}`)
 
   if (spacing === 'padding') {
-    classes.push(`q-pt-md`)
+    classes.push(`q-pa-md`)
   } else if (spacing && MARGINS[spacing]) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
