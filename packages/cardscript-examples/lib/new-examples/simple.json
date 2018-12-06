@@ -1,1 +1,20 @@
-{}
+{
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Jumbotron",
+      "backgroundImage": "wmfs/happy-people.jpg",
+      "wash": "white",
+      "heading": "Register!",
+      "subHeading": "Lets get to know each other a little better...",
+      "textColour": "white"
+    },
+    {
+      "type": "Input.Text",
+      "id": "name",
+      "placeholder": "e.g. Lucy Smith",
+      "maxLength": "100"
+    }
+  ]
+}
