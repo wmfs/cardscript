@@ -25,7 +25,9 @@ describe('Run some Cardscript default-extracting tests', function () {
           size: 'M',
           hot: false,
           deliveryOrCollection: 'COLLECT',
-          sprinkles: false
+          sprinkles: false,
+          dietaryReq: [],
+          toppings: []
         }
       }
     )

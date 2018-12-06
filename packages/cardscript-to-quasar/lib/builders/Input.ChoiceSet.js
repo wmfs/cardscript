@@ -2,11 +2,9 @@ const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
   const {
-    // choices,
     id,
     isMultiSelect,
     style
-    // value,
     // spacing,
     // separator
   } = definition
