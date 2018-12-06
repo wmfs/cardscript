@@ -1,12 +1,41 @@
 const builders = require('./builders')
-const {inspect} = require('util')
+const { inspect } = require('util')
 const ONE_TAB = '  '
+const INDENT = '  '
 
 module.exports = function extractDefaults (cardscript, options) {
-  let indent = '  '
-  let quasarTemplate = '<div>\n'
+  let template = '<div>\n'
+  let depth = 0
 
-  if (cardscript.widgets) {
+  function parseElement (element) {
+    let indent = INDENT
+    for (let i = 0; i < depth; i++) {
+      indent += ONE_TAB
+    }
+
+    if (builders[element.type]) {
+      const lines = builders[element.type].conversionFunction(element, options)
+      template += `${indent}${lines}\n`
+    } else {
+      console.log(`Unknown type of builder: ${element.type}`)
+    }
+
+    if (element.type === 'Container') {
+      depth++
+      element.items.forEach(parseElement)
+      depth--
+
+      // close the container
+      template += `${indent}</div>`
+    }
+  }
+
+  if (cardscript.body) {
+    cardscript.body.forEach(parseElement)
+  }
+
+  /*
+   if (cardscript.widgets) {
     cardscript.widgets.forEach(widgetDefinition => {
       const widgetType = widgetDefinition.type
       const lines = builders[widgetType].conversionFunction(widgetDefinition, options)
@@ -15,7 +44,7 @@ module.exports = function extractDefaults (cardscript, options) {
         indent = indent.slice(ONE_TAB.length)
       }
 
-      quasarTemplate += `${indent}${lines}\n`
+      template += `${indent}${lines}\n`
       if (widgetType === 'set') {
         indent += ONE_TAB
       }
@@ -33,12 +62,11 @@ module.exports = function extractDefaults (cardscript, options) {
       }
 
       const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
-      quasarTemplate += `${indent}${btn}\n`
+      template += `${indent}${btn}\n`
     })
   }
+  */
 
-  quasarTemplate += '</div>'
-  return {
-    template: quasarTemplate
-  }
+  template += '</div>'
+  return { template }
 }

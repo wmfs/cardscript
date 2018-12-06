@@ -4,30 +4,30 @@
 const cardscriptToQuasar = require('./../lib/')
 const chai = require('chai')
 const expect = chai.expect
-const examples = require('cardscript-examples')
+const { simple, complex } = require('cardscript-examples')
 
 describe('Run some Cardscript-to-Quasar conversions', function () {
   it('should convert simple example', function () {
-    const quasarTemplate = cardscriptToQuasar(examples.simple)
+    const quasarTemplate = cardscriptToQuasar(simple)
     expect(quasarTemplate.template).to.be.a('string')
     console.log(quasarTemplate)
   })
 
   it('should convert complex example', function () {
-    const quasarTemplate = cardscriptToQuasar(examples.complex)
+    const quasarTemplate = cardscriptToQuasar(complex)
     expect(quasarTemplate.template).to.be.a('string')
     console.log(quasarTemplate)
   })
 
-  it('should convert kitchenSink example', function () {
-    const quasarTemplate = cardscriptToQuasar(examples.kitchenSink)
-    expect(quasarTemplate.template).to.be.a('string')
-    console.log(quasarTemplate)
-  })
-
-  it('should convert subView example', function () {
-    const quasarTemplate = cardscriptToQuasar(examples.subView)
-    expect(quasarTemplate.template).to.be.a('string')
-    console.log(quasarTemplate)
-  })
+  // it('should convert kitchenSink example', function () {
+  //   const quasarTemplate = cardscriptToQuasar(examples.kitchenSink)
+  //   expect(quasarTemplate.template).to.be.a('string')
+  //   console.log(quasarTemplate)
+  // })
+  //
+  // it('should convert subView example', function () {
+  //   const quasarTemplate = cardscriptToQuasar(examples.subView)
+  //   expect(quasarTemplate.template).to.be.a('string')
+  //   console.log(quasarTemplate)
+  // })
 })
