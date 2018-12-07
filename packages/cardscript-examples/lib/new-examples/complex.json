@@ -69,7 +69,7 @@
           "type": "Input.Text",
           "id": "otherReqs",
           "title": "Please enter your other dietary requirements",
-          "showWhen": "data.dietaryReqs.contains('OTHER')"
+          "showWhen": "data.dietaryReqs.includes('OTHER')"
         }
       ]
     },
@@ -352,19 +352,16 @@
           ]
         }
       ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Cancel",
+      "title": "Cancel"
     },
     {
-      "type": "ActionSet",
-      "actions": [
-        {
-          "type": "Action.Cancel",
-          "title": "Cancel"
-        },
-        {
-          "type": "Action.Submit",
-          "title": "Submit"
-        }
-      ]
+      "type": "Action.Submit",
+      "title": "Submit"
     }
   ]
 }
