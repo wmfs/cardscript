@@ -118,6 +118,95 @@
           "type": "Input.Date",
           "placeholder": "Input.Date",
           "spacing": "large"
+        },
+        {
+          "id": "time",
+          "type": "Input.Time",
+          "spacing": "large"
+        },
+        {
+          "id": "toggle",
+          "type": "Input.Toggle",
+          "spacing": "large",
+          "title": "Input.Toggle"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ChoiceSet (style: expanded)",
+          "spacing": "large"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "choice",
+          "spacing": "medium",
+          "value": "CHOICE_1",
+          "choices": [
+            {
+              "title": "Choice 1",
+              "value": "CHOICE_1"
+            },
+            {
+              "title": "Choice 2",
+              "value": "CHOICE_2"
+            },
+            {
+              "title": "Choice 3",
+              "value": "CHOICE_3"
+            }
+          ],
+          "style": "expanded"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ChoiceSet (style: compact)",
+          "spacing": "large"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "choice",
+          "spacing": "medium",
+          "value": "CHOICE_1",
+          "choices": [
+            {
+              "title": "Choice 1",
+              "value": "CHOICE_1"
+            },
+            {
+              "title": "Choice 2",
+              "value": "CHOICE_2"
+            },
+            {
+              "title": "Choice 3",
+              "value": "CHOICE_3"
+            }
+          ],
+          "style": "compact"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ChoiceSet (isMultiSelect: true)",
+          "spacing": "large"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "choiceMulti",
+          "spacing": "medium",
+          "value": "CHOICE_1,CHOICE_2",
+          "choices": [
+            {
+              "title": "Choice 1",
+              "value": "CHOICE_1"
+            },
+            {
+              "title": "Choice 2",
+              "value": "CHOICE_2"
+            },
+            {
+              "title": "Choice 3",
+              "value": "CHOICE_3"
+            }
+          ],
+          "isMultiSelect": true
         }
       ]
     }
