@@ -18,6 +18,8 @@
           "type": "TextBlock",
           "size": "small",
           "color": "light",
+          "weight": "lighter",
+          "spacing": "large",
           "text": "This is an example view where you can order some imaginary pizza."
         }
       ]
@@ -27,33 +29,36 @@
       "title": "Your Details",
       "tocIcon": "account_box",
       "type": "Container",
-      "separator": true,
       "spacing": "small",
       "items": [
         {
           "type": "TextBlock",
-          "size": "large",
+          "size": "extraLarge",
           "text": "Your Details"
         },
         {
           "type": "Input.Text",
           "id": "firstName",
-          "placeholder": "First Name"
+          "placeholder": "First Name",
+          "spacing": "large"
         },
         {
           "type": "Input.Text",
           "id": "lastName",
-          "placeholder": "Last Name"
+          "placeholder": "Last Name",
+          "spacing": "large"
         },
         {
           "type": "Input.Number",
           "id": "phoneNumber",
-          "placeholder": "Phone Number"
+          "placeholder": "Phone Number",
+          "spacing": "large"
         },
         {
           "type": "TextBlock",
           "size": "medium",
-          "text": "Dietary Requirements"
+          "text": "Dietary Requirements",
+          "spacing": "large"
         },
         {
           "type": "Input.ChoiceSet",
@@ -101,17 +106,17 @@
       "title": "The Pizza",
       "tocIcon": "local_pizza",
       "type": "Container",
-      "separator": true,
       "spacing": "small",
       "items": [
         {
           "type": "TextBlock",
-          "size": "large",
+          "size": "extraLarge",
           "text": "The Pizza"
         },
         {
           "type": "TextBlock",
           "size": "medium",
+          "spacing": "large",
           "text": "What size pizza?"
         },
         {
@@ -145,7 +150,8 @@
         {
           "type": "TextBlock",
           "size": "medium",
-          "text": "Would you like it savoury or sweet?"
+          "text": "Would you like it savoury or sweet?",
+          "spacing": "large"
         },
         {
           "type": "Input.ChoiceSet",
@@ -195,13 +201,14 @@
             {
               "type": "Input.Toggle",
               "id": "hot",
-              "spacing": "medium",
+              "spacing": "large",
               "title": "Do you like it hot?",
               "value": "false"
             },
             {
               "type": "TextBlock",
               "size": "medium",
+              "spacing": "large",
               "text": "How hot do you like it?",
               "showWhen": "data.hot"
             },
@@ -247,6 +254,7 @@
             {
               "type": "TextBlock",
               "size": "medium",
+              "spacing": "large",
               "text": "Select what toppings you would like (up to 3)"
             },
             {
@@ -327,6 +335,7 @@
             {
               "type": "TextBlock",
               "size": "medium",
+              "spacing": "large",
               "text": "What secondary flavour would you like?",
               "showWhen": "data.primary"
             },
@@ -358,37 +367,37 @@
               "showWhen": "data.secondary",
               "type": "Input.Toggle",
               "title": "Would you like hundreds and thousands sprinkles on your pizza?",
-              "value": "false"
+              "value": false,
+              "spacing": "large"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "medium",
+          "text": "Would you like to collect your pizza or have it delivered?",
+          "wrap": true
         },
         {
-          "type": "Container",
-          "spacing": "small",
-          "items": [
+          "type": "Input.ChoiceSet",
+          "id": "deliveryOrCollection",
+          "value": "COLLECT",
+          "choices": [
             {
-              "type": "TextBlock",
-              "size": "medium",
-              "text": "Would you like to collect your pizza or have it delivered?",
-              "wrap": true
+              "title": "Collect",
+              "value": "COLLECT"
             },
             {
-              "type": "Input.ChoiceSet",
-              "id": "deliveryOrCollection",
-              "value": "COLLECT",
-              "choices": [
-                {
-                  "title": "Collect",
-                  "value": "COLLECT"
-                },
-                {
-                  "title": "Deliver",
-                  "value": "DELIVER"
-                }
-              ],
-              "style": "expanded"
+              "title": "Deliver",
+              "value": "DELIVER"
             }
-          ]
+          ],
+          "style": "expanded"
         }
       ]
     }
