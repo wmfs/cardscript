@@ -18,7 +18,7 @@ const MARGINS = {
 module.exports = function (definition, options) {
   const {
     altText,
-    // horizontalAlignment,
+    horizontalAlignment,
     // selectAction,
     size,
     style,
@@ -39,6 +39,8 @@ module.exports = function (definition, options) {
   } else if (MARGINS[spacing]) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
+
+  if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
 
   if (classes.length > 0) div.addAttribute('class', classes.join(' '))
 

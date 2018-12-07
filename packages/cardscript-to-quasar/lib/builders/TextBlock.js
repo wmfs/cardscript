@@ -51,9 +51,7 @@ module.exports = function (definition, options) {
   const classes = []
   const styles = []
 
-  if (separator) {
-    styles.push(`border-top: 1px solid rgb(238, 238, 238); margin-top: 8px; padding-top: 8px;`)
-  }
+  if (separator) styles.push(`border-top: 1px solid rgb(238, 238, 238)`, `margin-top: 8px`, `padding-top: 8px`)
   if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
   if (color && COLORS[color]) classes.push(`text-${COLORS[color]}`)
   if (isSubtle) classes.push(`text-weight-light`)
@@ -65,9 +63,9 @@ module.exports = function (definition, options) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
 
-  if (size && SIZES[size]) styles.push(`font-size: ${SIZES[size]}px;`)
+  if (size && SIZES[size]) styles.push(`font-size: ${SIZES[size]}px`)
 
-  if (styles.length > 0) div.addAttribute('style', styles.join(' '))
+  if (styles.length > 0) div.addAttribute('style', styles.join('; '))
   if (classes.length > 0) div.addAttribute('class', classes.join(' '))
 
   div.content(text)
