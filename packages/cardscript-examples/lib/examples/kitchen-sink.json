@@ -68,12 +68,26 @@
           "type": "ColumnSet",
           "columns": [
             {
-              "type": "TextBlock",
-              "text": "col-1"
+              "type": "Column",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "col-1"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "col-1"
+                }
+              ]
             },
             {
-              "type": "TextBlock",
-              "text": "col-2"
+              "type": "Column",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "col-2"
+                }
+              ]
             }
           ]
         },
