@@ -1,10 +1,36 @@
 const ComponentBuilder = require('./../utils/Component-builder')
-// const GetAttribute = require('./../utils/Get-attribute')
+
+const MARGINS = {
+  small: 'sm',
+  medium: 'md',
+  large: 'lg',
+  extraLarge: 'xl'
+}
 
 module.exports = function (definition, options) {
-  // const getAttribute = GetAttribute(widgetDefinition)
+  const {
+    // max,
+    // min,
+    placeholder,
+    spacing
+    // separator
+  } = definition
+
   const builder = new ComponentBuilder(definition)
-  const pre = builder.addTag('pre')
-  pre.content('// TODO: Input.Date!')
+  const date = builder.addTag('q-datetime')
+  date.bindToModel(definition)
+  date.addAttribute('type', 'date')
+  if (placeholder) date.addAttribute('placeholder', placeholder)
+
+  const classes = []
+
+  if (spacing === 'padding') {
+    classes.push('q-pa-md')
+  } else if (MARGINS[spacing]) {
+    classes.push(`q-mt-${MARGINS[spacing]}`)
+  }
+
+  if (classes.length > 0) date.addAttribute('class', classes.join(' '))
+
   return builder.compile()
 }

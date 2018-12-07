@@ -38,7 +38,7 @@ module.exports = function (definition, options) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
 
-  input.addAttribute('class', classes.join(' '))
+  if (classes.length > 0) input.addAttribute('class', classes.join(' '))
 
   return builder.compile()
 }
