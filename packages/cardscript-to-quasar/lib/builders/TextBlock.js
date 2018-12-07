@@ -39,8 +39,8 @@ module.exports = function (definition, options) {
     weight,
     // wrap,
     id,
-    spacing
-    // separator
+    spacing,
+    separator
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -51,6 +51,10 @@ module.exports = function (definition, options) {
   const classes = []
   const styles = []
 
+  if (separator) {
+    styles.push(`border-top: 1px solid rgb(238, 238, 238);`)
+    classes.push(`q-pt-sm`, `q-mt-sm`)
+  }
   if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
   if (color && COLORS[color]) classes.push(`text-${COLORS[color]}`)
   if (isSubtle) classes.push(`text-weight-light`)
