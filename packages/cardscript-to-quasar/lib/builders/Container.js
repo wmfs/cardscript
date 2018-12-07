@@ -12,8 +12,8 @@ module.exports = function (definition, options) {
     // selectAction,
     style,
     // verticalContentAlignment,
-    spacing
-    // separator
+    spacing,
+    separator
   } = definition
 
   let card = '<q-card'
@@ -23,6 +23,9 @@ module.exports = function (definition, options) {
 
   // if (selectAction) card += ` @click=""`
   const classes = ['no-shadow']
+  const styles = []
+
+  if (separator) styles.push(`border-top: 1px solid rgb(238, 238, 238)`, `margin-top: 8px`, `padding-top: 8px`)
 
   if (style === 'emphasis') classes.push('bg-light')
 
@@ -40,13 +43,15 @@ module.exports = function (definition, options) {
     const whiteWash = 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5))'
 
     if (wash === 'black') {
-      card += ` style="background-image: ${blackWash}, ${url} !important;"`
+      styles.push(`background-image: ${blackWash}, ${url} !important`)
     } else if (wash === 'white') {
-      card += ` style="background-image: ${whiteWash}, ${url} !important;"`
+      styles.push(`background-image: ${whiteWash}, ${url} !important`)
     } else {
-      card += ` style="background-image: ${url} !important;"`
+      styles.push(`background-image: ${url} !important`)
     }
   }
+
+  if (styles.length > 0) card += ` style="${styles.join('; ')}"`
 
   card += '> <q-card-main>'
 

@@ -23,8 +23,8 @@ module.exports = function (definition, options) {
     size,
     style,
     url,
-    spacing
-    // separator
+    spacing,
+    separator
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -33,6 +33,9 @@ module.exports = function (definition, options) {
   const img = div.addChildTag('img')
 
   const classes = []
+  const styles = []
+
+  if (separator) styles.push(`border-top: 1px solid rgb(238, 238, 238)`, `margin-top: 8px`, `padding-top: 8px`)
 
   if (spacing === 'padding') {
     classes.push('q-pa-md')
@@ -48,7 +51,8 @@ module.exports = function (definition, options) {
   img.addAttribute('alt', altText || 'Image')
   img.addAttribute('width', SIZES[size] || '40px')
 
-  if (style === 'person') img.addAttribute('style', 'border-radius: 100%;')
+  if (style === 'person') styles.push(`border-radius: 100%`)
+  if (styles.length > 0) img.addAttribute('style', styles.join('; '))
 
   return builder.compile()
 }
