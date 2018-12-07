@@ -52,8 +52,7 @@ module.exports = function (definition, options) {
   const styles = []
 
   if (separator) {
-    styles.push(`border-top: 1px solid rgb(238, 238, 238);`)
-    classes.push(`q-pt-sm`, `q-mt-sm`)
+    styles.push(`border-top: 1px solid rgb(238, 238, 238); margin-top: 8px; padding-top: 8px;`)
   }
   if (['left', 'right', 'center'].includes(horizontalAlignment)) classes.push(`text-${horizontalAlignment}`)
   if (color && COLORS[color]) classes.push(`text-${COLORS[color]}`)
