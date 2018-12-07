@@ -104,7 +104,20 @@
         {
           "id": "text",
           "type": "Input.Text",
-          "placeholder": "Input.Text"
+          "placeholder": "Input.Text",
+          "spacing": "large"
+        },
+        {
+          "id": "number",
+          "type": "Input.Number",
+          "placeholder": "Input.Number",
+          "spacing": "large"
+        },
+        {
+          "id": "date",
+          "type": "Input.Date",
+          "placeholder": "Input.Date",
+          "spacing": "large"
         }
       ]
     }
