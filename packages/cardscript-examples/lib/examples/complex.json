@@ -195,6 +195,7 @@
             {
               "type": "Input.Toggle",
               "id": "hot",
+              "spacing": "medium",
               "title": "Do you like it hot?",
               "value": "false"
             },
@@ -326,7 +327,8 @@
             {
               "type": "TextBlock",
               "size": "medium",
-              "text": "What secondary flavour would you like?"
+              "text": "What secondary flavour would you like?",
+              "showWhen": "data.primary"
             },
             {
               "type": "Input.ChoiceSet",
