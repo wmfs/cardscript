@@ -6,7 +6,7 @@
   "body": [
     {
       "type": "Container",
-      "backgroundImage": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/quick_pepperoni_pizza_64616_16x9.jpg",
+      "backgroundImage": "wmfs/pizza.jpg",
       "items": [
         {
           "type": "TextBlock",
