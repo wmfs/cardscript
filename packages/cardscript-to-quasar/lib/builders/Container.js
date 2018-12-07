@@ -50,6 +50,5 @@ module.exports = function (definition, options) {
 
   card += '> <q-card-main>'
 
-  console.log('>>>', card)
   return card
 }
