@@ -47,7 +47,9 @@ module.exports = function extractDefaults (cardscript, options) {
   }
 
   if (cardscript.actions) {
+    template += `<div>`
     cardscript.actions.forEach(parseElement)
+    template += `</div>`
   }
 
   /*
