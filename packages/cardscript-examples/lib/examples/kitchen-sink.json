@@ -4,7 +4,9 @@
     {
       "type": "TextBlock",
       "text": "Card Elements",
-      "size": "large"
+      "size": "extraLarge",
+      "horizontalAlignment": "center",
+      "color": "accent"
     },
     {
       "type": "Container",
@@ -44,7 +46,9 @@
     {
       "type": "TextBlock",
       "text": "Containers",
-      "size": "large"
+      "size": "extraLarge",
+      "horizontalAlignment": "center",
+      "color": "accent"
     },
     {
       "type": "Container",
@@ -94,7 +98,9 @@
     {
       "type": "TextBlock",
       "text": "Inputs",
-      "size": "large"
+      "size": "extraLarge",
+      "horizontalAlignment": "center",
+      "color": "accent"
     },
     {
       "type": "Container",
