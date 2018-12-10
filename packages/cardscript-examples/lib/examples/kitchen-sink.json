@@ -77,6 +77,38 @@
       "items": [
         {
           "type": "TextBlock",
+          "text": "Tabs",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
+          "type": "TabSet",
+          "tabs": [
+            {
+              "type": "Tab",
+              "title": "Tab 1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Tab 1 Content"
+                }
+              ]
+            },
+            {
+              "type": "Tab",
+              "title": "Tab 2",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Tab 2 Content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
           "text": "Panel",
           "size": "medium",
           "spacing": "medium",

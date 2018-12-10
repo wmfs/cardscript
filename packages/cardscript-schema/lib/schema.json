@@ -235,6 +235,9 @@
               "$ref": "#/definitions/ColumnSet"
             },
             {
+              "$ref": "#/definitions/TabSet"
+            },
+            {
               "$ref": "#/definitions/FactSet"
             },
             {
@@ -305,6 +308,37 @@
         "expanded"
       ]
     },
+    "Tab": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Defines a container that is part of a TabSet.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Tab\"`.",
+          "enum": [
+            "Tab"
+          ]
+        },
+        "items": {
+          "description": "The card elements to include in the `Tab`.",
+          "$ref": "#/definitions/CardElements"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the `Tab`."
+        }
+      },
+      "required": [
+        "items",
+        "title"
+      ]
+    },
     "Column": {
       "additionalProperties": true,
       "type": "object",
@@ -357,6 +391,33 @@
       "required": [
         "items"
       ]
+    },
+    "TabSet": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "TabSet allows to display content through various tabs.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"TabSet\"`.",
+          "enum": [
+            "TabSet"
+          ]
+        },
+        "tabs": {
+          "type": "array",
+          "description": "The array of `Tabs` to divide content.",
+          "items": {
+            "$ref": "#/definitions/Tab"
+          }
+        }
+      },
+      "required": ["type"]
     },
     "ColumnSet": {
       "additionalProperties": true,

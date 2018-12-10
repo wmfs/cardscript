@@ -7,14 +7,14 @@ module.exports = function extractDefaults (cardscript, options) {
   let template = '<div>\n'
   let depth = 0
 
-  function parseElement (element) {
+  function parseElement (element, idx) {
     let indent = INDENT
     for (let i = 0; i < depth; i++) {
       indent += ONE_TAB
     }
 
     if (builders[element.type]) {
-      const lines = builders[element.type].conversionFunction(element, options)
+      const lines = builders[element.type].conversionFunction(element, options, idx)
       template += `${indent}${lines}\n`
     } else {
       console.log(`Unknown type of builder: ${element.type}`)
@@ -39,6 +39,20 @@ module.exports = function extractDefaults (cardscript, options) {
       element.columns.forEach(parseElement)
       depth--
       template += `${indent}</div>`
+    }
+
+    if (element.type === 'TabSet') {
+      depth++
+      element.tabs.forEach(parseElement)
+      depth--
+      template += `${indent}</q-tabs>`
+    }
+
+    if (element.type === 'Tab') {
+      depth++
+      element.items.forEach(parseElement)
+      depth--
+      template += `${indent}</q-tab-pane>`
     }
 
     if (element.type === 'Collapsible') {
