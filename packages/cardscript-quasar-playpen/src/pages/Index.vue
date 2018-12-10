@@ -100,7 +100,7 @@
                 <q-card class="q-mt-md q-mb-xl">
                   <q-card-main>
                     <cardscript :content="dynamicContent" @OpenURL="onOpenURL" @Submit="onSubmit"
-                                @ShowView="onShowView"/>
+                                @ShowCard="onShowCard"/>
                   </q-card-main>
                 </q-card>
 
@@ -345,30 +345,30 @@
       onOpenURL (payload) {
         openURL(payload.config.url)
       },
-      onShowView (payload) {
-        console.log('show view', payload)
+      onShowCard (payload) {
+        console.log('show card', payload)
         this.$q.notify({
-          message: 'Going to the other view.',
+          message: 'Going to the other card.',
           type: 'positive',
           position: 'top'
         })
       },
       onSubmit (payload, that) {
         console.log('submit', payload)
-        that.$v.data.$touch()
-        if (that.$v.data.$error) {
-          this.$q.notify({
-            message: 'Please review fields again.',
-            type: 'warning',
-            position: 'top'
-          })
-        } else {
-          this.$q.notify({
-            message: 'Your data has been submitted.',
-            type: 'positive',
-            position: 'top'
-          })
-        }
+        // that.$v.data.$touch()
+        // if (that.$v.data.$error) {
+        //   this.$q.notify({
+        //     message: 'Please review fields again.',
+        //     type: 'warning',
+        //     position: 'top'
+        //   })
+        // } else {
+        //   this.$q.notify({
+        //     message: 'Your data has been submitted.',
+        //     type: 'positive',
+        //     position: 'top'
+        //   })
+        // }
       },
       goGithub () {
         openURL('https://github.com/wmfs/cardscript')

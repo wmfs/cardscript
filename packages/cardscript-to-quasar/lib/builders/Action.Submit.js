@@ -2,12 +2,16 @@ const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
   const {
-    title
+    title,
     // iconUrl
-    // data
+    data
   } = definition
+
   const builder = new ComponentBuilder(definition)
+
   const button = builder.addTag('q-btn')
   button.addAttribute('label', title)
+  button.addAttribute('@click', `action('Submit', { data: ${JSON.stringify(data || {})} } )`)
+
   return builder.compile()
 }

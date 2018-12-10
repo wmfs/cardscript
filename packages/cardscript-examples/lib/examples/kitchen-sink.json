@@ -250,6 +250,10 @@
           "type": "Action.OpenUrl",
           "title": "Action.OpenUrl",
           "url": "https://github.com/wmfs/cardscript"
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Action.Submit"
         }
       ]
     }
