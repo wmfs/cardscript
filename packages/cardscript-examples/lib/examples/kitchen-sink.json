@@ -233,6 +233,25 @@
           "isMultiSelect": true
         }
       ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Actions",
+      "size": "extraLarge",
+      "horizontalAlignment": "center",
+      "color": "accent"
+    },
+    {
+      "type": "Container",
+      "id": "actions",
+      "title": "Actions",
+      "items": [
+        {
+          "type": "Action.OpenUrl",
+          "title": "Action.OpenUrl",
+          "url": "https://github.com/wmfs/cardscript"
+        }
+      ]
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

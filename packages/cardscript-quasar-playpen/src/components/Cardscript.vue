@@ -4,6 +4,8 @@
   </div>
 </template>
 <script>
+import { openURL } from 'quasar'
+
 export default {
   name: 'Cardscript',
   props: ['content'],
@@ -25,6 +27,7 @@ export default {
           }
         },
         methods: {
+          openURL,
           createNewSubView (subViewId) {
             const subViewDefaultValues = JSON.parse(JSON.stringify(this.internals.subViewDefaults[subViewId]))
             this.internals.currentSubViewData[subViewId] = subViewDefaultValues
