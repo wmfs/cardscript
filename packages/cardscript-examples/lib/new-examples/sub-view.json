@@ -10,195 +10,152 @@
       "textColor": "white"
     },
     {
-      "type": "TextBlock",
-      "text": "Starters!",
-      "size": "large"
-    },
-    {
-      "type": "TextBlock",
-      "text": "Pick some things to start...",
-      "size": "small"
-    },
-    {
-      "type": "TextBlock",
-      "text": "You'll be wanting x of y"
+      "type": "CardList",
+      "heading": "Starters!",
+      "instanceHeadingTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
+      "instanceDescTemplate": "You'll be wanting {{item.starterQuantity}} of these.",
+      "subHeading": "Pick something to start...",
+      "buttonText": "ADD A STARTER!",
+      "card": {
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [
+          {
+            "type": "TextBlock",
+            "text": "Starter",
+            "size": "large",
+            "isSubtle": "true"
+          },
+          {
+            "type": "Input.ChoiceSet",
+            "title": "Starter",
+            "id": "starter",
+            "choices": [
+              {
+                "type": "Input.Choice",
+                "title": "Wedges",
+                "value": "WEDGES"
+              },
+              {
+                "type": "Input.Choice",
+                "title": "Chicken Wings",
+                "value": "CHICKEN_WINGS"
+              }
+            ]
+          },
+          {
+            "type": "Input.Number",
+            "id": "quantity",
+            "placeholder": "Quantity",
+            "value": "2"
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.Cancel",
+            "title": "Close"
+          },
+          {
+            "type": "Action.Submit",
+            "title": "Save"
+          }
+        ]
+      }
     },
     {
       "type": "CardList",
-      "title": "ADD A STARTER!",
-      "cards": [
-        {
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-            {
-              "type": "TextBlock",
-              "text": "Starter",
-              "size": "large",
-              "isSubtle": "true"
-            },
-            {
-              "type": "Input.ChoiceSet",
-              "title": "Starter",
-              "id": "starter",
-              "choices": [
+      "heading": "Pizza!",
+      "instanceHeadingTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
+      "instanceDescTemplate": "You'll be wanting {{item.pizzaQuantity}} of these.",
+      "subHeading": "The main event...",
+      "buttonText": "ADD A PIZZA!",
+      "card": {
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [
+          {
+            "type": "TextBlock",
+            "text": "Pizza",
+            "size": "large",
+            "isSubtle": "true"
+          },
+          {
+            "type": "Input.ChoiceSet",
+            "title": "Pizza",
+            "id":"pizza",
+            "choices": [
+              {
+                "type": "Input.Choice",
+                "title": "The Hawaiian",
+                "value": "HAWAIIAN"
+              },
+              {
+                "type": "Input.Choice",
+                "title": "Pepperoni",
+                "value": "PEPPERONI"
+              },
+              {
+                "type": "Input.Choice",
+                "title": "The Veggie",
+                "value": "VEGGIE"
+              }
+            ]
+          },
+          {
+            "type": "Input.Number",
+            "id": "quantity",
+            "placeholder": "Quantity",
+            "value": "1"
+          },
+          {
+            "type": "TextBlock",
+            "text": "Dips!",
+            "size": "large",
+            "isSubtle": "true"
+          },
+          {
+            "type": "TextBlock",
+            "text": "Something to dunk those crusts into",
+            "size": "small",
+            "isSubtle": "true"
+          },
+          {
+            "type": "CardList",
+            "heading": "Dips!",
+            "subHeading": "Something to dunk those crusts into?",
+            "buttonText": "ADD A DIP!",
+            "card": {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
                 {
-                  "type": "Input.Choice",
-                  "title": "Wedges",
-                  "value": "WEDGES"
+                  "type": "TextBlock",
+                  "text": "Dip",
+                  "size": "large",
+                  "isSubtle": "true"
                 },
                 {
-                  "type": "Input.Choice",
-                  "title": "Chicken Wings",
-                  "value": "CHICKEN_WINGS"
-                }
-              ]
-            },
-            {
-              "type": "Input.Number",
-              "id": "quantity",
-              "placeholder": "Quantity",
-              "value": "2"
-            },
-            {
-              "type": "ActionSet",
-              "actions": [
-                {
-                  "type": "Action.Cancel",
-                  "title": "Close"
-                },
-                {
-                  "type": "Action.Submit",
-                  "title": "Save"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "TextBlock",
-      "text": "Pizza!",
-      "size": "large"
-    },
-    {
-      "type": "TextBlock",
-      "text": "The main event...",
-      "size": "small"
-    },
-    {
-      "type": "TextBlock",
-      "text": "You'll be wanting x of y"
-    },
-    {
-      "type": "CardList",
-      "title": "ADD A PIZZA!",
-      "cards": [
-        {
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-            {
-              "type": "TextBlock",
-              "text": "Pizza",
-              "size": "large",
-              "isSubtle": "true"
-            },
-            {
-              "type": "Input.ChoiceSet",
-              "title": "Pizza",
-              "id":"pizza",
-              "choices": [
-                {
-                  "type": "Input.Choice",
-                  "title": "The Hawaiian",
-                  "value": "HAWAIIAN"
-                },
-                {
-                  "type": "Input.Choice",
-                  "title": "Pepperoni",
-                  "value": "PEPPERONI"
-                },
-                {
-                  "type": "Input.Choice",
-                  "title": "The Veggie",
-                  "value": "VEGGIE"
-                }
-              ]
-            },
-            {
-              "type": "Input.Number",
-              "id": "quantity",
-              "placeholder": "Quantity",
-              "value": "1"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Dips!",
-              "size": "large",
-              "isSubtle": "true"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Something to dunk those crusts into",
-              "size": "small",
-              "isSubtle": "true"
-            },
-            {
-              "type": "CardList",
-              "title": "ADD A DIP!",
-              "cards": [
-                {
-                  "type": "AdaptiveCard",
-                  "version": "1.0",
-                  "body": [
+                  "type": "Input.ChoiceSet",
+                  "id": "dip",
+                  "choices": [
                     {
-                      "type": "TextBlock",
-                      "text": "Dip",
-                      "size": "large",
-                      "isSubtle": "true"
+                      "type": "Input.Choice",
+                      "title": "Barbecue",
+                      "value": "BARBECUE"
                     },
                     {
-                      "type": "Input.ChoiceSet",
-                      "id": "dip",
-                      "choices": [
-                        {
-                          "type": "Input.Choice",
-                          "title": "Barbecue",
-                          "value": "BARBECUE"
-                        },
-                        {
-                          "type": "Input.Choice",
-                          "title": "Ranch Dressing",
-                          "value": "RANCH_DRESSING"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Input.Number",
-                      "id": "quantity",
-                      "value": "3"
-                    },
-                    {
-                      "type": "ActionSet",
-                      "actions": [
-                        {
-                          "type": "Action.Cancel",
-                          "title": "Close"
-                        },
-                        {
-                          "type": "Action.Submit",
-                          "title": "Save"
-                        }
-                      ]
+                      "type": "Input.Choice",
+                      "title": "Ranch Dressing",
+                      "value": "RANCH_DRESSING"
                     }
                   ]
+                },
+                {
+                  "type": "Input.Number",
+                  "id": "quantity",
+                  "value": "3"
                 }
-              ]
-            },
-            {
-              "type": "ActionSet",
+              ],
               "actions": [
                 {
                   "type": "Action.Cancel",
@@ -210,9 +167,19 @@
                 }
               ]
             }
-          ]
-        }
-      ]
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.Cancel",
+            "title": "Close"
+          },
+          {
+            "type": "Action.Submit",
+            "title": "Save"
+          }
+        ]
+      }
     }
   ]
 }
