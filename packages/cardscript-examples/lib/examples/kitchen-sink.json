@@ -129,6 +129,7 @@
         {
           "type": "Container",
           "color": "good",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -139,6 +140,7 @@
         {
           "type": "Container",
           "color": "warning",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -149,6 +151,7 @@
         {
           "type": "Container",
           "color": "attention",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -159,6 +162,7 @@
         {
           "type": "Container",
           "color": "light",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
@@ -169,6 +173,7 @@
         {
           "type": "Container",
           "color": "dark",
+          "spacing": "small",
           "items": [
             {
               "type": "TextBlock",
