@@ -20,36 +20,40 @@ module.exports = function (definition, options) {
     ? `internals.currentCardViewData.${parentCardView}.${id}`
     : `data.${id}`
 
-  const list = builder.addTag('q-list')
-  list.addAttribute(':no-border', true)
-  list.addAttribute(':link', true)
+  if (instanceTitleTemplate) {
+    const list = builder.addTag('q-list')
+    list.addAttribute(':no-border', true)
+    list.addAttribute(':link', true)
 
-  const item = list.addChildTag('q-item')
-  item.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
-  item.addAttribute(':key', '$idx')
+    const item = list.addChildTag('q-item')
+    item.addAttribute('v-for', `(item, $idx) in ${arrayPath}`)
+    item.addAttribute(':key', '$idx')
 
-  const itemSideIcon = item.addChildTag('q-item-side')
-  itemSideIcon.addAttribute('icon', 'note')
+    const itemSideIcon = item.addChildTag('q-item-side')
+    itemSideIcon.addAttribute('icon', 'note')
 
-  const itemMain = item.addChildTag('q-item-main')
+    const itemMain = item.addChildTag('q-item-main')
 
-  const label = itemMain.addChildTag('q-item-tile')
-  label.addAttribute(':label', true)
-  label.content(instanceTitleTemplate || '')
+    const label = itemMain.addChildTag('q-item-tile')
+    label.addAttribute(':label', true)
+    label.content(instanceTitleTemplate || '')
 
-  const sublabel = itemMain.addChildTag('q-item-tile')
-  sublabel.addAttribute(':sublabel', true)
-  sublabel.content(instanceSubtitleTemplate || '')
+    if (instanceSubtitleTemplate) {
+      const sublabel = itemMain.addChildTag('q-item-tile')
+      sublabel.addAttribute(':sublabel', true)
+      sublabel.content(instanceSubtitleTemplate || '')
+    }
 
-  const itemSideAction = item.addChildTag('q-item-side')
-  itemSideAction.addAttribute(':right', true)
+    const itemSideAction = item.addChildTag('q-item-side')
+    itemSideAction.addAttribute(':right', true)
 
-  const itemSideActionBtn = itemSideAction.addChildTag('q-btn')
-  itemSideActionBtn.addAttribute(':flat', true)
-  itemSideActionBtn.addAttribute(':round', true)
-  itemSideActionBtn.addAttribute(':dense', true)
-  itemSideActionBtn.addAttribute('icon', 'delete_forever')
-  itemSideActionBtn.addAttribute('@click', `removeCardViewContent('${id}', $idx)`)
+    const itemSideActionBtn = itemSideAction.addChildTag('q-btn')
+    itemSideActionBtn.addAttribute(':flat', true)
+    itemSideActionBtn.addAttribute(':round', true)
+    itemSideActionBtn.addAttribute(':dense', true)
+    itemSideActionBtn.addAttribute('icon', 'delete_forever')
+    itemSideActionBtn.addAttribute('@click', `removeCardViewContent('${id}', $idx)`)
+  }
 
   const btn = builder.addTag('q-btn')
   btn.addAttribute('color', 'primary')
