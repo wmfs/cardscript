@@ -60,6 +60,31 @@
         },
         {
           "type": "Media"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Table",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "Add some rows by using the CardView example below.",
+          "size": "small",
+          "spacing": "medium"
+        },
+        {
+          "type": "Table",
+          "title": "Contacts",
+          "arrayPath": "cardView",
+          "columns": [
+            {
+              "title": "Opinion",
+              "field": "opinion"
+            }
+          ],
+          "resultLimit": 5
         }
       ]
     },

@@ -223,6 +223,9 @@
               "$ref": "#/definitions/TextBlock"
             },
             {
+              "$ref": "#/definitions/Table"
+            },
+            {
               "$ref": "#/definitions/Media"
             },
             {
@@ -1030,6 +1033,63 @@
         "type",
         "id",
         "title"
+      ]
+    },
+    "Table": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Displays text, allowing control over font sizes, weight, and color.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Table\"`.",
+          "enum": [
+            "Table"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Title displayed for the `Table`."
+        },
+        "arrayPath": {
+          "type": "string",
+          "description": "Points to the array of data to be displayed."
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Title displayed for the column."
+              },
+              "field": {
+                "type": "string",
+                "description": "Points to the data to be displayed in the column."
+              }
+            },
+            "required": [
+              "title",
+              "field"
+            ]
+          }
+        },
+        "resultLimit": {
+          "type": "integer",
+          "description": "Limit the results per page.",
+          "default": 10
+        }
+      },
+      "required": [
+        "type",
+        "arrayPath",
+        "columns"
       ]
     },
     "TextBlock": {
