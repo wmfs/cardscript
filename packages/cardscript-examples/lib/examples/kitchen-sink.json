@@ -85,6 +85,7 @@
         {
           "id": "cardView",
           "type": "CardView",
+          "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
           "title": "Click me!",
           "card": {
             "type": "AdaptiveCard",
