@@ -10,7 +10,7 @@
       "textColor": "white"
     },
     {
-      "type": "CardList",
+      "type": "CardView",
       "heading": "Starters!",
       "instanceHeadingTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
       "instanceDescTemplate": "You'll be wanting {{item.starterQuantity}} of these.",
@@ -63,7 +63,7 @@
       }
     },
     {
-      "type": "CardList",
+      "type": "CardView",
       "heading": "Pizza!",
       "instanceHeadingTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
       "instanceDescTemplate": "You'll be wanting {{item.pizzaQuantity}} of these.",
@@ -120,7 +120,7 @@
             "isSubtle": "true"
           },
           {
-            "type": "CardList",
+            "type": "CardView",
             "heading": "Dips!",
             "subHeading": "Something to dunk those crusts into?",
             "buttonText": "ADD A DIP!",

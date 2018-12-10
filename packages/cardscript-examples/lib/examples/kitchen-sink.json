@@ -77,6 +77,33 @@
       "items": [
         {
           "type": "TextBlock",
+          "text": "CardView",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
+          "id": "cardView",
+          "type": "CardView",
+          "title": "Click me!",
+          "card": {
+            "type": "AdaptiveCard",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "What do you think?"
+              },
+              {
+                "id": "opinion",
+                "type": "Input.Text",
+                "spacing": "large",
+                "default": "Amazing!"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TextBlock",
           "text": "Collapsible",
           "size": "medium",
           "spacing": "medium",

@@ -28,24 +28,24 @@ export default {
         },
         methods: {
           openURL,
-          createNewSubView (subViewId) {
-            const subViewDefaultValues = JSON.parse(JSON.stringify(this.internals.subViewDefaults[subViewId]))
-            this.internals.currentSubViewData[subViewId] = subViewDefaultValues
-            this.internals.dialogControl[subViewId] = true
+          createNewCardView (cardViewId) {
+            const cardViewDefaultValues = JSON.parse(JSON.stringify(this.internals.cardViewDefaults[cardViewId]))
+            this.internals.currentCardViewData[cardViewId] = cardViewDefaultValues
+            this.internals.dialogControl[cardViewId] = true
           },
-          pushSubViewContent (subViewId) {
-            const parentSubViewId = this.internals.subViewParents[subViewId]
-            const clone = JSON.parse(JSON.stringify(this.internals.currentSubViewData[subViewId]))
+          pushCardViewContent (cardViewId) {
+            const parentCardViewId = this.internals.cardViewParents[cardViewId]
+            const clone = JSON.parse(JSON.stringify(this.internals.currentCardViewData[cardViewId]))
 
-            if (parentSubViewId === null) {
-              this.data[subViewId].push(clone)
+            if (parentCardViewId === null) {
+              this.data[cardViewId].push(clone)
             } else {
-              this.internals.currentSubViewData[parentSubViewId][subViewId].push(clone)
+              this.internals.currentCardViewData[parentCardViewId][cardViewId].push(clone)
             }
-            this.internals.dialogControl[subViewId] = false
+            this.internals.dialogControl[cardViewId] = false
           },
-          removeSubViewContent (subViewId, index) {
-            alert(`REMOVE index ${index} from ${subViewId}`)
+          removeCardViewContent (cardViewId, index) {
+            alert(`REMOVE index ${index} from ${cardViewId}`)
           },
           action (type, config) {
             that.$emit(type, config, this)

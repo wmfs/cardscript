@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const subViewTracker = require('./sub-view-tracker')
+const cardViewTracker = require('./card-view-tracker')
 
 class TagNode {
   constructor (name, providedOptions) {
@@ -38,18 +38,16 @@ class TagNode {
     }
   }
 
-  bindToModel (widgetDefinition, modifier) {
+  bindToModel (element, modifier) {
     let attributeName = 'v-model'
-    if (modifier) {
-      attributeName += `.${modifier}`
-    }
+    if (modifier) attributeName += `.${modifier}`
 
     let dataPath
-    if (subViewTracker.insideASubView()) {
-      const subViewId = subViewTracker.getCurrentSubView()
-      dataPath = `internals.currentSubViewData.${subViewId}.${widgetDefinition.id}`
+    if (cardViewTracker.insideACardView()) {
+      const cardViewId = cardViewTracker.getCurrentCardView()
+      dataPath = `internals.currentCardViewData.${cardViewId}.${element.id}`
     } else {
-      dataPath = 'data.' + widgetDefinition.id
+      dataPath = 'data.' + element.id
     }
     this.addAttribute(attributeName, dataPath)
   }
@@ -62,10 +60,10 @@ class TagNode {
 }
 
 module.exports = class ComponentBuilder {
-  constructor (widgetDefiniton, providedOptions) {
+  constructor (element, providedOptions) {
     this.rootTags = []
-    if (widgetDefiniton) {
-      this.showWhen = widgetDefiniton.showWhen
+    if (element) {
+      this.showWhen = element.showWhen
     }
   }
 

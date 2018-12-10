@@ -263,6 +263,9 @@
             },
             {
               "$ref": "#/definitions/Collapsible"
+            },
+            {
+              "$ref": "#/definitions/CardView"
             }
           ]
         }
@@ -1137,6 +1140,37 @@
         }
       },
       "required": [
+        "type",
+        "title",
+        "card"
+      ]
+    },
+    "CardView": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "A container which opens a modal when clicked on to show a card.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique identifier associated with the element."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"CardView\"`.",
+          "enum": [
+            "CardView"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Text to be displayed as label of button."
+        },
+        "card": {
+          "$ref": "#/definitions/AdaptiveCard"
+        }
+      },
+      "required": [
+        "id",
         "type",
         "title",
         "card"

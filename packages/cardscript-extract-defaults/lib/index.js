@@ -1,12 +1,13 @@
 module.exports = function extractDefaults (cardscript) {
+  const cardViewPath = []
   const defaultValues = {
-    rootView: {}
+    rootView: {},
+    cardViews: {}
   }
 
   function parseElement (element) {
     switch (element.type) {
       case 'Container':
-        // Container replaces set
         element.items.forEach(parseElement)
         break
       case 'ColumnSet':
@@ -15,34 +16,67 @@ module.exports = function extractDefaults (cardscript) {
       case 'FactSet':
         element.facts.forEach(parseElement)
         break
-      case 'CardList':
-        // CardList replaces subView
-        console.log('CardList')
+      case 'Collapsible':
+        element.card.body.forEach(parseElement)
+        break
+      case 'CardView':
+        cardViewPath.push(element.id)
+        defaultValues.cardViews[element.id] = {}
+        element.card.body.forEach(parseElement)
+        cardViewPath.pop()
         break
       case 'Column':
         element.items.forEach(parseElement)
         break
       case 'Input.Text':
+      case 'Input.Number':
         if (element.default) {
-          defaultValues.rootView[element.id] = element.default
+          if (cardViewPath.length === 0) {
+            defaultValues.rootView[element.id] = element.default
+          } else {
+            const cardViewId = cardViewPath[cardViewPath.length - 1]
+            defaultValues.cardViews[cardViewId][element.id] = element.default
+          }
         }
         break
       case 'Input.Toggle':
-        if (element.value === 'false') {
-          defaultValues.rootView[element.id] = false
-        } else if (element.value === 'true') {
-          defaultValues.rootView[element.id] = true
-        } else if (element.value) {
-          defaultValues.rootView[element.id] = element.value
+        if (cardViewPath.length === 0) {
+          if (element.value === 'false') {
+            defaultValues.rootView[element.id] = false
+          } else if (element.value === 'true') {
+            defaultValues.rootView[element.id] = true
+          } else if (element.value) {
+            defaultValues.rootView[element.id] = element.value
+          } else {
+            defaultValues.rootView[element.id] = false
+          }
         } else {
-          defaultValues.rootView[element.id] = false
+          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          if (element.value === 'false') {
+            defaultValues.cardViews[cardViewId][element.id] = false
+          } else if (element.value === 'true') {
+            defaultValues.cardViews[cardViewId][element.id] = true
+          } else if (element.value) {
+            defaultValues.cardViews[cardViewId][element.id] = element.value
+          } else {
+            defaultValues.cardViews[cardViewId][element.id] = false
+          }
         }
         break
       case 'Input.ChoiceSet':
-        if (element.isMultiSelect) {
-          defaultValues.rootView[element.id] = element.value ? element.value.split(',') : []
-        } else if (element.value) {
-          defaultValues.rootView[element.id] = element.value
+        if (cardViewPath.length === 0) {
+          if (element.isMultiSelect) {
+            defaultValues.rootView[element.id] = element.value ? element.value.split(',') : []
+          } else if (element.value) {
+            defaultValues.rootView[element.id] = element.value
+          }
+        } else {
+          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          if (element.isMultiSelect) {
+            defaultValues.cardViews[cardViewId][element.id] = element.value ? element.value.split(',') : []
+          } else if (element.value) {
+            defaultValues.cardViews[cardViewId][element.id] = element.value
+          }
         }
         break
     }
@@ -51,49 +85,4 @@ module.exports = function extractDefaults (cardscript) {
   cardscript.body.forEach(parseElement)
 
   return defaultValues
-
-  // const subViewPath = []
-  // const defaultValues = {
-  //   rootView: {},
-  //   subViews: {}
-  // }
-  //
-  // function addDefault (key, defaultValue) {
-  //   if (defaultValue !== undefined) {
-  //     if (subViewPath.length === 0) {
-  //       defaultValues.rootView[key] = defaultValue
-  //     } else {
-  //       const subViewId = subViewPath[subViewPath.length - 1]
-  //       defaultValues.subViews[subViewId][key] = defaultValue
-  //     }
-  //   }
-  // }
-  //
-  // cardscript.widgets.forEach(widget => {
-  //   let defaultValue
-  //   switch (widget.type) {
-  //     case 'subView':
-  //       addDefault(widget.id, [])
-  //       defaultValues.subViews[widget.id] = {}
-  //       subViewPath.push(widget.id)
-  //       break
-  //
-  //     case 'endSubView':
-  //       subViewPath.pop()
-  //       break
-  //
-  //     default:
-  //       defaultValue = widgetTypeDefaults[widget.type]
-  //       if (widget.hasOwnProperty('attributes')) {
-  //         if (widget.attributes.hasOwnProperty('default')) {
-  //           defaultValue = widget.attributes.default
-  //         }
-  //       }
-  //
-  //       addDefault(widget.id, defaultValue)
-  //       break
-  //   }
-  // })
-  //
-  // return defaultValues
 }

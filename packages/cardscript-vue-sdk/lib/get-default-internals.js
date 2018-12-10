@@ -1,31 +1,44 @@
 export default function getDefaultInternals (cardscript) {
   const internals = {
     dialogControl: {},
-    currentSubViewData: {},
-    subViewParents: {}
+    currentCardViewData: {},
+    cardViewParents: {}
   }
 
-  if (cardscript.hasOwnProperty('widgets')) {
-    let subViewPath = []
-    cardscript.widgets.forEach(
-      function (widget) {
-        switch (widget.type) {
-          case 'subView':
-            internals.dialogControl[widget.id] = false
-            internals.currentSubViewData[widget.id] = {}
-            if (subViewPath.length === 0) {
-              internals.subViewParents[widget.id] = null
-              subViewPath.push(widget.id)
-            } else {
-              internals.subViewParents[widget.id] = subViewPath[subViewPath.length - 1]
-              subViewPath.push(widget.id)
-            }
-            break
-          case 'endSubView':
-            subViewPath.pop()
+  let cardViewPath = []
+  cardscript.body.forEach(parseElement)
+
+  function parseElement (element) {
+    switch (element.type) {
+      case 'CardView':
+        internals.dialogControl[element.id] = false
+        internals.currentCardViewData[element.id] = {}
+        if (cardViewPath.length === 0) {
+          internals.cardViewParents[element.id] = null
+          cardViewPath.push(element.id)
+        } else {
+          internals.cardViewParents[element.id] = cardViewPath[cardViewPath.length - 1]
+          cardViewPath.push(element.id)
         }
-      }
-    )
+        element.card.body.forEach(parseElement)
+        cardViewPath.pop()
+        break
+      case 'Container':
+        element.items.forEach(parseElement)
+        break
+      case 'ColumnSet':
+        element.columns.forEach(parseElement)
+        break
+      case 'FactSet':
+        element.facts.forEach(parseElement)
+        break
+      case 'Collapsible':
+        element.card.body.forEach(parseElement)
+        break
+      case 'Column':
+        element.items.forEach(parseElement)
+        break
+    }
   }
 
   return internals

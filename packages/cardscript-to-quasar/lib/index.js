@@ -47,6 +47,13 @@ module.exports = function extractDefaults (cardscript, options) {
       depth--
       template += `</div></q-collapsible>`
     }
+
+    if (element.type === 'CardView') {
+      depth++
+      element.card.body.forEach(parseElement)
+      parseElement({ type: 'EndCardView' })
+      depth--
+    }
   }
 
   if (cardscript.body) {

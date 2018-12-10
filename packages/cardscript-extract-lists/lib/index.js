@@ -6,7 +6,6 @@ module.exports = function (cardscript) {
   function parseElement (element) {
     switch (element.type) {
       case 'Container':
-        // Container replaces set
         element.items.forEach(parseElement)
         break
       case 'ColumnSet':
@@ -15,9 +14,8 @@ module.exports = function (cardscript) {
       case 'FactSet':
         element.facts.forEach(parseElement)
         break
-      case 'CardList':
-        // CardList replaces subView
-        console.log('CardList')
+      case 'CardView':
+        element.card.body.forEach(parseElement)
         break
       case 'Column':
         element.items.forEach(parseElement)

@@ -326,7 +326,7 @@
         exampleOpts: [
           {label: 'Complex example', value: 'complex'},
           {label: 'Expression example', value: 'expression'},
-          {label: 'Sub-view example', value: 'subView'},
+          {label: 'Card View example', value: 'cardView'},
           {label: 'Simple example', value: 'simple'},
           {label: 'Basic problems example', value: 'simpleFormWithBasicProblems'},
           {label: 'Blank example', value: 'blank'},
@@ -473,7 +473,7 @@
         result.lists = extractLists(cardscript)
         stopwatch.addTime('Calculate starting internals')
         result.defaultInternals = sdk.getDefaultInternals.default(cardscript)
-        result.defaultInternals.subViewDefaults = result.defaultValues.subViews
+        result.defaultInternals.cardViewDefaults = result.defaultValues.cardViews
         stopwatch.addTime('Generating Vuelidate validations')
         result.validations = vuelidateConverter(cardscript, validators)
         stopwatch.addTime('Generate template')

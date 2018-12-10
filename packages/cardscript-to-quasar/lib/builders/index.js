@@ -1,4 +1,6 @@
 module.exports = {
+  CardView: { conversionFunction: require('./CardView') },
+  EndCardView: { conversionFunction: require('./EndCardView') },
   Collapsible: { conversionFunction: require('./Collapsible') },
   Container: { conversionFunction: require('./Container') },
   TextBlock: { conversionFunction: require('./TextBlock') },
