@@ -76,7 +76,17 @@
       "title": "Containers",
       "items": [
         {
-          "type": "Collapsible"
+          "type": "Collapsible",
+          "title": "Click me!",
+          "card": {
+            "type": "AdaptiveCard",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "What do you think?"
+              }
+            ]
+          }
         },
         {
           "type": "TextBlock",

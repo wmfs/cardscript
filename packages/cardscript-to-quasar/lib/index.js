@@ -40,6 +40,13 @@ module.exports = function extractDefaults (cardscript, options) {
       depth--
       template += `${indent}</div>`
     }
+
+    if (element.type === 'Collapsible') {
+      depth++
+      element.card.body.forEach(parseElement)
+      depth--
+      template += `</div></q-collapsible>`
+    }
   }
 
   if (cardscript.body) {
