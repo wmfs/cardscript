@@ -15,7 +15,7 @@
       "text": "This is a TextBlock",
       "wrap": "true",
       "id": "textBlock",
-      "spacing": "2pt",
+      "spacing": "medium",
       "separator": "true"
     },
     {
@@ -34,7 +34,7 @@
       "size": "stretch",
       "url": "http://adaptivecards.io/content/cats/1.png",
       "id": "image",
-      "spacing": "2pt",
+      "spacing": "medium",
       "separator": "true"
     },
     {
@@ -52,7 +52,7 @@
       "poster": "http://adaptivecards.io/content/cats/1.png",
       "altText": "altText",
       "id": "media",
-      "spacing": "2pt",
+      "spacing": "medium",
       "separator": "true"
     },
     {
@@ -71,7 +71,7 @@
           "url": "http://adaptivecards.io/content/cats/1.png"
         }
       ],
-      "spacing": "2pt",
+      "spacing": "medium",
       "separator": "true"
     },
     {
@@ -121,7 +121,7 @@
           ]
         }
       ],
-      "spacing": "2pt",
+      "spacing": "medium",
       "separator": "true"
     },
     {
