@@ -35,11 +35,11 @@ module.exports = function (definition, options) {
 
   const label = itemMain.addChildTag('q-item-tile')
   label.addAttribute(':label', true)
-  label.content(instanceHeadingTemplate)
+  label.content(instanceHeadingTemplate || '')
 
   const sublabel = itemMain.addChildTag('q-item-tile')
   sublabel.addAttribute(':sublabel', true)
-  sublabel.content(instanceDescTemplate)
+  sublabel.content(instanceDescTemplate || '')
 
   const itemSideAction = item.addChildTag('q-item-side')
   itemSideAction.addAttribute(':right', true)
