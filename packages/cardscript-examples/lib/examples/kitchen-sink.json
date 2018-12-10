@@ -17,7 +17,8 @@
           "type": "TextBlock",
           "text": "TextBlock",
           "size": "medium",
-          "spacing": "medium"
+          "spacing": "medium",
+          "separator": true
         },
         {
           "type": "TextBlock",
@@ -27,7 +28,8 @@
           "type": "TextBlock",
           "text": "Image",
           "size": "medium",
-          "spacing": "medium"
+          "spacing": "medium",
+          "separator": true
         },
         {
           "type": "Image",
@@ -39,7 +41,8 @@
           "type": "TextBlock",
           "text": "Media",
           "size": "medium",
-          "spacing": "medium"
+          "spacing": "medium",
+          "separator": true
         },
         {
           "type": "Media"
@@ -62,7 +65,8 @@
           "type": "TextBlock",
           "text": "ColumnSet",
           "size": "medium",
-          "spacing": "medium"
+          "spacing": "medium",
+          "separator": true
         },
         {
           "type": "ColumnSet",
@@ -95,7 +99,8 @@
           "type": "TextBlock",
           "text": "FactSet",
           "size": "medium",
-          "spacing": "medium"
+          "spacing": "medium",
+          "separator": true
         },
         {
           "type": "FactSet",

@@ -21,7 +21,8 @@
         {
           "type": "TextBlock",
           "text": "Name",
-          "wrap": true
+          "wrap": true,
+          "separator": true
         },
         {
           "type": "Input.Text",
