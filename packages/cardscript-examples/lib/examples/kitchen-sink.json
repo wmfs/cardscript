@@ -15,6 +15,20 @@
       "items": [
         {
           "type": "TextBlock",
+          "text": "Jumbotron",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/pizza.jpg",
+          "title": "Title",
+          "subtitle": "Subtitle",
+          "wash": "black"
+        },
+        {
+          "type": "TextBlock",
           "text": "TextBlock",
           "size": "medium",
           "spacing": "medium",
@@ -61,6 +75,9 @@
       "id": "containers",
       "title": "Containers",
       "items": [
+        {
+          "type": "Collapsible"
+        },
         {
           "type": "TextBlock",
           "text": "ColumnSet",

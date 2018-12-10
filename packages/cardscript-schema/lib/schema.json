@@ -253,6 +253,9 @@
             },
             {
               "$ref": "#/definitions/Jumbotron"
+            },
+            {
+              "$ref": "#/definitions/Collapsible"
             }
           ]
         }
@@ -929,41 +932,6 @@
         "title"
       ]
     },
-    "Jumbotron": {
-      "additionalProperties": true,
-      "type": "object",
-      "description": "An element typically placed at the top of a card to describe its purpose.",
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "Must be `\"Jumbotron\"`.",
-          "enum": [
-            "Jumbotron"
-          ]
-        },
-        "title": {
-          "type": "string",
-          "description": "Text to be displayed as heading of Jumbotron."
-        },
-        "subtitle": {
-          "type": "string",
-          "description": "Text to be displayed as subheading of Jumbotron."
-        },
-        "wash": {
-          "type": "string",
-          "enum": [
-            "white",
-            "black"
-          ],
-          "description": "Type of wash to have over the background of Jumbotron."
-        },
-        "backgroundImage": {
-          "type": "string",
-          "description": "Relative URL to image to be displayed as background of Jumbotron."
-        }
-      },
-      "required": ["title"]
-    },
     "TextBlock": {
       "additionalProperties": true,
       "type": "object",
@@ -1086,6 +1054,56 @@
         "url",
         "email"
       ]
+    },
+    "Jumbotron": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "An element typically placed at the top of a card to describe its purpose.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Jumbotron\"`.",
+          "enum": [
+            "Jumbotron"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Text to be displayed as heading."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Text to be displayed as subheading."
+        },
+        "wash": {
+          "type": "string",
+          "enum": [
+            "white",
+            "black"
+          ],
+          "description": "Type of wash to have over the background."
+        },
+        "backgroundImage": {
+          "type": "string",
+          "description": "Relative URL to image to be displayed as background."
+        }
+      },
+      "required": ["type", "title"]
+    },
+    "Collapsible": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Collapsible\"`.",
+          "enum": [
+            "Collapsible"
+          ]
+        }
+      },
+      "required": []
     }
   }
 }

@@ -1,4 +1,5 @@
 module.exports = {
+  Collapsible: { conversionFunction: require('./Collapsible') },
   Container: { conversionFunction: require('./Container') },
   TextBlock: { conversionFunction: require('./TextBlock') },
   Image: { conversionFunction: require('./Image') },
