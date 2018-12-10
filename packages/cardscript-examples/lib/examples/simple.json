@@ -7,16 +7,11 @@
       "type": "Container",
       "items": [
         {
-          "type": "TextBlock",
-          "text": "Register!",
-          "weight": "bolder",
-          "size": "medium"
-        },
-        {
-          "type": "TextBlock",
-          "text": "Let's get to know each other a bit better...",
-          "isSubtle": true,
-          "wrap": true
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/happy-people.jpg",
+          "title": "Register!",
+          "subtitle": "Let's get to know each other a bit better...",
+          "wash": "black"
         },
         {
           "type": "TextBlock",

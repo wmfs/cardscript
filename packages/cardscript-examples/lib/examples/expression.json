@@ -2,19 +2,20 @@
   "type": "AdaptiveCard",
   "body": [
     {
-      "type": "TextBlock",
-      "text": "All done!"
+      "type": "Jumbotron",
+      "backgroundImage": "wmfs/happy-people.jpg",
+      "title": "All done!",
+      "subtitle": "We're all done here, we would really appreciate some feedback though!",
+      "wash": "black"
     },
     {
-      "type": "TextBlock",
-      "text": "We're all done here, we would really appreciate some feedback though!"
-    },
-    {
+      "spacing": "large",
       "id": "userWantsToGiveFeedback",
       "type": "Input.Toggle",
       "title": "I would like to leave some feedback"
     },
     {
+      "spacing": "large",
       "id": "feedback",
       "showWhen": "data.userWantsToGiveFeedback === true",
       "type": "Input.Text",
