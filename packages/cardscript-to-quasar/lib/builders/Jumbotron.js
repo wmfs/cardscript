@@ -1,16 +1,8 @@
 const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
-  const {
-    title
-    // iconUrl
-    // card
-  } = definition
-
   const builder = new ComponentBuilder(definition)
-
-  const button = builder.addTag('q-btn')
-  button.addAttribute('label', title)
-
+  const pre = builder.addTag('pre')
+  pre.content('// TODO: Jumbotron!')
   return builder.compile()
 }

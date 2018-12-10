@@ -8,6 +8,7 @@ module.exports = {
   Column: { conversionFunction: require('./Column') },
   FactSet: { conversionFunction: require('./FactSet') },
   ImageSet: { conversionFunction: require('./ImageSet') },
+  Jumbotron: { conversionFunction: require('./Jumbotron') },
   'Action.OpenUrl': { conversionFunction: require('./Action.OpenUrl') },
   'Action.Submit': { conversionFunction: require('./Action.Submit') },
   'Action.ShowCard': { conversionFunction: require('./Action.ShowCard') },

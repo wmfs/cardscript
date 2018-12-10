@@ -250,6 +250,9 @@
             },
             {
               "$ref": "#/definitions/Input.ChoiceSet"
+            },
+            {
+              "$ref": "#/definitions/Jumbotron"
             }
           ]
         }
@@ -925,6 +928,21 @@
         "id",
         "title"
       ]
+    },
+    "Jumbotron": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Jumbotron\"`.",
+          "enum": [
+            "Jumbotron"
+          ]
+        }
+      },
+      "required": []
     },
     "TextBlock": {
       "additionalProperties": true,
