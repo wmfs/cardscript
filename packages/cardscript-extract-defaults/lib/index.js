@@ -20,6 +20,12 @@ module.exports = function extractDefaults (cardscript) {
         element.card.body.forEach(parseElement)
         break
       case 'CardView':
+        if (cardViewPath.length === 0) {
+          defaultValues.rootView[element.id] = []
+        } else {
+          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          defaultValues.cardViews[cardViewId][element.id] = []
+        }
         cardViewPath.push(element.id)
         defaultValues.cardViews[element.id] = {}
         element.card.body.forEach(parseElement)

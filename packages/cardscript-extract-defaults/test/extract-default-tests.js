@@ -39,6 +39,7 @@ describe('Run some Cardscript default-extracting tests', function () {
     const result = extractDefaults(kitchenSink)
     expect(result).to.eql({
       rootView: {
+        cardView: [],
         toggle: false,
         choice: 'CHOICE_1',
         choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ]
@@ -54,13 +55,17 @@ describe('Run some Cardscript default-extracting tests', function () {
   it('should extract some defaults from cardView example', function () {
     const result = extractDefaults(cardView)
     expect(result).to.eql({
-      rootView: {},
+      rootView: {
+        starters: [],
+        pizzas: []
+      },
       cardViews: {
         starters: {
           starterQuantity: 2
         },
         pizzas: {
-          pizzaQuantity: 1
+          pizzaQuantity: 1,
+          dips: []
         },
         dips: {
           dipQuantity: 3
