@@ -1170,11 +1170,11 @@
         },
         "instanceTitleTemplate": {
           "type": "string",
-          "description": "	A handlebars-like template for conjuring a title per instance."
+          "description": "A handlebars-like template for conjuring a title per instance."
         },
         "instanceSubtitleTemplate": {
           "type": "string",
-          "description": "	A handlebars-like template for conjuring a subtitle per instance."
+          "description": "A handlebars-like template for conjuring a subtitle per instance."
         }
       },
       "required": [
