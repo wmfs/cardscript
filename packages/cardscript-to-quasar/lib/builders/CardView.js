@@ -2,7 +2,7 @@ const cardViewTracker = require('./../utils/card-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
-  const parentCardView = cardViewTracker.getCurrentCardView()
+  // const parentCardView = cardViewTracker.getCurrentCardView()
   cardViewTracker.addCardView(definition.id)
 
   const { id, title } = definition
