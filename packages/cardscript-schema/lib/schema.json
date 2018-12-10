@@ -932,7 +932,7 @@
     "Jumbotron": {
       "additionalProperties": true,
       "type": "object",
-      "description": "",
+      "description": "An element typically placed at the top of a card to describe its purpose.",
       "properties": {
         "type": {
           "type": "string",
@@ -940,9 +940,29 @@
           "enum": [
             "Jumbotron"
           ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Text to be displayed as heading of Jumbotron."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Text to be displayed as subheading of Jumbotron."
+        },
+        "wash": {
+          "type": "string",
+          "enum": [
+            "white",
+            "black"
+          ],
+          "description": "Type of wash to have over the background of Jumbotron."
+        },
+        "backgroundImage": {
+          "type": "string",
+          "description": "Relative URL to image to be displayed as background of Jumbotron."
         }
       },
-      "required": []
+      "required": ["title"]
     },
     "TextBlock": {
       "additionalProperties": true,

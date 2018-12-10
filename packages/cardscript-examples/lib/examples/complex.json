@@ -2,27 +2,11 @@
   "type": "AdaptiveCard",
   "body": [
     {
-      "type": "Container",
-      "spacing": "padding",
+      "type": "Jumbotron",
       "backgroundImage": "wmfs/pizza.jpg",
-      "wash": "black",
-      "style": "emphasis",
-      "items": [
-        {
-          "type": "TextBlock",
-          "size": "large",
-          "color": "light",
-          "text": "Pizza Place"
-        },
-        {
-          "type": "TextBlock",
-          "size": "small",
-          "color": "light",
-          "weight": "lighter",
-          "spacing": "large",
-          "text": "This is an example view where you can order some imaginary pizza."
-        }
-      ]
+      "title": "Pizza Place",
+      "subtitle": "This is an example view where you can order some imaginary pizza.",
+      "wash": "black"
     },
     {
       "id": "yourDetails",
