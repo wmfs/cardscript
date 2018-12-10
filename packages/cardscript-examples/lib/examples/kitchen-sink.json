@@ -1,143 +1,121 @@
 {
   "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0",
   "body": [
     {
-      "type": "TextBlock",
-      "text": "Card Elements",
-      "size": "extraLarge",
-      "horizontalAlignment": "center",
-      "color": "accent"
-    },
-    {
       "type": "Container",
-      "id": "cardElements",
-      "title": "Card Elements",
+      "id": "cardView",
+      "title": "CardView",
       "items": [
         {
           "type": "TextBlock",
-          "text": "Jumbotron",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "Jumbotron",
-          "backgroundImage": "wmfs/pizza.jpg",
-          "title": "Title",
-          "subtitle": "Subtitle",
-          "wash": "black"
-        },
-        {
-          "type": "TextBlock",
-          "text": "TextBlock",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "TextBlock",
-          "text": "Change me!"
-        },
-        {
-          "type": "TextBlock",
-          "text": "Image",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "Image",
-          "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+          "text": "CardView",
           "size": "large",
-          "spacing": "large"
-        },
-        {
-          "type": "TextBlock",
-          "text": "Media",
-          "size": "medium",
-          "spacing": "medium",
+          "spacing": "large",
           "separator": true
         },
         {
-          "type": "Media"
-        },
-        {
-          "type": "TextBlock",
-          "text": "Table",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "TextBlock",
-          "text": "Add some rows by using the CardView example below.",
-          "size": "small",
-          "spacing": "medium"
-        },
-        {
-          "type": "Table",
-          "title": "Contacts",
-          "arrayPath": "cardView",
-          "columns": [
-            {
-              "title": "Opinion",
-              "field": "opinion"
-            }
-          ],
-          "resultLimit": 5
+          "id": "cardView",
+          "type": "CardView",
+          "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
+          "title": "Click me!",
+          "card": {
+            "type": "AdaptiveCard",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "What do you think?"
+              },
+              {
+                "id": "opinion",
+                "type": "Input.Text",
+                "spacing": "large",
+                "default": "Amazing!"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "type": "TextBlock",
-      "text": "Containers",
-      "size": "extraLarge",
-      "horizontalAlignment": "center",
-      "color": "accent"
-    },
-    {
       "type": "Container",
-      "id": "containers",
-      "title": "Containers",
+      "id": "collapsible",
+      "title": "Collapsible",
       "items": [
         {
           "type": "TextBlock",
-          "text": "Tabs",
-          "size": "medium",
-          "spacing": "medium",
+          "text": "Collapsible",
+          "size": "large",
+          "spacing": "large",
           "separator": true
         },
         {
-          "type": "TabSet",
+          "type": "Collapsible",
+          "title": "Click me!",
+          "card": {
+            "type": "AdaptiveCard",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "Hello!"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "columnSet",
+      "title": "ColumnSet",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "ColumnSet",
+          "size": "large",
           "spacing": "large",
-          "tabs": [
+          "separator": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
             {
-              "type": "Tab",
-              "title": "Tab 1",
+              "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Tab 1 Content"
+                  "text": "col-1"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "col-1"
                 }
               ]
             },
             {
-              "type": "Tab",
-              "title": "Tab 2",
+              "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Tab 2 Content"
+                  "text": "col-2"
                 }
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "container",
+      "title": "Container",
+      "items": [
         {
           "type": "TextBlock",
-          "text": "Panel",
-          "size": "medium",
-          "spacing": "medium",
+          "text": "Container",
+          "size": "large",
+          "spacing": "large",
           "separator": true
         },
         {
@@ -205,94 +183,19 @@
               "text": "Dark!"
             }
           ]
-        },
-        {
-          "type": "TextBlock",
-          "text": "CardView",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "id": "cardView",
-          "type": "CardView",
-          "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
-          "title": "Click me!",
-          "card": {
-            "type": "AdaptiveCard",
-            "body": [
-              {
-                "type": "TextBlock",
-                "text": "What do you think?"
-              },
-              {
-                "id": "opinion",
-                "type": "Input.Text",
-                "spacing": "large",
-                "default": "Amazing!"
-              }
-            ]
-          }
-        },
-        {
-          "type": "TextBlock",
-          "text": "Collapsible",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "Collapsible",
-          "title": "Click me!",
-          "card": {
-            "type": "AdaptiveCard",
-            "body": [
-              {
-                "type": "TextBlock",
-                "text": "What do you think?"
-              }
-            ]
-          }
-        },
-        {
-          "type": "TextBlock",
-          "text": "ColumnSet",
-          "size": "medium",
-          "spacing": "medium",
-          "separator": true
-        },
-        {
-          "type": "ColumnSet",
-          "columns": [
-            {
-              "type": "Column",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "col-1"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "col-1"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "col-2"
-                }
-              ]
-            }
-          ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "factSet",
+      "title": "FactSet",
+      "items": [
         {
           "type": "TextBlock",
           "text": "FactSet",
-          "size": "medium",
-          "spacing": "medium",
+          "size": "large",
+          "spacing": "large",
           "separator": true
         },
         {
@@ -311,46 +214,53 @@
       ]
     },
     {
-      "type": "TextBlock",
-      "text": "Inputs",
-      "size": "extraLarge",
-      "horizontalAlignment": "center",
-      "color": "accent"
+      "type": "Container",
+      "id": "image",
+      "title": "Image",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Image",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Image",
+          "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+          "size": "large",
+          "spacing": "large"
+        }
+      ]
     },
     {
       "type": "Container",
-      "id": "inputs",
-      "title": "Inputs",
+      "id": "imageSet",
+      "title": "ImageSet",
       "items": [
         {
-          "id": "text",
-          "type": "Input.Text",
-          "placeholder": "Input.Text",
-          "spacing": "large"
-        },
-        {
-          "id": "number",
-          "type": "Input.Number",
-          "placeholder": "Input.Number",
-          "spacing": "large"
-        },
-        {
-          "id": "date",
-          "type": "Input.Date",
-          "placeholder": "Input.Date",
-          "spacing": "large"
-        },
-        {
-          "id": "time",
-          "type": "Input.Time",
-          "placeholder": "Input.Time",
-          "spacing": "large"
-        },
-        {
-          "id": "toggle",
-          "type": "Input.Toggle",
+          "type": "TextBlock",
+          "text": "ImageSet",
+          "size": "large",
           "spacing": "large",
-          "title": "Input.Toggle"
+          "separator": true
+        },
+        {
+          "type": "ImageSet"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputChoiceSet",
+      "title": "Input.ChoiceSet",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.ChoiceSet",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
         },
         {
           "type": "TextBlock",
@@ -433,29 +343,244 @@
       ]
     },
     {
-      "type": "TextBlock",
-      "text": "Actions",
-      "size": "extraLarge",
-      "horizontalAlignment": "center",
-      "color": "accent"
+      "type": "Container",
+      "id": "inputDate",
+      "title": "Input.Date",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Date",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "date",
+          "type": "Input.Date",
+          "placeholder": "Input.Date",
+          "spacing": "medium"
+        }
+      ]
     },
     {
       "type": "Container",
-      "id": "actions",
-      "title": "Actions",
+      "id": "inputNumber",
+      "title": "Input.Number",
       "items": [
         {
-          "type": "Action.OpenUrl",
-          "title": "Action.OpenUrl",
-          "url": "https://github.com/wmfs/cardscript"
+          "type": "TextBlock",
+          "text": "Input.Number",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
         },
         {
-          "type": "Action.Submit",
-          "title": "Action.Submit"
+          "id": "number",
+          "type": "Input.Number",
+          "placeholder": "Input.Number",
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputText",
+      "title": "Input.Text",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Text",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "text",
+          "type": "Input.Text",
+          "placeholder": "Input.Text",
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputTime",
+      "title": "Input.Time",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Time",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "time",
+          "type": "Input.Time",
+          "placeholder": "Input.Time",
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputToggle",
+      "title": "Input.Toggle",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Toggle",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "toggle",
+          "type": "Input.Toggle",
+          "spacing": "medium",
+          "title": "Input.Toggle"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "jumbotron",
+      "title": "Jumbotron",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Jumbotron",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/pizza.jpg",
+          "title": "Title",
+          "subtitle": "Subtitle",
+          "wash": "black"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "media",
+      "title": "Media",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Media",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Media"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "media",
+      "title": "MediaSource",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "MediaSource",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "MediaSource"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "table",
+      "title": "Table",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Table",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Table",
+          "title": "Opinions (Add some via CardView example above to see them appear in Table here)",
+          "arrayPath": "cardView",
+          "columns": [
+            {
+              "title": "Opinion",
+              "field": "opinion"
+            }
+          ],
+          "resultLimit": 5
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "tabset",
+      "title": "TabSet",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "TabSet",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "TabSet",
+          "spacing": "large",
+          "tabs": [
+            {
+              "type": "Tab",
+              "title": "Tab 1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Tab 1 Content"
+                }
+              ]
+            },
+            {
+              "type": "Tab",
+              "title": "Tab 2",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Tab 2 Content"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "textBlock",
+      "title": "TextBlock",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "TextBlock",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "This is a block of text!",
+          "color": "accent"
         }
       ]
     }
-  ],
-  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "version": "1.0"
+  ]
 }
