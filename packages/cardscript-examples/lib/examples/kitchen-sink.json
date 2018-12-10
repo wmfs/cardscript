@@ -84,6 +84,7 @@
         },
         {
           "type": "TabSet",
+          "spacing": "large",
           "tabs": [
             {
               "type": "Tab",
