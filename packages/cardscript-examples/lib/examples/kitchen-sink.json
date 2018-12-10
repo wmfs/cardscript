@@ -76,6 +76,13 @@
       "title": "Containers",
       "items": [
         {
+          "type": "TextBlock",
+          "text": "Collapsible",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
           "type": "Collapsible",
           "title": "Click me!",
           "card": {
