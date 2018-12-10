@@ -5,6 +5,17 @@ const MARGINS = {
   extraLarge: 'xl'
 }
 
+const COLORS = {
+  accent: 'primary',
+  good: 'positive',
+  warning: 'warning',
+  attention: 'negative',
+  light: 'light',
+  dark: 'dark'
+}
+
+const TEXT_WHITE = ['accent', 'good', 'attention', 'dark']
+
 module.exports = function (definition, options) {
   const {
     backgroundImage,
@@ -13,7 +24,8 @@ module.exports = function (definition, options) {
     style,
     // verticalContentAlignment,
     spacing,
-    separator
+    separator,
+    color
   } = definition
 
   let card = '<q-card'
@@ -25,9 +37,16 @@ module.exports = function (definition, options) {
   const classes = ['no-shadow']
   const styles = []
 
-  if (separator) styles.push(`border-top: 1px solid rgb(238, 238, 238)`, `margin-top: 8px`, `padding-top: 8px`)
+  if (color) {
+    classes.push(`bg-${COLORS[color]}`)
+    if (TEXT_WHITE.includes(color)) {
+      classes.push(`text-white`)
+    }
+  } else if (style === 'emphasis') {
+    classes.push('bg-light')
+  }
 
-  if (style === 'emphasis') classes.push('bg-light')
+  if (separator) styles.push(`border-top: 1px solid rgb(238, 238, 238)`, `margin-top: 8px`, `padding-top: 8px`)
 
   if (spacing === 'padding') {
     classes.push('q-pa-md')

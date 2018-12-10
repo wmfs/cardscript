@@ -77,6 +77,74 @@
       "items": [
         {
           "type": "TextBlock",
+          "text": "Panel",
+          "size": "medium",
+          "spacing": "medium",
+          "separator": true
+        },
+        {
+          "type": "Container",
+          "color": "accent",
+          "spacing": "large",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Accent!"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "color": "good",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Good!"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "color": "warning",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Warning!"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "color": "attention",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Attention!"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "color": "light",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Light!"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "color": "dark",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Dark!"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
           "text": "CardView",
           "size": "medium",
           "spacing": "medium",

@@ -416,6 +416,19 @@
             "Container"
           ]
         },
+        "color": {
+          "type": "string",
+          "description": "Controls the color of the Container.",
+          "enum": [
+            "default",
+            "dark",
+            "light",
+            "accent",
+            "good",
+            "warning",
+            "attention"
+          ]
+        },
         "items": {
           "description": "The card elements to render inside the `Container`.",
           "$ref": "#/definitions/CardElements"
