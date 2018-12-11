@@ -1,6 +1,41 @@
+const dottie = require('dottie')
 const builders = require('./builders')
 const ONE_TAB = '  '
 const INDENT = '  '
+const CONTAINERS = {
+  Container: {
+    endTemplate: '</q-card-main></q-card>',
+    arrayPath: 'items'
+  },
+  Column: {
+    endTemplate: '</div>',
+    arrayPath: 'items'
+  },
+  ColumnSet: {
+    endTemplate: '</div>',
+    arrayPath: 'columns'
+  },
+  TabSet: {
+    endTemplate: '</q-tabs>',
+    arrayPath: 'tabs'
+  },
+  Tab: {
+    endTemplate: '</q-tab-pane>',
+    arrayPath: 'items'
+  },
+  Collapsible: {
+    endTemplate: '</q-collapsible>',
+    arrayPath: 'card.body'
+  },
+  ActionSet: {
+    endTemplate: '</q-btn-group>',
+    arrayPath: 'actions'
+  },
+  ImageSet: {
+    endTemplate: '</div>',
+    arrayPath: 'images'
+  }
+}
 
 module.exports = function extractDefaults (cardscript, options) {
   let template = '<div>\n'
@@ -20,45 +55,10 @@ module.exports = function extractDefaults (cardscript, options) {
       console.log(`Unknown type of builder: ${element.type}`)
     }
 
-    if (element.type === 'Container') {
+    if (Object.keys(CONTAINERS).includes(element.type)) {
       depth++
-      element.items.forEach(parseElement)
-      template += `${indent}</q-card-main></q-card>`
-      depth--
-    }
-
-    if (element.type === 'Column') {
-      depth++
-      element.items.forEach(parseElement)
-      template += `${indent}</div>`
-      depth--
-    }
-
-    if (element.type === 'ColumnSet') {
-      depth++
-      element.columns.forEach(parseElement)
-      template += `${indent}</div>`
-      depth--
-    }
-
-    if (element.type === 'TabSet') {
-      depth++
-      element.tabs.forEach(parseElement)
-      template += `${indent}</q-tabs>`
-      depth--
-    }
-
-    if (element.type === 'Tab') {
-      depth++
-      element.items.forEach(parseElement)
-      template += `${indent}</q-tab-pane>`
-      depth--
-    }
-
-    if (element.type === 'Collapsible') {
-      depth++
-      element.card.body.forEach(parseElement)
-      template += `</div></q-collapsible>`
+      dottie.get(element, CONTAINERS[element.type].arrayPath).forEach(parseElement)
+      template += `${indent}${CONTAINERS[element.type].endTemplate}`
       depth--
     }
 
@@ -66,20 +66,6 @@ module.exports = function extractDefaults (cardscript, options) {
       depth++
       element.card.body.forEach(parseElement)
       parseElement({ type: 'EndCardView' })
-      depth--
-    }
-
-    if (element.type === 'ActionSet') {
-      depth++
-      element.actions.forEach(parseElement)
-      template += `</q-btn-group>`
-      depth--
-    }
-
-    if (element.type === 'ImageSet') {
-      depth++
-      element.images.forEach(parseElement)
-      template += `</div>`
       depth--
     }
   }
