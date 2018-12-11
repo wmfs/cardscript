@@ -8,6 +8,7 @@ module.exports = function extractDefaults (cardscript, options) {
 
   function parseElement (element, idx) {
     let indent = INDENT
+
     for (let i = 0; i < depth; i++) {
       indent += ONE_TAB
     }
@@ -22,43 +23,43 @@ module.exports = function extractDefaults (cardscript, options) {
     if (element.type === 'Container') {
       depth++
       element.items.forEach(parseElement)
-      depth--
       template += `${indent}</q-card-main></q-card>`
+      depth--
     }
 
     if (element.type === 'Column') {
       depth++
       element.items.forEach(parseElement)
-      depth--
       template += `${indent}</div>`
+      depth--
     }
 
     if (element.type === 'ColumnSet') {
       depth++
       element.columns.forEach(parseElement)
-      depth--
       template += `${indent}</div>`
+      depth--
     }
 
     if (element.type === 'TabSet') {
       depth++
       element.tabs.forEach(parseElement)
-      depth--
       template += `${indent}</q-tabs>`
+      depth--
     }
 
     if (element.type === 'Tab') {
       depth++
       element.items.forEach(parseElement)
-      depth--
       template += `${indent}</q-tab-pane>`
+      depth--
     }
 
     if (element.type === 'Collapsible') {
       depth++
       element.card.body.forEach(parseElement)
-      depth--
       template += `</div></q-collapsible>`
+      depth--
     }
 
     if (element.type === 'CardView') {
@@ -71,8 +72,8 @@ module.exports = function extractDefaults (cardscript, options) {
     if (element.type === 'ActionSet') {
       depth++
       element.actions.forEach(parseElement)
-      depth--
       template += `</q-btn-group>`
+      depth--
     }
   }
 
