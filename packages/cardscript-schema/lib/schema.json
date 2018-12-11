@@ -54,6 +54,12 @@
         },
         {
           "$ref": "#/definitions/Action.OpenUrl"
+        },
+        {
+          "$ref": "#/definitions/Action.Cancel"
+        },
+        {
+          "$ref": "#/definitions/Action.Save"
         }
       ]
     },
@@ -114,6 +120,50 @@
         "type",
         "card"
       ]
+    },
+    "Action.Cancel": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Allows to cancel out of a form.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Action.Cancel\"`."
+        },
+        "title": {
+          "type": "string",
+          "description": "Label for button or link that represents this action."
+        },
+        "iconUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional icon to be shown on the action in conjunction with the title",
+          "version": "1.1"
+        }
+      },
+      "required": ["type"]
+    },
+    "Action.Save": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Allows to save a form to continue later.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Action.Save\"`."
+        },
+        "title": {
+          "type": "string",
+          "description": "Label for button or link that represents this action."
+        },
+        "iconUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional icon to be shown on the action in conjunction with the title",
+          "version": "1.1"
+        }
+      },
+      "required": ["type"]
     },
     "Action.Submit": {
       "type": "object",

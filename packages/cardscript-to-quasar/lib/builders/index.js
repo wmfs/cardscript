@@ -19,6 +19,8 @@ module.exports = {
   'Action.OpenUrl': { conversionFunction: require('./Action.OpenUrl') },
   'Action.Submit': { conversionFunction: require('./Action.Submit') },
   'Action.ShowCard': { conversionFunction: require('./Action.ShowCard') },
+  'Action.Cancel': { conversionFunction: require('./Action.Cancel') },
+  'Action.Save': { conversionFunction: require('./Action.Save') },
   'Input.Text': { conversionFunction: require('./Input.Text') },
   'Input.Number': { conversionFunction: require('./Input.Number') },
   'Input.Date': { conversionFunction: require('./Input.Date') },

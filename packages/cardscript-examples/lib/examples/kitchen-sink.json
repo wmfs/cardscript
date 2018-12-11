@@ -27,25 +27,6 @@
             {
               "type": "Action.Submit",
               "title": "Action.Submit"
-            },
-            {
-              "type": "Action.ShowCard",
-              "title": "Action.ShowCard",
-              "card": {
-                "type": "AdaptiveCard",
-                "body": [
-                  {
-                    "type": "TextBlock",
-                    "text": "What do you think?"
-                  },
-                  {
-                    "id": "opinion",
-                    "type": "Input.Text",
-                    "spacing": "large",
-                    "default": "Amazing!"
-                  }
-                ]
-              }
             }
           ]
         }
@@ -768,6 +749,14 @@
     {
       "type": "Action.Submit",
       "title": "Action.Submit"
+    },
+    {
+      "type": "Action.Cancel",
+      "title": "Action.Cancel"
+    },
+    {
+      "type": "Action.Save",
+      "title": "Action.SuSavebmit"
     },
     {
       "type": "Action.ShowCard",
