@@ -59,7 +59,7 @@
                 "type": "Input.Number",
                 "spacing": "medium",
                 "placeholder": "Quantity",
-                "default": 2
+                "value": 2
               }
             ]
           }
@@ -120,7 +120,7 @@
                 "type": "Input.Number",
                 "spacing": "medium",
                 "placeholder": "Quantity",
-                "default": 1
+                "value": 1
               },
               {
                 "id": "dips",
@@ -156,7 +156,7 @@
                       "type": "Input.Number",
                       "spacing": "medium",
                       "placeholder": "Quantity",
-                      "default": 3
+                      "value": 3
                     }
                   ]
                 }

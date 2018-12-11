@@ -60,7 +60,7 @@
                 "id": "opinion",
                 "type": "Input.Text",
                 "spacing": "large",
-                "default": "Amazing!"
+                "value": "Amazing!"
               }
             ]
           }
