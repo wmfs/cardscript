@@ -24,5 +24,6 @@ module.exports = {
   'Input.Date': { conversionFunction: require('./Input.Date') },
   'Input.Time': { conversionFunction: require('./Input.Time') },
   'Input.Toggle': { conversionFunction: require('./Input.Toggle') },
-  'Input.ChoiceSet': { conversionFunction: require('./Input.ChoiceSet') }
+  'Input.ChoiceSet': { conversionFunction: require('./Input.ChoiceSet') },
+  'Input.Slider': { conversionFunction: require('./Input.Slider') }
 }

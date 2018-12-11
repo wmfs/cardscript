@@ -253,6 +253,9 @@
               "$ref": "#/definitions/Input.Text"
             },
             {
+              "$ref": "#/definitions/Input.Slider"
+            },
+            {
               "$ref": "#/definitions/Input.Number"
             },
             {
@@ -927,6 +930,48 @@
         "type",
         "id"
       ]
+    },
+    "Input.Slider": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter value with a slider.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Slider\"`.",
+          "enum": [
+            "Input.Slider"
+          ]
+        },
+        "min": {
+          "type": "number",
+          "description": "Minimum value of the model.",
+          "default": 1
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum value of the model.",
+          "default": 5
+        },
+        "step": {
+          "type": "number",
+          "description": "Step amount between values."
+        },
+        "value": {
+          "type": "string",
+          "description": "The initial value for this field."
+        }
+      },
+      "required": ["id", "type"]
     },
     "Input.Text": {
       "additionalProperties": true,

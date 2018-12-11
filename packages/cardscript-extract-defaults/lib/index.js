@@ -36,12 +36,22 @@ module.exports = function extractDefaults (cardscript) {
         break
       case 'Input.Text':
       case 'Input.Number':
+      case 'Input.Slider':
         if (element.default) {
           if (cardViewPath.length === 0) {
             defaultValues.rootView[element.id] = element.default
           } else {
             const cardViewId = cardViewPath[cardViewPath.length - 1]
             defaultValues.cardViews[cardViewId][element.id] = element.default
+          }
+        }
+
+        if (element.value) {
+          if (cardViewPath.length === 0) {
+            defaultValues.rootView[element.id] = element.value
+          } else {
+            const cardViewId = cardViewPath[cardViewPath.length - 1]
+            defaultValues.cardViews[cardViewId][element.id] = element.value
           }
         }
         break

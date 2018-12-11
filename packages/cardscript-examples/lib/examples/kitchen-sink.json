@@ -459,6 +459,29 @@
     },
     {
       "type": "Container",
+      "id": "inputSlider",
+      "title": "Input.Slider",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Slider",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "slider",
+          "type": "Input.Slider",
+          "spacing": "medium",
+          "min": -20,
+          "max": 20,
+          "step": 4,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "inputText",
       "title": "Input.Text",
       "items": [
