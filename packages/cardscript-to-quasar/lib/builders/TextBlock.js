@@ -38,7 +38,7 @@ module.exports = function (definition, options) {
     size,
     text,
     weight,
-    // wrap,
+    wrap,
     id,
     spacing,
     separator
@@ -68,6 +68,10 @@ module.exports = function (definition, options) {
     styles.push(`font-size: ${SIZES[size]}px`)
   } else {
     styles.push(`font-size: ${SIZES.default}px`)
+  }
+
+  if (!wrap) {
+    classes.push('ellipsis')
   }
 
   if (styles.length > 0) div.addAttribute('style', styles.join('; '))
