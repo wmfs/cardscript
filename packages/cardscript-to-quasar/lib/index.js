@@ -68,6 +68,13 @@ module.exports = function extractDefaults (cardscript, options) {
       parseElement({ type: 'EndCardView' })
       depth--
     }
+
+    if (element.type === 'ActionSet') {
+      depth++
+      element.actions.forEach(parseElement)
+      depth--
+      template += `</div>`
+    }
   }
 
   if (cardscript.body) {

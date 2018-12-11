@@ -5,6 +5,53 @@
   "body": [
     {
       "type": "Container",
+      "id": "actionSet",
+      "title": "ActionSet",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "ActionSet",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.OpenUrl",
+              "title": "Action.OpenUrl",
+              "url": "https://github.com/wmfs/cardscript"
+            },
+            {
+              "type": "Action.Submit",
+              "title": "Action.Submit"
+            },
+            {
+              "type": "Action.ShowCard",
+              "title": "Action.ShowCard",
+              "card": {
+                "type": "AdaptiveCard",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "What do you think?"
+                  },
+                  {
+                    "id": "opinion",
+                    "type": "Input.Text",
+                    "spacing": "large",
+                    "default": "Amazing!"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "cardView",
       "title": "CardView",
       "items": [

@@ -1,4 +1,5 @@
 module.exports = {
+  ActionSet: { conversionFunction: require('./ActionSet') },
   Table: { conversionFunction: require('./Table') },
   TabSet: { conversionFunction: require('./TabSet') },
   Tab: { conversionFunction: require('./Tab') },

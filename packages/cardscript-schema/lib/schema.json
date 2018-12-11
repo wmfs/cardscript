@@ -241,6 +241,9 @@
               "$ref": "#/definitions/TabSet"
             },
             {
+              "$ref": "#/definitions/ActionSet"
+            },
+            {
               "$ref": "#/definitions/FactSet"
             },
             {
@@ -394,6 +397,30 @@
       "required": [
         "items"
       ]
+    },
+    "ActionSet": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "ActionSet allows actions to be displayed within a card.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"ActionSet\"`.",
+          "enum": [
+            "ActionSet"
+          ]
+        },
+        "actions": {
+          "description": "The Actions to show in the card's action bar.",
+          "$ref": "#/definitions/Actions"
+        }
+      },
+      "required": ["type"]
     },
     "TabSet": {
       "additionalProperties": true,
