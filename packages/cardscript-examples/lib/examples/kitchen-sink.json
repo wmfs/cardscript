@@ -17,6 +17,7 @@
         },
         {
           "type": "ActionSet",
+          "spacing": "large",
           "actions": [
             {
               "type": "Action.OpenUrl",
@@ -556,7 +557,7 @@
     },
     {
       "type": "Container",
-      "id": "media",
+      "id": "mediaSource",
       "title": "MediaSource",
       "items": [
         {

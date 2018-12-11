@@ -73,7 +73,7 @@ module.exports = function extractDefaults (cardscript, options) {
       depth++
       element.actions.forEach(parseElement)
       depth--
-      template += `</div>`
+      template += `</q-btn-group>`
     }
   }
 

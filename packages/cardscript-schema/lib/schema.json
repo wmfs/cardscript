@@ -418,9 +418,12 @@
         "actions": {
           "description": "The Actions to show in the card's action bar.",
           "$ref": "#/definitions/Actions"
+        },
+        "spacing": {
+          "$ref": "#/definitions/SpacingStyle"
         }
       },
-      "required": ["type"]
+      "required": ["type", "actions"]
     },
     "TabSet": {
       "additionalProperties": true,
