@@ -10,10 +10,11 @@ const COLORS = {
 }
 
 const SIZES = {
-  small: 16,
-  medium: 18,
-  large: 24,
-  extraLarge: 32
+  small: 12,
+  medium: 17,
+  large: 21,
+  extraLarge: 26,
+  default: 14
 }
 
 const WEIGHTS = {
@@ -63,7 +64,11 @@ module.exports = function (definition, options) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
   }
 
-  if (size && SIZES[size]) styles.push(`font-size: ${SIZES[size]}px`)
+  if (size && SIZES[size]) {
+    styles.push(`font-size: ${SIZES[size]}px`)
+  } else {
+    styles.push(`font-size: ${SIZES.default}px`)
+  }
 
   if (styles.length > 0) div.addAttribute('style', styles.join('; '))
   if (classes.length > 0) div.addAttribute('class', classes.join(' '))
