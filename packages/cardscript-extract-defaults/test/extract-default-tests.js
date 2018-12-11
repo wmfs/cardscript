@@ -42,7 +42,8 @@ describe('Run some Cardscript default-extracting tests', function () {
         cardView: [],
         toggle: false,
         choice: 'CHOICE_1',
-        choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ]
+        choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ],
+        slider: 3
       },
       cardViews: {
         cardView: {
