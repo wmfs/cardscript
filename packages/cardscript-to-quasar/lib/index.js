@@ -75,6 +75,13 @@ module.exports = function extractDefaults (cardscript, options) {
       template += `</q-btn-group>`
       depth--
     }
+
+    if (element.type === 'ImageSet') {
+      depth++
+      element.images.forEach(parseElement)
+      template += `</div>`
+      depth--
+    }
   }
 
   if (cardscript.body) {
