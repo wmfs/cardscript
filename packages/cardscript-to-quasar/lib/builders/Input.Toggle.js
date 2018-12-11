@@ -18,7 +18,9 @@ module.exports = function (definition, options) {
 
   const builder = new ComponentBuilder(definition)
 
-  const toggle = builder.addTag('q-toggle')
+  const div = builder.addTag('div')
+
+  const toggle = div.addChildTag('q-toggle')
   toggle.bindToModel(definition)
   toggle.addAttribute('label', title)
 

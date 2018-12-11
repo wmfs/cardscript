@@ -32,7 +32,7 @@ module.exports = function (definition, options) {
   } else if (width === 'stretch') {
     classes.push('col')
   } else if (Number.isInteger(width)) {
-    // classes.push(`col-${width}`)
+    // todo: use the number! e.g. classes.push(`col-${width}`)
     classes.push('col')
   }
 
