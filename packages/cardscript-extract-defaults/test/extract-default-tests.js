@@ -11,7 +11,9 @@ describe('Run some Cardscript default-extracting tests', function () {
     const result = extractDefaults(simple)
     expect(result).to.eql(
       {
-        rootView: {},
+        rootView: {
+          name: ''
+        },
         cardViews: {}
       }
     )
@@ -28,7 +30,10 @@ describe('Run some Cardscript default-extracting tests', function () {
           deliveryOrCollection: 'COLLECT',
           sprinkles: false,
           dietaryReq: [],
-          toppings: []
+          toppings: [],
+          dietaryReqOther: '',
+          firstName: '',
+          lastName: ''
         },
         cardViews: {}
       }
@@ -43,7 +48,9 @@ describe('Run some Cardscript default-extracting tests', function () {
         toggle: false,
         choice: 'CHOICE_1',
         choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ],
-        slider: 3
+        slider: 3,
+        text: '',
+        textEditor: 'editor: true'
       },
       cardViews: {
         cardView: {
