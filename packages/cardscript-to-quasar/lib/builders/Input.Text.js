@@ -14,17 +14,21 @@ module.exports = function (definition, options) {
     placeholder,
     // style, // text, tel, url, email
     spacing,
-    separator
+    separator,
+    editor
   } = definition
 
   const builder = new ComponentBuilder(definition)
 
-  const input = builder.addTag('q-input')
+  const input = editor ? builder.addTag('q-editor') : builder.addTag('q-input')
   input.bindToModel(definition)
+  if (editor) {
 
-  if (placeholder) input.addAttribute('placeholder', placeholder)
-  if (maxLength) input.addAttribute('maxLength', maxLength)
-  if (isMultiline) input.addAttribute('type', 'textarea')
+  } else {
+    if (placeholder) input.addAttribute('placeholder', placeholder)
+    if (maxLength) input.addAttribute('maxLength', maxLength)
+    if (isMultiline) input.addAttribute('type', 'textarea')
+  }
 
   const classes = []
   const styles = []

@@ -1063,6 +1063,11 @@
         "value": {
           "type": "string",
           "description": "The initial value for this field."
+        },
+        "editor": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the field should be a WYSIWYG (“what you see is what you get”) editor, if false then plain text field."
         }
       },
       "required": [
