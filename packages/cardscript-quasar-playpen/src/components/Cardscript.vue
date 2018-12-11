@@ -45,7 +45,13 @@ export default {
             this.internals.dialogControl[cardViewId] = false
           },
           removeCardViewContent (cardViewId, index) {
-            alert(`REMOVE index ${index} from ${cardViewId}`)
+            const parentCardViewId = this.internals.cardViewParents[cardViewId]
+
+            if (parentCardViewId === null) {
+              this.data[cardViewId].splice(index, 1)
+            } else {
+              this.internals.currentCardViewData[parentCardViewId][cardViewId].splice(index, 1)
+            }
           },
           action (type, config) {
             that.$emit(type, config, this)

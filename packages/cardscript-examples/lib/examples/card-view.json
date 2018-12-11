@@ -28,9 +28,10 @@
         {
           "id": "starters",
           "type": "CardView",
+          "editable": true,
           "title": "Add a starter!",
-          "instanceHeadingTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
-          "instanceDescTemplate": "You'll be wanting {{item.starterQuantity}} of these.",
+          "instanceTitleTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
+          "instanceSubtitleTemplate": "You'll be wanting {{item.starterQuantity}} of these.",
           "card": {
             "type": "AdaptiveCard",
             "version": "1.0",
@@ -85,9 +86,10 @@
         {
           "id": "pizzas",
           "type": "CardView",
+          "editable": true,
           "title": "Add a pizza!",
-          "instanceHeadingTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
-          "instanceDescTemplate": "You'll be wanting {{item.pizzaQuantity}} of these.",
+          "instanceTitleTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
+          "instanceSubtitleTemplate": "You'll be wanting {{item.pizzaQuantity}} of these.",
           "card": {
             "type": "AdaptiveCard",
             "version": "1.0",
@@ -125,9 +127,10 @@
               {
                 "id": "dips",
                 "type": "CardView",
+                "editable": true,
                 "title": "Add a dip!",
-                "instanceHeadingTemplate": "{{item.dipType | replaceWithTitle(lists.$simpleTitleMaps.dipType)}}",
-                "instanceDescTemplate": "You'll be wanting {{item.dipQuantity}} of these.",
+                "instanceTitleTemplate": "{{item.dipType | replaceWithTitle(lists.$simpleTitleMaps.dipType)}}",
+                "instanceSubtitleTemplate": "You'll be wanting {{item.dipQuantity}} of these.",
                 "card": {
                   "type": "AdaptiveCard",
                   "version": "1.0",
