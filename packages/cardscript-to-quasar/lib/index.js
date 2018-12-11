@@ -82,7 +82,7 @@ module.exports = function extractDefaults (cardscript, options) {
   }
 
   if (cardscript.actions) {
-    template += `<div>`
+    template += `<div class="q-mt-md">`
     cardscript.actions.forEach(parseElement)
     template += `</div>`
   }
