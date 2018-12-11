@@ -9,14 +9,14 @@ module.exports = function (definition, options) {
   const {
     // selectAction,
     style,
-    // width, // auto, stretch, <number>
+    width,
     id,
     spacing,
     separator,
     showWhen
   } = definition
 
-  const classes = ['col']
+  const classes = []
   const styles = []
 
   if (separator) styles.push(`border-left: 1px solid rgb(238, 238, 238)`, `margin-left: 8px`, `padding-left: 8px`)
@@ -25,6 +25,15 @@ module.exports = function (definition, options) {
     classes.push('q-pa-md')
   } else if (MARGINS[spacing]) {
     classes.push(`q-mt-${MARGINS[spacing]}`)
+  }
+
+  if (width === 'auto') {
+    classes.push('col-auto')
+  } else if (width === 'stretch') {
+    classes.push('col')
+  } else if (Number.isInteger(width)) {
+    // classes.push(`col-${width}`)
+    classes.push('col')
   }
 
   let div = `<div class="${classes.join(' ')}"`
