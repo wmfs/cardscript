@@ -756,7 +756,7 @@
     },
     {
       "type": "Action.Save",
-      "title": "Action.SuSavebmit"
+      "title": "Action.Save"
     },
     {
       "type": "Action.ShowCard",
