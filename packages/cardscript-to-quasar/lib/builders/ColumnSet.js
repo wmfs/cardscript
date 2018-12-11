@@ -14,7 +14,7 @@ module.exports = function (definition, options) {
   let div = '<div'
 
   const classes = ['row']
-  const styles = {}
+  const styles = []
 
   if (separator) styles.push('border-top: 1px solid rgb(238, 238, 238)', 'margin-top: 8px', 'padding-top: 8px')
 
