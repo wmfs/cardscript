@@ -26,7 +26,10 @@
             },
             {
               "type": "Action.Submit",
-              "title": "Action.Submit"
+              "title": "Action.Submit",
+              "data": {
+                "x": "y"
+              }
             }
           ]
         }
@@ -748,7 +751,10 @@
     },
     {
       "type": "Action.Submit",
-      "title": "Action.Submit"
+      "title": "Action.Submit",
+      "data": {
+        "x": "y"
+      }
     },
     {
       "type": "Action.Cancel",

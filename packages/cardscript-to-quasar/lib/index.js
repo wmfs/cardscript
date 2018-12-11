@@ -1,5 +1,4 @@
 const builders = require('./builders')
-// const { inspect } = require('util')
 const ONE_TAB = '  '
 const INDENT = '  '
 
@@ -86,23 +85,6 @@ module.exports = function extractDefaults (cardscript, options) {
     cardscript.actions.forEach(parseElement)
     template += `</div>`
   }
-
-  /*
-  if (cardscript.actions) {
-    cardscript.actions.forEach(actionDefinition => {
-      const label = `label="${actionDefinition.title}"`
-      const colour = actionDefinition.style ? `color="${actionDefinition.style}"` : `color="primary"`
-      let click = `@click="action('${actionDefinition.type}', ${inspect({config: actionDefinition.config})})"`
-
-      if (actionDefinition.type === 'Submit') {
-        click = `@click="action('${actionDefinition.type}', {data, config: ${inspect(actionDefinition.config)}})"`
-      }
-
-      const btn = `<q-btn ${label} ${colour} ${click} class="q-mt-sm" />`
-      template += `${indent}${btn}\n`
-    })
-  }
-  */
 
   template += '</div>'
   return { template }
