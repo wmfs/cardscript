@@ -11,6 +11,7 @@ module.exports = function (definition, options) {
 
   const button = builder.addTag('q-btn')
   button.addAttribute('label', title)
+  button.addAttribute('color', 'primary')
   button.addAttribute('@click', `action('Submit', {} )`)
 
   return builder.compile()

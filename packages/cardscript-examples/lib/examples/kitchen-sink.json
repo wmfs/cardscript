@@ -608,7 +608,8 @@
         {
           "type": "TextBlock",
           "text": "horizontalAlignment: left",
-          "horizontalAlignment": "left"
+          "horizontalAlignment": "left",
+          "separator": true
         },
         {
           "type": "TextBlock",
@@ -619,6 +620,43 @@
           "type": "TextBlock",
           "text": "horizontalAlignment: right",
           "horizontalAlignment": "right"
+        },
+        {
+          "type": "TextBlock",
+          "text": "size: small",
+          "size": "small",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "size: medium",
+          "size": "medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "size: large",
+          "size": "large"
+        },
+        {
+          "type": "TextBlock",
+          "text": "size: extraLarge",
+          "size": "extraLarge"
+        },
+        {
+          "type": "TextBlock",
+          "text": "weight: lighter",
+          "weight": "lighter",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "weight: default",
+          "weight": "default"
+        },
+        {
+          "type": "TextBlock",
+          "text": "weight: bolder",
+          "weight": "bolder"
         }
       ]
     }
