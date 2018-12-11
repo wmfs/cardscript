@@ -66,7 +66,7 @@ module.exports = class ComponentBuilder {
 
     function processTagArray (rootTags) {
       rootTags.forEach(tag => {
-        let line = `<${tag.name} ${tag.attributes.length > 0 ? tag.attributes.join(' ') : ''}>`
+        let line = `<${tag.name}${tag.attributes.length > 0 ? ` ${tag.attributes.join(' ')}` : ''}>`
 
         if (tag.tagContent !== null) {
           line += tag.tagContent
