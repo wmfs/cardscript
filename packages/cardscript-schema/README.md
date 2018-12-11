@@ -30,7 +30,7 @@ const result = cardscriptSchema.validateForm(
   }
 )
 
-if (result.widgetsValid) {
+if (result.elementsValid) {
   // All is well!!
 } else {
   // Do something with result.errors array.
