@@ -226,10 +226,37 @@
           "separator": true
         },
         {
+          "type": "TextBlock",
+          "horizontalAlignment": "left",
+          "text": "horizontalAlignment: left"
+        },
+        {
           "type": "Image",
           "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
           "size": "large",
-          "spacing": "large"
+          "horizontalAlignment": "left"
+        },
+        {
+          "type": "TextBlock",
+          "horizontalAlignment": "center",
+          "text": "horizontalAlignment: center"
+        },
+        {
+          "type": "Image",
+          "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+          "size": "large",
+          "horizontalAlignment": "center"
+        },
+        {
+          "type": "TextBlock",
+          "horizontalAlignment": "right",
+          "text": "horizontalAlignment: right"
+        },
+        {
+          "type": "Image",
+          "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+          "size": "large",
+          "horizontalAlignment": "right"
         }
       ]
     },
