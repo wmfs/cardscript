@@ -31,10 +31,19 @@ module.exports = function (definition, options) {
     classes.push('col-auto')
   } else if (width === 'stretch') {
     classes.push('col')
-  } else if (Number.isInteger(width)) {
-    // todo: use the number! e.g. classes.push(`col-${width}`)
+  } else {
     classes.push('col')
   }
+  // } else if (Number.isInteger(width)) {
+  //   // todo: use the number! e.g. classes.push(`col-${width}`)
+  //   classes.push('col')
+  // } else if (width) {
+  //   if (width.includes('%') || width.includes('px')) {
+  //     styles.push(`width: ${width}`)
+  //   } else {
+  //     styles.push(`width: ${width}%`)
+  //   }
+  // }
 
   let div = `<div class="${classes.join(' ')}"`
   if (styles.length > 0) div += ` style="${styles.join('; ')}"`
