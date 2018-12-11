@@ -49,6 +49,13 @@ module.exports = function extractDefaults (cardscript) {
             const cardViewId = cardViewPath[cardViewPath.length - 1]
             defaultValues.cardViews[cardViewId][element.id] = element.value
           }
+        } else if (element.type === 'Input.Text') {
+          if (cardViewPath.length === 0) {
+            defaultValues.rootView[element.id] = ''
+          } else {
+            const cardViewId = cardViewPath[cardViewPath.length - 1]
+            defaultValues.cardViews[cardViewId][element.id] = ''
+          }
         }
         break
       case 'Input.Toggle':
