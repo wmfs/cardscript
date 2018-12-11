@@ -34,9 +34,11 @@ module.exports = function extractDefaults (cardscript) {
       case 'Column':
         element.items.forEach(parseElement)
         break
-      case 'Input.Text':
+      case 'Input.Date':
       case 'Input.Number':
       case 'Input.Slider':
+      case 'Input.Text':
+      case 'Input.Time':
         if (element.value) {
           if (cardViewPath.length === 0) {
             defaultValues.rootView[element.id] = element.value
