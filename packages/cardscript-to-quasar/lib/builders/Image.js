@@ -5,7 +5,7 @@ const SIZES = {
   stretch: '100%',
   small: '40px',
   medium: '80px',
-  large: '120px'
+  large: '160px'
 }
 
 const MARGINS = {
@@ -49,7 +49,9 @@ module.exports = function (definition, options) {
 
   img.addAttribute('src', url)
   img.addAttribute('alt', altText || 'Image')
-  img.addAttribute('width', SIZES[size] || '40px')
+  img.addAttribute('width', SIZES[size] || '100%')
+
+  styles.push('max-height: 100%', 'min-width: 0px')
 
   if (style === 'person') styles.push(`border-radius: 100%`)
   if (styles.length > 0) img.addAttribute('style', styles.join('; '))
