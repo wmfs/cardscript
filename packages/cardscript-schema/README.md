@@ -15,33 +15,20 @@ $ npm install cardscript-schema --save
 const cardscriptSchema = require('cardscript-schema')
 
 const result = cardscriptSchema.validateForm(
-{
-  title: 'Simple demo form!',
-  canBeCompletedOffline: true,
-  widgets: [
-    {
-      type: 'header',
-      attributes: {
-        heading: 'Register!',
-        desc: 'Let's get to know each other a bit better...',
-        backgroundImage: 'happyPeople.jpg',
-        backgroundImageAltText: 'Beautiful people smiling around a laptop'
+  {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Change me!",
+        "color": "attention",
+        "horizontalAlignment": "center"
       }
-    },
-    {
-      id: 'name',
-      type: 'text',
-      attributes: {
-        heading: 'Name',
-        placeholder: 'e.g. Lucy Smith',
-        mandatory: true,
-        minCharacters: 1,
-        maxCharacters: 100,
-        help: 'Enter your full name here'
-      }
-    }
-  ]
-})
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+  }
+)
 
 if (result.widgetsValid) {
   // All is well!!

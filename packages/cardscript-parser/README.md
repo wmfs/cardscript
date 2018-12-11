@@ -13,10 +13,20 @@ $ npm install cardscript-parser --save
 const parser = require('cardscript-parser')
 
 const cardscriptObject = parser(
-  '  {' +
-  "    title: 'Simple demo form!'" +
-  '    widgets: []' +
-  '  }' )
+  `{
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Change me!",
+        "color": "attention",
+        "horizontalAlignment": "center"
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+  }`
+)
 
 ```
 

@@ -13,10 +13,20 @@ $ npm install cardscript-extract-lists --save
 const extractLists = require('cardscript-extract-lists')
 
 const lists = extractLists(
-{
-  title: 'Simple demo form!',
-  widgets: []
-})
+  {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Change me!",
+        "color": "attention",
+        "horizontalAlignment": "center"
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+  }
+)
 
 ```
 

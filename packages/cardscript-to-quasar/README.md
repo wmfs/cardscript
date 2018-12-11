@@ -13,10 +13,20 @@ $ npm install cardscript-to-quasar --save
 const cardscriptToQuasar = require('cardscript-extract-defaults')
 
 const quasarTemplate = cardscriptToQuasar(
-{
-  title: 'Simple demo form!',
-  widgets: []
-})
+  {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Change me!",
+        "color": "attention",
+        "horizontalAlignment": "center"
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+  }
+)
 
 ```
 

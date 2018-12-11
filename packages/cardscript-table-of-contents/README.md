@@ -13,10 +13,20 @@ $ npm install cardscript-table-of-contents --save
 const extractToc = require('cardscript-table-of-contents')
 
 const toc = extractToc(
-{
-  title: 'Simple demo form!',
-  widgets: []
-})
+  {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Change me!",
+        "color": "attention",
+        "horizontalAlignment": "center"
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+  }
+)
 
 ```
 
