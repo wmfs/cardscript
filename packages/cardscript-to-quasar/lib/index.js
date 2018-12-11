@@ -65,7 +65,7 @@ module.exports = function extractDefaults (cardscript, options) {
     if (element.type === 'CardView') {
       depth++
       element.card.body.forEach(parseElement)
-      parseElement({ type: 'EndCardView' })
+      parseElement({ type: 'EndCardView', editable: element.editable || false })
       depth--
     }
   }

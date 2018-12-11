@@ -1434,6 +1434,11 @@
         "instanceSubtitleTemplate": {
           "type": "string",
           "description": "A handlebars-like template for conjuring a subtitle per instance."
+        },
+        "editable": {
+          "type": "boolean",
+          "description": "The CardView element can either act as a modal to display a block of Card Elements or as a form which can be completed and pushed to an array.",
+          "default": false
         }
       },
       "required": [

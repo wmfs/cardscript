@@ -28,5 +28,6 @@ module.exports = function (definition, options) {
     const v = colValue.addChildTag('div')
     v.content(value)
   })
+
   return builder.compile()
 }

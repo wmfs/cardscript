@@ -48,8 +48,15 @@
           "separator": true
         },
         {
+          "type": "TextBlock",
+          "text": "editable: true",
+          "size": "small",
+          "spacing": "medium"
+        },
+        {
           "id": "cardView",
           "type": "CardView",
+          "editable": true,
           "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
           "title": "Click me!",
           "card": {
@@ -64,6 +71,26 @@
                 "type": "Input.Text",
                 "spacing": "large",
                 "value": "Amazing!"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TextBlock",
+          "text": "editable: false",
+          "size": "small",
+          "spacing": "medium"
+        },
+        {
+          "id": "cardViewNonEditable",
+          "type": "CardView",
+          "title": "Click me!",
+          "card": {
+            "type": "AdaptiveCard",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "Hello there!"
               }
             ]
           }
