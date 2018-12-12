@@ -24,7 +24,7 @@ const CONTAINERS = {
     arrayPath: 'items'
   },
   Collapsible: {
-    endTemplate: '</q-collapsible>',
+    endTemplate: '</div></q-collapsible>',
     arrayPath: 'card.body'
   },
   ActionSet: {
