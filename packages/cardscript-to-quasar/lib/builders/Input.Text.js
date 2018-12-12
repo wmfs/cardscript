@@ -22,9 +22,8 @@ module.exports = function (definition, options) {
 
   const input = editor ? builder.addTag('q-editor') : builder.addTag('q-input')
   input.bindToModel(definition)
-  if (editor) {
 
-  } else {
+  if (!editor) {
     if (placeholder) input.addAttribute('placeholder', placeholder)
     if (maxLength) input.addAttribute('maxLength', maxLength)
     if (isMultiline) input.addAttribute('type', 'textarea')

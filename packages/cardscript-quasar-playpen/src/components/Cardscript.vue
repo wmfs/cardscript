@@ -29,8 +29,7 @@ export default {
         methods: {
           openURL,
           createNewCardView (cardViewId) {
-            const cardViewDefaultValues = JSON.parse(JSON.stringify(this.internals.cardViewDefaults[cardViewId]))
-            this.internals.currentCardViewData[cardViewId] = cardViewDefaultValues
+            this.internals.currentCardViewData[cardViewId] = this.internals.cardViewDefaults[cardViewId] || {}
             this.internals.dialogControl[cardViewId] = true
           },
           pushCardViewContent (cardViewId) {
