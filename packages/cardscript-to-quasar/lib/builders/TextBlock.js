@@ -34,7 +34,7 @@ module.exports = function (definition, options) {
     color,
     horizontalAlignment,
     isSubtle,
-    // maxLines,
+    maxLines,
     size,
     text,
     weight,
@@ -72,6 +72,10 @@ module.exports = function (definition, options) {
 
   if (!wrap) {
     classes.push('ellipsis')
+  }
+
+  if (maxLines) {
+    styles.push(`height: ${maxLines}em`, `line-height: 1em`, `overflow: hidden`)
   }
 
   if (styles.length > 0) div.addAttribute('style', styles.join('; '))
