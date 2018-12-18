@@ -1,4 +1,5 @@
 const ComponentBuilder = require('./../utils/Component-builder')
+const { inspect } = require('util')
 
 module.exports = function (definition, options) {
   const { id } = definition
@@ -15,19 +16,20 @@ module.exports = function (definition, options) {
   searchBtn.addAttribute('class', 'q-mt-md')
   searchBtn.addAttribute('label', 'Find Address')
   searchBtn.addAttribute('color', 'primary')
-  searchBtn.addAttribute('@click', `action('InputAddress', {})`)
+  searchBtn.addAttribute('@click', `action('InputAddress', ${inspect({ dataPath: `${div.getDataPath()}`, id })})`)
 
-  // Show when results have been found
-  // const selectTxt = div.addChildTag('div')
-  // selectTxt.content('Select an address')
-  // selectTxt.addAttribute('class', 'q-mt-lg')
+  const selectFldDataPath = `${div.getDataPath()}.${id}SearchResults`
 
-  // const selectFld = div.addChildTag('div')
-  // selectFld.bindToModel(definition)
-  // selectFld.addAttribute('class', 'q-mt-md')
-  // selectFld.addAttribute(':options', ``) // `${id}SearchResults`
+  const selectTxt = div.addChildTag('div')
+  selectTxt.content('Select an address')
+  selectTxt.addAttribute('class', 'q-mt-lg')
+  selectTxt.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
 
-  // else 'No address found'
+  const selectFld = div.addChildTag('q-select')
+  selectFld.bindToModel(definition)
+  selectFld.addAttribute('class', 'q-mt-md')
+  selectFld.addAttribute(':options', selectFldDataPath)
+  selectFld.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
 
   // I can't find my address
 

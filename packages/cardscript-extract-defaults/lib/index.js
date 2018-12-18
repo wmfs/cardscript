@@ -98,6 +98,14 @@ module.exports = function extractDefaults (cardscript) {
           }
         }
         break
+      case 'Input.Address':
+        if (cardViewPath.length === 0) {
+          defaultValues.rootView[element.id + 'SearchResults'] = []
+        } else {
+          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          defaultValues.cardViews[cardViewId][element.id + 'SearchResults'] = []
+        }
+        break
     }
   }
 

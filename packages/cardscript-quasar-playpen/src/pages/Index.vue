@@ -298,6 +298,7 @@
   import Brace from 'vue-bulma-brace'
   import * as brace from 'brace'
   import * as validators from 'vuelidate/lib/validators'
+  import dottie from 'dottie'
 
   const quasarConverter = require('cardscript-to-quasar')
   const extractDefaults = require('cardscript-extract-defaults')
@@ -342,8 +343,15 @@
       this.editor.session.setValue(this.cardscript)
     },
     methods: {
-      onInputAddress (payload) {
-        console.log('onInputAddress', payload)
+      onInputAddress (payload, that) {
+        const query = dottie.get(that, `${payload.dataPath}.${payload.id}SearchFld`)
+        if (query && query.trim().length > 0) {
+          dottie.set(that, `${payload.dataPath}.${payload.id}SearchResults`, [
+            { label: '1 Red Road ', value: '1' },
+            { label: '2 Red Road ', value: '2' },
+            { label: '3 Red Road ', value: '3' }
+          ])
+        }
       },
       onOpenURL (payload) {
         openURL(payload.config.url)

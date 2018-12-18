@@ -1,9 +1,9 @@
-const { defaults } = require('lodash')
+const {defaults} = require('lodash')
 const cardViewTracker = require('./card-view-tracker')
 
 class TagNode {
   constructor (name, options) {
-    this.options = defaults(options || {}, { includeClosingTag: true })
+    this.options = defaults(options || {}, {includeClosingTag: true})
     this.name = name
     this.tagContent = null
     this.attributes = []
@@ -26,17 +26,15 @@ class TagNode {
     }
   }
 
-  bindToModel (element, modifier) {
-    let attributeName = 'v-model'
-    if (modifier) attributeName += `.${modifier}`
+  getDataPath () {
+    return cardViewTracker.insideACardView()
+      ? `internals.currentCardViewData.${cardViewTracker.getCurrentCardView()}`
+      : 'data'
+  }
 
-    let dataPath
-    if (cardViewTracker.insideACardView()) {
-      const cardViewId = cardViewTracker.getCurrentCardView()
-      dataPath = `internals.currentCardViewData.${cardViewId}.${element.id}`
-    } else {
-      dataPath = 'data.' + element.id
-    }
+  bindToModel (element, modifier) {
+    const attributeName = modifier ? `v-model.${modifier}` : 'v-model'
+    const dataPath = `${this.getDataPath(element)}.${element.id}`
     this.addAttribute(attributeName, dataPath)
   }
 
