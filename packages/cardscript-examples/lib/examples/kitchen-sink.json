@@ -564,7 +564,10 @@
           "separator": true
         },
         {
-          "type": "Input.Email"
+          "id": "email",
+          "type": "Input.Email",
+          "placeholder": "Input.Email",
+          "spacing": "medium"
         }
       ]
     },
