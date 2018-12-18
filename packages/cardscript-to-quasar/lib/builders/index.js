@@ -32,5 +32,14 @@ module.exports = {
   'Input.Time': { conversionFunction: require('./Input.Time') },
   'Input.Toggle': { conversionFunction: require('./Input.Toggle') },
   'Input.ChoiceSet': { conversionFunction: require('./Input.ChoiceSet') },
-  'Input.Slider': { conversionFunction: require('./Input.Slider') }
+  'Input.Slider': { conversionFunction: require('./Input.Slider') },
+  'Input.Address': { conversionFunction: require('./Input.Address') },
+  'Input.ApiLookup': { conversionFunction: require('./Input.ApiLookup') },
+  'Input.Currency': { conversionFunction: require('./Input.Currency') },
+  'Input.Email': { conversionFunction: require('./Input.Email') },
+  'Input.FileUpload': { conversionFunction: require('./Input.FileUpload') },
+  'Input.Gender': { conversionFunction: require('./Input.Gender') },
+  'Input.Name': { conversionFunction: require('./Input.Name') },
+  'Input.Signature': { conversionFunction: require('./Input.Signature') },
+  'Input.TelephoneNumber': { conversionFunction: require('./Input.TelephoneNumber') }
 }
