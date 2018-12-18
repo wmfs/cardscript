@@ -584,7 +584,8 @@
           "separator": true
         },
         {
-          "type": "Input.FileUpload"
+          "type": "Input.FileUpload",
+          "spacing": "medium"
         }
       ]
     },
