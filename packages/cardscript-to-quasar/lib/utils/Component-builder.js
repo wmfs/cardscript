@@ -1,9 +1,9 @@
-const {defaults} = require('lodash')
+const { defaults } = require('lodash')
 const cardViewTracker = require('./card-view-tracker')
 
 class TagNode {
   constructor (name, options) {
-    this.options = defaults(options || {}, {includeClosingTag: true})
+    this.options = defaults(options || {}, { includeClosingTag: true })
     this.name = name
     this.tagContent = null
     this.attributes = []
