@@ -462,6 +462,26 @@
     },
     {
       "type": "Container",
+      "id": "inputDateTime",
+      "title": "Input.DateTime",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.DateTime",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "id": "date",
+          "type": "Input.DateTime",
+          "placeholder": "Input.DateTime",
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "inputNumber",
       "title": "Input.Number",
       "items": [

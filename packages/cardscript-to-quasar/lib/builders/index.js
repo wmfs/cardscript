@@ -24,6 +24,7 @@ module.exports = {
   'Input.Text': { conversionFunction: require('./Input.Text') },
   'Input.Number': { conversionFunction: require('./Input.Number') },
   'Input.Date': { conversionFunction: require('./Input.Date') },
+  'Input.DateTime': { conversionFunction: require('./Input.DateTime') },
   'Input.Time': { conversionFunction: require('./Input.Time') },
   'Input.Toggle': { conversionFunction: require('./Input.Toggle') },
   'Input.ChoiceSet': { conversionFunction: require('./Input.ChoiceSet') },
