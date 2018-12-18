@@ -100,7 +100,7 @@
                 <q-card class="q-mt-md q-mb-xl">
                   <q-card-main>
                     <cardscript :content="dynamicContent" @OpenURL="onOpenURL" @Submit="onSubmit"
-                                @ShowCard="onShowCard"/>
+                                @ShowCard="onShowCard" @InputAddress="onInputAddress"/>
                   </q-card-main>
                 </q-card>
 
@@ -342,6 +342,9 @@
       this.editor.session.setValue(this.cardscript)
     },
     methods: {
+      onInputAddress (payload) {
+        console.log('onInputAddress', payload)
+      },
       onOpenURL (payload) {
         openURL(payload.config.url)
       },

@@ -16,7 +16,7 @@ module.exports = function (definition, options) {
   const builder = new ComponentBuilder(definition)
   const field = builder.addTag('q-field')
   const uploader = field.addChildTag('q-uploader')
-  uploader.addAttribute('url', '""')
+  uploader.addAttribute('url', '')
 
   const classes = []
   const styles = []

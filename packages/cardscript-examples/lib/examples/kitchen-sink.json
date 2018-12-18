@@ -378,6 +378,7 @@
           "separator": true
         },
         {
+          "id": "inputAddress",
           "type": "Input.Address"
         }
       ]
