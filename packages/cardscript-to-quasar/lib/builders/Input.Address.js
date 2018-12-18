@@ -31,7 +31,14 @@ module.exports = function (definition, options) {
   selectFld.addAttribute(':options', selectFldDataPath)
   selectFld.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
 
-  // I can't find my address
+  const cannotFindBtn = div.addChildTag('q-btn')
+  cannotFindBtn.addAttribute('class', 'q-mt-md')
+  cannotFindBtn.addAttribute('label', 'I cannot find my address')
+  cannotFindBtn.addAttribute(':outline', true)
+  cannotFindBtn.addAttribute('color', 'primary')
+  cannotFindBtn.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
+
+  // Address entering block...
 
   return builder.compile()
 }
