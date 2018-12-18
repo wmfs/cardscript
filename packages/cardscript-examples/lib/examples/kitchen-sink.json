@@ -37,6 +37,23 @@
     },
     {
       "type": "Container",
+      "id": "addressBlock",
+      "title": "AddressBlock",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "AddressBlock",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "AddressBlock"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "cardView",
       "title": "CardView",
       "items": [
@@ -614,6 +631,23 @@
     },
     {
       "type": "Container",
+      "id": "map",
+      "title": "Map",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Map",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Map"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "media",
       "title": "Media",
       "items": [
@@ -643,6 +677,23 @@
         },
         {
           "type": "MediaSource"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "phaseBanner",
+      "title": "PhaseBanner",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "PhaseBanner",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "PhaseBanner"
         }
       ]
     },
