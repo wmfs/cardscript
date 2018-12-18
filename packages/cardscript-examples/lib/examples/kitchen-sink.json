@@ -367,6 +367,40 @@
     },
     {
       "type": "Container",
+      "id": "inputAddress",
+      "title": "Input.Address",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Address",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Address"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputApiLookup",
+      "title": "Input.ApiLookup",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.ApiLookup",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.ApiLookup"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "inputChoiceSet",
       "title": "Input.ChoiceSet",
       "items": [
@@ -459,6 +493,23 @@
     },
     {
       "type": "Container",
+      "id": "inputCurrency",
+      "title": "Input.Currency",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Currency",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Currency"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "inputDate",
       "title": "Input.Date",
       "items": [
@@ -499,6 +550,74 @@
     },
     {
       "type": "Container",
+      "id": "inputEmail",
+      "title": "Input.Email",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Email",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Email"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputFileUpload",
+      "title": "Input.FileUpload",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.FileUpload",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.FileUpload"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputGender",
+      "title": "Input.Gender",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Gender",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Gender"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputName",
+      "title": "Input.Name",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Name",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Name"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "inputNumber",
       "title": "Input.Number",
       "items": [
@@ -514,6 +633,23 @@
           "type": "Input.Number",
           "placeholder": "Input.Number",
           "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputSignature",
+      "title": "Input.Signature",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.Signature",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.Signature"
         }
       ]
     },
@@ -537,6 +673,23 @@
           "max": 20,
           "step": 4,
           "value": 3
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "inputTelephoneNumber",
+      "title": "Input.TelephoneNumber",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Input.TelephoneNumber",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Input.TelephoneNumber"
         }
       ]
     },
