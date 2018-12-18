@@ -23,6 +23,8 @@ module.exports = function (definition, options) {
   const toggle = div.addChildTag('q-toggle')
   toggle.bindToModel(definition)
   toggle.addAttribute('label', title)
+  toggle.addAttribute('checked-icon', 'check')
+  toggle.addAttribute('unchecked-icon', 'close')
 
   const classes = []
   const styles = []
