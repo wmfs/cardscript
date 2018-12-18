@@ -648,6 +648,23 @@
     },
     {
       "type": "Container",
+      "id": "separator",
+      "title": "Separator",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Separator",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Separator"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "table",
       "title": "Table",
       "items": [

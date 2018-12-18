@@ -1,4 +1,5 @@
 module.exports = {
+  Separator: { conversionFunction: require('./Separator') },
   ActionSet: { conversionFunction: require('./ActionSet') },
   Table: { conversionFunction: require('./Table') },
   TabSet: { conversionFunction: require('./TabSet') },
