@@ -20,14 +20,10 @@ module.exports = function (definition, options) {
 
   const selectFldDataPath = `${div.getDataPath()}.${id}SearchResults`
 
-  const selectTxt = div.addChildTag('div')
-  selectTxt.content('Select an address')
-  selectTxt.addAttribute('class', 'q-mt-lg')
-  selectTxt.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
-
   const selectFld = div.addChildTag('q-select')
   selectFld.bindToModel(definition)
-  selectFld.addAttribute('class', 'q-mt-md')
+  selectFld.addAttribute('class', 'q-mt-lg')
+  selectFld.addAttribute('float-label', 'Select an address')
   selectFld.addAttribute(':options', selectFldDataPath)
   selectFld.addAttribute('v-if', `${selectFldDataPath}.length > 0`)
 

@@ -50,7 +50,8 @@ describe('Run some Cardscript default-extracting tests', function () {
         choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ],
         slider: 3,
         text: '',
-        textEditor: 'editor: true'
+        textEditor: 'editor: true',
+        inputAddressSearchResults: []
       },
       cardViews: {
         cardView: {
