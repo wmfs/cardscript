@@ -321,6 +321,48 @@
               "$ref": "#/definitions/Input.ChoiceSet"
             },
             {
+              "$ref": "#/definitions/Input.FileUpload"
+            },
+            {
+              "$ref": "#/definitions/Input.Email"
+            },
+            {
+              "$ref": "#/definitions/Input.Currency"
+            },
+            {
+              "$ref": "#/definitions/Input.Address"
+            },
+            {
+              "$ref": "#/definitions/Input.ApiLookup"
+            },
+            {
+              "$ref": "#/definitions/Input.Gender"
+            },
+            {
+              "$ref": "#/definitions/Input.Name"
+            },
+            {
+              "$ref": "#/definitions/Input.Signature"
+            },
+            {
+              "$ref": "#/definitions/Input.TelephoneNumber"
+            },
+            {
+              "$ref": "#/definitions/Input.DateTime"
+            },
+            {
+              "$ref": "#/definitions/AddressBlock"
+            },
+            {
+              "$ref": "#/definitions/Map"
+            },
+            {
+              "$ref": "#/definitions/PhaseBanner"
+            },
+            {
+              "$ref": "#/definitions/Separator"
+            },
+            {
               "$ref": "#/definitions/Jumbotron"
             },
             {
@@ -703,6 +745,90 @@
         "url"
       ]
     },
+    "AddressBlock": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Displays an address.",
+      "version": "1.1",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"AddressBlock\"`.",
+          "enum": [
+            "AddressBlock"
+          ]
+        }
+      },
+      "required": ["type"]
+    },
+    "Map": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Displays a map.",
+      "version": "1.1",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Map\"`.",
+          "enum": [
+            "Map"
+          ]
+        }
+      },
+      "required": ["type"]
+    },
+    "PhaseBanner": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Displays a banner highlighting a phase.",
+      "version": "1.1",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"PhaseBanner\"`.",
+          "enum": [
+            "PhaseBanner"
+          ]
+        }
+      },
+      "required": ["type"]
+    },
+    "Separator": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Displays a horizontal line.",
+      "version": "1.1",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Separator\"`.",
+          "enum": [
+            "Separator"
+          ]
+        }
+      },
+      "required": ["type"]
+    },
     "Media": {
       "additionalProperties": true,
       "type": "object",
@@ -1022,6 +1148,296 @@
         }
       },
       "required": ["id", "type"]
+    },
+    "Input.FileUpload": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user upload a file.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.FileUpload\"`.",
+          "enum": [
+            "Input.FileUpload"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Email": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter an email.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Email\"`.",
+          "enum": [
+            "Input.Email"
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Description of the input desired. Displayed when no text has been input."
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Currency": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a currency value.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Currency\"`.",
+          "enum": [
+            "Input.Currency"
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Description of the input desired. Displayed when no text has been input."
+        },
+        "max": {
+          "type": "number",
+          "description": "Hint of maximum value (may be ignored by some clients)."
+        },
+        "min": {
+          "type": "number",
+          "description": "Hint of minimum value (may be ignored by some clients)."
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Address": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter an address.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Address\"`.",
+          "enum": [
+            "Input.Address"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.ApiLookup": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user look up a value via an API.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.ApiLookup\"`.",
+          "enum": [
+            "Input.ApiLookup"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Gender": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a gender.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Gender\"`.",
+          "enum": [
+            "Input.Gender"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Name": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a name.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Name\"`.",
+          "enum": [
+            "Input.Name"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.Signature": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a signature.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.Signature\"`.",
+          "enum": [
+            "Input.Signature"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.TelephoneNumber": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a telephone number.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.TelephoneNumber\"`.",
+          "enum": [
+            "Input.TelephoneNumber"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "Input.DateTime": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "Lets a user enter a telephone number.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CardElement"
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed."
+        },
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Input.DateTime\"`.",
+          "enum": [
+            "Input.DateTime"
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Description of the input desired. Displayed when no text has been input."
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
     },
     "Input.Text": {
       "additionalProperties": true,
