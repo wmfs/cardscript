@@ -48,7 +48,8 @@
           "separator": true
         },
         {
-          "type": "AddressBlock"
+          "type": "AddressBlock",
+          "dataPath": "addressBlock"
         }
       ]
     },

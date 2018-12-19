@@ -762,9 +762,28 @@
           "enum": [
             "AddressBlock"
           ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the AddressBlock.",
+          "default": "Address"
+        },
+        "dataPath": {
+          "type": "string",
+          "description": "Points to the holding the address."
+        },
+        "multiline": {
+          "type": "boolean",
+          "default": true,
+          "description": "Wether the address in multiple lines."
+        },
+        "lineDelimited": {
+          "type": "string",
+          "default": ",",
+          "description": "The string of character(s) which the address is delimited by."
         }
       },
-      "required": ["type"]
+      "required": ["type", "dataPath"]
     },
     "Map": {
       "additionalProperties": true,
