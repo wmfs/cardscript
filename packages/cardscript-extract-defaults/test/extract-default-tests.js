@@ -52,7 +52,8 @@ describe('Run some Cardscript default-extracting tests', function () {
         slider: 3,
         text: '',
         textEditor: 'editor: true',
-        inputAddressSearchResults: []
+        inputAddressSearchResults: [],
+        inputSignatureOpenModal: false
       },
       cardViews: {
         cardView: {
