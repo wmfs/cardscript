@@ -1328,6 +1328,30 @@
           "enum": [
             "Input.Gender"
           ]
+        },
+        "term": {
+          "type": "string",
+          "description": "Whether the gender or sex should be asked.",
+          "enum": [
+            "sex",
+            "gender"
+          ],
+          "default": "gender"
+        },
+        "preferNotToSay": {
+          "type": "boolean",
+          "description": "Includes Prefer not to say gender in list.",
+          "default": false
+        },
+        "preferToSelfDescribe": {
+          "type": "boolean",
+          "description": "Includes Prefer not to self describe gender in list.",
+          "default": false
+        },
+        "includeTransgender": {
+          "type": "boolean",
+          "description": "Includes transgender in list.",
+          "default": false
         }
       },
       "required": [

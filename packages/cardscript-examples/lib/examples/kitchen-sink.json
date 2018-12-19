@@ -604,7 +604,26 @@
           "separator": true
         },
         {
-          "type": "Input.Gender"
+          "type": "TextBlock",
+          "text": "preferNotToSay: true, preferToSelfDescribe: true, includeTransgender: true",
+          "spacing": "medium"
+        },
+        {
+          "id": "inputGender",
+          "type": "Input.Gender",
+          "preferNotToSay": true,
+          "preferToSelfDescribe": true,
+          "includeTransgender": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "term: sex",
+          "spacing": "medium"
+        },
+        {
+          "id": "inputGenderSex",
+          "type": "Input.Gender",
+          "term": "sex"
         }
       ]
     },
@@ -835,6 +854,14 @@
                   "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
               }
           ]
+        },
+        {
+          "type": "Media",
+          "poster": "https://adaptivecards.io/content/poster-audio.jpg",
+          "sources": [{
+            "mimeType": "audio/mpeg",
+            "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp3"
+          }]
         }
       ]
     },
