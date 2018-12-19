@@ -1,56 +1,42 @@
 /* eslint-env mocha */
 
 'use strict'
-const fs = require('fs')
 const chai = require('chai')
 const expect = chai.expect
-const path = require('path')
 const Converter = require('./../lib')
+const {
+  incidentSummary,
+  hydrantViewer,
+  casualtyCare,
+  safeAndStrong,
+  generic
+} = require('./fixtures')
 
-describe('Run some React-jsonschema-form-to-cardscript conversions', function () {
-  it('should convert generic form', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'generic.json')))
-    const result = Converter(reactJsonSchemaForm, 'form')
-    expect(result.title).to.eql('Add Incident Log edit!!!')
-    expect(result.widgets.length).to.eql(24)
+describe('Run some React-jsonschema-form-to-cardscript conversions', () => {
+  it('convert incident summary board', () => {
+    const result = Converter(incidentSummary, 'board', { incidentNumber: 1234, incidentYear: 2014 })
+    expect(result.body[0].type).to.eql('Jumbotron')
+    expect(result.body[0].title).to.eql('Incident 1234/2014')
+    expect(result.body.length).to.eql(4)
   })
 
-  it('should convert casualty care form', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'casualty-care.json')))
-    const result = Converter(reactJsonSchemaForm, 'form')
-    expect(result.title).to.eql('Casualty Care')
-    expect(result.widgets.length).to.eql(84)
+  it('convert the hydrant viewer board', () => {
+    const result = Converter(hydrantViewer, 'board', { hydrantNumber: 123 })
+    expect(result.body.length).to.eql(3)
   })
 
-  it('should convert safe and strong form', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'safe-and-strong.json')))
-    const result = Converter(reactJsonSchemaForm, 'form')
-    expect(result.title).to.eql('Safe and Strong')
-    expect(result.widgets.length).to.eql(34)
+  it('convert the casualty care form', () => {
+    const result = Converter(casualtyCare, 'form')
+    expect(result.body.length).to.eql(12)
   })
 
-  it('should convert hydrant viewer board with data', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
-    const result = Converter(reactJsonSchemaForm, 'board', {hydrantNumber: '1234'})
-    expect(result.title).to.eql('Hydrant 1234')
+  it('convert the safe and strong form', () => {
+    const result = Converter(safeAndStrong, 'form')
+    expect(result.body.length).to.eql(5)
   })
 
-  it('should convert hydrant viewer board without data', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'hydrant-viewer.json')))
-    const result = Converter(reactJsonSchemaForm, 'board')
-    expect(result.title).to.eql('Hydrant ${hydrantNumber}') // eslint-disable-line
-  })
-
-  it('should convert incident summary board with data', async () => {
-    const reactJsonSchemaForm = JSON.parse(await readFile(path.resolve(__dirname, 'fixtures', 'incident-summary.json')))
-    const result = Converter(reactJsonSchemaForm, 'board', {incidentNumber: 1234, incidentYear: 2018})
-    expect(result.title).to.eql('Incident 1234/2018')
+  it('convert the generic form', () => {
+    const result = Converter(generic, 'form')
+    expect(result.body.length).to.eql(4)
   })
 })
-
-function readFile (path) {
-  return new Promise((resolve, reject) => fs.readFile(path, 'utf8', (err, data) => {
-    if (err) reject(err)
-    else resolve(data)
-  }))
-}

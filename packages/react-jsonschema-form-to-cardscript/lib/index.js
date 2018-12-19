@@ -1,199 +1,166 @@
 const evaluate = require('static-eval')
 const { parse } = require('esprima')
 
-const widgets = require('./widgets')
+const ELEMENTS = require('./elements')
 
-const WIDGET_MAP = {
-  propertylist: 'PropertyList',
-  maplist: 'Map',
-  textField: 'Text',
-  selectField: 'Select',
-  switchField: 'Switch',
-  radioField: 'Radio',
-  sliderField: 'Slider',
-  noticeField: 'StickyNote',
-  checkField: 'CheckboxList',
-  dateField: 'Date',
-  timeField: 'Time',
-  mapField: 'Map',
-  fileUploader: 'FileUpload',
-  questionnaire: 'Questionnaire',
-  richTextArea: 'Richtext',
-  numberField: 'Number',
-  addressField: 'Address',
-  expandableNoticeField: 'ExpandableNotice',
-  buttonlist: 'ButtonList',
+const BOARD_ELEMENTS = {
+  propertylist: 'FactSet',
+  buttonlist: 'ActionSet',
   tabularlist: 'Table'
+  // maplist
+  // summary
 }
 
-// todo: unimplemented widgets
-// markup
-// summary
-// taglist
-// unknownField
-// galleryField
-// listField
-// titleField
-// annotationField
-// repeatextFld
-// diarysummary
-// findField
-// bookingField
+const FORM_ELEMENTS = {
+  textField: 'Input.Text',
+  numberField: 'Input.Number',
+  addressField: 'Input.Address',
+  selectField: 'Input.ChoiceSet',
+  radioField: 'Input.ChoiceSet',
+  questionnaire: 'Input.ChoiceSet',
+  switchField: 'Input.Toggle',
+  sliderField: 'Input.Slider',
+  dateField: 'Input.Date',
+  fileUploader: 'Input.FileUpload',
+  noticeField: 'TextBlock',
+  expandableNoticeField: 'Collapsible',
+  findField: 'Input.ApiLookup'
+}
 
-module.exports = function reactJsonSchemaFormToCardscript (view, uiType, data) {
+module.exports = function (json, uiType, data) {
+  const cardscript = {
+    type: 'AdaptiveCard',
+    body: [],
+    $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+    version: '1.0'
+  }
+
   switch (uiType) {
     case 'board':
-      return convertBoard(view, data)
+      return convertBoard(json, data)
     case 'form':
-      return convertForm(view, getPropertyKeyMap(view))
-  }
-}
-
-function getPropertyKeyMap (json) {
-  const keys = {}
-  try {
-    Object.entries(json.jsonSchema.schema.properties).forEach(([key, { properties }]) => {
-      Object.keys(properties).forEach(prop => {
-        keys[`${key}_${prop}`] = `data.${prop}`
-      })
-    })
-  } catch (e) {
-    console.log('WARNING! Cannot get property key map')
-  }
-  return keys
-}
-
-function convertBoard (board, data) {
-  const title = parseBoardTitle(board.boardTitleTemplate, data)
-
-  const cardscript = {
-    title,
-    widgets: [{
-      type: 'header',
-      attributes: {
-        heading: title
-      }
-    }]
+      return convertForm(json)
   }
 
-  board.content.forEach(content => {
-    if (WIDGET_MAP[content.widget]) {
-      const widget = new widgets[WIDGET_MAP[content.widget]](content, 'board').widget
-      if (widget) cardscript.widgets.push(widget)
-    }
-  })
+  function convertBoard (board, data) {
+    if (board.boardTitleTemplate) {
+      const title = parseBoardTitle(board.boardTitleTemplate, data)
 
-  return cardscript
-}
-
-function parseBoardTitle (template, data) {
-  if (!data) return template
-  const exp = JSON.parse(JSON.stringify(parse('`' + template + '`').body[0].expression))
-  return evaluate(exp, data)
-}
-
-function convertForm (form, keymap) {
-  const { schema, uiSchema, conditionalSchema } = form.jsonSchema
-
-  const cardscript = {
-    title: schema.formtitle,
-    widgets: [{
-      type: 'header',
-      attributes: {
-        heading: schema.formtitle,
-        desc: schema.formdescription,
-        backgroundImage: schema.formimage,
-        backgroundImageAltText: 'Alt Text Here'
-      }
-    }]
-  }
-
-  const newConditionalSchema = {}
-  if (conditionalSchema) {
-    Object.entries(conditionalSchema).forEach(([k, conditions]) => {
-      conditions.forEach(({ expression, dependents }) => {
-        dependents.forEach(dep => {
-          newConditionalSchema[dep] = []
-          Object.entries(keymap).forEach(([key, value]) => {
-            expression = expression.replace(key, value)
-          })
-          newConditionalSchema[dep].push(expression)
-        })
-      })
-    })
-  }
-
-  Object.keys(schema.properties).forEach(sectionId => {
-    const section = schema.properties[sectionId]
-    const set = {
-      id: sectionId,
-      type: 'set',
-      attributes: {
-        tocTitle: section.title
-      }
-    }
-    if (section.properties) {
-      cardscript.widgets.push(
-        set,
-        {
-          type: 'heading',
-          attributes: { heading: section.title }
-        }
+      cardscript.body.push(
+        ELEMENTS['Jumbotron']({ title }, 'board')
       )
+    }
+
+    board.content.forEach(content => {
+      if (BOARD_ELEMENTS[content.widget]) {
+        if (ELEMENTS[BOARD_ELEMENTS[content.widget]]) {
+          cardscript.body.push(
+            ELEMENTS[BOARD_ELEMENTS[content.widget]](content, 'board')
+          )
+        } else {
+          console.log(`${BOARD_ELEMENTS[content.widget]} is not yet implemented.`)
+        }
+      } else {
+        console.log(`No conversion for ${content.widget} yet.`)
+      }
+    })
+
+    return cardscript
+  }
+
+  function parseBoardTitle (template, data) {
+    if (!data) return template
+    const exp = JSON.parse(JSON.stringify(parse('`' + template + '`').body[0].expression))
+    return evaluate(exp, data)
+  }
+
+  function convertForm (form) {
+    const { schema, uiSchema } = form.jsonSchema
+
+    cardscript.body.push(
+      ELEMENTS['Jumbotron']({ title: schema.formtitle, subtitle: schema.formdescription }, 'form')
+    )
+
+    Object.keys(schema.properties).forEach(sectionId => {
+      const section = schema.properties[sectionId]
+      const items = [{
+        type: 'TextBlock',
+        text: section.title,
+        wrap: true,
+        spacing: 'large',
+        size: 'extraLarge'
+      }]
+
+      if (section.description) {
+        items.push({
+          type: 'TextBlock',
+          text: section.description,
+          wrap: true,
+          size: 'medium',
+          weight: 'lighter'
+        })
+      }
 
       Object.keys(section.properties).forEach(propertyId => {
-        const uiSchema_ = uiSchema[sectionId][propertyId]
+        const widget = uiSchema[sectionId][propertyId] ? uiSchema[sectionId][propertyId]['ui:widget'] : undefined
 
-        const sectionRequired = section.required || []
-
-        const widget = generateWidget({
-          id: propertyId,
-          schema: section.properties[propertyId],
-          uiSchema: uiSchema_,
-          conditionalSchema: newConditionalSchema[`${sectionId}_${propertyId}`] || [],
-          mandatory: sectionRequired.includes(propertyId)
-        })
-        if (widget) cardscript.widgets.push(widget)
+        if (widget === 'richTextArea') {
+          const elements = ELEMENTS['Input.Text']({
+            id: propertyId,
+            schema: section.properties[propertyId],
+            uiSchema: uiSchema[sectionId][propertyId],
+            editor: true
+          }, 'form')
+          items.push(...elements)
+        } else if (widget) {
+          if (FORM_ELEMENTS[widget]) {
+            if (ELEMENTS[FORM_ELEMENTS[widget]]) {
+              const elements = ELEMENTS[FORM_ELEMENTS[widget]]({
+                id: propertyId,
+                schema: section.properties[propertyId],
+                uiSchema: uiSchema[sectionId][propertyId]
+              }, 'form')
+              items.push(...elements)
+            } else {
+              console.log(`${FORM_ELEMENTS[widget]} is not yet implemented for ${sectionId}.${propertyId}.`)
+            }
+          } else {
+            console.log(`No conversion for ${widget} for ${sectionId}.${propertyId} yet.`)
+          }
+        } else {
+          const field = uiSchema[sectionId][propertyId] ? uiSchema[sectionId][propertyId]['ui:field'] : undefined
+          if (field === 'ArrayField') {
+            const notCheckField = uiSchema[sectionId][propertyId].items.filter(i => i['ui:widget'] !== 'checkField').length > 0
+            if (!notCheckField) {
+              const elements = ELEMENTS['Input.ChoiceSet']({
+                id: propertyId,
+                schema: {
+                  title: section.properties[propertyId].title,
+                  enum: section.properties[propertyId].items.map((i, idx) => i.key || idx),
+                  enumNames: section.properties[propertyId].items.map(i => i.title)
+                },
+                uiSchema: {
+                  'ui:widget': 'checkField'
+                }
+              }, 'form')
+              items.push(...elements)
+            } else {
+              console.log(`Cannot create element for ${sectionId}.${propertyId}.`)
+            }
+          } else {
+            console.log(`Cannot create element for ${sectionId}.${propertyId}.`)
+          }
+        }
       })
 
-      cardscript.widgets.push({type: 'endSet'})
-    } else {
-      // Section is actually a widget
-      const widget = generateWidget({
+      cardscript.body.push({
+        type: 'Container',
         id: sectionId,
-        schema: section,
-        uiSchema: uiSchema[sectionId],
-        conditionalSchema: [],
-        mandatory: false
+        title: section.title,
+        items
       })
-      if (widget) cardscript.widgets.push(widget)
-    }
-  })
+    })
 
-  return cardscript
-}
-
-function generateWidget (options) {
-  const { id, schema, uiSchema } = options
-
-  if (schema.type === 'array') {
-    if (uiSchema['ui:widget'] && WIDGET_MAP[uiSchema['ui:widget']]) {
-      return new widgets[WIDGET_MAP[uiSchema['ui:widget']]](options, 'form').widget
-    } else if (uiSchema.items) {
-      let isCheckBoxList = false
-      uiSchema.items.forEach(i => { isCheckBoxList = i['ui:widget'] === 'checkField' || i['ui:widget'] === 'switchField' })
-      if (isCheckBoxList) {
-        return new widgets['CheckboxList'](options, 'form').widget
-      } else {
-        console.log(`WARNING: Cannot implement ${options.id} array widget right now.`)
-        // subview?
-      }
-    }
+    return cardscript
   }
-
-  if (!uiSchema) throw new Error(`No uiSchema on ${id}`)
-
-  return WIDGET_MAP[uiSchema['ui:widget']]
-    ? new widgets[WIDGET_MAP[uiSchema['ui:widget']]](options, 'form').widget
-    : null
 }
