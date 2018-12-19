@@ -13,8 +13,8 @@ module.exports = function (definition, options) {
   slider.bindToModel(definition)
   slider.addAttribute(':label-always', true)
 
-  if (min) slider.addAttribute(':min', min)
-  if (max) slider.addAttribute(':max', max)
+  if (min || min === 0) slider.addAttribute(':min', min)
+  if (max || max === 0) slider.addAttribute(':max', max)
   if (step) slider.addAttribute(':step', step)
 
   return builder.compile()

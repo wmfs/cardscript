@@ -29,7 +29,7 @@ module.exports = function (definition, options) {
 
   const cannotFindBtn = div.addChildTag('q-btn')
   cannotFindBtn.addAttribute('class', 'q-mt-md')
-  cannotFindBtn.addAttribute('label', 'I cannot find my address')
+  cannotFindBtn.addAttribute('label', `I can't find my address`)
   cannotFindBtn.addAttribute(':outline', true)
   cannotFindBtn.addAttribute('color', 'primary')
   cannotFindBtn.addAttribute('v-if', `${selectFldDataPath}.length > 0`)

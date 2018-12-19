@@ -15,7 +15,8 @@ module.exports = function (definition, options) {
     // style, // text, tel, url, email
     spacing,
     separator,
-    editor
+    editor,
+    title
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -27,6 +28,7 @@ module.exports = function (definition, options) {
     if (placeholder) input.addAttribute('placeholder', placeholder)
     if (maxLength) input.addAttribute('maxLength', maxLength)
     if (isMultiline) input.addAttribute('type', 'textarea')
+    if (title) input.addAttribute('float-label', title)
   }
 
   const classes = []

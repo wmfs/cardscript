@@ -13,7 +13,8 @@ module.exports = function (definition, options) {
     // min,
     placeholder,
     spacing,
-    separator
+    separator,
+    title
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -21,6 +22,7 @@ module.exports = function (definition, options) {
   date.bindToModel(definition)
   date.addAttribute('type', 'date')
   if (placeholder) date.addAttribute('placeholder', placeholder)
+  if (title) date.addAttribute('float-label', title)
 
   const classes = []
   const styles = []

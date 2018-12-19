@@ -14,7 +14,8 @@ module.exports = function (definition, options) {
     maxLength,
     placeholder,
     spacing,
-    separator
+    separator,
+    title
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -25,6 +26,7 @@ module.exports = function (definition, options) {
 
   if (placeholder) input.addAttribute('placeholder', placeholder)
   if (maxLength) input.addAttribute('maxLength', maxLength)
+  if (title) input.addAttribute('float-label', title)
 
   // Not sure if these are right...
   if (min) input.addAttribute('min', min)

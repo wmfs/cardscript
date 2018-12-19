@@ -42,7 +42,7 @@ module.exports = function extractDefaults (cardscript) {
       case 'Input.Slider':
       case 'Input.Text':
       case 'Input.Time':
-        if (element.value) {
+        if (element.value === 0 || element.value) {
           if (cardViewPath.length === 0) {
             defaultValues.rootView[element.id] = element.value
           } else {

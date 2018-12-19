@@ -10,13 +10,16 @@ const MARGINS = {
 module.exports = function (definition, options) {
   const {
     spacing,
-    separator
+    separator,
+    title
   } = definition
 
   const builder = new ComponentBuilder(definition)
   const field = builder.addTag('q-field')
   const uploader = field.addChildTag('q-uploader')
   uploader.addAttribute('url', '')
+
+  if (title) uploader.addAttribute('float-label', title)
 
   const classes = []
   const styles = []
