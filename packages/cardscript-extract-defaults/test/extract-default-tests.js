@@ -48,6 +48,7 @@ describe('Run some Cardscript default-extracting tests', function () {
         toggle: false,
         choice: 'CHOICE_1',
         choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ],
+        choiceWithTitle: 'CHOICE_1',
         slider: 3,
         text: '',
         textEditor: 'editor: true',
