@@ -34,8 +34,8 @@ export default {
           resize ({ id }) {
             this.$refs[`${id}SignaturePad`].resizeCanvas()
           },
-          showSignatureModal ({ openId }) {
-            dottie.set(this, openId, true)
+          showSignatureModal ({ id, dataPath }) {
+            dottie.set(this, `${dataPath}.${id}OpenModal`, true)
           },
           undoSign ({ id }) {
             this.$refs[`${id}SignaturePad`].undoSignature()

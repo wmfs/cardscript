@@ -11,19 +11,16 @@ module.exports = function (definition, options) {
   const modal = builder.addTag('q-modal')
   const dataPath = modal.getDataPath()
 
-  // const opts = {
-  //   dataPath,
-  //   id
-  // }
+  const opts = inspect({ dataPath, id })
 
   const openBtn = builder.addTag('q-btn')
   openBtn.addAttribute('label', 'Collect Signature')
   openBtn.addAttribute('color', 'primary')
-  openBtn.addAttribute('@click', `showSignatureModal(${inspect({ openId: `${dataPath}.${id}OpenModal` })})`)
+  openBtn.addAttribute('@click', `showSignatureModal(${opts})`)
 
   modal.addAttribute('v-model', `${dataPath}.${id}OpenModal`)
   modal.addAttribute(':maximized', true)
-  modal.addAttribute('@show', `resize({id: '${id}'})`)
+  modal.addAttribute('@show', `resize(${opts})`)
 
   const div = modal.addChildTag('div')
 
@@ -43,14 +40,14 @@ module.exports = function (definition, options) {
   const undo = div.addChildTag('q-btn')
   undo.addAttribute('label', 'Undo')
   undo.addAttribute('color', 'primary')
-  undo.addAttribute('@click', `undoSign({id: '${id}'})`)
+  undo.addAttribute('@click', `undoSign(${opts})`)
   undo.addAttribute('class', 'q-mr-sm')
   undo.addAttribute(':outline', true)
 
   const save = div.addChildTag('q-btn')
   save.addAttribute('label', 'Save')
   save.addAttribute('color', 'primary')
-  save.addAttribute('@click', `saveSign({id: '${id}', dataPath: '${dataPath}'})`)
+  save.addAttribute('@click', `saveSign(${opts})`)
   save.addAttribute('class', 'q-mr-sm')
 
   return builder.compile()
