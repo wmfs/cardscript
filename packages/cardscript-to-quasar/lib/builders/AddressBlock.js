@@ -2,7 +2,7 @@ const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
   const {
-    multiline,
+    // multiline,
     lineDelimited,
     title,
     dataPath
