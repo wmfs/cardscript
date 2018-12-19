@@ -99,8 +99,14 @@
 
                 <q-card class="q-mt-md q-mb-xl">
                   <q-card-main>
-                    <cardscript :content="dynamicContent" @OpenURL="onOpenURL" @Submit="onSubmit"
-                                @ShowCard="onShowCard" @InputAddress="onInputAddress"/>
+                    <cardscript
+                      :content="dynamicContent"
+                      @OpenURL="onOpenURL"
+                      @Submit="onSubmit"
+                      @ShowCard="onShowCard"
+                      @InputAddress="onInputAddress"
+                      @InputApiLookup="onInputApiLookup"
+                    />
                   </q-card-main>
                 </q-card>
 
@@ -343,6 +349,9 @@
       this.editor.session.setValue(this.cardscript)
     },
     methods: {
+      onInputApiLookup (payload, that) {
+        console.log('onInputApiLookup', payload)
+      },
       onInputAddress (payload, that) {
         const query = dottie.get(that, `${payload.dataPath}.${payload.id}SearchFld`)
         if (query && query.trim().length > 0) {

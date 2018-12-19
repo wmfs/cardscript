@@ -804,6 +804,14 @@
           "enum": [
             "PhaseBanner"
           ]
+        },
+        "phase": {
+          "type": "string",
+          "description": "The phase which the service is in.",
+          "enum": [
+            "alpha",
+            "beta"
+          ]
         }
       },
       "required": ["type"]

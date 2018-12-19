@@ -396,6 +396,7 @@
           "separator": true
         },
         {
+          "id": "inputApiLookup",
           "type": "Input.ApiLookup"
         }
       ]
@@ -854,7 +855,12 @@
           "separator": true
         },
         {
-          "type": "PhaseBanner"
+          "type": "PhaseBanner",
+          "phase": "alpha"
+        },
+        {
+          "type": "PhaseBanner",
+          "phase": "beta"
         }
       ]
     },
