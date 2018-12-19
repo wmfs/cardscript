@@ -827,24 +827,14 @@
           "separator": true
         },
         {
-          "type": "Media"
-        }
-      ]
-    },
-    {
-      "type": "Container",
-      "id": "mediaSource",
-      "title": "MediaSource",
-      "items": [
-        {
-          "type": "TextBlock",
-          "text": "MediaSource",
-          "size": "large",
-          "spacing": "large",
-          "separator": true
-        },
-        {
-          "type": "MediaSource"
+          "type": "Media",
+          "poster": "https://adaptivecards.io/content/poster-video.png",
+          "sources": [
+              {
+                  "mimeType": "video/mp4",
+                  "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
+              }
+          ]
         }
       ]
     },

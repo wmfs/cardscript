@@ -5,6 +5,8 @@
 </template>
 <script>
 import { openURL } from 'quasar'
+import 'video.js/dist/video-js.css'
+import { videoPlayer } from 'vue-video-player'
 
 export default {
   name: 'Cardscript',
@@ -15,7 +17,7 @@ export default {
     return {
       uiTemplate: {
         template: content.quasarTemplate,
-        components: {},
+        components: { videoPlayer },
         validations: {
           data: content.validations
         },
@@ -61,3 +63,8 @@ export default {
   }
 }
 </script>
+<style>
+  .video-js {
+    width: 100%;
+  }
+</style>
