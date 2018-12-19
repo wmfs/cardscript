@@ -106,6 +106,14 @@ module.exports = function extractDefaults (cardscript) {
           defaultValues.cardViews[cardViewId][element.id + 'SearchResults'] = []
         }
         break
+      case 'Input.Signature':
+        if (cardViewPath.length === 0) {
+          defaultValues.rootView[element.id + 'OpenModal'] = false
+        } else {
+          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          defaultValues.cardViews[cardViewId][element.id + 'OpenModal'] = false
+        }
+        break
     }
   }
 

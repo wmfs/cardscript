@@ -28,7 +28,8 @@
     "vuelidate": "0.7.4",
     "yamljs": "0.3.0",
     "video.js": "7.3.0",
-    "vue-video-player": "5.0.2"
+    "vue-video-player": "5.0.2",
+    "vue-signature-pad": "1.1.6"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",

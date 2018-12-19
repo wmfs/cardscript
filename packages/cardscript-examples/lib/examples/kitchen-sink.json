@@ -703,6 +703,7 @@
           "separator": true
         },
         {
+          "id": "inputSignature",
           "type": "Input.Signature"
         }
       ]

@@ -4,9 +4,11 @@
   </div>
 </template>
 <script>
+import dottie from 'dottie'
 import { openURL } from 'quasar'
 import 'video.js/dist/video-js.css'
 import { videoPlayer } from 'vue-video-player'
+import VueSignature from 'vue-signature-pad'
 
 export default {
   name: 'Cardscript',
@@ -17,7 +19,7 @@ export default {
     return {
       uiTemplate: {
         template: content.quasarTemplate,
-        components: { videoPlayer },
+        components: { videoPlayer, VueSignaturePad: VueSignature },
         validations: {
           data: content.validations
         },
@@ -29,6 +31,21 @@ export default {
           }
         },
         methods: {
+          resize ({ id }) {
+            this.$refs[`${id}SignaturePad`].resizeCanvas()
+          },
+          showSignatureModal ({ id, openId }) {
+            dottie.set(this, openId, true)
+          },
+          undoSign ({ id }) {
+            this.$refs[`${id}SignaturePad`].undoSignature()
+          },
+          saveSign ({ id }) {
+            // this.$refs[`${id}SignaturePad`].signatureData.src
+            const { isEmpty, data } = this.$refs[`${id}SignaturePad`].saveSignature()
+            console.log('Is empty?', isEmpty)
+            console.log('Data:', data)
+          },
           openURL,
           createNewCardView (cardViewId) {
             this.internals.currentCardViewData[cardViewId] = this.internals.cardViewDefaults[cardViewId] || {}
