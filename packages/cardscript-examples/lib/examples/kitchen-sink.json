@@ -621,7 +621,10 @@
           "separator": true
         },
         {
-          "type": "Input.Name"
+          "id": "name",
+          "type": "Input.Name",
+          "placeholder": "Input.Name",
+          "spacing": "medium"
         }
       ]
     },
