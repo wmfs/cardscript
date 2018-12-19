@@ -701,7 +701,10 @@
           "separator": true
         },
         {
-          "type": "Input.TelephoneNumber"
+          "id": "inputTelephoneNumber",
+          "type": "Input.TelephoneNumber",
+          "placeholder": "Input.TelephoneNumber",
+          "spacing": "medium"
         }
       ]
     },
