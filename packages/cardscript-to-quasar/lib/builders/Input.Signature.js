@@ -11,10 +11,15 @@ module.exports = function (definition, options) {
   const modal = builder.addTag('q-modal')
   const dataPath = modal.getDataPath()
 
+  // const opts = {
+  //   dataPath,
+  //   id
+  // }
+
   const openBtn = builder.addTag('q-btn')
   openBtn.addAttribute('label', 'Collect Signature')
   openBtn.addAttribute('color', 'primary')
-  openBtn.addAttribute('@click', `showSignatureModal(${inspect({ openId: `${dataPath}.${id}OpenModal`, id })})`)
+  openBtn.addAttribute('@click', `showSignatureModal(${inspect({ openId: `${dataPath}.${id}OpenModal` })})`)
 
   modal.addAttribute('v-model', `${dataPath}.${id}OpenModal`)
   modal.addAttribute(':maximized', true)
@@ -45,7 +50,7 @@ module.exports = function (definition, options) {
   const save = div.addChildTag('q-btn')
   save.addAttribute('label', 'Save')
   save.addAttribute('color', 'primary')
-  save.addAttribute('@click', `saveSign({id: '${id}'})`)
+  save.addAttribute('@click', `saveSign({id: '${id}', dataPath: '${dataPath}'})`)
   save.addAttribute('class', 'q-mr-sm')
 
   return builder.compile()

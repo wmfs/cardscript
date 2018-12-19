@@ -34,17 +34,18 @@ export default {
           resize ({ id }) {
             this.$refs[`${id}SignaturePad`].resizeCanvas()
           },
-          showSignatureModal ({ id, openId }) {
+          showSignatureModal ({ openId }) {
             dottie.set(this, openId, true)
           },
           undoSign ({ id }) {
             this.$refs[`${id}SignaturePad`].undoSignature()
           },
-          saveSign ({ id }) {
-            // this.$refs[`${id}SignaturePad`].signatureData.src
+          saveSign ({ id, dataPath }) {
             const { isEmpty, data } = this.$refs[`${id}SignaturePad`].saveSignature()
             console.log('Is empty?', isEmpty)
             console.log('Data:', data)
+            dottie.set(this, `${dataPath}.${id}`, data)
+            // dottie.set(this, `${dataPath}.${id}OpenModal`, false)
           },
           openURL,
           createNewCardView (cardViewId) {
