@@ -5,14 +5,14 @@
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "dottie": "2.0.1"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1",
-    "cardscript-examples": "^0.0.6",
-    "dottie": "2.0.1"
+    "cardscript-examples": "^0.0.6"
   },
   "scripts": {
     "lint": "standard",
