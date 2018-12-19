@@ -7,23 +7,26 @@ module.exports = function (definition, options) {
     title,
     dataPath
   } = definition
+
   const builder = new ComponentBuilder(definition)
 
-  const div = builder.addTag('div')
+  const card = builder.addTag('q-card')
 
-  const titleText = div.addChildTag('p')
-  titleText.content(title || 'Address')
+  const cardTitle = card.addChildTag('q-card-title')
+  cardTitle.content(title || 'Address')
 
-  const notFoundText = div.addChildTag('p')
-  notFoundText.content('Address not found.')
-  notFoundText.addAttribute('v-if', `!data.${dataPath}`)
+  card.addChildTag('q-card-separator')
 
-  const lines = div.addChildTag('div')
-  lines.addAttribute('v-if', `data.${dataPath}`)
-  const line = lines.addChildTag('p')
+  const cardMain = card.addChildTag('q-card-main')
+  cardMain.addAttribute('v-if', `data.${dataPath}`)
+  const line = cardMain.addChildTag('div')
   line.addAttribute('v-for', `(line, $idx) in data.${dataPath}.split('${lineDelimited || ','}')`)
   line.addAttribute(':key', '$idx')
   line.content(`{{line}}`)
+
+  const cardMainEmpty = card.addChildTag('q-card-main')
+  cardMainEmpty.content('Address not found.')
+  cardMainEmpty.addAttribute('v-if', `!data.${dataPath}`)
 
   return builder.compile()
 }
