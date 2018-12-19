@@ -42,25 +42,26 @@ module.exports = function (definition, options) {
     if (classes.length > 0) div.addAttribute('class', classes.join(' '))
   } else if (style === 'expanded') {
     // RADIO
-    const div = builder.addTag('div')
+    const field = builder.addTag('q-field')
     if (title) {
-      const label = div.addChildTag('div')
-      label.content(title)
+      // const label = div.addChildTag('div')
+      // label.content(title)
+      field.addAttribute('label', title)
     }
-    const optionGroup = div.addChildTag('q-option-group')
+    const optionGroup = field.addChildTag('q-option-group')
 
     optionGroup.bindToModel(definition)
     optionGroup.addAttribute(':options', `lists.${id}`)
     optionGroup.addAttribute('type', 'radio')
 
-    if (separator) div.addAttribute('style', `border-top: 1px solid rgb(238, 238, 238); margin-top: 8px; padding-top: 8px;`)
+    if (separator) field.addAttribute('style', `border-top: 1px solid rgb(238, 238, 238); margin-top: 8px; padding-top: 8px;`)
 
     const classes = []
 
     if (spacing === 'padding') classes.push(`q-pa-md`)
     else if (spacing && MARGINS[spacing]) classes.push(`q-mt-${MARGINS[spacing]}`)
 
-    if (classes.length > 0) div.addAttribute('class', classes.join(' '))
+    if (classes.length > 0) field.addAttribute('class', classes.join(' '))
   } else {
     // SELECT
     const select = builder.addTag('q-select')
