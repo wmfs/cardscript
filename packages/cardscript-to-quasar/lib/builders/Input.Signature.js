@@ -22,6 +22,7 @@ module.exports = function (definition, options) {
 
   const imgDiv = builder.addTag('div')
   imgDiv.addAttribute('v-if', `${dataPath}.${id} && ${dataPath}.${id}.length > 0`)
+  imgDiv.addAttribute('class', 'q-mt-md')
 
   const img = imgDiv.addChildTag('img')
   img.addAttribute(':src', `${dataPath}.${id}`)
