@@ -3,7 +3,9 @@ const { inspect } = require('util')
 
 module.exports = function (definition, options) {
   const {
-    id
+    id,
+    agreement,
+    saveText
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -31,11 +33,19 @@ module.exports = function (definition, options) {
 
   const div = modal.addChildTag('div')
 
+  if (agreement) {
+    const agreementText = div.addChildTag('div')
+    agreementText.content(agreement)
+    agreementText.addAttribute('class', 'text-weight-light q-mt-md q-ml-md')
+  }
+
   const signPad = div.addChildTag('VueSignaturePad')
   signPad.addAttribute('id', `${id}SignaturePad`)
   signPad.addAttribute('width', '100%')
   signPad.addAttribute('height', '500px')
   signPad.addAttribute('ref', `${id}SignaturePad`)
+  signPad.addAttribute('style', 'border-top: 1px solid #bdbdbd; border-bottom: 1px solid #bdbdbd;')
+  signPad.addAttribute('class', 'q-my-md')
 
   const close = div.addChildTag('q-btn')
   close.addAttribute('label', 'Close')
@@ -59,7 +69,7 @@ module.exports = function (definition, options) {
   undo.addAttribute(':outline', true)
 
   const save = div.addChildTag('q-btn')
-  save.addAttribute('label', 'Save')
+  save.addAttribute('label', saveText || 'Save')
   save.addAttribute('color', 'primary')
   save.addAttribute('@click', `saveSignature(${opts})`)
   save.addAttribute('class', 'q-mr-sm')

@@ -1425,6 +1425,14 @@
           "enum": [
             "Input.Signature"
           ]
+        },
+        "agreement": {
+          "type": "string",
+          "description": "Agreement text to be displayed above the signature pad."
+        },
+        "saveText": {
+          "type": "string",
+          "description": "Customise the text of the save button."
         }
       },
       "required": [

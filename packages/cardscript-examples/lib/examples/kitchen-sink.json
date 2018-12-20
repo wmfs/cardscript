@@ -704,7 +704,9 @@
         },
         {
           "id": "inputSignature",
-          "type": "Input.Signature"
+          "type": "Input.Signature",
+          "agreement": "I agree that...",
+          "saveText": "Send"
         }
       ]
     },
