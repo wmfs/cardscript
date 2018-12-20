@@ -1,33 +1,23 @@
+// todo: add depth, nested containers
+
 module.exports = function extractTableOfContents (cardscript) {
   const toc = []
-  cardscript.body.forEach(element => {
-    if (element.type === 'Container') {
-      if (element.title) {
-        const tocTitle = element.title
-        toc.push({
-          elementId: element.id,
-          tocTitle,
-          tocIcon: element.tocIcon || 'bookmark'
-        })
-      }
+
+  function parseElement (element) {
+    switch (element.type) {
+      case 'Container':
+        if (element.title) {
+          toc.push({
+            elementId: element.id,
+            tocTitle: element.title,
+            tocIcon: element.tocIcon || 'bookmark'
+          })
+        }
+        break
     }
-    // if (widget.type === 'set') {
-    //   depth++
-    //   if (widget.hasOwnProperty('attributes') && depth === 1) {
-    //     const tocTitle = widget.attributes.tocTitle
-    //     if (tocTitle) {
-    //       toc.push(
-    //         {
-    //           widgetId: widget.id,
-    //           tocTitle: tocTitle,
-    //           tocIcon: widget.attributes.tocIcon || 'bookmark'
-    //         }
-    //       )
-    //     }
-    //   }
-    // } else if (widget.type === 'endSet') {
-    //   depth--
-    // }
-  })
+  }
+
+  cardscript.body.forEach(parseElement)
+
   return toc
 }
