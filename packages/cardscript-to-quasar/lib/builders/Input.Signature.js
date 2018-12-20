@@ -11,10 +11,17 @@ module.exports = function (definition, options) {
   const modal = builder.addTag('q-modal')
   const dataPath = modal.getDataPath()
 
+  const imgDiv = builder.addTag('div')
+  imgDiv.addAttribute('v-if', `${dataPath}.${id} && ${dataPath}.${id}.length > 0`)
+  const img = imgDiv.addChildTag('img')
+  img.addAttribute(':src', `${dataPath}.${id}`)
+  img.addAttribute('width', '100%')
+  img.addAttribute('height', '100%')
+
   const opts = inspect({ dataPath, id })
 
   const openBtn = builder.addTag('q-btn')
-  openBtn.addAttribute('label', 'Collect Signature')
+  openBtn.addAttribute(':label', `${dataPath}.${id} && ${dataPath}.${id}.length > 0 ? 'Change Signature' : 'Collect Signature'`)
   openBtn.addAttribute('color', 'primary')
   openBtn.addAttribute('@click', `showSignatureModal(${opts})`)
 
@@ -30,12 +37,19 @@ module.exports = function (definition, options) {
   signPad.addAttribute('height', '500px')
   signPad.addAttribute('ref', `${id}SignaturePad`)
 
-  const cancel = div.addChildTag('q-btn')
-  cancel.addAttribute('label', 'Cancel')
-  cancel.addAttribute('color', 'primary')
-  cancel.addAttribute('@click', `${dataPath}.${id}OpenModal = false`)
-  cancel.addAttribute('class', 'q-ml-md q-mr-sm')
-  cancel.addAttribute(':outline', true)
+  const close = div.addChildTag('q-btn')
+  close.addAttribute('label', 'Close')
+  close.addAttribute('color', 'primary')
+  close.addAttribute('@click', `${dataPath}.${id}OpenModal = false`)
+  close.addAttribute('class', 'q-ml-md q-mr-sm')
+  close.addAttribute(':outline', true)
+
+  const clear = div.addChildTag('q-btn')
+  clear.addAttribute('label', 'Clear')
+  clear.addAttribute('color', 'primary')
+  clear.addAttribute('@click', `clearSign(${opts})`)
+  clear.addAttribute('class', 'q-mr-sm')
+  clear.addAttribute(':outline', true)
 
   const undo = div.addChildTag('q-btn')
   undo.addAttribute('label', 'Undo')
@@ -54,13 +68,5 @@ module.exports = function (definition, options) {
 }
 /*
 todo:
-change to modal
-
-if data is NOT present button 'Collect signature'
-else 'Change signature'
-
-opens modal
-sign pad in modal
-undo/save button in modal
-save button closes modal
+change signature needs to re-render signature if you navigate from page and back
 */

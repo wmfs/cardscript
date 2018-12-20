@@ -37,15 +37,16 @@ export default {
           showSignatureModal ({ id, dataPath }) {
             dottie.set(this, `${dataPath}.${id}OpenModal`, true)
           },
+          clearSign ({ id }) {
+            this.$refs[`${id}SignaturePad`].clearSignature()
+          },
           undoSign ({ id }) {
             this.$refs[`${id}SignaturePad`].undoSignature()
           },
           saveSign ({ id, dataPath }) {
-            const { isEmpty, data } = this.$refs[`${id}SignaturePad`].saveSignature()
-            console.log('Is empty?', isEmpty)
-            console.log('Data:', data)
+            const { /* isEmpty, */ data } = this.$refs[`${id}SignaturePad`].saveSignature()
             dottie.set(this, `${dataPath}.${id}`, data)
-            // dottie.set(this, `${dataPath}.${id}OpenModal`, false)
+            dottie.set(this, `${dataPath}.${id}OpenModal`, false)
           },
           openURL,
           createNewCardView (cardViewId) {
