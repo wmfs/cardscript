@@ -2068,4 +2068,3 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `cardscript-vue-component` | A simple Vue component to render dynamic Cardscript content using Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-vue-component) | [Here](https://www.npmjs.com/package/cardscript-vue-component)  |
 | `cardscript-vue-sdk` | An SDK for using Cardscript with Vue/Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-simple-vue) | [Here](https://www.npmjs.com/package/cardscript-vue-sdk)  |
 | `react-jsonschema-form-to-cardscript` | Produces Cardscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/react-jsonschema-form-to-cardscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-cardscript)  |
-
