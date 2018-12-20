@@ -5,7 +5,8 @@ module.exports = function (definition, options) {
   const {
     id,
     agreement,
-    saveText
+    saveText,
+    guidance
   } = definition
 
   const builder = new ComponentBuilder(definition)
@@ -13,8 +14,15 @@ module.exports = function (definition, options) {
   const modal = builder.addTag('q-modal')
   const dataPath = modal.getDataPath()
 
+  if (guidance) {
+    const guidanceDiv = builder.addTag('div')
+    guidanceDiv.content(guidance)
+    guidanceDiv.addAttribute('class', 'text-weight-light q-mt-md')
+  }
+
   const imgDiv = builder.addTag('div')
   imgDiv.addAttribute('v-if', `${dataPath}.${id} && ${dataPath}.${id}.length > 0`)
+
   const img = imgDiv.addChildTag('img')
   img.addAttribute(':src', `${dataPath}.${id}`)
   img.addAttribute('width', '100%')
@@ -25,6 +33,7 @@ module.exports = function (definition, options) {
   const openBtn = builder.addTag('q-btn')
   openBtn.addAttribute(':label', `${dataPath}.${id} && ${dataPath}.${id}.length > 0 ? 'Change Signature' : 'Collect Signature'`)
   openBtn.addAttribute('color', 'primary')
+  openBtn.addAttribute('class', 'q-mt-md')
   openBtn.addAttribute('@click', `showSignatureModal(${opts})`)
 
   modal.addAttribute('v-model', `${dataPath}.${id}OpenModal`)

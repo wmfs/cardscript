@@ -706,7 +706,8 @@
           "id": "inputSignature",
           "type": "Input.Signature",
           "agreement": "I agree that...",
-          "saveText": "Send"
+          "saveText": "Send",
+          "guidance": "Please enter your signature below..."
         }
       ]
     },

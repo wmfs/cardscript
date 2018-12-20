@@ -1433,6 +1433,10 @@
         "saveText": {
           "type": "string",
           "description": "Customise the text of the save button."
+        },
+        "guidance": {
+          "type": "string",
+          "description": "Guidance text to be displayed with the signature button."
         }
       },
       "required": [
