@@ -31,19 +31,21 @@ export default {
           }
         },
         methods: {
-          resize ({ id }) {
+          resizeSignatureModal ({ id, dataPath }) {
             this.$refs[`${id}SignaturePad`].resizeCanvas()
+            const data = dottie.get(this, `${dataPath}.${id}`)
+            this.$refs[`${id}SignaturePad`].fromDataURL(data)
           },
           showSignatureModal ({ id, dataPath }) {
             dottie.set(this, `${dataPath}.${id}OpenModal`, true)
           },
-          clearSign ({ id }) {
+          clearSignature ({ id }) {
             this.$refs[`${id}SignaturePad`].clearSignature()
           },
-          undoSign ({ id }) {
+          undoSignature ({ id }) {
             this.$refs[`${id}SignaturePad`].undoSignature()
           },
-          saveSign ({ id, dataPath }) {
+          saveSignature ({ id, dataPath }) {
             const { /* isEmpty, */ data } = this.$refs[`${id}SignaturePad`].saveSignature()
             dottie.set(this, `${dataPath}.${id}`, data)
             dottie.set(this, `${dataPath}.${id}OpenModal`, false)

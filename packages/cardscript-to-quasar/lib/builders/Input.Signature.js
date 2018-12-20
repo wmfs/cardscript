@@ -27,7 +27,7 @@ module.exports = function (definition, options) {
 
   modal.addAttribute('v-model', `${dataPath}.${id}OpenModal`)
   modal.addAttribute(':maximized', true)
-  modal.addAttribute('@show', `resize(${opts})`)
+  modal.addAttribute('@show', `resizeSignatureModal(${opts})`)
 
   const div = modal.addChildTag('div')
 
@@ -47,26 +47,22 @@ module.exports = function (definition, options) {
   const clear = div.addChildTag('q-btn')
   clear.addAttribute('label', 'Clear')
   clear.addAttribute('color', 'primary')
-  clear.addAttribute('@click', `clearSign(${opts})`)
+  clear.addAttribute('@click', `clearSignature(${opts})`)
   clear.addAttribute('class', 'q-mr-sm')
   clear.addAttribute(':outline', true)
 
   const undo = div.addChildTag('q-btn')
   undo.addAttribute('label', 'Undo')
   undo.addAttribute('color', 'primary')
-  undo.addAttribute('@click', `undoSign(${opts})`)
+  undo.addAttribute('@click', `undoSignature(${opts})`)
   undo.addAttribute('class', 'q-mr-sm')
   undo.addAttribute(':outline', true)
 
   const save = div.addChildTag('q-btn')
   save.addAttribute('label', 'Save')
   save.addAttribute('color', 'primary')
-  save.addAttribute('@click', `saveSign(${opts})`)
+  save.addAttribute('@click', `saveSignature(${opts})`)
   save.addAttribute('class', 'q-mr-sm')
 
   return builder.compile()
 }
-/*
-todo:
-change signature needs to re-render signature if you navigate from page and back
-*/
