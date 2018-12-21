@@ -17,5 +17,9 @@
   },
   "bugs": {
     "url": "https://github.com/wmfs/cardscript/issues"
-  }
+  },
+  "keywords: [
+    "tymly",
+    "cardscript"
+  ]
 }
