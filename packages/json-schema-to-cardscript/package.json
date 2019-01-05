@@ -1,5 +1,5 @@
 {
-  "name": "json-schema-to-cardscript",
+  "name": "@wmfs/json-schema-to-cardscript",
   "description": "Scaffold Cardscript from a JSON-Schema schema",
   "version": "0.0.6",
   "author": "Tim Needham",
