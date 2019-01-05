@@ -1,0 +1,26 @@
+{
+  "name": "json-schema-to-cardscript",
+  "description": "Scaffold Cardscript from a JSON-Schema schema",
+  "version": "0.0.6",
+  "author": "Tim Needham",
+  "main": "./lib/index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.1.1",
+    "standard": "11.0.1"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "standard && mocha"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/cardscript/tree/master/packages/json-schema-to-cardscript"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/cardscript/issues"
+  }
+}
