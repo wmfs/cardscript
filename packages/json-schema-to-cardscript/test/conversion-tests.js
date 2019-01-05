@@ -8,7 +8,12 @@ const pizzaModel = require('./fixtures/pizza')
 
 describe('Run some simple conversions', function () {
   it('Convert pizza model', function () {
-    const cardscript = jsonSchemaToCardscript(pizzaModel)
+    const cardscript = jsonSchemaToCardscript(
+      pizzaModel,
+      {
+        purpose: 'editing'
+      }
+    )
     console.log(cardscript)
   })
 })

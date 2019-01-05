@@ -123,7 +123,12 @@ const cardscript = jsonSchemaToCardscript(
     "imageUri",
     "vegetarian"
   ]
-})
+},
+// And some options
+{
+  purpose: 'editing'
+}
+)
 
 // -----------------------------------------------
 // Expect a half-decent stab at some Cardscript...
