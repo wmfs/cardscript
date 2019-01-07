@@ -29,7 +29,7 @@
           "id": "starters",
           "type": "CardView",
           "editable": true,
-          "title": "Add a starter!",
+          "addButtonLabel": "Add a starter!",
           "instanceTitleTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
           "instanceSubtitleTemplate": "You'll be wanting {{item.starterQuantity}} of these.",
           "card": {
@@ -87,7 +87,7 @@
           "id": "pizzas",
           "type": "CardView",
           "editable": true,
-          "title": "Add a pizza!",
+          "addButtonLabel": "Add a pizza!",
           "instanceTitleTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
           "instanceSubtitleTemplate": "You'll be wanting {{item.pizzaQuantity}} of these.",
           "card": {
@@ -128,7 +128,7 @@
                 "id": "dips",
                 "type": "CardView",
                 "editable": true,
-                "title": "Add a dip!",
+                "addButtonLabel": "Add a dip!",
                 "instanceTitleTemplate": "{{item.dipType | replaceWithTitle(lists.$simpleTitleMaps.dipType)}}",
                 "instanceSubtitleTemplate": "You'll be wanting {{item.dipQuantity}} of these.",
                 "card": {

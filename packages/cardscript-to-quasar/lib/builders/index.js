@@ -6,6 +6,7 @@ module.exports = {
   Tab: { conversionFunction: require('./Tab') },
   CardView: { conversionFunction: require('./CardView') },
   EndCardView: { conversionFunction: require('./EndCardView') },
+  Chip: { conversionFunction: require('./Chip') },
   Collapsible: { conversionFunction: require('./Collapsible') },
   Container: { conversionFunction: require('./Container') },
   TextBlock: { conversionFunction: require('./TextBlock') },

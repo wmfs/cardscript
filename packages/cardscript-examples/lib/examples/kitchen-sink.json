@@ -76,7 +76,7 @@
           "type": "CardView",
           "editable": true,
           "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
-          "title": "Click me!",
+          "addButtonLabel": "Click me!",
           "card": {
             "type": "AdaptiveCard",
             "body": [
@@ -102,7 +102,7 @@
         {
           "id": "cardViewNonEditable",
           "type": "CardView",
-          "title": "Click me!",
+          "addButtonLabel": "Click me!",
           "card": {
             "type": "AdaptiveCard",
             "body": [
@@ -112,6 +112,61 @@
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "chip",
+      "title": "Chip",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Chip",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Chip",
+          "text": "This is a chip!",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "accent",
+          "text": "accent",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "good",
+          "text": "good",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "warning",
+          "text": "warning",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "attention",
+          "text": "attention",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "light",
+          "text": "light",
+          "spacing": "small"
+        },
+        {
+          "type": "Chip",
+          "color": "dark",
+          "text": "dark",
+          "spacing": "small"
         }
       ]
     },

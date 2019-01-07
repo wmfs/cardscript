@@ -1,3 +1,5 @@
+// todo: title, header, guidance
+
 const cardViewTracker = require('./../utils/card-view-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 
@@ -7,7 +9,7 @@ module.exports = function (definition, options) {
 
   const {
     id,
-    title,
+    addButtonLabel,
     editable,
     instanceTitleTemplate,
     instanceSubtitleTemplate
@@ -62,7 +64,7 @@ module.exports = function (definition, options) {
   const btn = builder.addTag('q-btn')
   btn.addAttribute('color', 'primary')
   btn.addAttribute('@click.native.stop', `createNewCardView('${id}')`)
-  btn.addAttribute('label', title)
+  btn.addAttribute('label', addButtonLabel || 'Open Modal')
 
   const dialog = builder.addTag('q-dialog', { includeClosingTag: false })
   dialog.addAttribute('v-model', dialogKey)

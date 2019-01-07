@@ -69,11 +69,11 @@
             leave-active-class="animated fadeOut"
           >
             <q-tabs no-pane-border inverted class="q-pt-md" align="justify">
-              <q-tab default slot="title" name="view-tab" label="view"></q-tab>
+              <q-tab default slot="title" name="card-tab" label="card"></q-tab>
               <q-tab slot="title" name="model-tab" label="model"></q-tab>
               <q-tab slot="title" name="template-tab" label="template"></q-tab>
               <q-tab slot="title" name="info-tab" label="info"></q-tab>
-              <q-tab-pane name="view-tab" class="tab-pane">
+              <q-tab-pane name="card-tab" class="tab-pane">
                 <blockquote>
                   This is a simple rendering of the parsed Cardscript. Note that this is only meant to be a basic
                   illustration of typical web usage, your app is free to interpret Cardscript and conjure a UI in
@@ -113,7 +113,7 @@
               </q-tab-pane>
               <q-tab-pane name="model-tab" class="tab-pane">
                 <blockquote>
-                  This is the underlying data model for the view (default values were inferred from the Cardscript
+                  This is the underlying data model for the card (default values were inferred from the Cardscript
                   using the
                   <a href="https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults">cardscript-extract-defaults</a>
                   package).
