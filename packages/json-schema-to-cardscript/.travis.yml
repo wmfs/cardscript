@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - lts/*
+notifications:
+  email: false
+sudo: false
+dist: trusty
+env:
+  global:
+    - PLUGINS_PATH=./test/fixtures/plugins/*
+install:
+  - travis_retry npm install
+test:
+  - npm test
+before_deploy:
+  - npm run coverage
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: npx semantic-release
+    on:
+      branch: master
