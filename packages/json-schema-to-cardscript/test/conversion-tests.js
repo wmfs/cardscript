@@ -11,9 +11,10 @@ describe('Run some simple conversions', function () {
     const cardscript = jsonSchemaToCardscript(
       pizzaModel,
       {
+        schemaFilename: 'pizza.json',
         purpose: 'editing'
       }
     )
-    console.log(cardscript)
+    console.log(JSON.stringify(cardscript, null, 2))
   })
 })
