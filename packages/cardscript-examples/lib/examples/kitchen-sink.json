@@ -129,37 +129,44 @@
         },
         {
           "type": "Chip",
-          "text": "This is a chip!"
+          "text": "This is a chip!",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "accent",
-          "text": "accent"
+          "text": "accent",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "good",
-          "text": "good"
+          "text": "good",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "warning",
-          "text": "warning"
+          "text": "warning",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "attention",
-          "text": "attention"
+          "text": "attention",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "light",
-          "text": "light"
+          "text": "light",
+          "spacing": "small"
         },
         {
           "type": "Chip",
           "color": "dark",
-          "text": "dark"
+          "text": "dark",
+          "spacing": "small"
         }
       ]
     },
