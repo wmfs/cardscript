@@ -4,7 +4,7 @@ module.exports = {
   XInputEmail: null,
   InputText: require('./input-text'),
   Jumbotron: require('./jumbotron'),
-  XInputChoiceSet: null,
+  InputChoiceSet: require('./input-choice-set'),
   InputNumber: require('./input-number'),
   XInputSlider: null,
   InputToggle: require('./input-toggle'),

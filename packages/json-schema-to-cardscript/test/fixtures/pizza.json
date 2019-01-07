@@ -33,6 +33,19 @@
       "type": "string",
       "format": "uri"
     },
+    "crusts": {
+      "title": "Offer which crust options?",
+      "default": [
+        "Normal",
+        "Stuffed"
+      ],
+      "type": "string",
+      "enum": [
+        "Normal",
+        "Stuffed",
+        "Hot Dog"
+      ]
+    },
     "vegetarian": {
       "title": "Is the pizza suitable for vegetarians?",
       "default": false,
@@ -105,6 +118,7 @@
     "label",
     "popularitySeq",
     "imageUri",
+    "crusts",
     "vegetarian"
   ]
 }
