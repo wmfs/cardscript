@@ -1904,7 +1904,7 @@
             "CardView"
           ]
         },
-        "title": {
+        "addButtonLabel": {
           "type": "string",
           "description": "Text to be displayed as label of button."
         },

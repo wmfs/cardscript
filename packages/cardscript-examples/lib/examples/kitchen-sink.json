@@ -76,7 +76,7 @@
           "type": "CardView",
           "editable": true,
           "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
-          "title": "Click me!",
+          "addButtonLabel": "Click me!",
           "card": {
             "type": "AdaptiveCard",
             "body": [
@@ -102,7 +102,7 @@
         {
           "id": "cardViewNonEditable",
           "type": "CardView",
-          "title": "Click me!",
+          "addButtonLabel": "Click me!",
           "card": {
             "type": "AdaptiveCard",
             "body": [
