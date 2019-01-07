@@ -1880,6 +1880,10 @@
         "text": {
           "type": "string",
           "description": "Text to be displayed in chip."
+        },
+        "color": {
+          "type": "string",
+          "description": "Color of the chip"
         }
       },
       "required": [
