@@ -1,8 +1,5 @@
 # json-schema-to-cardscript
 
-[![npm (scoped)](https://img.shields.io/npm/v/@wmfs/json-schema-to-cardscript.svg)](https://www.npmjs.com/package/@wmfs/json-schema-to-cardscript)
-[![Build Status](https://travis-ci.org/wmfs/json-schema-to-cardscript.svg?branch=master)](https://travis-ci.org/wmfs/json-schema-to-cardscript)
-
 > Scaffold Cardscript from a JSON-Schema schema
 
 ## <a name="install"></a>Install
