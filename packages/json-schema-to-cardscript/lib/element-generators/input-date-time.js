@@ -1,5 +1,5 @@
-const makeBaseElement = require('./utils/make-base-element')
-const addDescriptions = require('./utils/add-descriptions')
+const makeBaseElement = require('../utils/make-base-element')
+const addDescriptions = require('../utils/add-descriptions')
 
 module.exports = function inputDateTimeElementGenerator (key, config, options) {
   const elements = []

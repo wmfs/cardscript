@@ -37,9 +37,14 @@ module.exports = function addElementsFromProperties (root, targetArray, options)
             property,
             options
           )
-          if (elements.length > 0) {
-            targetArray.push(...elements)
-          }
+          elements.forEach(
+            (element) => {
+              if (element.hasOwnProperty('card') && _.isObject(element.card)) {
+                addElementsFromProperties(property, element.card.body, options)
+              }
+              targetArray.push(element)
+            }
+          )
         } else {
           console.error(`FAILED TO MAP ${key} TO GENERATOR (Unable to find generator '${elementGeneratorName}')`)
         }

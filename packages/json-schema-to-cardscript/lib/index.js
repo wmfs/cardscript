@@ -1,30 +1,14 @@
 const processOptions = require('./process-options')
 const jumbotronGenerator = require('./element-generators/jumbotron')
 const addElementsFromProperties = require('./add-elements-from-properties')
-
+const makeEmptySchema = require('./utils/make-empty-schema')
 module.exports = function jsonSchemaToCardscript (jsonSchema, originalOptions) {
   const options = processOptions(jsonSchema, originalOptions)
-  const cardscript = {
-    $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-    version: '1.0',
-    type: 'AdaptiveCard',
-    body: [],
-    actions: [
-      {
-        type: 'Action.Cancel',
-        title: 'Cancel'
-      },
-      {
-        type: 'Action.Submit',
-        title: 'Submit'
-      }
-    ]
-  }
+  const cardscript = makeEmptySchema()
 
   console.log(JSON.stringify(options, null, 2))
-
-  console.log('--------------------------------------')
-  console.log(jsonSchema, null, 2)
+  // console.log('--------------------------------------')
+  // console.log(JSON.stringify(jsonSchema, null, 2), null, 2)
   console.log('--------------------------------------')
 
   // Add a Jumbotron

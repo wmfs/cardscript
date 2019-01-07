@@ -8,5 +8,5 @@ module.exports = {
   InputNumber: require('./input-number'),
   XInputSlider: null,
   InputToggle: require('./input-toggle'),
-  XCardView: null
+  CardView: require('./card-view')
 }
