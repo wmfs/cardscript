@@ -23,25 +23,30 @@ module.exports = function collateData () {
 
   const propertyInfo = []
   Object.keys(schema.definitions).forEach(key => {
-    if (key !== 'attributes' && key !== 'widgets') {
+    if (key !== 'attributes' && key !== 'elements') {
       const propertyDef = _.cloneDeep(schema.definitions[key])
       propertyDef.name = key
       propertyInfo.push(propertyDef)
     }
   })
 
-  const widgetInfo = Object.keys(schema.definitions.widgets).map(widgetType => {
-    const rawWidgetDefinition = schema.definitions.widgets[widgetType]
-    const widgetDefinition = _.cloneDeep(rawWidgetDefinition)
-    widgetDefinition.type = widgetType
-    widgetDefinition.example = JSON.stringify(snippets[widgetType], null, 2)
-    widgetDefinition.propertySummary = calculatePropertySummary(widgetType, propertyInfo, rawWidgetDefinition)
-    widgetDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(widgetType, schema.definitions.attributes, rawWidgetDefinition), 'name')
-    return widgetDefinition
+  const elementInfo = Object.keys(schema.definitions).map(elementType => {
+    const rawElementDefinition = schema.definitions[elementType]
+    // console.log(rawElementDefinition)
+    const elementDefinition = _.cloneDeep(rawElementDefinition)
+    elementDefinition.type = elementType
+    elementDefinition.example = JSON.stringify(snippets[elementType], null, 2)
+    if (elementDefinition.hasOwnProperty('properties')) {
+      elementDefinition.propertySummary = calculatePropertySummary(elementType, propertyInfo, rawElementDefinition)
+    } else {
+      elementDefinition.propertySummary = []
+    }
+    // elementDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(elementType, schema.definitions.attributes, rawElementDefinition), 'name')
+    return elementDefinition
   })
 
-  const attributeInfo = Object.keys(schema.definitions.attributes).map(attributeName => {
-    const attributeDefinition = _.cloneDeep(schema.definitions.attributes[attributeName])
+  const attributeInfo = Object.keys(schema.definitions).map(attributeName => {
+    const attributeDefinition = _.cloneDeep(schema.definitions[attributeName])
     attributeDefinition.name = attributeName
     return attributeDefinition
   })
@@ -57,7 +62,7 @@ module.exports = function collateData () {
     simpleExample: JSON.stringify(examples.simple, null, 2),
     simpleSetExample: JSON.stringify(examples.set, null, 2),
     expressionExample: JSON.stringify(examples.expression, null, 2),
-    widgets: _.sortBy(widgetInfo, 'type'),
+    elements: _.sortBy(elementInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
     properties: propertyInfo,
     topLevelProperties: topLevelProperties,
@@ -65,25 +70,33 @@ module.exports = function collateData () {
   }
 }
 
-function calculatePropertySummary (widgetType, widgetProperties, rawWidgetDefinition) {
-  const rawProps = rawWidgetDefinition.properties
+function calculatePropertySummary (elementType, elementProperties, rawElementDefinition) {
+  const rawProps = rawElementDefinition.properties
   const summary = []
-  widgetProperties.forEach(prop => {
-    if (rawProps.hasOwnProperty(prop.name)) {
-      let text = rawWidgetDefinition.required.includes(prop.name) ? '_Required_' : '_Optional_'
-
-      if (prop.name === 'type') {
-        text += ` (\`"${widgetType}"\`)`
-      }
-
-      summary.push({name: prop.name, text})
+  elementProperties.forEach(prop => {
+    if (elementType === prop.name && rawElementDefinition.hasOwnProperty('required')) {
+      Object.keys(rawProps).forEach(property => {
+        let name = property
+        let type = rawProps[property].type
+        let required
+        if (rawElementDefinition.required.includes(property)) {
+          required = 'Required'
+        } else {
+          required = 'Optional'
+        }
+        let text = rawProps[property].description
+        if (prop.name === 'type') {
+          text += ` (\`"${elementType}"\`)`
+        }
+        summary.push({name, type, required, text})
+      })
     }
   })
   return summary
 }
 
-function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDefinition) {
-  const rawAttribs = rawWidgetDefinition.properties.attributes
+function calculateAttributeSummary (elementType, attributeProperties, rawElementDefinition) {
+  const rawAttribs = rawElementDefinition.properties.attributes
   const summary = []
   if (rawAttribs) {
     Object.keys(rawAttribs.properties).map(key => {
@@ -93,7 +106,7 @@ function calculateAttributeSummary (widgetType, attributeProperties, rawWidgetDe
         ? attributeProperties[value.$ref.slice(25)] // Remove: #/definitions/attributes/
         : value
 
-      const requiredAttributes = rawWidgetDefinition.properties.attributes.required
+      const requiredAttributes = rawElementDefinition.properties.attributes.required
       const required = requiredAttributes && requiredAttributes.indexOf(key) !== -1
         ? 'Yes' : 'No'
 
