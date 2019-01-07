@@ -117,6 +117,54 @@
     },
     {
       "type": "Container",
+      "id": "chip",
+      "title": "Chip",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Chip",
+          "size": "large",
+          "spacing": "large",
+          "separator": true
+        },
+        {
+          "type": "Chip",
+          "text": "This is a chip!"
+        },
+        {
+          "type": "Chip",
+          "color": "accent",
+          "text": "accent"
+        },
+        {
+          "type": "Chip",
+          "color": "good",
+          "text": "good"
+        },
+        {
+          "type": "Chip",
+          "color": "warning",
+          "text": "warning"
+        },
+        {
+          "type": "Chip",
+          "color": "attention",
+          "text": "attention"
+        },
+        {
+          "type": "Chip",
+          "color": "light",
+          "text": "light"
+        },
+        {
+          "type": "Chip",
+          "color": "dark",
+          "text": "dark"
+        }
+      ]
+    },
+    {
+      "type": "Container",
       "id": "collapsible",
       "title": "Collapsible",
       "items": [

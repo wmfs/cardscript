@@ -369,6 +369,9 @@
               "$ref": "#/definitions/Collapsible"
             },
             {
+              "$ref": "#/definitions/Chip"
+            },
+            {
               "$ref": "#/definitions/CardView"
             }
           ]
@@ -1860,6 +1863,28 @@
       "required": [
         "type",
         "title"
+      ]
+    },
+    "Chip": {
+      "additionalProperties": true,
+      "type": "object",
+      "description": "A chip to display some text.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Must be `\"Chip\"`.",
+          "enum": [
+            "Chip"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "description": "Text to be displayed in chip."
+        }
+      },
+      "required": [
+        "type",
+        "text"
       ]
     },
     "Collapsible": {

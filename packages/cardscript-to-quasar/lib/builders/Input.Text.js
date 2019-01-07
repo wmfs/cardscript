@@ -1,3 +1,5 @@
+// todo: safer placeholder parsing (e.g. try putting " in placeholder attribute)
+
 const ComponentBuilder = require('./../utils/Component-builder')
 
 const MARGINS = {
