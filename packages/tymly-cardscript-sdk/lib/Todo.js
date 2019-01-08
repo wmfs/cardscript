@@ -1,5 +1,5 @@
 module.exports = class Todo {
-  constructor (client) {}
+  // constructor (client) {}
 
   persistFromUserQuery (userQuery) {
     // userQuery.todos

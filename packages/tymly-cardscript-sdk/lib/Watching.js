@@ -1,5 +1,5 @@
 module.exports = class Watching {
-  constructor (client) {}
+  // constructor (client) {}
 
   persistFromUserQuery (userQuery) {
     // userQuery.watching

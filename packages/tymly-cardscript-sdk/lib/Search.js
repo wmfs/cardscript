@@ -5,15 +5,15 @@ module.exports = class Search {
   }
 
   executeSearch (options) {
-    const {
-      query,
-      offset,
-      limit,
-      activeEvent,
-      categories,
-      lat,
-      long
-    } = options
+    // const {
+    //   query,
+    //   offset,
+    //   limit,
+    //   activeEvent,
+    //   categories,
+    //   lat,
+    //   long
+    // } = options
 
     return this.stateMachine.execute('tymly_search_1_0', {})
   }
