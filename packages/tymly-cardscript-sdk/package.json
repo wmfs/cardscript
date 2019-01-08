@@ -1,0 +1,22 @@
+{
+  "name": "@wmfs/tymly-cardscript-sdk",
+  "description": "",
+  "version": "0.0.0",
+  "author": "WMFS",
+  "main": "./lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.1.1",
+    "standard": "11.0.1"
+  },
+  "scripts": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmfs/cardscript/tree/master/packages/tymly-cardscript-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/wmfs/cardscript/issues"
+  }
+}

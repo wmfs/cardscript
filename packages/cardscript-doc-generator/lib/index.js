@@ -1,14 +1,12 @@
 const ejs = require('ejs')
 const path = require('upath')
-const collateData = require('./collate-data')
+const getSimpleManifest = require('./get-simple-manifest')
 const fs = require('fs')
 
 module.exports = function cardscriptDocGenerator (options) {
-  // Collate data
-
   ejs.renderFile(
     path.resolve(__dirname, './template.md.ejs'),
-    collateData(),
+    getSimpleManifest(),
     {},
     (err, str) => {
       if (err) {

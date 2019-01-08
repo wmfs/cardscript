@@ -6,7 +6,7 @@ const snippets = require('./snippets')
 const stopText = require('./stop-text')
 const getPackageInfo = require('./get-package-info')
 
-module.exports = function collateData () {
+module.exports = function getSimpleManifest () {
   const schema = jsonfile.readFileSync(
     path.resolve(__dirname, './../../../packages/cardscript-schema/lib/schema.json')
   )
