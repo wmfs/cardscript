@@ -1,9 +1,10 @@
 module.exports = class Auth0 {
   constructor (options) {
-
+    console.log('Auth0 Constructor')
   }
 
   init (client) {
+    console.log('init auth')
     this.db = client.db
     this.store = client.options.store
   }
