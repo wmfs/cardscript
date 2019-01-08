@@ -5,13 +5,13 @@ const addDescriptions = require('../utils/add-descriptions')
 const _ = require('lodash')
 _.mixin(require('lodash-inflection'))
 
-module.exports = function cardViewElementGenerator (key, config, options) {
+module.exports = function cardListElementGenerator (key, config, options) {
   const elements = []
-  const cardViewElement = makeBaseElement(key, 'CardView', config)
+  const cardListElement = makeBaseElement(key, 'CardList', config)
 
-  cardViewElement.editable = true
-  cardViewElement.addButtonLabel = `Add ${_.singularize(key)}`
-  addDescriptions(cardViewElement, config)
+  cardListElement.editable = true
+  cardListElement.addButtonLabel = `Add ${_.singularize(key)}`
+  addDescriptions(cardListElement, config)
 
   const card = makeEmptySchema()
   // TODO: Probably better ways, but get the first two string/integer values for title/subtitle?
@@ -30,19 +30,19 @@ module.exports = function cardViewElementGenerator (key, config, options) {
     labelTemplates.push('Need a description!')
   }
 
-  cardViewElement.instanceTitleTemplate = labelTemplates[0]
-  cardViewElement.instanceSubtitleTemplate = labelTemplates[1]
+  cardListElement.instanceTitleTemplate = labelTemplates[0]
+  cardListElement.instanceSubtitleTemplate = labelTemplates[1]
 
-  cardViewElement.card = card
+  cardListElement.card = card
 
-  elements.push(cardViewElement)
+  elements.push(cardListElement)
   return elements
 }
 
 /*
 {
   "id": "starters",
-  "type": "CardView",
+  "type": "CardList",
   "editable": true,
   "addButtonLabel": "Add a starter!",
   "instanceTitleTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",

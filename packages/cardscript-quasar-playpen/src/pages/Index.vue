@@ -194,7 +194,7 @@
 
                 <div class="q-display-1 q-my-md">Internals</div>
                 <p>
-                  Here are some of the internal workings (for managing dialog states and sub-views especially)
+                  Here are some of the internal workings (for managing dialog states and card lists especially)
                 </p>
                 <q-input
                   type="textarea"
@@ -333,7 +333,7 @@
         exampleOpts: [
           {label: 'Complex example', value: 'complex'},
           {label: 'Expression example', value: 'expression'},
-          {label: 'Card View example', value: 'cardView'},
+          {label: 'Card List example', value: 'cardList'},
           {label: 'Simple example', value: 'simple'},
           {label: 'Basic problems example', value: 'simpleFormWithBasicProblems'},
           {label: 'Blank example', value: 'blank'},
@@ -493,7 +493,7 @@
         result.lists = extractLists(cardscript)
         stopwatch.addTime('Calculate starting internals')
         result.defaultInternals = sdk.getDefaultInternals.default(cardscript)
-        result.defaultInternals.cardViewDefaults = result.defaultValues.cardViews
+        result.defaultInternals.cardListDefaults = result.defaultValues.cardLists
         stopwatch.addTime('Generating Vuelidate validations')
         result.validations = vuelidateConverter(cardscript, validators)
         stopwatch.addTime('Generate template')

@@ -1,4 +1,4 @@
-const cardViewTracker = require('./../utils/card-view-tracker')
+const cardListTracker = require('./../utils/card-list-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
@@ -8,7 +8,7 @@ module.exports = function (definition, options) {
 
   const builder = new ComponentBuilder(definition)
 
-  const cardViewId = cardViewTracker.removeCardView()
+  const cardListId = cardListTracker.removeCardList()
 
   if (editable) {
     const actions = builder.addTag('template')
@@ -17,12 +17,12 @@ module.exports = function (definition, options) {
 
     const close = actions.addChildTag('q-btn')
     close.addAttribute(':flat', true)
-    close.addAttribute('@click.native', `internals.dialogControl.${cardViewId} = false`)
+    close.addAttribute('@click.native', `internals.dialogControl.${cardListId} = false`)
     close.content('Close')
 
     const save = actions.addChildTag('q-btn')
     save.addAttribute(':flat', true)
-    save.addAttribute('@click.native', `pushCardViewContent('${cardViewId}')`)
+    save.addAttribute('@click.native', `pushCardListContent('${cardListId}')`)
     save.content('Save')
   }
 

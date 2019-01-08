@@ -6,7 +6,7 @@
       "type": "Jumbotron",
       "backgroundImage": "wmfs/pizza.jpg",
       "title": "Pizza Place",
-      "subtitle": "This is an example of how sub-views work.",
+      "subtitle": "This is an example of how card lists work.",
       "wash": "black"
     },
     {
@@ -27,7 +27,7 @@
         },
         {
           "id": "starters",
-          "type": "CardView",
+          "type": "CardList",
           "editable": true,
           "addButtonLabel": "Add a starter!",
           "instanceTitleTemplate": "{{ item.starterType | replaceWithTitle(lists.$simpleTitleMaps.starterType)}}",
@@ -85,7 +85,7 @@
         },
         {
           "id": "pizzas",
-          "type": "CardView",
+          "type": "CardList",
           "editable": true,
           "addButtonLabel": "Add a pizza!",
           "instanceTitleTemplate": "{{item.pizzaType | replaceWithTitle(lists.$simpleTitleMaps.pizzaType)}}",
@@ -126,7 +126,7 @@
               },
               {
                 "id": "dips",
-                "type": "CardView",
+                "type": "CardList",
                 "editable": true,
                 "addButtonLabel": "Add a dip!",
                 "instanceTitleTemplate": "{{item.dipType | replaceWithTitle(lists.$simpleTitleMaps.dipType)}}",

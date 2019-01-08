@@ -1,27 +1,27 @@
 export default function getDefaultInternals (cardscript) {
   const internals = {
     dialogControl: {},
-    currentCardViewData: {},
-    cardViewParents: {}
+    currentCardListData: {},
+    cardListParents: {}
   }
 
-  let cardViewPath = []
+  let cardListPath = []
   cardscript.body.forEach(parseElement)
 
   function parseElement (element) {
     switch (element.type) {
-      case 'CardView':
+      case 'CardList':
         internals.dialogControl[element.id] = false
-        internals.currentCardViewData[element.id] = {}
-        if (cardViewPath.length === 0) {
-          internals.cardViewParents[element.id] = null
-          cardViewPath.push(element.id)
+        internals.currentCardListData[element.id] = {}
+        if (cardListPath.length === 0) {
+          internals.cardListParents[element.id] = null
+          cardListPath.push(element.id)
         } else {
-          internals.cardViewParents[element.id] = cardViewPath[cardViewPath.length - 1]
-          cardViewPath.push(element.id)
+          internals.cardListParents[element.id] = cardListPath[cardListPath.length - 1]
+          cardListPath.push(element.id)
         }
         element.card.body.forEach(parseElement)
-        cardViewPath.pop()
+        cardListPath.pop()
         break
       case 'Container':
         element.items.forEach(parseElement)

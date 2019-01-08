@@ -4,7 +4,7 @@
 const extractDefaults = require('./../lib/')
 const chai = require('chai')
 const expect = chai.expect
-const { simple, complex, kitchenSink, cardView } = require('cardscript-examples')
+const { simple, complex, kitchenSink, cardList } = require('cardscript-examples')
 
 describe('Run some Cardscript default-extracting tests', function () {
   it('should extract no defaults from some simple example', function () {
@@ -14,7 +14,7 @@ describe('Run some Cardscript default-extracting tests', function () {
         rootView: {
           name: ''
         },
-        cardViews: {}
+        cardLists: {}
       }
     )
   })
@@ -35,7 +35,7 @@ describe('Run some Cardscript default-extracting tests', function () {
           firstName: '',
           lastName: ''
         },
-        cardViews: {}
+        cardLists: {}
       }
     )
   })
@@ -44,7 +44,7 @@ describe('Run some Cardscript default-extracting tests', function () {
     const result = extractDefaults(kitchenSink)
     expect(result).to.eql({
       rootView: {
-        cardView: [],
+        cardList: [],
         toggle: false,
         choice: 'CHOICE_1',
         choiceMulti: [ 'CHOICE_1', 'CHOICE_2' ],
@@ -55,22 +55,22 @@ describe('Run some Cardscript default-extracting tests', function () {
         inputAddressSearchResults: [],
         inputSignatureOpenModal: false
       },
-      cardViews: {
-        cardView: {
+      cardLists: {
+        cardList: {
           opinion: 'Amazing!'
         }
       }
     })
   })
 
-  it('should extract some defaults from cardView example', function () {
-    const result = extractDefaults(cardView)
+  it('should extract some defaults from cardList example', function () {
+    const result = extractDefaults(cardList)
     expect(result).to.eql({
       rootView: {
         starters: [],
         pizzas: []
       },
-      cardViews: {
+      cardLists: {
         starters: {
           starterQuantity: 2
         },

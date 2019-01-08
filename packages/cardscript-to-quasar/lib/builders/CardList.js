@@ -1,11 +1,11 @@
 // todo: title, header, guidance
 
-const cardViewTracker = require('./../utils/card-view-tracker')
+const cardListTracker = require('./../utils/card-list-tracker')
 const ComponentBuilder = require('./../utils/Component-builder')
 
 module.exports = function (definition, options) {
-  const parentCardView = cardViewTracker.getCurrentCardView()
-  cardViewTracker.addCardView(definition.id)
+  const parentCardList = cardListTracker.getCurrentCardList()
+  cardListTracker.addCardList(definition.id)
 
   const {
     id,
@@ -20,8 +20,8 @@ module.exports = function (definition, options) {
   const dialogKey = `internals.dialogControl.${id}`
 
   if (editable) {
-    const arrayPath = parentCardView
-      ? `internals.currentCardViewData.${parentCardView}.${id}`
+    const arrayPath = parentCardList
+      ? `internals.currentCardListData.${parentCardList}.${id}`
       : `data.${id}`
 
     if (instanceTitleTemplate) {
@@ -57,13 +57,13 @@ module.exports = function (definition, options) {
       itemSideActionBtn.addAttribute(':round', true)
       itemSideActionBtn.addAttribute(':dense', true)
       itemSideActionBtn.addAttribute('icon', 'delete_forever')
-      itemSideActionBtn.addAttribute('@click', `removeCardViewContent('${id}', $idx)`)
+      itemSideActionBtn.addAttribute('@click', `removeCardListContent('${id}', $idx)`)
     }
   }
 
   const btn = builder.addTag('q-btn')
   btn.addAttribute('color', 'primary')
-  btn.addAttribute('@click.native.stop', `createNewCardView('${id}')`)
+  btn.addAttribute('@click.native.stop', `createNewCardList('${id}')`)
   btn.addAttribute('label', addButtonLabel || 'Open Modal')
 
   const dialog = builder.addTag('q-dialog', { includeClosingTag: false })

@@ -55,12 +55,12 @@
     },
     {
       "type": "Container",
-      "id": "cardView",
-      "title": "CardView",
+      "id": "cardList",
+      "title": "CardList",
       "items": [
         {
           "type": "TextBlock",
-          "text": "CardView",
+          "text": "CardList",
           "size": "large",
           "spacing": "large",
           "separator": true
@@ -72,8 +72,8 @@
           "spacing": "medium"
         },
         {
-          "id": "cardView",
-          "type": "CardView",
+          "id": "cardList",
+          "type": "CardList",
           "editable": true,
           "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
           "addButtonLabel": "Click me!",
@@ -100,8 +100,8 @@
           "spacing": "medium"
         },
         {
-          "id": "cardViewNonEditable",
-          "type": "CardView",
+          "id": "cardListNonEditable",
+          "type": "CardList",
           "addButtonLabel": "Click me!",
           "card": {
             "type": "AdaptiveCard",
@@ -1000,8 +1000,8 @@
         },
         {
           "type": "Table",
-          "title": "Opinions (Add some via CardView example above to see them appear in Table here)",
-          "arrayPath": "cardView",
+          "title": "Opinions (Add some via CardList example above to see them appear in Table here)",
+          "arrayPath": "cardList",
           "columns": [
             {
               "title": "Opinion",

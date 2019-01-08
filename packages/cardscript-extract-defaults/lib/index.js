@@ -1,8 +1,8 @@
 module.exports = function extractDefaults (cardscript) {
-  const cardViewPath = []
+  const cardListPath = []
   const defaultValues = {
     rootView: {},
-    cardViews: {}
+    cardLists: {}
   }
 
   function parseElement (element) {
@@ -19,18 +19,18 @@ module.exports = function extractDefaults (cardscript) {
       case 'Collapsible':
         element.card.body.forEach(parseElement)
         break
-      case 'CardView':
+      case 'CardList':
         if (element.editable) {
-          if (cardViewPath.length === 0) {
+          if (cardListPath.length === 0) {
             defaultValues.rootView[element.id] = []
           } else {
-            const cardViewId = cardViewPath[cardViewPath.length - 1]
-            defaultValues.cardViews[cardViewId][element.id] = []
+            const cardListId = cardListPath[cardListPath.length - 1]
+            defaultValues.cardLists[cardListId][element.id] = []
           }
-          cardViewPath.push(element.id)
-          defaultValues.cardViews[element.id] = {}
+          cardListPath.push(element.id)
+          defaultValues.cardLists[element.id] = {}
           element.card.body.forEach(parseElement)
-          cardViewPath.pop()
+          cardListPath.pop()
         }
 
         break
@@ -43,23 +43,23 @@ module.exports = function extractDefaults (cardscript) {
       case 'Input.Text':
       case 'Input.Time':
         if (element.value === 0 || element.value) {
-          if (cardViewPath.length === 0) {
+          if (cardListPath.length === 0) {
             defaultValues.rootView[element.id] = element.value
           } else {
-            const cardViewId = cardViewPath[cardViewPath.length - 1]
-            defaultValues.cardViews[cardViewId][element.id] = element.value
+            const cardListId = cardListPath[cardListPath.length - 1]
+            defaultValues.cardLists[cardListId][element.id] = element.value
           }
         } else if (element.type === 'Input.Text') {
-          if (cardViewPath.length === 0) {
+          if (cardListPath.length === 0) {
             defaultValues.rootView[element.id] = ''
           } else {
-            const cardViewId = cardViewPath[cardViewPath.length - 1]
-            defaultValues.cardViews[cardViewId][element.id] = ''
+            const cardListId = cardListPath[cardListPath.length - 1]
+            defaultValues.cardLists[cardListId][element.id] = ''
           }
         }
         break
       case 'Input.Toggle':
-        if (cardViewPath.length === 0) {
+        if (cardListPath.length === 0) {
           if (element.value === 'false') {
             defaultValues.rootView[element.id] = false
           } else if (element.value === 'true') {
@@ -70,48 +70,48 @@ module.exports = function extractDefaults (cardscript) {
             defaultValues.rootView[element.id] = false
           }
         } else {
-          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          const cardListId = cardListPath[cardListPath.length - 1]
           if (element.value === 'false') {
-            defaultValues.cardViews[cardViewId][element.id] = false
+            defaultValues.cardLists[cardListId][element.id] = false
           } else if (element.value === 'true') {
-            defaultValues.cardViews[cardViewId][element.id] = true
+            defaultValues.cardLists[cardListId][element.id] = true
           } else if (element.value) {
-            defaultValues.cardViews[cardViewId][element.id] = element.value
+            defaultValues.cardLists[cardListId][element.id] = element.value
           } else {
-            defaultValues.cardViews[cardViewId][element.id] = false
+            defaultValues.cardLists[cardListId][element.id] = false
           }
         }
         break
       case 'Input.ChoiceSet':
-        if (cardViewPath.length === 0) {
+        if (cardListPath.length === 0) {
           if (element.isMultiSelect) {
             defaultValues.rootView[element.id] = element.value ? element.value.split(',') : []
           } else if (element.value) {
             defaultValues.rootView[element.id] = element.value
           }
         } else {
-          const cardViewId = cardViewPath[cardViewPath.length - 1]
+          const cardListId = cardListPath[cardListPath.length - 1]
           if (element.isMultiSelect) {
-            defaultValues.cardViews[cardViewId][element.id] = element.value ? element.value.split(',') : []
+            defaultValues.cardLists[cardListId][element.id] = element.value ? element.value.split(',') : []
           } else if (element.value) {
-            defaultValues.cardViews[cardViewId][element.id] = element.value
+            defaultValues.cardLists[cardListId][element.id] = element.value
           }
         }
         break
       case 'Input.Address':
-        if (cardViewPath.length === 0) {
+        if (cardListPath.length === 0) {
           defaultValues.rootView[element.id + 'SearchResults'] = []
         } else {
-          const cardViewId = cardViewPath[cardViewPath.length - 1]
-          defaultValues.cardViews[cardViewId][element.id + 'SearchResults'] = []
+          const cardListId = cardListPath[cardListPath.length - 1]
+          defaultValues.cardLists[cardListId][element.id + 'SearchResults'] = []
         }
         break
       case 'Input.Signature':
-        if (cardViewPath.length === 0) {
+        if (cardListPath.length === 0) {
           defaultValues.rootView[element.id + 'OpenModal'] = false
         } else {
-          const cardViewId = cardViewPath[cardViewPath.length - 1]
-          defaultValues.cardViews[cardViewId][element.id + 'OpenModal'] = false
+          const cardListId = cardListPath[cardListPath.length - 1]
+          defaultValues.cardLists[cardListId][element.id + 'OpenModal'] = false
         }
         break
     }

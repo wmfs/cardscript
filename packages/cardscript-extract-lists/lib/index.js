@@ -14,7 +14,7 @@ module.exports = function (cardscript) {
       case 'FactSet':
         element.facts.forEach(parseElement)
         break
-      case 'CardView':
+      case 'CardList':
         element.card.body.forEach(parseElement)
         break
       case 'Column':

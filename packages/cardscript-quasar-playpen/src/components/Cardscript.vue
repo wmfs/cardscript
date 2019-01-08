@@ -51,28 +51,28 @@ export default {
             dottie.set(this, `${dataPath}.${id}OpenModal`, false)
           },
           openURL,
-          createNewCardView (cardViewId) {
-            this.internals.currentCardViewData[cardViewId] = this.internals.cardViewDefaults[cardViewId] || {}
-            this.internals.dialogControl[cardViewId] = true
+          createNewCardList (cardListId) {
+            this.internals.currentCardListData[cardListId] = this.internals.cardListDefaults[cardListId] || {}
+            this.internals.dialogControl[cardListId] = true
           },
-          pushCardViewContent (cardViewId) {
-            const parentCardViewId = this.internals.cardViewParents[cardViewId]
-            const clone = JSON.parse(JSON.stringify(this.internals.currentCardViewData[cardViewId]))
+          pushCardListContent (cardListId) {
+            const parentCardListId = this.internals.cardListParents[cardListId]
+            const clone = JSON.parse(JSON.stringify(this.internals.currentCardListData[cardListId]))
 
-            if (parentCardViewId === null) {
-              this.data[cardViewId].push(clone)
+            if (parentCardListId === null) {
+              this.data[cardListId].push(clone)
             } else {
-              this.internals.currentCardViewData[parentCardViewId][cardViewId].push(clone)
+              this.internals.currentCardListData[parentCardListId][cardListId].push(clone)
             }
-            this.internals.dialogControl[cardViewId] = false
+            this.internals.dialogControl[cardListId] = false
           },
-          removeCardViewContent (cardViewId, index) {
-            const parentCardViewId = this.internals.cardViewParents[cardViewId]
+          removeCardListContent (cardListId, index) {
+            const parentCardListId = this.internals.cardListParents[cardListId]
 
-            if (parentCardViewId === null) {
-              this.data[cardViewId].splice(index, 1)
+            if (parentCardListId === null) {
+              this.data[cardListId].splice(index, 1)
             } else {
-              this.internals.currentCardViewData[parentCardViewId][cardViewId].splice(index, 1)
+              this.internals.currentCardListData[parentCardListId][cardListId].splice(index, 1)
             }
           },
           action (type, config) {

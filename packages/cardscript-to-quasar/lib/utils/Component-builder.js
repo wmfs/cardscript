@@ -1,5 +1,5 @@
 const { defaults } = require('lodash')
-const cardViewTracker = require('./card-view-tracker')
+const cardListTracker = require('./card-list-tracker')
 
 class TagNode {
   constructor (name, options) {
@@ -27,8 +27,8 @@ class TagNode {
   }
 
   getDataPath () {
-    return cardViewTracker.insideACardView()
-      ? `internals.currentCardViewData.${cardViewTracker.getCurrentCardView()}`
+    return cardListTracker.insideACardList()
+      ? `internals.currentCardListData.${cardListTracker.getCurrentCardList()}`
       : 'data'
   }
 

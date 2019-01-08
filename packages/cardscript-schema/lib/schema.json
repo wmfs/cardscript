@@ -372,7 +372,7 @@
               "$ref": "#/definitions/Chip"
             },
             {
-              "$ref": "#/definitions/CardView"
+              "$ref": "#/definitions/CardList"
             }
           ]
         }
@@ -1917,7 +1917,7 @@
         "card"
       ]
     },
-    "CardView": {
+    "CardList": {
       "additionalProperties": true,
       "type": "object",
       "description": "A container which opens a modal when clicked on to show a card.",
@@ -1928,9 +1928,9 @@
         },
         "type": {
           "type": "string",
-          "description": "Must be `\"CardView\"`.",
+          "description": "Must be `\"CardList\"`.",
           "enum": [
-            "CardView"
+            "CardList"
           ]
         },
         "addButtonLabel": {
@@ -1950,7 +1950,7 @@
         },
         "editable": {
           "type": "boolean",
-          "description": "The CardView element can either act as a modal to display a block of Card Elements or as a form which can be completed and pushed to an array.",
+          "description": "The CardList element can either act as a modal to display a block of Card Elements or as a form which can be completed and pushed to an array.",
           "default": false
         }
       },

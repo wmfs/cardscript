@@ -55,7 +55,7 @@ module.exports = function elementGeneratorPicker (key, property, options) {
       elementName = 'InputToggle'
       break
     case 'object':
-      elementName = 'CardView'
+      elementName = 'CardList'
       break
   }
   return elementName
