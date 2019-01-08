@@ -25,7 +25,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha --require babel-register"
+    "test": "mocha"
   },
   "license": "MIT",
   "repository": {
