@@ -571,7 +571,10 @@ __Allows to cancel out of a form.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Action.Cancel",
+  "title": "Cancel"
+}
 
 ```
 
@@ -598,7 +601,11 @@ __When invoked, show the given url either by launching it in an external web bro
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Action.OpenUrl",
+  "title": "Open Url",
+  "url": "https://github.com/wmfs/cardscript"
+}
 
 ```
 
@@ -626,7 +633,10 @@ __Allows to save a form to continue later.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Action.Save",
+  "title": "Save"
+}
 
 ```
 
@@ -653,7 +663,25 @@ __Defines an AdaptiveCard which is shown to the user when the button or link is 
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Action.ShowCard",
+  "title": "Action.ShowCard",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "What do you think?"
+      },
+      {
+        "id": "opinion",
+        "type": "Input.Text",
+        "spacing": "large",
+        "default": "Amazing!"
+      }
+    ]
+  }
+}
 
 ```
 
@@ -681,7 +709,13 @@ __Gathers input fields, merges with optional data field, and sends an event to t
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Action.Submit",
+  "title": "Submit",
+  "data": {
+    "x": "y"
+  }
+}
 
 ```
 
@@ -709,7 +743,24 @@ __ActionSet allows actions to be displayed within a card.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "ActionSet",
+  "spacing": "large",
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open Url",
+      "url": "https://github.com/wmfs/cardscript"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Submit",
+      "data": {
+        "x": "y"
+      }
+    }
+  ]
+}
 
 ```
 
@@ -753,7 +804,42 @@ __Root element in an Adaptive Card.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/happy-people.jpg",
+          "title": "Register!",
+          "subtitle": "Let's get to know each other a bit better...",
+          "wash": "black"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Name",
+          "wrap": true,
+          "separator": true
+        },
+        {
+          "type": "Input.Text",
+          "id": "name",
+          "placeholder": "e.g. Lucy Smith"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}
 
 ```
 
@@ -781,7 +867,10 @@ __Displays an address.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "AddressBlock",
+  "dataPath": "addressBlock"
+}
 
 ```
 
@@ -855,7 +944,28 @@ __A container which opens a modal when clicked on to show a card.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "cardList",
+  "type": "CardList",
+  "editable": true,
+  "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
+  "addButtonLabel": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "What do you think?"
+      },
+      {
+        "id": "opinion",
+        "type": "Input.Text",
+        "spacing": "large",
+        "value": "Amazing!"
+      }
+    ]
+  }
+}
 
 ```
 
@@ -889,7 +999,7 @@ __Example JSON__
 {
   "type": "Chip",
   "text": "Example",
-  "color": "green"
+  "color": "good"
 }
 
 ```
@@ -934,7 +1044,19 @@ __A container which expands when clicked on to show a card.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Collapsible",
+  "title": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Hello!"
+      }
+    ]
+  }
+}
 
 ```
 
@@ -961,7 +1083,19 @@ __Defines a container that is part of a ColumnSet.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Column",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    },
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    }
+  ]
+}
 
 ```
 
@@ -990,7 +1124,33 @@ __ColumnSet divides a region into Columns, allowing elements to sit side-by-side
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "ColumnSet",
+  "columns": [
+    {
+      "type": "Column",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "col-1"
+        },
+        {
+          "type": "TextBlock",
+          "text": "col-1"
+        }
+      ]
+    },
+    {
+      "type": "Column",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "col-2"
+        }
+      ]
+    }
+  ]
+}
 
 ```
 
@@ -1017,7 +1177,17 @@ __Containers group items together.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Container",
+  "color": "accent",
+  "spacing": "large",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Accent!"
+    }
+  ]
+}
 
 ```
 
@@ -1047,7 +1217,10 @@ __Describes a Fact in a FactSet as a key/value pair.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "title": "Hello:",
+  "value": "World"
+}
 
 ```
 
@@ -1074,7 +1247,19 @@ __The FactSet element displays a series of facts (i.e. name/value pairs) in a ta
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "FactSet",
+  "facts": [
+    {
+      "title": "Hello:",
+      "value": "World"
+    },
+    {
+      "title": "HELLO:",
+      "value": "WORLD"
+    }
+  ]
+}
 
 ```
 
@@ -1117,7 +1302,12 @@ __Displays an image.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Image",
+  "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+  "size": "large",
+  "horizontalAlignment": "left"
+}
 
 ```
 
@@ -1148,7 +1338,21 @@ __The ImageSet displays a collection of Images similar to a gallery.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "ImageSet",
+  "images": [
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    },
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    }
+  ]
+}
 
 ```
 
@@ -1209,7 +1413,10 @@ __Lets a user enter an address.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "inputAddress",
+  "type": "Input.Address"
+}
 
 ```
 
@@ -1235,7 +1442,10 @@ __Lets a user look up a value via an API.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "inputApiLookup",
+  "type": "Input.ApiLookup"
+}
 
 ```
 
@@ -1261,7 +1471,10 @@ __Describes a choice for use in a ChoiceSet.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "title": "Choice 1",
+  "value": "CHOICE_1"
+}
 
 ```
 
@@ -1288,7 +1501,27 @@ __Allows a user to input a Choice.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Input.ChoiceSet",
+  "id": "choice",
+  "spacing": "medium",
+  "value": "CHOICE_1",
+  "choices": [
+    {
+      "title": "Choice 1",
+      "value": "CHOICE_1"
+    },
+    {
+      "title": "Choice 2",
+      "value": "CHOICE_2"
+    },
+    {
+      "title": "Choice 3",
+      "value": "CHOICE_3"
+    }
+  ],
+  "style": "expanded"
+}
 
 ```
 
@@ -1318,7 +1551,12 @@ __Lets a user enter a currency value.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "currency",
+  "type": "Input.Currency",
+  "placeholder": "Input.Currency",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1347,7 +1585,12 @@ __Lets a user choose a date.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "date",
+  "type": "Input.Date",
+  "placeholder": "Input.Date",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1377,7 +1620,12 @@ __Lets a user enter a telephone number.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "date",
+  "type": "Input.DateTime",
+  "placeholder": "Input.DateTime",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1404,7 +1652,12 @@ __Lets a user enter an email.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "email",
+  "type": "Input.Email",
+  "placeholder": "Input.Email",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1431,7 +1684,10 @@ __Lets a user upload a file.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Input.FileUpload",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1457,7 +1713,13 @@ __Lets a user enter a gender.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "inputGender",
+  "type": "Input.Gender",
+  "preferNotToSay": true,
+  "preferToSelfDescribe": true,
+  "includeTransgender": true
+}
 
 ```
 
@@ -1487,7 +1749,12 @@ __Lets a user enter a name.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "name",
+  "type": "Input.Name",
+  "placeholder": "Input.Name",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1513,7 +1780,12 @@ __Allows a user to enter a number.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "number",
+  "type": "Input.Number",
+  "placeholder": "Input.Number",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1543,7 +1815,13 @@ __Lets a user enter a signature.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "inputSignature",
+  "type": "Input.Signature",
+  "agreement": "I agree that...",
+  "saveText": "Send",
+  "guidance": "Please enter your signature below..."
+}
 
 ```
 
@@ -1572,7 +1850,15 @@ __Lets a user enter value with a slider.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "slider",
+  "type": "Input.Slider",
+  "spacing": "medium",
+  "min": -20,
+  "max": 20,
+  "step": 4,
+  "value": 3
+}
 
 ```
 
@@ -1602,7 +1888,12 @@ __Lets a user enter a telephone number.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "inputTelephoneNumber",
+  "type": "Input.TelephoneNumber",
+  "placeholder": "Input.TelephoneNumber",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1628,7 +1919,14 @@ __Lets a user enter text.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "textEditor",
+  "type": "Input.Text",
+  "placeholder": "Input.Text",
+  "spacing": "medium",
+  "editor": true,
+  "value": "editor: true"
+}
 
 ```
 
@@ -1660,7 +1958,12 @@ __Lets a user select a time.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "time",
+  "type": "Input.Time",
+  "placeholder": "Input.Time",
+  "spacing": "medium"
+}
 
 ```
 
@@ -1690,7 +1993,12 @@ __Lets a user choose between two options.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "id": "toggle",
+  "type": "Input.Toggle",
+  "spacing": "medium",
+  "title": "Input.Toggle"
+}
 
 ```
 
@@ -1720,7 +2028,13 @@ __An element typically placed at the top of a card to describe its purpose.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Jumbotron",
+  "backgroundImage": "wmfs/pizza.jpg",
+  "title": "Title",
+  "subtitle": "Subtitle",
+  "wash": "black"
+}
 
 ```
 
@@ -1749,7 +2063,9 @@ __Displays a map.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Map"
+}
 
 ```
 
@@ -1774,7 +2090,16 @@ __Displays a media player for audio or video content.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Media",
+  "poster": "https://adaptivecards.io/content/poster-video.png",
+  "sources": [
+    {
+      "mimeType": "video/mp4",
+      "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
+    }
+  ]
+}
 
 ```
 
@@ -1802,7 +2127,10 @@ __Defines a source for a Media element__
 __Example JSON__
 
 ``` json
-{}
+{
+  "mimeType": "video/mp4",
+  "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
+}
 
 ```
 
@@ -1828,7 +2156,10 @@ __Displays a banner highlighting a phase.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "PhaseBanner",
+  "phase": "alpha"
+}
 
 ```
 
@@ -1854,7 +2185,9 @@ __Displays a horizontal line.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Separator"
+}
 
 ```
 
@@ -1913,7 +2246,16 @@ __Defines a container that is part of a TabSet.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Tab",
+  "title": "Tab 1",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Tab 1 Content"
+    }
+  ]
+}
 
 ```
 
@@ -1940,7 +2282,32 @@ __TabSet allows to display content through various tabs.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "TabSet",
+  "spacing": "large",
+  "tabs": [
+    {
+      "type": "Tab",
+      "title": "Tab 1",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 1 Content"
+        }
+      ]
+    },
+    {
+      "type": "Tab",
+      "title": "Tab 2",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 2 Content"
+        }
+      ]
+    }
+  ]
+}
 
 ```
 
@@ -1966,7 +2333,18 @@ __Displays text, allowing control over font sizes, weight, and color.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "Table",
+  "title": "Opinions (Add some via CardList example above to see them appear in Table here)",
+  "arrayPath": "cardList",
+  "columns": [
+    {
+      "title": "Opinion",
+      "field": "opinion"
+    }
+  ],
+  "resultLimit": 5
+}
 
 ```
 
@@ -1995,7 +2373,11 @@ __Displays text, allowing control over font sizes, weight, and color.__
 __Example JSON__
 
 ``` json
-{}
+{
+  "type": "TextBlock",
+  "text": "color: good",
+  "color": "good"
+}
 
 ```
 

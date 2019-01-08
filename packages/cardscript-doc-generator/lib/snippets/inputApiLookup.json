@@ -1,3 +1,4 @@
 {
-
+  "id": "inputApiLookup",
+  "type": "Input.ApiLookup"
 }

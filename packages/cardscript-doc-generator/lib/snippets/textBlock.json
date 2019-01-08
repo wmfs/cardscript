@@ -1,3 +1,5 @@
 {
-
+  "type": "TextBlock",
+  "text": "color: good",
+  "color": "good"
 }
