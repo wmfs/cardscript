@@ -11,7 +11,17 @@ module.exports = function getSimpleManifest () {
     path.resolve(__dirname, './../../../packages/cardscript-schema/lib/schema.json')
   )
 
-  console.log(JSON.stringify(schema.definitions.CardElements, null, 2))
+  let toSkip = ['Action', 'Actions', 'CardElement', 'CardElements', 'ChoiceInputStyle', 'HorizontalAlignment',
+    'ImageSize', 'ImageStyle', 'SeparatorStyle', 'SpacingStyle', 'TextInputStyle']
+
+  let filteredSchema = []
+  Object.keys(schema.definitions).map(key => {
+    if (!toSkip.includes(key)) {
+      filteredSchema.push(key)
+    }
+  })
+
+  console.log(filteredSchema)
 
   const topLevelProperties = Object.keys(schema.properties).map(key => {
     const value = schema.properties[key]
@@ -24,7 +34,7 @@ module.exports = function getSimpleManifest () {
   })
 
   const propertyInfo = []
-  Object.keys(schema.definitions).forEach(key => {
+  filteredSchema.forEach(key => {
     if (key !== 'attributes' && key !== 'elements') {
       const propertyDef = _.cloneDeep(schema.definitions[key])
       propertyDef.name = key
@@ -32,7 +42,7 @@ module.exports = function getSimpleManifest () {
     }
   })
 
-  const elementInfo = Object.keys(schema.definitions).map(elementType => {
+  const elementInfo = filteredSchema.map(elementType => {
     const rawElementDefinition = schema.definitions[elementType]
     // console.log(rawElementDefinition)
     const elementDefinition = _.cloneDeep(rawElementDefinition)
@@ -47,7 +57,7 @@ module.exports = function getSimpleManifest () {
     return elementDefinition
   })
 
-  const attributeInfo = Object.keys(schema.definitions).map(attributeName => {
+  const attributeInfo = filteredSchema.map(attributeName => {
     const attributeDefinition = _.cloneDeep(schema.definitions[attributeName])
     attributeDefinition.name = attributeName
     return attributeDefinition
