@@ -11,6 +11,7 @@
   "devDependencies": {
     "babel-register": "6.26.0",
     "babel-preset-env": "1.7.0",
+    "babel-polyfill": "6.26.0",
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1",
@@ -25,7 +26,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha"
+    "test": "mocha --compilers js:babel-core/register --require babel-polyfill"
   },
   "license": "MIT",
   "repository": {
