@@ -142,32 +142,40 @@ Cards are constructed from an ordered list of "__elements__".
 * Consider an element as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
 * As such, elements can be interactive ([`Input.Text`](#list-Input.Text), [`Input.Number`](#list-Input.Number), etc.) and non-interactive ([`Jumbotron`](#list-Jumbotron), [`Media`](#list-Media) etc.)
 * The order that `Element` objects appear within a view definition is important - representing the order users will encounter them.
-* Cardscript is a delightful walled-garden, offering a fixed set of 46 p re-configured elements. If you need another element-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Cardscript/blob/master/CONTRIBUTING.md) :blush:
+* Cardscript is a delightful walled-garden, offering a fixed set of 57 p re-configured elements. If you need another element-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Cardscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 46 elements supported in Cardscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 57 elements supported in Cardscript `0.0.6`:__
 
 #### <a name="element-summary"></a>Element summary
 
 | Element Type      | Description |
 | -----------      | ----------- |
+| [`Action`](#list-Action) |  |
 | [`Action.Cancel`](#list-Action.Cancel) | Allows to cancel out of a form. |
 | [`Action.OpenUrl`](#list-Action.OpenUrl) | When invoked, show the given url either by launching it in an external web browser or showing in-situ with embedded web browser. |
 | [`Action.Save`](#list-Action.Save) | Allows to save a form to continue later. |
 | [`Action.ShowCard`](#list-Action.ShowCard) | Defines an AdaptiveCard which is shown to the user when the button or link is clicked. |
 | [`Action.Submit`](#list-Action.Submit) | Gathers input fields, merges with optional data field, and sends an event to the client. It is up to the client to determine how this data is processed. For example: With BotFramework bots, the client would send an activity through the messaging medium to the bot. |
 | [`ActionSet`](#list-ActionSet) | ActionSet allows actions to be displayed within a card. |
+| [`Actions`](#list-Actions) |  |
 | [`AdaptiveCard`](#list-AdaptiveCard) | Root element in an Adaptive Card. |
 | [`AddressBlock`](#list-AddressBlock) | Displays an address. |
+| [`CardElement`](#list-CardElement) |  |
+| [`CardElements`](#list-CardElements) |  |
 | [`CardList`](#list-CardList) | A container which opens a modal when clicked on to show a card. |
 | [`Chip`](#list-Chip) | A chip to display some text. |
+| [`ChoiceInputStyle`](#list-ChoiceInputStyle) | Style hint for `Input.ChoiceSet`. |
 | [`Collapsible`](#list-Collapsible) | A container which expands when clicked on to show a card. |
 | [`Column`](#list-Column) | Defines a container that is part of a ColumnSet. |
 | [`ColumnSet`](#list-ColumnSet) | ColumnSet divides a region into Columns, allowing elements to sit side-by-side. |
 | [`Container`](#list-Container) | Containers group items together. |
 | [`Fact`](#list-Fact) | Describes a Fact in a FactSet as a key/value pair. |
 | [`FactSet`](#list-FactSet) | The FactSet element displays a series of facts (i.e. name/value pairs) in a tabular form. |
+| [`HorizontalAlignment`](#list-HorizontalAlignment) | Controls how elements are horizontally positioned within their container. |
 | [`Image`](#list-Image) | Displays an image. |
 | [`ImageSet`](#list-ImageSet) | The ImageSet displays a collection of Images similar to a gallery. |
+| [`ImageSize`](#list-ImageSize) | Controls the approximate size of the image. The physical dimensions will vary per host. Specify `"auto"` for true image dimension, or `"stretch"` to force it to fill the container. |
+| [`ImageStyle`](#list-ImageStyle) | Controls how this `Image` is displayed. |
 | [`Input.Address`](#list-Input.Address) | Lets a user enter an address. |
 | [`Input.ApiLookup`](#list-Input.ApiLookup) | Lets a user look up a value via an API. |
 | [`Input.Choice`](#list-Input.Choice) | Describes a choice for use in a ChoiceSet. |
@@ -192,10 +200,13 @@ __Ahead of the [Reference](#reference) section, here's a quick summary of the 46
 | [`MediaSource`](#list-MediaSource) | Defines a source for a Media element |
 | [`PhaseBanner`](#list-PhaseBanner) | Displays a banner highlighting a phase. |
 | [`Separator`](#list-Separator) | Displays a horizontal line. |
+| [`SeparatorStyle`](#list-SeparatorStyle) | Indicates whether there should be a visible separator (i.e. a line) between the element and its predecessor. If not specified, no separator is displayed. A separator will only be displayed if there is a preceding element. |
+| [`SpacingStyle`](#list-SpacingStyle) | Controls the amount of spacing between this element and the preceding element. |
 | [`Tab`](#list-Tab) | Defines a container that is part of a TabSet. |
 | [`TabSet`](#list-TabSet) | TabSet allows to display content through various tabs. |
 | [`Table`](#list-Table) | Displays text, allowing control over font sizes, weight, and color. |
 | [`TextBlock`](#list-TextBlock) | Displays text, allowing control over font sizes, weight, and color. |
+| [`TextInputStyle`](#list-TextInputStyle) | Style hint for `Input.Text`. |
 
 
 ### <a name="container"></a>Containers
@@ -347,6 +358,8 @@ Apps are expected to provide the following details via an `env` object when eval
 <!--| Attribute Name | Type | Description |-->
 <!--| &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | -&#45;&#45;&#45;&#45;| -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; |-->
 <!---->
+<!--| `Action` | `` |  |-->
+<!---->
 <!--| `Action.OpenUrl` | `object` |  |-->
 <!---->
 <!--| `Action.ShowCard` | `object` |  |-->
@@ -357,9 +370,17 @@ Apps are expected to provide the following details via an `env` object when eval
 <!---->
 <!--| `Action.Submit` | `object` |  |-->
 <!---->
+<!--| `Actions` | `array` |  |-->
+<!---->
 <!--| `AdaptiveCard` | `object` |  |-->
 <!---->
+<!--| `CardElement` | `` |  |-->
+<!---->
+<!--| `CardElements` | `array` |  |-->
+<!---->
 <!--| `Input.Choice` | `object` |  |-->
+<!---->
+<!--| `ChoiceInputStyle` | `string` |  |-->
 <!---->
 <!--| `Tab` | `object` |  |-->
 <!---->
@@ -377,6 +398,8 @@ Apps are expected to provide the following details via an `env` object when eval
 <!---->
 <!--| `FactSet` | `object` |  |-->
 <!---->
+<!--| `HorizontalAlignment` | `string` |  |-->
+<!---->
 <!--| `MediaSource` | `object` |  |-->
 <!---->
 <!--| `AddressBlock` | `object` |  |-->
@@ -392,6 +415,10 @@ Apps are expected to provide the following details via an `env` object when eval
 <!--| `Image` | `object` |  |-->
 <!---->
 <!--| `ImageSet` | `object` |  |-->
+<!---->
+<!--| `ImageSize` | `string` |  |-->
+<!---->
+<!--| `ImageStyle` | `string` |  |-->
 <!---->
 <!--| `Input.ChoiceSet` | `object` |  |-->
 <!---->
@@ -431,6 +458,12 @@ Apps are expected to provide the following details via an `env` object when eval
 <!---->
 <!--| `TextBlock` | `object` |  |-->
 <!---->
+<!--| `SeparatorStyle` | `object` |  |-->
+<!---->
+<!--| `SpacingStyle` | `string` |  |-->
+<!---->
+<!--| `TextInputStyle` | `string` |  |-->
+<!---->
 <!--| `Jumbotron` | `object` |  |-->
 <!---->
 <!--| `Chip` | `object` |  |-->
@@ -443,29 +476,37 @@ Apps are expected to provide the following details via an `env` object when eval
 
 ### <a name="attributes"></a>Card Elements
 
-Cardscript `0.0.6` supports a set of 46 common attributes from which elements can be configured.
+Cardscript `0.0.6` supports a set of 57 common attributes from which elements can be configured.
 Not one element-type requires all these attributes. Attributes are often optional and some element-types don't need an `attributes` object at all.
 
 | Element Name | Type | Description |
 | -------------- | -----| ----------- |
+| `Action` | `` |  |
 | `Action.Cancel` | `object` | Allows to cancel out of a form. |
 | `Action.OpenUrl` | `object` | When invoked, show the given url either by launching it in an external web browser or showing in-situ with embedded web browser. |
 | `Action.Save` | `object` | Allows to save a form to continue later. |
 | `Action.ShowCard` | `object` | Defines an AdaptiveCard which is shown to the user when the button or link is clicked. |
 | `Action.Submit` | `object` | Gathers input fields, merges with optional data field, and sends an event to the client. It is up to the client to determine how this data is processed. For example: With BotFramework bots, the client would send an activity through the messaging medium to the bot. |
 | `ActionSet` | `object` | ActionSet allows actions to be displayed within a card. |
+| `Actions` | `array` |  |
 | `AdaptiveCard` | `object` | Root element in an Adaptive Card. |
 | `AddressBlock` | `object` | Displays an address. |
+| `CardElement` | `` |  |
+| `CardElements` | `array` |  |
 | `CardList` | `object` | A container which opens a modal when clicked on to show a card. |
 | `Chip` | `object` | A chip to display some text. |
+| `ChoiceInputStyle` | `string` | Style hint for `Input.ChoiceSet`. |
 | `Collapsible` | `object` | A container which expands when clicked on to show a card. |
 | `Column` | `object` | Defines a container that is part of a ColumnSet. |
 | `ColumnSet` | `object` | ColumnSet divides a region into Columns, allowing elements to sit side-by-side. |
 | `Container` | `object` | Containers group items together. |
 | `Fact` | `object` | Describes a Fact in a FactSet as a key/value pair. |
 | `FactSet` | `object` | The FactSet element displays a series of facts (i.e. name/value pairs) in a tabular form. |
+| `HorizontalAlignment` | `string` | Controls how elements are horizontally positioned within their container. |
 | `Image` | `object` | Displays an image. |
 | `ImageSet` | `object` | The ImageSet displays a collection of Images similar to a gallery. |
+| `ImageSize` | `string` | Controls the approximate size of the image. The physical dimensions will vary per host. Specify `"auto"` for true image dimension, or `"stretch"` to force it to fill the container. |
+| `ImageStyle` | `string` | Controls how this `Image` is displayed. |
 | `Input.Address` | `object` | Lets a user enter an address. |
 | `Input.ApiLookup` | `object` | Lets a user look up a value via an API. |
 | `Input.Choice` | `object` | Describes a choice for use in a ChoiceSet. |
@@ -490,15 +531,35 @@ Not one element-type requires all these attributes. Attributes are often optiona
 | `MediaSource` | `object` | Defines a source for a Media element |
 | `PhaseBanner` | `object` | Displays a banner highlighting a phase. |
 | `Separator` | `object` | Displays a horizontal line. |
+| `SeparatorStyle` | `object` | Indicates whether there should be a visible separator (i.e. a line) between the element and its predecessor. If not specified, no separator is displayed. A separator will only be displayed if there is a preceding element. |
+| `SpacingStyle` | `string` | Controls the amount of spacing between this element and the preceding element. |
 | `Tab` | `object` | Defines a container that is part of a TabSet. |
 | `TabSet` | `object` | TabSet allows to display content through various tabs. |
 | `Table` | `object` | Displays text, allowing control over font sizes, weight, and color. |
 | `TextBlock` | `object` | Displays text, allowing control over font sizes, weight, and color. |
+| `TextInputStyle` | `string` | Style hint for `Input.Text`. |
 
 
 # <a name="list"></a>Element List
 
-Here is the full list of all 46 elements supported in Cardscript `0.0.6` (please see [Element summary](#element-summary) for a handy index).
+Here is the full list of all 57 elements supported in Cardscript `0.0.6` (please see [Element summary](#element-summary) for a handy index).
+
+
+<hr>
+
+## The <a name="list-Action"></a>`Action` element
+
+____
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
 
 
 <hr>
@@ -719,6 +780,23 @@ __Properties__
 
 <hr>
 
+## The <a name="list-Actions"></a>`Actions` element
+
+____
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
 ## The <a name="list-AdaptiveCard"></a>`AdaptiveCard` element
 
 __Root element in an Adaptive Card.__
@@ -814,6 +892,51 @@ __Properties__
 
 <hr>
 
+## The <a name="list-CardElement"></a>`CardElement` element
+
+____
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` |  |
+| `id` | string | `Optional` | A unique identifier associated with the element. |
+| `spacing` |  | `Optional` |  |
+| `separator` | boolean | `Optional` | When `true`, draw a separating line at the top of the element. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-CardElements"></a>`CardElements` element
+
+____
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
 ## The <a name="list-CardList"></a>`CardList` element
 
 __A container which opens a modal when clicked on to show a card.__
@@ -890,6 +1013,23 @@ __Properties__
 | `type` | string | `Required` | Must be `"Chip"`. |
 | `text` | string | `Required` | Text to be displayed in chip. |
 | `color` | string | `Optional` | Color of the chip |
+
+
+
+
+
+<hr>
+
+## The <a name="list-ChoiceInputStyle"></a>`ChoiceInputStyle` element
+
+__Style hint for `Input.ChoiceSet`.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
 
 
 
@@ -1138,6 +1278,23 @@ __Properties__
 
 <hr>
 
+## The <a name="list-HorizontalAlignment"></a>`HorizontalAlignment` element
+
+__Controls how elements are horizontally positioned within their container.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
 ## The <a name="list-Image"></a>`Image` element
 
 __Displays an image.__
@@ -1208,6 +1365,40 @@ __Properties__
 | `images` | array | `Required` | The array of `Image` elements to show. |
 | `imageSize` |  | `Optional` |  |
 | `type` | string | `Required` | Must be `"ImageSet"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-ImageSize"></a>`ImageSize` element
+
+__Controls the approximate size of the image. The physical dimensions will vary per host. Specify `"auto"` for true image dimension, or `"stretch"` to force it to fill the container.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
+## The <a name="list-ImageStyle"></a>`ImageStyle` element
+
+__Controls how this `Image` is displayed.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
 
 
 
@@ -2014,6 +2205,40 @@ __Properties__
 
 <hr>
 
+## The <a name="list-SeparatorStyle"></a>`SeparatorStyle` element
+
+__Indicates whether there should be a visible separator (i.e. a line) between the element and its predecessor. If not specified, no separator is displayed. A separator will only be displayed if there is a preceding element.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
+## The <a name="list-SpacingStyle"></a>`SpacingStyle` element
+
+__Controls the amount of spacing between this element and the preceding element.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
+
+
+
+
+
+<hr>
+
 ## The <a name="list-Tab"></a>`Tab` element
 
 __Defines a container that is part of a TabSet.__
@@ -2171,6 +2396,23 @@ __Properties__
 | `type` | string | `Required` | Must be `"TextBlock"`. |
 | `weight` | string | `Optional` | Controls the weight of `TextBlock` elements. |
 | `wrap` | boolean | `Optional` | If `true`, allow text to wrap. Otherwise, text is clipped. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-TextInputStyle"></a>`TextInputStyle` element
+
+__Style hint for `Input.Text`.__
+
+__Example JSON__
+
+``` json
+{}
+
+```
 
 
 
