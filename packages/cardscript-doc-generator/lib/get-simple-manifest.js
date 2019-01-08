@@ -11,6 +11,8 @@ module.exports = function getSimpleManifest () {
     path.resolve(__dirname, './../../../packages/cardscript-schema/lib/schema.json')
   )
 
+  console.log(JSON.stringify(schema.definitions.CardElements, null, 2))
+
   const topLevelProperties = Object.keys(schema.properties).map(key => {
     const value = schema.properties[key]
     return {

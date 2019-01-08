@@ -2507,5 +2507,5 @@ __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help workin
 | `cardscript-vue-sdk` | An SDK for using Cardscript with Vue/Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-simple-vue) | [Here](https://www.npmjs.com/package/cardscript-vue-sdk)  |
 | `@wmfs/json-schema-to-cardscript` | Scaffold Cardscript from a JSON-Schema schema | [Here](https://github.com/wmfs/cardscript/tree/master/packages/json-schema-to-cardscript) | [Here](https://www.npmjs.com/package/@wmfs/json-schema-to-cardscript)  |
 | `react-jsonschema-form-to-cardscript` | Produces Cardscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/react-jsonschema-form-to-cardscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-cardscript)  |
-| `@wmfs/tymly-cardscript-sdk` |  | [Here](https://github.com/wmfs/cardscript/tree/master/packages/tymly-cardscript-sdk) | [Here](https://www.npmjs.com/package/@wmfs/tymly-cardscript-sdk)  |
+| `@wmfs/tymly-cardscript-sdk` | Tymly Cardscript SDK | [Here](https://github.com/wmfs/cardscript/tree/master/packages/tymly-cardscript-sdk) | [Here](https://www.npmjs.com/package/@wmfs/tymly-cardscript-sdk)  |
 
