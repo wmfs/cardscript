@@ -100,44 +100,44 @@ function calculatePropertySummary (elementType, elementProperties, rawElementDef
         if (prop.name === 'type') {
           text += ` (\`"${elementType}"\`)`
         }
-        summary.push({name, type, required, text})
+        summary.push({ name, type, required, text })
       })
     }
   })
   return summary
 }
 
-function calculateAttributeSummary (elementType, attributeProperties, rawElementDefinition) {
-  const rawAttribs = rawElementDefinition.properties.attributes
-  const summary = []
-  if (rawAttribs) {
-    Object.keys(rawAttribs.properties).map(key => {
-      const value = rawAttribs.properties[key]
-
-      const attributeSchema = _.isObject(value) && value.hasOwnProperty('$ref')
-        ? attributeProperties[value.$ref.slice(25)] // Remove: #/definitions/attributes/
-        : value
-
-      const requiredAttributes = rawElementDefinition.properties.attributes.required
-      const required = requiredAttributes && requiredAttributes.indexOf(key) !== -1
-        ? 'Yes' : 'No'
-
-      let attributeType = attributeSchema.type
-      if (_.isUndefined(attributeType) && _.isArray(attributeSchema.enum)) {
-        attributeType = `__enum:__<br>`
-        attributeSchema.enum.forEach(value => { attributeType += `\`${value}\`<br>` })
-      } else {
-        attributeType = '`' + attributeType + '`'
-      }
-
-      summary.push({
-        name: key,
-        type: attributeType,
-        text: attributeSchema.title,
-        required: required
-      })
-    })
-  }
-
-  return summary
-}
+// function calculateAttributeSummary (elementType, attributeProperties, rawElementDefinition) {
+//   const rawAttribs = rawElementDefinition.properties.attributes
+//   const summary = []
+//   if (rawAttribs) {
+//     Object.keys(rawAttribs.properties).map(key => {
+//       const value = rawAttribs.properties[key]
+//
+//       const attributeSchema = _.isObject(value) && value.hasOwnProperty('$ref')
+//         ? attributeProperties[value.$ref.slice(25)] // Remove: #/definitions/attributes/
+//         : value
+//
+//       const requiredAttributes = rawElementDefinition.properties.attributes.required
+//       const required = requiredAttributes && requiredAttributes.indexOf(key) !== -1
+//         ? 'Yes' : 'No'
+//
+//       let attributeType = attributeSchema.type
+//       if (_.isUndefined(attributeType) && _.isArray(attributeSchema.enum)) {
+//         attributeType = `__enum:__<br>`
+//         attributeSchema.enum.forEach(value => { attributeType += `\`${value}\`<br>` })
+//       } else {
+//         attributeType = '`' + attributeType + '`'
+//       }
+//
+//       summary.push({
+//         name: key,
+//         type: attributeType,
+//         text: attributeSchema.title,
+//         required: required
+//       })
+//     })
+//   }
+//
+//   return summary
+// }
