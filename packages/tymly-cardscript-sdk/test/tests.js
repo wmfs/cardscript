@@ -6,11 +6,13 @@ const PORT = 3210
 
 const { Client, Auth0 } = require('../lib')
 const tymly = require('@wmfs/tymly')
-// const chai = require('chai')
-// const expect = chai.expect
+const chai = require('chai')
+const expect = chai.expect
 const setGlobalVars = require('indexeddbshim')
+const Vuex = require('vuex')
+const Vue = require('vue')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store
 
 describe('Run some tests', () => {
   it('set up Auth', () => {
@@ -25,6 +27,19 @@ describe('Run some tests', () => {
     IDBKeyRange = shim.IDBKeyRange
   })
 
+  it('set up the Vuex store', () => {
+    Vue.use(Vuex)
+    store = new Vuex.Store({
+      state: {
+        startables: {}
+      },
+      mutations: {
+        startables: (state, startables) => { state.startables = startables },
+        startable: (state, startable) => Vue.set(state.startables, startable.name, startable)
+      }
+    })
+  })
+
   it('set up the SDK Client', () => {
     sdk = new Client({
       auth,
@@ -34,7 +49,7 @@ describe('Run some tests', () => {
         console,
         setTimeout
       },
-      store: '' // vuex store
+      store
     })
   })
 
@@ -73,14 +88,17 @@ describe('Run some tests', () => {
     })
   })
 
-  it('initialise the SDK Client', () => {
-    sdk.init()
-    // .then(response => {
-    //   done()
-    // })
-    // .catch(err => {
-    //   done(err)
-    // })
+  it('initialise the SDK Client', done => {
+    sdk
+      .init()
+      .then(() => {
+        done()
+      })
+  })
+
+  it('check if the vuex store has things', () => {
+    const { startables } = store.state
+    expect(startables).to.not.eql({})
   })
 
   it('shutdown Tymly', async () => {

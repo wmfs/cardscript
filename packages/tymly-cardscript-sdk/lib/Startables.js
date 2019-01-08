@@ -1,7 +1,7 @@
 module.exports = class Startables {
   constructor (client) {
     this.db = client.db
-    // client.options.store
+    this.store = client.options.store
   }
 
   async persistFromUserQuery (userQuery) {
@@ -13,7 +13,7 @@ module.exports = class Startables {
 
   async load () {
     const data = await this.db.startables.toArray()
-    // put data on vuex store
+    this.store.commit('startables', data)
   }
 
   favour (id) {
