@@ -1,6 +1,6 @@
 {
   "name": "tymly-cardscript-sdk-doc-generator",
-  "description": "Produces Cardscript's main README.md file using Cardscript's JSON Schema and other sources.",
+  "description": "Produces a README.md file for the tymly-cardscript-sdk package.",
   "version": "0.0.6",
   "author": "Tim Needham",
   "main": "./lib/index.js",

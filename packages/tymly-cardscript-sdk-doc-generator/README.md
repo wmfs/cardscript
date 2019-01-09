@@ -2,7 +2,7 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/cardscript/badge.svg?targetFile=packages%2Fcardscript-doc-generator%2Fpackage.json)](https://snyk.io/test/github/wmfs/cardscript?targetFile=packages%2Fcardscript-doc-generator%2Fpackage.json)
 
-> Produces Cardscript's main README.md file using Cardscript's JSON Schema and other sources.
+> Produces a README.md file for the [tymly-cardscript-sdk](https://github.com/wmfs/cardscript/tree/master/packages/tymly-cardscript-sdk) package.
 
 ## <a name="install"></a>Install
 ```bash
