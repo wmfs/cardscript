@@ -6,12 +6,15 @@ module.exports = class Todo {
 
   async persistFromUserQuery (userQuery) {
     const { todos } = userQuery.add
-    // for (const t of Object.values(todos)) {
-    //   await this.db.todos.put(t)
-    // }
+    for (const t of Object.values(todos)) {
+      await this.db.todo.put(t, t.id)
+    }
   }
 
-  load () {}
+  async load () {
+    const data = await this.db.todo.toArray()
+    this.store.commit('todos', data)
+  }
 
   remove (id) {}
 

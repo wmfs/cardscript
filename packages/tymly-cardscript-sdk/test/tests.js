@@ -33,10 +33,13 @@ describe('Run some tests', function () {
     Vue.use(Vuex)
     store = new Vuex.Store({
       state: {
-        startables: {},
-        favourites: []
+        startables: [],
+        favourites: [],
+        watching: [],
+        todos: []
       },
       mutations: {
+        todos: (state, todos) => { state.todos = todos },
         watching: (state, watching) => { state.watching = watching },
         startables: (state, startables) => { state.startables = startables },
         startable: (state, startable) => Vue.set(state.startables, startable.name, startable),
@@ -112,13 +115,18 @@ describe('Run some tests', function () {
   })
 
   it('check if the vuex store has data from the user query', () => {
-    const { startables, watching } = store.state
+    const {
+      startables,
+      watching,
+      todos
+    } = store.state
+
     expect(startables.length).to.eql(2)
 
     expect(watching.length).to.eql(1)
     expect(watching[0].title).to.eql('Incident 1/1999')
 
-    // todo: check other things when implemented
+    expect(todos.length).to.eql(1)
   })
 
   it('should favour a startable', () => {

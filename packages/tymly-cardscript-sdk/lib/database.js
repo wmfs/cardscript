@@ -6,7 +6,7 @@ module.exports = options => {
 
   db.version(1).stores({
     startables: `name, title, description, category, instigators`,
-    todos: `id, todoTitle, description`,
+    todo: `&id, todoTitle, description`,
     watching: `&id, title, description`,
     settings: ``,
     favourites: ``
