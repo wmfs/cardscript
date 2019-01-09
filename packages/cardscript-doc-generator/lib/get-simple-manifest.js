@@ -21,8 +21,6 @@ module.exports = function getSimpleManifest () {
     }
   })
 
-  console.log(filteredSchema)
-
   const topLevelProperties = Object.keys(schema.properties).map(key => {
     const value = schema.properties[key]
     return {

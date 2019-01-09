@@ -2,9 +2,9 @@ const _ = require('lodash')
 const jsonfile = require('jsonfile')
 const path = require('path')
 const examples = require('cardscript-examples')
-const snippets = require('./snippets')
-const stopText = require('./stop-text')
-const getPackageInfo = require('./get-package-info')
+const snippets = require('./../../../cardscript-doc-generator/lib/snippets')
+const stopText = require('./../../../cardscript-doc-generator/lib/stop-text')
+const getPackageInfo = require('./../../../cardscript-doc-generator/lib/get-package-info')
 
 module.exports = function getSimpleManifest () {
   const schema = jsonfile.readFileSync(
@@ -20,8 +20,6 @@ module.exports = function getSimpleManifest () {
       filteredSchema.push(key)
     }
   })
-
-  console.log(filteredSchema)
 
   const topLevelProperties = Object.keys(schema.properties).map(key => {
     const value = schema.properties[key]
@@ -64,7 +62,7 @@ module.exports = function getSimpleManifest () {
   })
 
   const lernaJson = jsonfile.readFileSync(
-    path.resolve(__dirname, './../../lerna.json')
+    path.resolve(__dirname, './../../../../lerna.json')
   )
 
   return {
