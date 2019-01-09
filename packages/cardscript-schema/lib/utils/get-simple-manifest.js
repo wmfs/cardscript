@@ -1,10 +1,6 @@
 const _ = require('lodash')
 const jsonfile = require('jsonfile')
 const path = require('path')
-const examples = require('cardscript-examples')
-const snippets = require('./../../../cardscript-doc-generator/lib/snippets')
-const stopText = require('./../../../cardscript-doc-generator/lib/stop-text')
-const getPackageInfo = require('./../../../cardscript-doc-generator/lib/get-package-info')
 
 module.exports = function getSimpleManifest () {
   const schema = jsonfile.readFileSync(
@@ -45,7 +41,7 @@ module.exports = function getSimpleManifest () {
     // console.log(rawElementDefinition)
     const elementDefinition = _.cloneDeep(rawElementDefinition)
     elementDefinition.type = elementType
-    elementDefinition.example = JSON.stringify(snippets[elementType], null, 2)
+    elementDefinition.example = 'FIXME!'
     if (elementDefinition.hasOwnProperty('properties')) {
       elementDefinition.propertySummary = calculatePropertySummary(elementType, propertyInfo, rawElementDefinition)
     } else {
@@ -66,17 +62,12 @@ module.exports = function getSimpleManifest () {
   )
 
   return {
-    stopText: stopText,
     year: new Date().getFullYear(),
     version: lernaJson.version,
-    simpleExample: JSON.stringify(examples.simple, null, 2),
-    simpleSetExample: JSON.stringify(examples.set, null, 2),
-    expressionExample: JSON.stringify(examples.expression, null, 2),
     elements: _.sortBy(elementInfo, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
     properties: propertyInfo,
-    topLevelProperties: topLevelProperties,
-    packages: getPackageInfo()
+    topLevelProperties: topLevelProperties
   }
 }
 
