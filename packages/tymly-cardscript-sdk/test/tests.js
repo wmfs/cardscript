@@ -43,10 +43,10 @@ describe('Run some tests', function () {
         watching: (state, watching) => { state.watching = watching },
         startables: (state, startables) => { state.startables = startables },
         startable: (state, startable) => Vue.set(state.startables, startable.name, startable),
-        favour: (state, startable) => {
+        favourite: (state, startable) => {
           if (!state.favourites.includes(startable)) state.favourites.push(startable)
         },
-        unfavour: (state, startable) => {
+        unfavourite: (state, startable) => {
           const index = state.favourites.indexOf(startable)
           if (index > -1) state.favourites.splice(index, 1)
         }
@@ -129,19 +129,23 @@ describe('Run some tests', function () {
     expect(todos.length).to.eql(1)
   })
 
-  it('should favour a startable', () => {
-    sdk.startables.favour('test_justAStateMachine_1_0')
+  it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {
+    sdk.startables.favourite('test_justAStateMachine_1_0')
   })
 
-  it('check the vuex store for the favoured startable', () => {
+  it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been added`, () => {
     const { favourites } = store.state
     expect(favourites).to.eql(['test_justAStateMachine_1_0'])
   })
 
-  // favour a couple startables
-  // check favouriteStartableNames
-  // unfavour a startable
-  // check favouriteStartableNames
+  it(`should unfavourite a startable 'test_justAStateMachine_1_0'`, () => {
+    sdk.startables.unfavourite('test_justAStateMachine_1_0')
+  })
+
+  it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been removed`, () => {
+    const { favourites } = store.state
+    expect(favourites).to.eql([])
+  })
 
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()

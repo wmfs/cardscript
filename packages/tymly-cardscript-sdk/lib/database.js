@@ -5,7 +5,7 @@ module.exports = options => {
   const db = new Dexie('TymlyDatabase', { indexedDB })
 
   db.version(1).stores({
-    startables: `name, title, description, category, instigators`,
+    startables: `&name, title, description, category, instigators`,
     todo: `&id, todoTitle, description`,
     watching: `&id, title, description`,
     settings: ``,

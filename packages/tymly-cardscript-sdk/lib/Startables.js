@@ -11,30 +11,28 @@ module.exports = class Startables {
     }
 
     // const { favouriteStartableNames } = userQuery
-    // for (const s of favouriteStartableNames) {
-    //   await this.db.favourites.put(s)
+    // if (favouriteStartableNames.length > 0) {
+    //   await this.db.favourites.put({ favourites: favouriteStartableNames })
     // }
   }
 
   async load () {
     const data = await this.db.startables.toArray()
     this.store.commit('startables', data)
+
+    // get favourites from indexeddb
+    // commit to store
   }
 
-  favour (id) {
-    this.store.commit('favour', id)
+  favourite (id) {
+    this.store.commit('favourite', id)
     // add record if doesn't already exist
-
-    // favouriteStartableNames
-    // add startable to favourites
     // update indexedDb
   }
 
-  unfavour (id) {
-    this.store.commit('unfavour', id)
+  unfavourite (id) {
+    this.store.commit('unfavourite', id)
     // remove record if exists
-
-    // remove startable from favourites
     // update indexedDb
   }
 }
