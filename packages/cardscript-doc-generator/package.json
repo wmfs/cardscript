@@ -19,7 +19,8 @@
   },
   "scripts": {
     "generate": "node ./scripts/generate.js",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "standard && mocha"
   },
   "license": "MIT",
   "repository": {
