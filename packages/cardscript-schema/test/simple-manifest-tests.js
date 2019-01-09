@@ -1,15 +1,16 @@
 /* eslint-env mocha */
 
 'use strict'
-const manifestor = require('./../lib/').getSimpleManifest
+const manifestor = require('./../lib').getSimpleManifest
+const schema = require('./../lib').schema
 const chai = require('chai')
 const expect = chai.expect
-const requiredElements = ['Action.Cancel', 'Action.OpenUrl', 'Action.Save', 'Action.ShowCard', 'Action.Submit',
-  'ActionSet', 'AdaptiveCard', 'AddressBlock', 'CardList', 'Chip', 'Collapsible', 'Column', 'ColumnSet', 'Container',
-  'Fact', 'FactSet', 'Image', 'ImageSet', 'Input.Address', 'Input.ApiLookup', 'Input.Choice', 'Input.ChoiceSet',
-  'Input.Currency', 'Input.Date', 'Input.DateTime', 'Input.Email', 'Input.FileUpload', 'Input.Gender', 'Input.Name',
-  'Input.Number', 'Input.Signature', 'Input.Slider', 'Input.TelephoneNumber', 'Input.Text', 'Input.Time', 'Input.Toggle',
-  'Jumbotron', 'Map', 'Media', 'MediaSource', 'PhaseBanner', 'Separator', 'Tab', 'Table', 'TabSet', 'TextBlock']
+const requiredElements = Object.keys(schema.definitions)
+let toSkip = ['Action', 'Actions', 'CardElement', 'CardElements', 'ChoiceInputStyle', 'HorizontalAlignment',
+    'ImageSize', 'ImageStyle', 'SeparatorStyle', 'SpacingStyle', 'TextInputStyle']
+toSkip.forEach(element => {
+  requiredElements.splice(requiredElements.indexOf(element), 1)
+})
 
 describe('Run some manifestation tests', () => {
   it('should check all required elements are present', () => {
