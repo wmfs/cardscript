@@ -1,0 +1,21 @@
+{
+  "type": "Input.ChoiceSet",
+  "id": "choice",
+  "spacing": "medium",
+  "value": "CHOICE_1",
+  "choices": [
+    {
+      "title": "Choice 1",
+      "value": "CHOICE_1"
+    },
+    {
+      "title": "Choice 2",
+      "value": "CHOICE_2"
+    },
+    {
+      "title": "Choice 3",
+      "value": "CHOICE_3"
+    }
+  ],
+  "style": "expanded"
+}

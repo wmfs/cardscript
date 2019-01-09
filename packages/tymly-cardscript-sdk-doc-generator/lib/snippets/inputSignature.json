@@ -1,0 +1,7 @@
+{
+  "id": "inputSignature",
+  "type": "Input.Signature",
+  "agreement": "I agree that...",
+  "saveText": "Send",
+  "guidance": "Please enter your signature below..."
+}

@@ -1,0 +1,13 @@
+{
+  "type": "Column",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    },
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    }
+  ]
+}

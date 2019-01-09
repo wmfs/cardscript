@@ -1,0 +1,11 @@
+{
+  "type": "Container",
+  "color": "accent",
+  "spacing": "large",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Accent!"
+    }
+  ]
+}

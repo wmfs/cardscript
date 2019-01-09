@@ -1,0 +1,6 @@
+{
+  "id": "currency",
+  "type": "Input.Currency",
+  "placeholder": "Input.Currency",
+  "spacing": "medium"
+}

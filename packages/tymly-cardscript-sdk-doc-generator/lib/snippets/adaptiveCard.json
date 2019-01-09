@@ -1,0 +1,36 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/happy-people.jpg",
+          "title": "Register!",
+          "subtitle": "Let's get to know each other a bit better...",
+          "wash": "black"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Name",
+          "wrap": true,
+          "separator": true
+        },
+        {
+          "type": "Input.Text",
+          "id": "name",
+          "placeholder": "e.g. Lucy Smith"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}

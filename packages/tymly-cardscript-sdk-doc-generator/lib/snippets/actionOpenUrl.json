@@ -1,0 +1,5 @@
+{
+  "type": "Action.OpenUrl",
+  "title": "Open Url",
+  "url": "https://github.com/wmfs/cardscript"
+}

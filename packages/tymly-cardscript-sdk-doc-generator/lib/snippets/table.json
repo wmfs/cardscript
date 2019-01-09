@@ -1,0 +1,12 @@
+{
+  "type": "Table",
+  "title": "Opinions (Add some via CardList example above to see them appear in Table here)",
+  "arrayPath": "cardList",
+  "columns": [
+    {
+      "title": "Opinion",
+      "field": "opinion"
+    }
+  ],
+  "resultLimit": 5
+}

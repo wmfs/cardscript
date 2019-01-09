@@ -1,0 +1,26 @@
+{
+  "type": "TabSet",
+  "spacing": "large",
+  "tabs": [
+    {
+      "type": "Tab",
+      "title": "Tab 1",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 1 Content"
+        }
+      ]
+    },
+    {
+      "type": "Tab",
+      "title": "Tab 2",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 2 Content"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "id": "email",
+  "type": "Input.Email",
+  "placeholder": "Input.Email",
+  "spacing": "medium"
+}

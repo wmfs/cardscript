@@ -1,0 +1,6 @@
+{
+  "id": "toggle",
+  "type": "Input.Toggle",
+  "spacing": "medium",
+  "title": "Input.Toggle"
+}

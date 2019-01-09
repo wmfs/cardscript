@@ -1,0 +1,10 @@
+{
+  "type": "Tab",
+  "title": "Tab 1",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Tab 1 Content"
+    }
+  ]
+}

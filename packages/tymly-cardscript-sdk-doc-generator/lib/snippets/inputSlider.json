@@ -1,0 +1,9 @@
+{
+  "id": "slider",
+  "type": "Input.Slider",
+  "spacing": "medium",
+  "min": -20,
+  "max": 20,
+  "step": 4,
+  "value": 3
+}

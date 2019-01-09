@@ -1,0 +1,22 @@
+{
+  "id": "cardList",
+  "type": "CardList",
+  "editable": true,
+  "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
+  "addButtonLabel": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "What do you think?"
+      },
+      {
+        "id": "opinion",
+        "type": "Input.Text",
+        "spacing": "large",
+        "value": "Amazing!"
+      }
+    ]
+  }
+}

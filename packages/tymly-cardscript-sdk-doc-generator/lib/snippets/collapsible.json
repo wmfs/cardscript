@@ -1,0 +1,13 @@
+{
+  "type": "Collapsible",
+  "title": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Hello!"
+      }
+    ]
+  }
+}

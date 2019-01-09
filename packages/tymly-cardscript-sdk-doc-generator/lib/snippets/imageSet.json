@@ -1,0 +1,15 @@
+{
+  "type": "ImageSet",
+  "images": [
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    },
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    }
+  ]
+}

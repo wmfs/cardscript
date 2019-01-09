@@ -1,0 +1,13 @@
+{
+  "type": "FactSet",
+  "facts": [
+    {
+      "title": "Hello:",
+      "value": "World"
+    },
+    {
+      "title": "HELLO:",
+      "value": "WORLD"
+    }
+  ]
+}

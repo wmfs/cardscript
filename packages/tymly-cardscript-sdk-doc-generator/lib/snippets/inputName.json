@@ -1,0 +1,6 @@
+{
+  "id": "name",
+  "type": "Input.Name",
+  "placeholder": "Input.Name",
+  "spacing": "medium"
+}

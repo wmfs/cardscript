@@ -1,0 +1,18 @@
+{
+  "type": "ActionSet",
+  "spacing": "large",
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open Url",
+      "url": "https://github.com/wmfs/cardscript"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Submit",
+      "data": {
+        "x": "y"
+      }
+    }
+  ]
+}

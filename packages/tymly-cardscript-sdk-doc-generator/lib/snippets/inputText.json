@@ -1,0 +1,8 @@
+{
+  "id": "textEditor",
+  "type": "Input.Text",
+  "placeholder": "Input.Text",
+  "spacing": "medium",
+  "editor": true,
+  "value": "editor: true"
+}

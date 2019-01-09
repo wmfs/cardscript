@@ -1,0 +1,7 @@
+{
+  "type": "Jumbotron",
+  "backgroundImage": "wmfs/pizza.jpg",
+  "title": "Title",
+  "subtitle": "Subtitle",
+  "wash": "black"
+}
