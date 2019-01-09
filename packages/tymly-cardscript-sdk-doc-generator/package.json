@@ -5,6 +5,7 @@
   "author": "Tim Needham",
   "main": "./lib/index.js",
   "dependencies": {
+    "@wmfs/tymly-cardscript-sdk": "0.0.0",
     "mem-fs": "^1.1.3",
     "mem-fs-editor": "^5.1.0"
   },

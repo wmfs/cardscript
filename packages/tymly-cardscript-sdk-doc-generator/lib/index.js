@@ -1,10 +1,11 @@
 
 module.exports.getInfo = function getInfo (sdkRoot) {
+  console.log(sdkRoot)
   return {
     name: 'Oli'
   }
 }
 
-module.writeFile = function writeFile (options) {
+module.exports.writeFile = async function writeFile (options) {
   // blah
 }
