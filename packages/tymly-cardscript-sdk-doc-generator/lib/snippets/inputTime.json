@@ -1,6 +1,0 @@
-{
-  "id": "time",
-  "type": "Input.Time",
-  "placeholder": "Input.Time",
-  "spacing": "medium"
-}

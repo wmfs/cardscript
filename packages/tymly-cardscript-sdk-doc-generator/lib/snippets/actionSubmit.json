@@ -1,7 +1,0 @@
-{
-  "type": "Action.Submit",
-  "title": "Submit",
-  "data": {
-    "x": "y"
-  }
-}

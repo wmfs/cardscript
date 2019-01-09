@@ -1,7 +1,0 @@
-{
-  "id": "inputGender",
-  "type": "Input.Gender",
-  "preferNotToSay": true,
-  "preferToSelfDescribe": true,
-  "includeTransgender": true
-}
