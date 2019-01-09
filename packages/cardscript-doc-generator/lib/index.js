@@ -1,12 +1,12 @@
 const ejs = require('ejs')
 const path = require('upath')
-const getSimpleManifest = require('./get-simple-manifest')
+const cardscriptSchema = require('cardscript-schema')
 const fs = require('fs')
 
-module.exports.generator = function (options) {
+module.exports = function (options) {
   ejs.renderFile(
     path.resolve(__dirname, './template.md.ejs'),
-    getSimpleManifest(),
+    cardscriptSchema.getSimpleManifest(),
     {},
     (err, str) => {
       if (err) {
@@ -20,5 +20,3 @@ module.exports.generator = function (options) {
     }
   )
 }
-
-module.exports.getSimpleManifest = getSimpleManifest
