@@ -9,6 +9,11 @@ module.exports = class Startables {
     for (const s of Object.values(startable)) {
       await this.db.startables.put(s)
     }
+
+    // const { favouriteStartableNames } = userQuery
+    // for (const s of favouriteStartableNames) {
+    //   await this.db.favourites.put(s)
+    // }
   }
 
   async load () {
@@ -17,11 +22,18 @@ module.exports = class Startables {
   }
 
   favour (id) {
+    this.store.commit('favour', id)
+    // add record if doesn't already exist
+
+    // favouriteStartableNames
     // add startable to favourites
     // update indexedDb
   }
 
   unfavour (id) {
+    this.store.commit('unfavour', id)
+    // remove record if exists
+
     // remove startable from favourites
     // update indexedDb
   }

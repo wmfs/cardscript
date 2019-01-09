@@ -14,7 +14,9 @@ const Vue = require('vue')
 
 let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store
 
-describe('Run some tests', () => {
+describe('Run some tests', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
+
   it('set up Auth', () => {
     auth = new Auth0({})
   })
@@ -31,11 +33,20 @@ describe('Run some tests', () => {
     Vue.use(Vuex)
     store = new Vuex.Store({
       state: {
-        startables: {}
+        startables: {},
+        favourites: []
       },
       mutations: {
+        watching: (state, watching) => { state.watching = watching },
         startables: (state, startables) => { state.startables = startables },
-        startable: (state, startable) => Vue.set(state.startables, startable.name, startable)
+        startable: (state, startable) => Vue.set(state.startables, startable.name, startable),
+        favour: (state, startable) => {
+          if (!state.favourites.includes(startable)) state.favourites.push(startable)
+        },
+        unfavour: (state, startable) => {
+          const index = state.favourites.indexOf(startable)
+          if (index > -1) state.favourites.splice(index, 1)
+        }
       }
     })
   })
@@ -62,7 +73,7 @@ describe('Run some tests', () => {
           require.resolve('@wmfs/tymly-solr-plugin'),
           require.resolve('@wmfs/tymly-rbac-plugin')
         ],
-        blueprintPaths: [],
+        blueprintPaths: [], // maybe make a test blueprint in fixtures (pizza one) ?
         config: {
           auth: {
             secret: 'Shhh!',
@@ -74,8 +85,9 @@ describe('Run some tests', () => {
         }
       },
       (err, services) => {
+        expect(err).to.eql(null)
         tymlyServices = services
-        done(err)
+        done()
       }
     )
   })
@@ -94,12 +106,34 @@ describe('Run some tests', () => {
       .then(() => {
         done()
       })
+      .catch(err => {
+        done(err)
+      })
   })
 
-  it('check if the vuex store has things', () => {
-    const { startables } = store.state
-    expect(startables).to.not.eql({})
+  it('check if the vuex store has data from the user query', () => {
+    const { startables, watching } = store.state
+    expect(startables.length).to.eql(2)
+
+    expect(watching.length).to.eql(1)
+    expect(watching[0].title).to.eql('Incident 1/1999')
+
+    // todo: check other things when implemented
   })
+
+  it('should favour a startable', () => {
+    sdk.startables.favour('test_justAStateMachine_1_0')
+  })
+
+  it('check the vuex store for the favoured startable', () => {
+    const { favourites } = store.state
+    expect(favourites).to.eql(['test_justAStateMachine_1_0'])
+  })
+
+  // favour a couple startables
+  // check favouriteStartableNames
+  // unfavour a startable
+  // check favouriteStartableNames
 
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()

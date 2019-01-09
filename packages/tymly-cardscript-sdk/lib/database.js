@@ -6,10 +6,15 @@ module.exports = options => {
 
   db.version(1).stores({
     startables: `name, title, description, category, instigators`,
-    watching: ``,
-    todo: ``,
-    settings: ``
+    todos: `id, todoTitle, description`,
+    watching: `&id, title, description`,
+    settings: ``,
+    favourites: ``
   })
+
+  db.open()
 
   return db
 }
+
+// https://dexie.org/docs/Version/Version.stores()

@@ -1,10 +1,17 @@
 module.exports = class Todo {
-  // constructor (client) {}
-
-  persistFromUserQuery (userQuery) {
-    // userQuery.todos
-    // write to indexedDB in todos table
+  constructor (client) {
+    this.db = client.db
+    this.store = client.options.store
   }
+
+  async persistFromUserQuery (userQuery) {
+    const { todos } = userQuery.add
+    // for (const t of Object.values(todos)) {
+    //   await this.db.todos.put(t)
+    // }
+  }
+
+  load () {}
 
   remove (id) {}
 

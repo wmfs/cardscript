@@ -1,9 +1,19 @@
 module.exports = class Watching {
-  // constructor (client) {}
+  constructor (client) {
+    this.db = client.db
+    this.store = client.options.store
+  }
 
-  persistFromUserQuery (userQuery) {
-    // userQuery.watching
-    // write to indexedDB in watching table
+  async persistFromUserQuery (userQuery) {
+    const { watching } = userQuery
+    for (const w of Object.values(watching)) {
+      await this.db.watching.put(w, w.id)
+    }
+  }
+
+  async load () {
+    const data = await this.db.watching.toArray()
+    this.store.commit('watching', data)
   }
 
   watch (cardId) {}
