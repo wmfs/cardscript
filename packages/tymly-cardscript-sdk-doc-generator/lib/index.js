@@ -1,6 +1,5 @@
 
 module.exports.getInfo = function getInfo (sdkRoot) {
-  console.log(sdkRoot)
   return {
     name: 'Oli'
   }
@@ -8,4 +7,5 @@ module.exports.getInfo = function getInfo (sdkRoot) {
 
 module.exports.writeFile = async function writeFile (options) {
   // blah
+  console.log(options)
 }
