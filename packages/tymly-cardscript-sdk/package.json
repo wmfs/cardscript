@@ -28,7 +28,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha --compilers js:babel-core/register --require @babel/polyfill"
+    "test": "mocha --compilers js:@babel/register --require @babel/polyfill"
   },
   "license": "MIT",
   "repository": {
