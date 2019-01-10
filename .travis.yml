@@ -1,11 +1,11 @@
 language: node_js
-
 node_js:
-  - node
-
+  - lts/*
 sudo: false
 dist: trusty
 
+before_install:
+  - npm install -g npm@latest
 install:
   - npm install
   - lerna bootstrap
