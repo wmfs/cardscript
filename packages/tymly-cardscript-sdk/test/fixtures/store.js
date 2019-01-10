@@ -8,9 +8,11 @@ module.exports = {
         startables: [],
         favourites: [],
         watching: [],
-        todos: []
+        todos: [],
+        logs: []
       },
       mutations: {
+        logs: (state, logs) => { state.logs = logs },
         todos: (state, todos) => { state.todos = todos },
         watching: (state, watching) => { state.watching = watching },
         startables: (state, startables) => { state.startables = startables },

@@ -53,7 +53,12 @@ module.exports = class TymlyClient {
 
     this.options.auth.startRefreshTimer()
 
-    this.logs.addLog('SUCCESS', 'INIT', 'Blah', 'Blah blah...')
+    await this.logs.addLog({
+      type: 'POSITIVE',
+      code: 'INIT',
+      title: 'Blah',
+      message: 'Blah blah...'
+    })
   }
 
   runUserQuery () {

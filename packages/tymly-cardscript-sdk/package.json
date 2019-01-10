@@ -6,12 +6,14 @@
   "main": "./lib/index.js",
   "dependencies": {
     "dexie": "2.0.4",
-    "axios": "0.18.0"
+    "axios": "0.18.0",
+    "auth0-js": "9.8.2",
+    "chalk": "2.4.2"
   },
   "devDependencies": {
-    "babel-register": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-polyfill": "6.26.0",
+    "@babel/register": "7.0.0",
+    "@babel/preset-env": "7.2.3",
+    "@babel/polyfill": "7.2.5",
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1",
@@ -26,7 +28,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha --compilers js:babel-core/register --require babel-polyfill"
+    "test": "mocha --compilers js:babel-core/register --require @babel/polyfill"
   },
   "license": "MIT",
   "repository": {

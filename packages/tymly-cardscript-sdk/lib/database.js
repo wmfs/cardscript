@@ -1,18 +1,21 @@
 const Dexie = require('dexie')
 
 module.exports = options => {
-  const { indexedDB } = options
-  const db = new Dexie('TymlyDatabase', { indexedDB })
+  const { indexedDB, IDBKeyRange } = options
 
-  db.version(1).stores({
+  // Dexie.dependencies.indexedDB = indexedDB
+  // Dexie.dependencies.IDBKeyRange = IDBKeyRange
+
+  const db = new Dexie('TymlyDatabase', { indexedDB, IDBKeyRange })
+
+  db.version(2).stores({
     startables: `&name, title, description, category, instigators`,
     todo: `&id, todoTitle, description`,
-    watching: `&id, title, description`,
-    settings: ``,
-    favourites: ``
+    logs: `++, message, date`,
+    watching: `&id, title, description`
   })
 
-  db.open()
+  // db.open()
 
   return db
 }

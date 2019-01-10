@@ -7,27 +7,30 @@ const PORT = 3210
 const { Client, Auth0 } = require('../lib')
 const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
-const chai = require('chai')
-const expect = chai.expect
+const expect = require('chai').expect
 const setGlobalVars = require('indexeddbshim')
 const Vuex = require('vuex')
 const Vue = require('vue')
 
 let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store
 
-describe('Run some tests', function () {
+describe('General tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
   it('set up Auth', () => {
     auth = new Auth0({})
   })
 
+  // get token tests
+
   it('set up IndexedDB shim', () => {
     const shim = {}
     global.window = global
-    setGlobalVars(shim, { checkOrigin: false })
+    setGlobalVars(shim, { checkOrigin: false, memoryDatabase: ':memory:' })
     indexedDB = shim.indexedDB
     IDBKeyRange = shim.IDBKeyRange
+
+    // indexedDB.__debug(true)
   })
 
   it('set up the Vuex store', () => {
@@ -95,11 +98,16 @@ describe('Run some tests', function () {
       })
   })
 
-  it('check if the vuex store has data from the user query', () => {
+  it('load the logs from db to store', async () => {
+    await sdk.logs.loadLogs()
+  })
+
+  it('check if the vuex store has been populated', () => {
     const {
       startables,
       watching,
-      todos
+      todos,
+      logs
     } = store.state.app
 
     expect(startables.length).to.eql(2)
@@ -108,6 +116,8 @@ describe('Run some tests', function () {
     expect(watching[0].title).to.eql('Incident 1/1999')
 
     expect(todos.length).to.eql(1)
+
+    expect(logs.length).to.eql(1)
   })
 
   it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {

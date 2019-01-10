@@ -1,17 +1,25 @@
+// const auth0 = require('auth0-js')
+
 module.exports = class Auth0 {
-  constructor (options) {
-    console.log('Auth0 Constructor')
-  }
+  // constructor (options) {}
 
   init (client) {
     console.log('init auth')
     this.db = client.db
     this.store = client.options.store
+    // this.webAuth = new auth0.WebAuth({
+    //   domain: '',
+    //   clientID: '',
+    //   redirectUri: '',
+    //   audience: '',
+    //   responseType: '',
+    //   scope: ''
+    // })
   }
 
   storeToken () {
-    // write to indexedDB
-    this.db.something() // put() ?
+    const token = 123
+    // this.db.auth.put(token)
   }
 
   loadToken () {
