@@ -11,10 +11,9 @@
     "chalk": "2.4.2"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@babel/register": "7.0.0",
-    "@babel/preset-env": "7.2.3",
-    "@babel/polyfill": "7.2.5",
+    "babel-register": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-polyfill": "6.26.0",
     "chai": "4.1.2",
     "mocha": "5.1.1",
     "standard": "11.0.1",
@@ -29,7 +28,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha --require @babel/register --require @babel/polyfill"
+    "test": "mocha --require babel-register --require babel-polyfill"
   },
   "license": "MIT",
   "repository": {
