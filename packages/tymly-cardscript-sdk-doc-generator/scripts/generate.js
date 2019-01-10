@@ -1,4 +1,4 @@
-const path = require('path')
+// const path = require('path')
 const docGenerator = require('./../lib/')
 
 console.log('generate doc script...')
