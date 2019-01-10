@@ -7,9 +7,9 @@ const chai = require('chai')
 const expect = chai.expect
 const sdkRoot = require.resolve('@wmfs/tymly-cardscript-sdk')
 
-describe('Run a doc information test', () => {
+describe('Run a doc information test', async () => {
   let generator
-  it('should ', () => {
+  it('should create a new Generator', async () => {
     generator = new Generator(
       {
         sdkRoot: sdkRoot
@@ -17,8 +17,8 @@ describe('Run a doc information test', () => {
     )
   })
 
-  it('should get some info about the sdk', () => {
-    const info = generator.getInfo(sdkRoot)
+  it('should get some info about the sdk', async () => {
+    const info = await generator.getInfo(sdkRoot)
     expect(info.name).to.equal('Oli')
   })
 
