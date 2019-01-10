@@ -18,20 +18,20 @@ module.exports = class Startables {
 
   async load () {
     const data = await this.db.startables.toArray()
-    this.store.commit('startables', data)
+    this.store.commit('app/startables', data)
 
     // get favourites from indexeddb
     // commit to store
   }
 
   favourite (id) {
-    this.store.commit('favourite', id)
+    this.store.commit('app/favourite', id)
     // add record if doesn't already exist
     // update indexedDb
   }
 
   unfavourite (id) {
-    this.store.commit('unfavourite', id)
+    this.store.commit('app/unfavourite', id)
     // remove record if exists
     // update indexedDb
   }

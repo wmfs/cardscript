@@ -13,7 +13,7 @@ module.exports = class Watching {
 
   async load () {
     const data = await this.db.watching.toArray()
-    this.store.commit('watching', data)
+    this.store.commit('app/watching', data)
   }
 
   watch (cardId) {}

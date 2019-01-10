@@ -13,7 +13,7 @@ module.exports = class Todo {
 
   async load () {
     const data = await this.db.todo.toArray()
-    this.store.commit('todos', data)
+    this.store.commit('app/todos', data)
   }
 
   remove (id) {}

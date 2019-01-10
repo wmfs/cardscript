@@ -5,6 +5,7 @@
 const PORT = 3210
 
 const { Client, Auth0 } = require('../lib')
+const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
 const chai = require('chai')
 const expect = chai.expect
@@ -31,27 +32,7 @@ describe('Run some tests', function () {
 
   it('set up the Vuex store', () => {
     Vue.use(Vuex)
-    store = new Vuex.Store({
-      state: {
-        startables: [],
-        favourites: [],
-        watching: [],
-        todos: []
-      },
-      mutations: {
-        todos: (state, todos) => { state.todos = todos },
-        watching: (state, watching) => { state.watching = watching },
-        startables: (state, startables) => { state.startables = startables },
-        startable: (state, startable) => Vue.set(state.startables, startable.name, startable),
-        favourite: (state, startable) => {
-          if (!state.favourites.includes(startable)) state.favourites.push(startable)
-        },
-        unfavourite: (state, startable) => {
-          const index = state.favourites.indexOf(startable)
-          if (index > -1) state.favourites.splice(index, 1)
-        }
-      }
-    })
+    store = new Vuex.Store(vuexStore)
   })
 
   it('set up the SDK Client', () => {
@@ -119,7 +100,7 @@ describe('Run some tests', function () {
       startables,
       watching,
       todos
-    } = store.state
+    } = store.state.app
 
     expect(startables.length).to.eql(2)
 
@@ -134,7 +115,7 @@ describe('Run some tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been added`, () => {
-    const { favourites } = store.state
+    const { favourites } = store.state.app
     expect(favourites).to.eql(['test_justAStateMachine_1_0'])
   })
 
@@ -143,7 +124,7 @@ describe('Run some tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been removed`, () => {
-    const { favourites } = store.state
+    const { favourites } = store.state.app
     expect(favourites).to.eql([])
   })
 
