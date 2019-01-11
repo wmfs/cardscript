@@ -1,9 +1,32 @@
+const axios = require('axios')
+
 module.exports = class StateMachine {
   // constructor (client) {}
 
-  execute (stateMachineName, input) {
-    // use axios to call tymly cli
-    // sendTaskSuccess
+  async execute ({ stateMachineName, input, token }) {
+    // todo: will call tymly-cli
+
+    const { data } = await axios.post(
+      process.env.TYMLY_EXECUTIONS_URL,
+      {
+        stateMachineName,
+        input,
+        options: {
+          instigatingClient: {
+            appName: 'tymly-cardscript-sdk',
+            domain: ''
+          },
+          sendResponse: 'COMPLETE'
+        }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    return data
   }
 
   sendHeartbeat () {
@@ -12,6 +35,6 @@ module.exports = class StateMachine {
 
   runFromLaunch (launch) {
     // launch is an object
-    this.execute()
+    // this.execute()
   }
 }

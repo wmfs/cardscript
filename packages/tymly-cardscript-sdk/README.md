@@ -18,6 +18,7 @@ $ npm install tymly-cardscript-sdk --save
 | AUTH0_CLIENT_SECRET  | abcdef123 |
 | AUTH0_AUDIENCE       | abcdef123 |
 | TYMLY_EXECUTIONS_URL | http://localhost:3210/executions |
+| TYMLY_CERT_PATH      | C:\\path\\to\\certificate |
 
 
 ```bash
