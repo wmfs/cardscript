@@ -136,6 +136,7 @@ describe('General tests', function () {
 
   it('set up the SDK Client', () => {
     sdk = new Client({
+      appName: 'sdk-tests',
       auth,
       token: authToken,
       globalVars: {

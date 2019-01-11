@@ -77,7 +77,8 @@ module.exports = class TymlyClient {
           todos: []
         }
       },
-      token: this.options.token
+      token: this.options.token,
+      appName: this.options.appName
     })
 
     return ctx.userRemit

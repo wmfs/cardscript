@@ -3,9 +3,7 @@ const axios = require('axios')
 module.exports = class StateMachine {
   // constructor (client) {}
 
-  async execute ({ stateMachineName, input, token }) {
-    // todo: will call tymly-cli
-
+  async execute ({ stateMachineName, input, token, appName }) {
     const { data } = await axios.post(
       process.env.TYMLY_EXECUTIONS_URL,
       {
@@ -13,7 +11,7 @@ module.exports = class StateMachine {
         input,
         options: {
           instigatingClient: {
-            appName: 'tymly-cardscript-sdk',
+            appName,
             domain: ''
           },
           sendResponse: 'COMPLETE'
