@@ -12,7 +12,8 @@ module.exports = options => {
     startables: `&name, title, description, category, instigators`,
     todo: `&id, todoTitle, description`,
     logs: `++, message, date`,
-    watching: `&id, title, description`
+    watching: `&id, title, description`,
+    auth: `&id, token`
   })
 
   // db.open()

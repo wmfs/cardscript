@@ -1,5 +1,3 @@
-const chalk = require('chalk')
-
 module.exports = class Logs {
   constructor (client) {
     this.db = client.db
@@ -25,24 +23,8 @@ module.exports = class Logs {
 }
 
 function formatLog ({ type, code, title, body }) {
-  const date = new Date().getTime()
-  let message
-  if (body) {
-    message = `${code}: ${title}\n${body}`
-  } else {
-    message = `${code}: ${title}`
-  }
-
-  switch (type) {
-    case 'POSITIVE':
-      return { message: chalk.green(message), date }
-    case 'NEGATIVE':
-      return { message: chalk.red(message), date }
-    case 'WARNING':
-      return { message: chalk.yellow(message), date }
-    case 'INFO':
-      return { message: chalk.cyan(message), date }
-    default:
-      return { message, date }
+  return {
+    message: body ? `[${type}] ${code}: ${title}\n${body}` : `[${type}] ${code}: ${title}`,
+    date: new Date().getTime()
   }
 }

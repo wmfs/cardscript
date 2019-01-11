@@ -11,14 +11,33 @@ const expect = require('chai').expect
 const setGlobalVars = require('indexeddbshim')
 const Vuex = require('vuex')
 const Vue = require('vue')
+const axios = require('axios')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken
+
+const secret = 'Shhh!'
+const audience = 'IAmTheAudience!'
 
 describe('General tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
+  it('get an auth0 token', async () => {
+    const { data } = await axios({
+      method: 'post',
+      url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+      data: {
+        grant_type: 'client_credentials',
+        client_id: process.env.AUTH0_CLIENT_ID,
+        client_secret: process.env.AUTH0_CLIENT_SECRET,
+        audience: process.env.AUTH0_AUDIENCE
+      }
+    })
+
+    authToken = data.access_token
+  })
+
   it('set up Auth', () => {
-    auth = new Auth0({})
+    auth = new Auth0()
   })
 
   // get token tests
@@ -41,6 +60,7 @@ describe('General tests', function () {
   it('set up the SDK Client', () => {
     sdk = new Client({
       auth,
+      token: authToken,
       globalVars: {
         indexedDB,
         IDBKeyRange,
@@ -63,8 +83,8 @@ describe('General tests', function () {
         blueprintPaths: [], // maybe make a test blueprint in fixtures (pizza one) ?
         config: {
           auth: {
-            secret: 'Shhh!',
-            audience: 'IAmTheAudience!'
+            secret,
+            audience
           },
           defaultUsers: {
             'Dave': ['tymly_tymlyTestAdmin']
@@ -102,6 +122,10 @@ describe('General tests', function () {
     await sdk.logs.loadLogs()
   })
 
+  it('load the auth token from db to store', async () => {
+    await auth.loadToken()
+  })
+
   it('check if the vuex store has been populated', () => {
     const {
       startables,
@@ -109,6 +133,12 @@ describe('General tests', function () {
       todos,
       logs
     } = store.state.app
+
+    const {
+      token
+    } = store.state.auth
+
+    expect(token).to.eql(authToken)
 
     expect(startables.length).to.eql(2)
 

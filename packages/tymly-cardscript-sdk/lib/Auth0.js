@@ -1,30 +1,23 @@
-// const auth0 = require('auth0-js')
-
 module.exports = class Auth0 {
   // constructor (options) {}
 
-  init (client) {
-    console.log('init auth')
+  async init (client) {
     this.db = client.db
     this.store = client.options.store
-    // this.webAuth = new auth0.WebAuth({
-    //   domain: '',
-    //   clientID: '',
-    //   redirectUri: '',
-    //   audience: '',
-    //   responseType: '',
-    //   scope: ''
-    // })
+    this.token = client.options.token
+
+    if (this.token) {
+      await this.storeToken(this.token)
+    }
   }
 
-  storeToken () {
-    const token = 123
-    // this.db.auth.put(token)
+  async storeToken (token) {
+    await this.db.auth.put({ id: 'token', token })
   }
 
-  loadToken () {
-    // get from this.db
-    // add to this.store
+  async loadToken () {
+    const data = await this.db.auth.toArray()
+    this.store.commit('auth/token', data[0].token)
   }
 
   getToken () {

@@ -41,8 +41,7 @@ module.exports = class TymlyClient {
     this.todo = new Todo(this)
     this.watching = new Watching(this)
 
-    this.options.auth.init(this)
-    // auth things
+    await this.options.auth.init(this)
 
     const userQuery = this.runUserQuery()
 

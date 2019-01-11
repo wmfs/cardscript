@@ -28,8 +28,12 @@ module.exports = {
     },
     auth: {
       namespaced: true,
-      state: {},
-      mutations: {}
+      state: {
+        token: null
+      },
+      mutations: {
+        token: (state, token) => { state.token = token }
+      }
     }
   }
 }
