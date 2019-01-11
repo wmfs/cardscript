@@ -13,7 +13,8 @@ module.exports = options => {
     todo: `&id, todoTitle, description`,
     logs: `++, message, date`,
     watching: `&id, title, description`,
-    auth: `&id, token`
+    auth: `&id, token`,
+    cards: `&id`
   })
 
   // db.open()

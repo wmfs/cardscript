@@ -1,0 +1,8 @@
+{
+  "label": "Pizza",
+  "description": "Pizza",
+  "style": {
+    "icon": "pizza",
+    "backgroundColor": "#008800"
+  }
+}

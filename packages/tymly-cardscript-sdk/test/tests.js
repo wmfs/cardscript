@@ -1,5 +1,32 @@
 /* eslint-env mocha */
 
+/*
+pizza-blueprint
+
+/models
+ - pizza
+ - orders
+
+/state-machines
+ - order-pizza
+ - cancel-order
+ - change-delivery
+
+/card-templates
+ - pizza-form
+ - cancel-form
+ - ordered-pizza
+
+to-dos
+ - prepare pizza
+ - send pizza
+ - cook pizza
+ - order ingredients
+
+watched boards
+ - ordered pizza (x2)
+*/
+
 'use strict'
 
 const PORT = 3210
@@ -7,6 +34,7 @@ const PORT = 3210
 const { Client, Auth0 } = require('../lib')
 const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
+const path = require('path')
 const expect = require('chai').expect
 const setGlobalVars = require('indexeddbshim')
 const Vuex = require('vuex')
@@ -25,7 +53,7 @@ describe('General tests', function () {
       process.env.AUTH0_CLIENT_ID &&
       process.env.AUTH0_CLIENT_SECRET &&
       process.env.AUTH0_AUDIENCE &&
-      process.env.TYMLY_CERT_PATH
+      process.env.TYMLY_CERT_PATH // `https://${process.env.AUTH0_DOMAIN}.auth0.com/pem`
     )) {
       this.skip()
     }
@@ -40,7 +68,9 @@ describe('General tests', function () {
           require.resolve('@wmfs/tymly-solr-plugin'),
           require.resolve('@wmfs/tymly-rbac-plugin')
         ],
-        blueprintPaths: [], // maybe make a test blueprint in fixtures (pizza one) ?
+        blueprintPaths: [
+          path.resolve(__dirname, './fixtures/pizza-blueprint')
+        ],
         config: {
           auth: {
             // secret,
@@ -142,6 +172,7 @@ describe('General tests', function () {
       // startables,
       // watching,
       // todos,
+      cards,
       logs
     } = store.state.app
 
@@ -150,15 +181,8 @@ describe('General tests', function () {
     } = store.state.auth
 
     expect(token).to.eql(authToken)
-
-    // expect(startables.length).to.eql(2)
-
-    // expect(watching.length).to.eql(1)
-    // expect(watching[0].title).to.eql('Incident 1/1999')
-
-    // expect(todos.length).to.eql(1)
-
     expect(logs.length).to.eql(1)
+    expect(cards.length).to.eql(3)
   })
 
   it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {

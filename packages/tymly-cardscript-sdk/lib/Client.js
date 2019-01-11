@@ -13,12 +13,13 @@ const Templates = require('./Templates')
 const Search = require('./Search')
 const Todo = require('./Todo')
 const Watching = require('./Watching')
+const Cards = require('./Cards')
 const database = require('./database')
-// const axios = require('axios')
 
 const USER_QUERY_KEYS = [
   'startables',
-  'todo'
+  'todo',
+  'cards'
   // 'watching'
 ]
 
@@ -40,10 +41,12 @@ module.exports = class TymlyClient {
     this.search = new Search(this)
     this.todo = new Todo(this)
     this.watching = new Watching(this)
+    this.cards = new Cards(this)
 
     await this.options.auth.init(this)
 
     const userQuery = await this.runUserQuery()
+    console.log('>>>', userQuery.add.cards)
 
     for (const key of USER_QUERY_KEYS) {
       await this[key].persistFromUserQuery(userQuery)
