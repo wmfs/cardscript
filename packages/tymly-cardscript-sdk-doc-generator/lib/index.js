@@ -19,8 +19,7 @@ module.exports = class CardscriptSdkDocGenerator {
       docs: []
     }
     const fileList = await this._getFileList()
-    info.docs = await documentation.build(fileList, {})
-      .then(documentation.formats.md)
+    info.docs = await this._getDocs(fileList)
     return info
   }
 
@@ -47,5 +46,20 @@ module.exports = class CardscriptSdkDocGenerator {
     }
     let results = globProm(path.join(this.options.sdkRoot, '../*.js'), {})
     return results
+  }
+
+  async _getDocs (fileList) {
+    const docs = []
+    for (const file of Object.values(fileList)) {
+      const buildResult = await documentation.build(file, {
+        shallow: [true]
+      })
+      const resultMD = await documentation.formats.md(buildResult)
+      docs.push({
+        fileName: file.substring(path.join(this.options.sdkRoot, '../').length),
+        md: resultMD
+      })
+    }
+    return docs
   }
 }

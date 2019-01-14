@@ -1,3 +1,6 @@
 # Hello <%=name%>
 Docs:
-<%=docs%>
+<% docs.forEach(function(doc) { -%>
+# <%- doc.fileName %>
+<%- doc.md %>
+<% }) %>
