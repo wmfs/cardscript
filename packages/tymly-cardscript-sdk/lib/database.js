@@ -14,6 +14,7 @@ module.exports = options => {
     logs: `++, message, date`,
     watching: `&id, title, description`,
     auth: `&id, token`,
+    favourites: `&id, favourites`,
     cards: `&id`
   })
 

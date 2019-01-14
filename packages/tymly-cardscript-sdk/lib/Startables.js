@@ -10,29 +10,36 @@ module.exports = class Startables {
       await this.db.startables.put(s)
     }
 
-    // const { favouriteStartableNames } = userQuery
-    // if (favouriteStartableNames.length > 0) {
-    //   await this.db.favourites.put({ favourites: favouriteStartableNames })
-    // }
+    const { favouriteStartableNames } = userQuery
+    await this.db.favourites.put({ id: 'favourites', favourites: favouriteStartableNames })
   }
 
   async load () {
-    const data = await this.db.startables.toArray()
-    this.store.commit('app/startables', data)
+    const startables = await this.db.startables.toArray()
+    this.store.commit('app/startables', startables)
 
-    // get favourites from indexeddb
-    // commit to store
+    const favourites = await this.db.favourites.toArray()
+    this.store.commit('app/favourites', favourites)
   }
 
-  favourite (id) {
+  // todo: probably refactor these
+  async favourite (id) {
     this.store.commit('app/favourite', id)
-    // add record if doesn't already exist
-    // update indexedDb
+
+    const favourites = await this.db.favourites.toArray()
+    if (!favourites[0].favourites.includes(id)) favourites[0].favourites.push(id)
+
+    await this.db.favourites.put(favourites[0])
   }
 
-  unfavourite (id) {
+  async unfavourite (id) {
     this.store.commit('app/unfavourite', id)
-    // remove record if exists
-    // update indexedDb
+
+    const favourites = await this.db.favourites.toArray()
+
+    const index = favourites[0].favourites.indexOf(id)
+    if (index > -1) favourites[0].favourites.splice(index, 1)
+
+    await this.db.favourites.put(favourites[0])
   }
 }

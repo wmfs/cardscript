@@ -174,9 +174,10 @@ describe('General tests', function () {
     const {
       startables,
       watching,
-      // todos,
+      todos,
       cards,
-      logs
+      logs,
+      favourites
     } = store.state.app
 
     const {
@@ -188,24 +189,36 @@ describe('General tests', function () {
     expect(cards.length).to.eql(3)
     expect(startables.length).to.eql(3)
     expect(watching.length).to.eql(0)
+    expect(favourites.length).to.eql(0)
+    expect(todos.length).to.eql(0)
   })
 
-  it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {
-    sdk.startables.favourite('test_justAStateMachine_1_0')
+  it(`should favourite a startable 'test_orderPizza_1_0'`, async () => {
+    await sdk.startables.favourite('test_orderPizza_1_0')
   })
 
-  it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been added`, () => {
+  it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been added`, () => {
     const { favourites } = store.state.app
-    expect(favourites).to.eql(['test_justAStateMachine_1_0'])
+    expect(favourites).to.eql(['test_orderPizza_1_0'])
   })
 
-  it(`should unfavourite a startable 'test_justAStateMachine_1_0'`, () => {
-    sdk.startables.unfavourite('test_justAStateMachine_1_0')
+  it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been added'`, async () => {
+    const favourites = await sdk.db.favourites.toArray()
+    expect(favourites[0].favourites).to.eql(['test_orderPizza_1_0'])
   })
 
-  it(`check the vuex store if the favourite startable 'test_justAStateMachine_1_0' has been removed`, () => {
+  it(`should unfavourite a startable 'test_orderPizza_1_0'`, async () => {
+    await sdk.startables.unfavourite('test_orderPizza_1_0')
+  })
+
+  it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been removed`, () => {
     const { favourites } = store.state.app
     expect(favourites).to.eql([])
+  })
+
+  it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been removed'`, async () => {
+    const favourites = await sdk.db.favourites.toArray()
+    expect(favourites[0].favourites).to.eql([])
   })
 
   it('shutdown Tymly', async () => {
