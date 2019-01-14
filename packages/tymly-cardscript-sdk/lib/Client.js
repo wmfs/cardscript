@@ -63,7 +63,14 @@ module.exports = class TymlyClient {
   }
 
   async runUserQuery () {
-    const { ctx } = await this.stateMachine.execute({
+    const watching = await this.stateMachine.execute({
+      stateMachineName: 'tymly_getWatchedBoards_1_0',
+      input: {},
+      token: this.options.token,
+      appName: this.options.appName
+    })
+
+    const remit = await this.stateMachine.execute({
       stateMachineName: 'tymly_getUserRemit_1_0',
       input: {
         clientManifest: {
@@ -80,7 +87,10 @@ module.exports = class TymlyClient {
       appName: this.options.appName
     })
 
-    return ctx.userRemit
+    return {
+      ...remit.ctx.userRemit,
+      watching: watching.ctx.watchCategories
+    }
   }
 
   destroy () {
