@@ -46,7 +46,6 @@ module.exports = class TymlyClient {
     await this.options.auth.init(this)
 
     const userQuery = await this.runUserQuery()
-    console.log('>>>', userQuery.add.cards)
 
     for (const key of USER_QUERY_KEYS) {
       await this[key].persistFromUserQuery(userQuery)

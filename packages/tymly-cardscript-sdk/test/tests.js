@@ -3,19 +3,22 @@
 /*
 pizza-blueprint
 
-/models
- - pizza
- - orders
-
-/state-machines
- - order-pizza
- - cancel-order
- - change-delivery
-
 /card-templates
  - pizza-form
  - cancel-form
  - ordered-pizza
+
+/categories
+ - pizza
+
+/models
+ - orders
+ - pizza
+
+/state-machines
+ - cancel-order
+ - order-pizza
+ - update-status
 
 to-dos
  - prepare pizza
@@ -73,7 +76,6 @@ describe('General tests', function () {
         ],
         config: {
           auth: {
-            // secret,
             certificate: process.env.TYMLY_CERT_PATH,
             audience: process.env.AUTH0_AUDIENCE
           },
@@ -170,7 +172,7 @@ describe('General tests', function () {
 
   it('check if the vuex store has been populated', () => {
     const {
-      // startables,
+      startables,
       // watching,
       // todos,
       cards,
@@ -184,6 +186,7 @@ describe('General tests', function () {
     expect(token).to.eql(authToken)
     expect(logs.length).to.eql(1)
     expect(cards.length).to.eql(3)
+    expect(startables.length).to.eql(3)
   })
 
   it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {

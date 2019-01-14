@@ -1,6 +1,6 @@
 {
-  "Comment": "Allows user or pizza people to cancel an order for a pizza.",
-  "name": "Cancel Order",
+  "Comment": "Allows the pizza people to update the status of the order.",
+  "name": "Update Status",
   "version": "1.0",
   "categories": [
     "pizza"
@@ -15,7 +15,7 @@
       "Resource": "module:awaitingHumanInput",
       "ResourceConfig": {
         "uiType": "form",
-        "uiName": "wmfs_cancelForm",
+        "uiName": "wmfs_updateStatusForm",
         "dataPath": "$.formData"
       },
       "ResultPath": "$.formData",
