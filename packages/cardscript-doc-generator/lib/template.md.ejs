@@ -203,9 +203,117 @@ Not one element-type requires all these attributes. Attributes are often optiona
 | `<%= attribute.name%>` | `<%= attribute.type %>` | <%- attribute.description %> |
 <% }) %>
 
-# <a name="list"></a>Element List
+# <a name="ActionList"></a>Actions
 
-Here is the full list of all <%= elements.length %> elements supported in Cardscript `<%= version %>` (please see [Element summary](#element-summary) for a handy index).
+Here is the full list of all <%= actions.length %> actions supported in Cardscript `<%= version %>` (please see [Element summary](#element-summary) for a handy index).
+
+<% actions.forEach(function(element) { -%>
+
+<hr>
+
+## The <a name="list-<%= element.type -%>"></a>`<%= element.type%>` element
+
+__<%- element.description %>__
+
+__Example JSON__
+
+``` json
+<%- element.example %>
+
+```
+
+
+<% if (element.propertySummary.length > 0 ) { -%>
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+<% element.propertySummary.forEach(function(attrib) { -%>
+| `<%= attrib.name -%>` | <%- attrib.type -%> | `<%= attrib.required -%>` | <%- attrib.text -%> |
+<% }) %>
+
+<% } %>
+
+<% }) %>
+
+<hr>
+
+# <a name="ContainerList"></a>Containers
+
+Here is the full list of all <%= containers.length %> containers supported in Cardscript `<%= version %>` (please see [Element summary](#element-summary) for a handy index).
+
+<% containers.forEach(function(element) { -%>
+
+<hr>
+
+## The <a name="list-<%= element.type -%>"></a>`<%= element.type%>` element
+
+__<%- element.description %>__
+
+__Example JSON__
+
+``` json
+<%- element.example %>
+
+```
+
+
+<% if (element.propertySummary.length > 0 ) { -%>
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+<% element.propertySummary.forEach(function(attrib) { -%>
+| `<%= attrib.name -%>` | <%- attrib.type -%> | `<%= attrib.required -%>` | <%- attrib.text -%> |
+<% }) %>
+
+<% } %>
+
+<% }) %>
+
+<hr>
+
+# <a name="InputList"></a>Inputs
+
+Here is the full list of all <%= inputs.length %> inputs supported in Cardscript `<%= version %>` (please see [Element summary](#element-summary) for a handy index).
+
+<% inputs.forEach(function(element) { -%>
+
+<hr>
+
+## The <a name="list-<%= element.type -%>"></a>`<%= element.type%>` element
+
+__<%- element.description %>__
+
+__Example JSON__
+
+``` json
+<%- element.example %>
+
+```
+
+
+<% if (element.propertySummary.length > 0 ) { -%>
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+<% element.propertySummary.forEach(function(attrib) { -%>
+| `<%= attrib.name -%>` | <%- attrib.type -%> | `<%= attrib.required -%>` | <%- attrib.text -%> |
+<% }) %>
+
+<% } %>
+
+<% }) %>
+
+<hr>
+
+# <a name="ElementList"></a>Other Elements
+
+Here is the full list of all <%= elements.length %> other elements supported in Cardscript `<%= version %>` (please see [Element summary](#element-summary) for a handy index).
 
 <% elements.forEach(function(element) { -%>
 
@@ -238,6 +346,8 @@ __Properties__
 <% }) %>
 
 <hr>
+
+
 
 # <a name="license"></a>License (MIT)
 

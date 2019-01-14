@@ -10,6 +10,8 @@ module.exports = function getSimpleManifest () {
   let toSkip = ['Action', 'Actions', 'CardElement', 'CardElements', 'ChoiceInputStyle', 'HorizontalAlignment',
     'ImageSize', 'ImageStyle', 'SeparatorStyle', 'SpacingStyle', 'TextInputStyle']
 
+  let containerElements = ['Container', 'Column', 'ColumnSet', 'TabSet', 'Tab', 'Collapsible', 'ActionSet', 'ImageSet']
+
   let filteredSchema = []
   Object.keys(schema.definitions).map(key => {
     if (!toSkip.includes(key)) {
@@ -36,7 +38,11 @@ module.exports = function getSimpleManifest () {
     }
   })
 
-  const elementInfo = filteredSchema.map(elementType => {
+  const actions = []
+  const containers = []
+  const elements = []
+  const inputs = []
+  filteredSchema.forEach(elementType => {
     const rawElementDefinition = schema.definitions[elementType]
     // console.log(rawElementDefinition)
     const elementDefinition = _.cloneDeep(rawElementDefinition)
@@ -48,7 +54,16 @@ module.exports = function getSimpleManifest () {
       elementDefinition.propertySummary = []
     }
     // elementDefinition.attributeSummary = _.sortBy(calculateAttributeSummary(elementType, schema.definitions.attributes, rawElementDefinition), 'name')
-    return elementDefinition
+
+    if (elementType.includes('Action.')) {
+      actions.push(elementDefinition)
+    } else if (elementType.includes('Input.')) {
+      inputs.push(elementDefinition)
+    } else if (containerElements.includes(elementType)) {
+      containers.push(elementDefinition)
+    } else {
+      elements.push(elementDefinition)
+    }
   })
 
   const attributeInfo = filteredSchema.map(attributeName => {
@@ -64,7 +79,10 @@ module.exports = function getSimpleManifest () {
   return {
     year: new Date().getFullYear(),
     version: lernaJson.version,
-    elements: _.sortBy(elementInfo, 'type'),
+    actions: _.sortBy(actions, 'type'),
+    containers: _.sortBy(containers, 'type'),
+    elements: _.sortBy(elements, 'type'),
+    inputs: _.sortBy(inputs, 'type'),
     attributes: _.sortBy(attributeInfo, 'name'),
     properties: propertyInfo,
     topLevelProperties: topLevelProperties

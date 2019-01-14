@@ -16,8 +16,23 @@ module.exports = function (options) {
   ctx.stopText = stopText
   ctx.packages = getPackageInfo()
 
-  // Add example nippets
+  // Add example snippets
+  ctx.actions.forEach(
+    (element) => {
+      element.example = JSON.stringify(snippets[element.type], null, 2)
+    }
+  )
+  ctx.containers.forEach(
+    (element) => {
+      element.example = JSON.stringify(snippets[element.type], null, 2)
+    }
+  )
   ctx.elements.forEach(
+    (element) => {
+      element.example = JSON.stringify(snippets[element.type], null, 2)
+    }
+  )
+  ctx.inputs.forEach(
     (element) => {
       element.example = JSON.stringify(snippets[element.type], null, 2)
     }
