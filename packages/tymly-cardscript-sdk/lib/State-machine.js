@@ -1,17 +1,19 @@
 const axios = require('axios')
 
 module.exports = class StateMachine {
-  // constructor (client) {}
+  constructor (client) {
+    this.appName = client.options.appName
+  }
 
-  async execute ({ stateMachineName, input, token, appName }) {
+  async execute ({ stateMachineName, input, token }) {
     const { data } = await axios.post(
       process.env.TYMLY_EXECUTIONS_URL,
       {
         stateMachineName,
-        input,
+        input: input || {},
         options: {
           instigatingClient: {
-            appName,
+            appName: this.appName,
             domain: ''
           },
           sendResponse: 'COMPLETE'

@@ -66,8 +66,7 @@ module.exports = class TymlyClient {
     const watching = await this.stateMachine.execute({
       stateMachineName: 'tymly_getWatchedBoards_1_0',
       input: {},
-      token: this.options.token,
-      appName: this.options.appName
+      token: this.options.token
     })
 
     const remit = await this.stateMachine.execute({
@@ -83,8 +82,7 @@ module.exports = class TymlyClient {
           todos: []
         }
       },
-      token: this.options.token,
-      appName: this.options.appName
+      token: this.options.token
     })
 
     return {
