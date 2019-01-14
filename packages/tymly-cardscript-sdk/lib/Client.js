@@ -19,8 +19,8 @@ const database = require('./database')
 const USER_QUERY_KEYS = [
   'startables',
   'todo',
-  'cards'
-  // 'watching'
+  'cards',
+  'watching'
 ]
 
 module.exports = class TymlyClient {

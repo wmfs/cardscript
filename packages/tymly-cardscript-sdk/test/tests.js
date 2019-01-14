@@ -173,7 +173,7 @@ describe('General tests', function () {
   it('check if the vuex store has been populated', () => {
     const {
       startables,
-      // watching,
+      watching,
       // todos,
       cards,
       logs
@@ -187,6 +187,7 @@ describe('General tests', function () {
     expect(logs.length).to.eql(1)
     expect(cards.length).to.eql(3)
     expect(startables.length).to.eql(3)
+    expect(watching.length).to.eql(0)
   })
 
   it(`should favourite a startable 'test_justAStateMachine_1_0'`, () => {
