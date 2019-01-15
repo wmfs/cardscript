@@ -34,7 +34,7 @@ watched boards
 
 const PORT = 3210
 
-const {Client, Auth0} = require('../lib')
+const { Client, Auth0 } = require('../lib')
 const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
 const path = require('path')
@@ -93,7 +93,7 @@ describe('General tests', function () {
   })
 
   it('start Tymly server', done => {
-    const {server} = tymlyServices
+    const { server } = tymlyServices
     server.listen(PORT, () => {
       console.log(`Tymly server listening at ${PORT}`)
       done()
@@ -101,7 +101,7 @@ describe('General tests', function () {
   })
 
   it('get an auth0 token', async () => {
-    const {data} = await axios.request({
+    const { data } = await axios.request({
       method: 'post',
       url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       data: {
@@ -124,7 +124,7 @@ describe('General tests', function () {
   it('set up IndexedDB shim', () => {
     const shim = {}
     global.window = global
-    setGlobalVars(shim, {checkOrigin: false, memoryDatabase: ':memory:'})
+    setGlobalVars(shim, { checkOrigin: false, memoryDatabase: ':memory:' })
     indexedDB = shim.indexedDB
     IDBKeyRange = shim.IDBKeyRange
 
@@ -216,7 +216,7 @@ describe('General tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been removed`, () => {
-    const {favourites} = store.state.app
+    const { favourites } = store.state.app
     expect(favourites).to.eql([])
   })
 
@@ -257,6 +257,7 @@ describe('General tests', function () {
 
     const { watching } = store.state.app
     expect(watching.length).to.eql(1)
+    expect(watching[0].subscriptionId).to.eql(watchId)
   })
 
   it('refresh user query, check new todo entry exists', async () => {
