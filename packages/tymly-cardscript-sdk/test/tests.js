@@ -276,6 +276,11 @@ describe('General tests', function () {
     expect(todos.length).to.eql(0)
   })
 
+  it('check the executions store in the db', async () => {
+    const data = await sdk.db.executions.toArray()
+    expect(data.length).to.eql(11)
+  })
+
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()
   })

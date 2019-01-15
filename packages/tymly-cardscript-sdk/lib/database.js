@@ -15,7 +15,8 @@ module.exports = options => {
     watching: `&subscriptionId, title, description`,
     auth: `&id, token`,
     favourites: `&id, favourites`,
-    cards: `&id`
+    cards: `&id`,
+    executions: `&executionName, status`
   })
 
   // db.open()

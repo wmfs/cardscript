@@ -2,6 +2,7 @@ const axios = require('axios')
 
 module.exports = class Executions {
   constructor (client) {
+    this.db = client.db
     this.appName = client.options.appName
   }
 
@@ -26,6 +27,8 @@ module.exports = class Executions {
       }
     )
 
+    await this.storeFromServerRequest(data)
+
     return data
   }
 
@@ -38,8 +41,9 @@ module.exports = class Executions {
     // this.execute()
   }
 
-  storeFromServerRequest (execDesc, status) {
-    // into db
+  async storeFromServerRequest (execDesc) {
+    // hash it
+    await this.db.executions.put(execDesc)
   }
 
   remove (executionName) {
