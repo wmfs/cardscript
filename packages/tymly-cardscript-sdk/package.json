@@ -6,7 +6,9 @@
   "main": "./lib/index.js",
   "dependencies": {
     "dexie": "2.0.4",
-    "axios": "0.18.0"
+    "axios": "0.18.0",
+    "uuid": "3.3.2",
+    "shasum": "1.0.2"
   },
   "devDependencies": {
     "babel-register": "6.26.0",

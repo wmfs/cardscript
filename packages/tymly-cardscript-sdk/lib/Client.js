@@ -15,6 +15,8 @@ const Todo = require('./Todo')
 const Watching = require('./Watching')
 const Cards = require('./Cards')
 const database = require('./database')
+const uuidv1 = require('uuid/v1')
+const shasum = require('shasum')
 
 const USER_QUERY_KEYS = [
   'startables',
@@ -93,6 +95,14 @@ module.exports = class TymlyClient {
       ...remit.ctx.userRemit,
       watching: watching.ctx.watchCategories
     }
+  }
+
+  _getUUID () {
+    return uuidv1()
+  }
+
+  _getHash (data) {
+    return shasum(data)
   }
 
   destroy () {
