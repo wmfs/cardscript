@@ -32,6 +32,7 @@ module.exports = class Todo {
 
     // remove from db
     // remove from store
+    // although the tests just refresh user query and that does the job
   }
 
   loadTodos (options) {
