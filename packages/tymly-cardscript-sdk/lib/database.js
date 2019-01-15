@@ -12,7 +12,7 @@ module.exports = options => {
     startables: `&name, title, description, category, instigators`,
     todo: `&id, todoTitle, description`,
     logs: `++, message, date`,
-    watching: `&id, title, description`,
+    watching: `&subscriptionId, title, description`,
     auth: `&id, token`,
     favourites: `&id, favourites`,
     cards: `&id`

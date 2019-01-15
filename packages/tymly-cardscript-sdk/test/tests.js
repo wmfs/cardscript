@@ -202,7 +202,7 @@ describe('General tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been added`, () => {
-    const {favourites} = store.state.app
+    const { favourites } = store.state.app
     expect(favourites).to.eql(['test_orderPizza_1_0'])
   })
 
@@ -226,7 +226,7 @@ describe('General tests', function () {
   })
 
   it('create todo entry for Prepare Pizza', async () => {
-    const {ctx} = await sdk.stateMachine.execute({
+    const { ctx } = await sdk.stateMachine.execute({
       stateMachineName: 'tymly_createTodoEntry_1_0',
       input: {
         todoTitle: 'Prepare Pizza',
@@ -241,25 +241,28 @@ describe('General tests', function () {
   })
 
   it(`watch 'test_orderPizza_1_0' instance`, async () => {
-    // const watch = await sdk.db.watching.toArray()
-    // console.log('\n>>> ', watch)
-    const {ctx} = await sdk.watching.watch('test_orderPizza_1_0')
-    console.log('>> ', ctx)
-    // watchId = ctx.subscriptionId
-    // console.log('\nwatchId', watchId)
+    const { ctx } = await sdk.watching.watch({
+      stateMachineName: 'test_orderPizza_1_0',
+      title: 'Pizza Order XYZ123',
+      category: 'Food',
+      categoryLabel: 'Food Order',
+      description: 'Pepperoni and Jalapeno Pizza'
+    })
+
+    watchId = ctx.subscriptionId
   })
 
-  xit(`refresh user query, check the watching entry exists`, async () => {
+  it(`refresh user query, check the watching entry exists`, async () => {
     await sdk.persistUserQuery()
 
-    const {watching} = store.state.app
-    console.log('>>> ', watching)
+    const { watching } = store.state.app
+    expect(watching.length).to.eql(1)
   })
 
   it('refresh user query, check new todo entry exists', async () => {
     await sdk.persistUserQuery()
 
-    const {todos} = store.state.app
+    const { todos } = store.state.app
     expect(todos.length).to.eql(1)
     expect(todos[0].id).to.eql(todoId)
   })
@@ -268,7 +271,7 @@ describe('General tests', function () {
     await sdk.todo.remove(todoId)
     await sdk.persistUserQuery()
 
-    const {todos} = store.state.app
+    const { todos } = store.state.app
     expect(todos.length).to.eql(0)
   })
 

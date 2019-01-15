@@ -7,13 +7,17 @@ module.exports = class Watching {
   }
 
   async persistFromUserQuery (userQuery) {
-    const {watching} = userQuery
+    const { watching } = userQuery
 
-    console.log('*** ', watching)
     await this.db.watching.clear()
 
-    for (const w of Object.values(watching)) {
-      await this.db.watching.put(w)
+    // todo: something with categories in indexedDB
+    for (const category of Object.values(watching)) {
+      for (const { subscriptions } of Object.values(category)) {
+        for (const sub of subscriptions) {
+          await this.db.watching.put(sub)
+        }
+      }
     }
   }
 
@@ -22,16 +26,10 @@ module.exports = class Watching {
     this.store.commit('app/watching', data)
   }
 
-  watch (cardId) {
+  watch (card) {
     return this.stateMachine.execute({
       stateMachineName: 'tymly_watchBoard_1_0',
-      input: {
-        stateMachineName: cardId,
-        title: 'Pizza Order XYZ123',
-        category: 'Food',
-        categoryLabel: 'Food Order',
-        description: 'Pepperoni and Jalapeno Pizza'
-      },
+      input: card,
       token: this.token
     })
   }
