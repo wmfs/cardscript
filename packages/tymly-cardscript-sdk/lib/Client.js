@@ -45,12 +45,7 @@ module.exports = class TymlyClient {
 
     await this.options.auth.init(this)
 
-    const userQuery = await this.runUserQuery()
-
-    for (const key of USER_QUERY_KEYS) {
-      await this[key].persistFromUserQuery(userQuery)
-      await this[key].load()
-    }
+    await this.persistUserQuery()
 
     this.options.auth.startRefreshTimer()
 
@@ -60,6 +55,15 @@ module.exports = class TymlyClient {
       title: 'Blah',
       message: 'Blah blah...'
     })
+  }
+
+  async persistUserQuery () {
+    const userQuery = await this.runUserQuery()
+
+    for (const key of USER_QUERY_KEYS) {
+      await this[key].persistFromUserQuery(userQuery)
+      await this[key].load()
+    }
   }
 
   async runUserQuery () {

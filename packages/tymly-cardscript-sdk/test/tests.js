@@ -44,7 +44,7 @@ const Vuex = require('vuex')
 const Vue = require('vue')
 const axios = require('axios')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId
 
 describe('General tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
@@ -170,6 +170,10 @@ describe('General tests', function () {
     await auth.loadToken()
   })
 
+  it('get the token from the store', () => {
+    expect(auth.getToken()).to.eql(authToken)
+  })
+
   it('check if the vuex store has been populated', () => {
     const {
       startables,
@@ -219,6 +223,29 @@ describe('General tests', function () {
   it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been removed'`, async () => {
     const favourites = await sdk.db.favourites.toArray()
     expect(favourites[0].favourites).to.eql([])
+  })
+
+  it('create todo entry for Prepare Pizza', async () => {
+    const { ctx } = await sdk.stateMachine.execute({
+      stateMachineName: 'tymly_createTodoEntry_1_0',
+      input: {
+        todoTitle: 'Prepare Pizza',
+        stateMachineTitle: 'Prepare Pizza',
+        stateMachineCategory: 'pizza',
+        description: 'You need to begin preparing the pizza.'
+      },
+      token: authToken
+    })
+
+    todoId = ctx.idProperties.id
+  })
+
+  it('refresh user query, check new todo entry exists', async () => {
+    await sdk.persistUserQuery()
+
+    const { todos } = store.state.app
+    expect(todos.length).to.eql(1)
+    expect(todos[0].id).to.eql(todoId)
   })
 
   it('shutdown Tymly', async () => {

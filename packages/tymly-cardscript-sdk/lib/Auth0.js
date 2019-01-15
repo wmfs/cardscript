@@ -1,6 +1,4 @@
 module.exports = class Auth0 {
-  // constructor (options) {}
-
   async init (client) {
     this.db = client.db
     this.store = client.options.store
@@ -21,7 +19,7 @@ module.exports = class Auth0 {
   }
 
   getToken () {
-    // get from this.store
+    return this.store.state.auth.token
   }
 
   // silently refresh every half an hour if app active

@@ -19,7 +19,7 @@ module.exports = class Startables {
     this.store.commit('app/startables', startables)
 
     const favourites = await this.db.favourites.toArray()
-    this.store.commit('app/favourites', favourites)
+    this.store.commit('app/favourites', favourites[0].favourites)
   }
 
   // todo: probably refactor these
