@@ -281,6 +281,20 @@ describe('General tests', function () {
     expect(data.length).to.eql(11)
   })
 
+  // hit executions.load()
+  // check vuex store
+
+  // remove an execution
+  // check db
+
+  // hit executions.load()
+  // check vuex store again
+
+  // start a form via executions api
+  // check the execution is in table, with status AWAITING or w/e
+  // progress the execution
+  // try function hasDataChanged()
+
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()
   })

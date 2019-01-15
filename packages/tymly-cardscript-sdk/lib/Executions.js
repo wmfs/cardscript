@@ -4,6 +4,7 @@ module.exports = class Executions {
   constructor (client) {
     this.db = client.db
     this.appName = client.options.appName
+    this._getHash = client._getHash
   }
 
   async execute ({ stateMachineName, input, token }) {
@@ -42,8 +43,10 @@ module.exports = class Executions {
   }
 
   async storeFromServerRequest (execDesc) {
-    // hash it
-    await this.db.executions.put(execDesc)
+    await this.db.executions.put({
+      ...execDesc,
+      shasum: this._getHash(execDesc)
+    })
   }
 
   remove (executionName) {
