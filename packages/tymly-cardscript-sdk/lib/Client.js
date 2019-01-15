@@ -58,7 +58,7 @@ module.exports = class TymlyClient {
   }
 
   async persistUserQuery () {
-    const userQuery = await this.runUserQuery()
+    const userQuery = await this.getUserQuery()
 
     for (const key of USER_QUERY_KEYS) {
       await this[key].persistFromUserQuery(userQuery)
@@ -66,7 +66,7 @@ module.exports = class TymlyClient {
     }
   }
 
-  async runUserQuery () {
+  async getUserQuery () {
     const watching = await this.stateMachine.execute({
       stateMachineName: 'tymly_getWatchedBoards_1_0',
       input: {},

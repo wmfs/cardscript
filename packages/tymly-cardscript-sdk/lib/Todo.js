@@ -2,10 +2,15 @@ module.exports = class Todo {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
+    this.stateMachine = client.stateMachine
+    this.token = client.options.token
   }
 
   async persistFromUserQuery (userQuery) {
     const { todos } = userQuery.add
+
+    await this.db.todo.clear()
+
     for (const t of Object.values(todos)) {
       await this.db.todo.put(t)
     }
@@ -16,7 +21,18 @@ module.exports = class Todo {
     this.store.commit('app/todos', data)
   }
 
-  remove (id) {}
+  remove (id) {
+    return this.stateMachine.execute({
+      stateMachineName: 'tymly_removeTodoEntries_1_0',
+      input: {
+        todoId: id
+      },
+      token: this.token
+    })
+
+    // remove from db
+    // remove from store
+  }
 
   loadTodos (options) {
     // const { offset, limit, filter } = options

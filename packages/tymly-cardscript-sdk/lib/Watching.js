@@ -6,6 +6,9 @@ module.exports = class Watching {
 
   async persistFromUserQuery (userQuery) {
     const { watching } = userQuery
+
+    await this.db.watching.clear()
+
     for (const w of Object.values(watching)) {
       await this.db.watching.put(w)
     }

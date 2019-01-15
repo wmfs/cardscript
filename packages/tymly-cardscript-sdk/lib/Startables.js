@@ -6,6 +6,9 @@ module.exports = class Startables {
 
   async persistFromUserQuery (userQuery) {
     const { startable } = userQuery.add
+
+    await this.db.startables.clear()
+
     for (const s of Object.values(startable)) {
       await this.db.startables.put(s)
     }

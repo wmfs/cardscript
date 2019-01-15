@@ -248,6 +248,14 @@ describe('General tests', function () {
     expect(todos[0].id).to.eql(todoId)
   })
 
+  it('remove the todo entry', async () => {
+    await sdk.todo.remove(todoId)
+    await sdk.persistUserQuery()
+
+    const { todos } = store.state.app
+    expect(todos.length).to.eql(0)
+  })
+
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()
   })

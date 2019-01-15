@@ -6,6 +6,9 @@ module.exports = class Cards {
 
   async persistFromUserQuery (userQuery) {
     const { cards } = userQuery.add
+
+    await this.db.cards.clear()
+
     for (const c of Object.values(cards)) {
       await this.db.cards.put(c)
     }
