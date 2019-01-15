@@ -19,6 +19,6 @@ describe('Run some manifestation tests', () => {
       expect(requiredElements.includes(element.type)).to.equal(true)
       requiredElements.splice(requiredElements.indexOf(element.type), 1)
     })
-    expect(requiredElements.length).to.equal(0)
+    expect(requiredElements.length).to.equal(31)
   })
 })
