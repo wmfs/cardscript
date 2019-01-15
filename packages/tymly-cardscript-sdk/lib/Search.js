@@ -1,7 +1,7 @@
 module.exports = class Search {
   constructor (client) {
     this.store = client.options.store
-    this.stateMachine = client.stateMachine
+    this.executions = client.executions
   }
 
   executeSearch (options) {
@@ -15,7 +15,7 @@ module.exports = class Search {
     //   long
     // } = options
 
-    return this.stateMachine.execute('tymly_search_1_0', {})
+    return this.executions.execute('tymly_search_1_0', {})
   }
 
   async search (options) {

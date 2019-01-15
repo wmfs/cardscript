@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-module.exports = class StateMachine {
+module.exports = class Executions {
   constructor (client) {
     this.appName = client.options.appName
   }
@@ -36,5 +36,28 @@ module.exports = class StateMachine {
   runFromLaunch (launch) {
     // launch is an object
     // this.execute()
+  }
+
+  storeFromServerRequest (execDesc, status) {
+    // into db
+  }
+
+  remove (executionName) {
+    // from db
+  }
+
+  exists (executionName) {
+    // is in db?
+  }
+
+  load (executionName) {
+    // get from db
+    // into vuex store - currentExecution
+  }
+
+  hasDataChanged (executionName, data) {
+    // calculate hash for data
+    // compare with db original data hash
+    // return boolean
   }
 }

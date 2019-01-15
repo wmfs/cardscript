@@ -226,7 +226,7 @@ describe('General tests', function () {
   })
 
   it('create todo entry for Prepare Pizza', async () => {
-    const { ctx } = await sdk.stateMachine.execute({
+    const { ctx } = await sdk.executions.execute({
       stateMachineName: 'tymly_createTodoEntry_1_0',
       input: {
         todoTitle: 'Prepare Pizza',

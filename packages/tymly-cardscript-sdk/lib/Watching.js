@@ -2,7 +2,7 @@ module.exports = class Watching {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
-    this.stateMachine = client.stateMachine
+    this.executions = client.executions
     this.token = client.options.token
   }
 
@@ -27,7 +27,7 @@ module.exports = class Watching {
   }
 
   watch (card) {
-    return this.stateMachine.execute({
+    return this.executions.execute({
       stateMachineName: 'tymly_watchBoard_1_0',
       input: card,
       token: this.token

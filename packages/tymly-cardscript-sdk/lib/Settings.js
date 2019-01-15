@@ -2,7 +2,7 @@ module.exports = class Settings {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
-    this.stateMachine = client.stateMachine
+    this.executions = client.executions
   }
 
   persistFromUserQuery (userQuery) {

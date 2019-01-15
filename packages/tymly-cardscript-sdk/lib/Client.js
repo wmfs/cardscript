@@ -7,7 +7,7 @@
 
 const Logs = require('./Logs')
 const Startables = require('./Startables')
-const StateMachine = require('./State-machine')
+const Executions = require('./Executions')
 const Settings = require('./Settings')
 const Templates = require('./Templates')
 const Search = require('./Search')
@@ -37,7 +37,7 @@ module.exports = class TymlyClient {
     this.logs.applyPolicy()
 
     this.startables = new Startables(this)
-    this.stateMachine = new StateMachine(this)
+    this.executions = new Executions(this)
     this.settings = new Settings(this)
     this.templates = new Templates(this)
     this.search = new Search(this)
@@ -69,13 +69,13 @@ module.exports = class TymlyClient {
   }
 
   async getUserQuery () {
-    const watching = await this.stateMachine.execute({
+    const watching = await this.executions.execute({
       stateMachineName: 'tymly_getWatchedBoards_1_0',
       input: {},
       token: this.options.token
     })
 
-    const remit = await this.stateMachine.execute({
+    const remit = await this.executions.execute({
       stateMachineName: 'tymly_getUserRemit_1_0',
       input: {
         clientManifest: {
