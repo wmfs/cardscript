@@ -34,7 +34,7 @@ watched boards
 
 const PORT = 3210
 
-const { Client, Auth0 } = require('../lib')
+const {Client, Auth0} = require('../lib')
 const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
 const path = require('path')
@@ -44,7 +44,7 @@ const Vuex = require('vuex')
 const Vue = require('vue')
 const axios = require('axios')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId
 
 describe('General tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
@@ -93,7 +93,7 @@ describe('General tests', function () {
   })
 
   it('start Tymly server', done => {
-    const { server } = tymlyServices
+    const {server} = tymlyServices
     server.listen(PORT, () => {
       console.log(`Tymly server listening at ${PORT}`)
       done()
@@ -101,7 +101,7 @@ describe('General tests', function () {
   })
 
   it('get an auth0 token', async () => {
-    const { data } = await axios.request({
+    const {data} = await axios.request({
       method: 'post',
       url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       data: {
@@ -124,7 +124,7 @@ describe('General tests', function () {
   it('set up IndexedDB shim', () => {
     const shim = {}
     global.window = global
-    setGlobalVars(shim, { checkOrigin: false, memoryDatabase: ':memory:' })
+    setGlobalVars(shim, {checkOrigin: false, memoryDatabase: ':memory:'})
     indexedDB = shim.indexedDB
     IDBKeyRange = shim.IDBKeyRange
 
@@ -202,7 +202,7 @@ describe('General tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been added`, () => {
-    const { favourites } = store.state.app
+    const {favourites} = store.state.app
     expect(favourites).to.eql(['test_orderPizza_1_0'])
   })
 
@@ -216,7 +216,7 @@ describe('General tests', function () {
   })
 
   it(`check the vuex store if the favourite startable 'test_orderPizza_1_0' has been removed`, () => {
-    const { favourites } = store.state.app
+    const {favourites} = store.state.app
     expect(favourites).to.eql([])
   })
 
@@ -226,7 +226,7 @@ describe('General tests', function () {
   })
 
   it('create todo entry for Prepare Pizza', async () => {
-    const { ctx } = await sdk.stateMachine.execute({
+    const {ctx} = await sdk.stateMachine.execute({
       stateMachineName: 'tymly_createTodoEntry_1_0',
       input: {
         todoTitle: 'Prepare Pizza',
@@ -240,10 +240,26 @@ describe('General tests', function () {
     todoId = ctx.idProperties.id
   })
 
+  it(`watch 'test_orderPizza_1_0' instance`, async () => {
+    // const watch = await sdk.db.watching.toArray()
+    // console.log('\n>>> ', watch)
+    const {ctx} = await sdk.watching.watch('test_orderPizza_1_0')
+    console.log('>> ', ctx)
+    // watchId = ctx.subscriptionId
+    // console.log('\nwatchId', watchId)
+  })
+
+  xit(`refresh user query, check the watching entry exists`, async () => {
+    await sdk.persistUserQuery()
+
+    const {watching} = store.state.app
+    console.log('>>> ', watching)
+  })
+
   it('refresh user query, check new todo entry exists', async () => {
     await sdk.persistUserQuery()
 
-    const { todos } = store.state.app
+    const {todos} = store.state.app
     expect(todos.length).to.eql(1)
     expect(todos[0].id).to.eql(todoId)
   })
@@ -252,7 +268,7 @@ describe('General tests', function () {
     await sdk.todo.remove(todoId)
     await sdk.persistUserQuery()
 
-    const { todos } = store.state.app
+    const {todos} = store.state.app
     expect(todos.length).to.eql(0)
   })
 
