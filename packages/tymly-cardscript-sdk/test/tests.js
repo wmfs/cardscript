@@ -309,6 +309,12 @@ describe('General tests', function () {
     expect(exists).to.eql(false)
   })
 
+  it('load execution into store', async () => {
+    await sdk.executions.load(execName)
+    const { execution } = store.state.app
+    expect(execution.executionName).to.eql(execName)
+  })
+
   // hit executions.load()
   // check vuex store
 

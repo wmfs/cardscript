@@ -10,9 +10,11 @@ module.exports = {
         watching: [],
         todos: [],
         logs: [],
-        cards: []
+        cards: [],
+        execution: {}
       },
       mutations: {
+        execution: (state, execution) => { state.execution = execution },
         cards: (state, cards) => { state.cards = cards },
         logs: (state, logs) => { state.logs = logs },
         todos: (state, todos) => { state.todos = todos },

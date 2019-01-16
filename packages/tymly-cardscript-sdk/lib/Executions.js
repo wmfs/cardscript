@@ -4,6 +4,7 @@ module.exports = class Executions {
   constructor (client) {
     this.db = client.db
     this.appName = client.options.appName
+    this.store = client.options.store
     this._getHash = client._getHash
   }
 
@@ -102,9 +103,9 @@ module.exports = class Executions {
     return !!data
   }
 
-  load (executionName) {
-    // get from db
-    // into vuex store - currentExecution
+  async load (executionName) {
+    const execution = await this.db.executions.get(executionName)
+    if (execution) this.store.commit('app/execution', execution)
   }
 
   hasDataChanged (executionName, data) {
