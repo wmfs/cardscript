@@ -6,6 +6,7 @@ module.exports = class Search {
   }
 
   executeSearch (options) {
+    // todo
     const {
       query
       // offset,
@@ -26,6 +27,7 @@ module.exports = class Search {
   }
 
   async search (options) {
+    // todo
     // const result = await this.executeSearch(options)
     // console.log('>>>', result)
     // save to recent searches to db and store
@@ -33,6 +35,7 @@ module.exports = class Search {
   }
 
   async getActiveEvents (options) {
+    // todo
     options.activeEvent = true
     const result = await this.executeSearch(options)
     this.store.save(result)

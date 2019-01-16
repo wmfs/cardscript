@@ -11,6 +11,7 @@ module.exports = class Logs {
   }
 
   async loadLogs (options) {
+    // todo
     // const { offset, limit, filter } = options
 
     const data = await this.db.logs.toArray()
@@ -18,6 +19,7 @@ module.exports = class Logs {
   }
 
   applyPolicy () {
+    // todo
     // flush old data, only keep last 200 log entries
   }
 }

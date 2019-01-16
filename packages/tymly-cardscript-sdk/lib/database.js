@@ -3,9 +3,6 @@ const Dexie = require('dexie')
 module.exports = options => {
   const { indexedDB, IDBKeyRange } = options
 
-  // Dexie.dependencies.indexedDB = indexedDB
-  // Dexie.dependencies.IDBKeyRange = IDBKeyRange
-
   const db = new Dexie('TymlyDatabase', { indexedDB, IDBKeyRange })
 
   db.version(2).stores({
@@ -21,9 +18,5 @@ module.exports = options => {
     search: `++, query`
   })
 
-  // db.open()
-
   return db
 }
-
-// https://dexie.org/docs/Version/Version.stores()

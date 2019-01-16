@@ -30,12 +30,14 @@ module.exports = class Todo {
       token: this.token
     })
 
+    // todo
     // remove from db
     // remove from store
     // although the tests just refresh user query and that does the job
   }
 
   loadTodos (options) {
+    // todo
     // const { offset, limit, filter } = options
     // get from this.db
     // add result to vuex this.store

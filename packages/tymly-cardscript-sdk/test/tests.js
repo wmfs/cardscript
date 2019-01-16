@@ -47,7 +47,7 @@ const axios = require('axios')
 
 let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId, execName
 
-describe('General tests', function () {
+describe('Set up', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
   before(function () {
@@ -162,6 +162,10 @@ describe('General tests', function () {
         done(err)
       })
   })
+})
+
+describe('General tests', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it('load the logs from db to store', async () => {
     await sdk.logs.loadLogs()
@@ -199,6 +203,10 @@ describe('General tests', function () {
     expect(todos.length).to.eql(0)
     expect(settings.categoryRelevance).to.eql(['food', 'pizza'])
   })
+})
+
+describe('Favourites', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it(`should favourite a startable 'test_orderPizza_1_0'`, async () => {
     await sdk.startables.favourite('test_orderPizza_1_0')
@@ -227,6 +235,27 @@ describe('General tests', function () {
     const { favourites } = await sdk.db.favourites.get('favourites')
     expect(favourites).to.eql([])
   })
+})
+
+describe('Settings', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
+
+  it('adjust the settings', () => {
+    store.commit('app/settings', { categoryRelevance: ['pizza', 'food'] })
+  })
+
+  it('apply the settings', async () => {
+    await sdk.settings.apply()
+  })
+
+  it('check the settings have changed in the db', async () => {
+    const { settings } = await sdk.db.settings.get('settings')
+    expect(settings.categoryRelevance).to.eql([ 'pizza', 'food' ])
+  })
+})
+
+describe('To-dos', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it('create todo entry for Prepare Pizza', async () => {
     const { ctx } = await sdk.executions.execute({
@@ -258,6 +287,10 @@ describe('General tests', function () {
     const { todos } = store.state.app
     expect(todos.length).to.eql(0)
   })
+})
+
+describe('Watching', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it(`watch 'test_orderPizza_1_0' instance`, async () => {
     const { ctx } = await sdk.watching.watch({
@@ -293,10 +326,14 @@ describe('General tests', function () {
     const { watching } = store.state.app
     expect(watching.length).to.eql(0)
   })
+})
+
+describe('Executions', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it('check the executions store in the db', async () => {
     const data = await sdk.db.executions.toArray()
-    expect(data.length).to.eql(14)
+    expect(data.length).to.eql(15)
 
     execName = data[0].executionName
   })
@@ -330,26 +367,19 @@ describe('General tests', function () {
   // check the execution is in table, with status AWAITING or w/e
   // progress the execution
   // try function hasDataChanged()
+})
+
+describe('Search', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
 
   it(`attempt to search for 'Kebab'`, async () => {
     await sdk.search.search({
       query: 'Kebab'
     })
   })
+})
 
-  it('adjust the settings', () => {
-    store.commit('app/settings', { categoryRelevance: ['pizza', 'food'] })
-  })
-
-  it('apply the settings', async () => {
-    await sdk.settings.apply()
-  })
-
-  it('check the settings have changed in the db', async () => {
-    const { settings } = await sdk.db.settings.get('settings')
-    expect(settings.categoryRelevance).to.eql([ 'pizza', 'food' ])
-  })
-
+describe('Shut down', function () {
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()
   })

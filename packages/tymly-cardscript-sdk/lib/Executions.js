@@ -41,9 +41,11 @@ module.exports = class Executions {
   // waitUntilStoppedRunning - using execName
 
   sendSuccess (execName) {
+    // todo
   }
 
   async sendHeartbeat ({ stateMachineName, input, token }) {
+    // todo
     // const { data } = await axios.post(
     //   `${this.url}`,
     //   {
@@ -70,6 +72,7 @@ module.exports = class Executions {
   }
 
   runFromLaunch (launch) {
+    // todo
     // launch is an object
     // this.execute()
   }
@@ -110,6 +113,7 @@ module.exports = class Executions {
   }
 
   hasDataChanged (executionName, data) {
+    // todo
     // calculate hash for data
     // compare with db original data hash
     // return boolean

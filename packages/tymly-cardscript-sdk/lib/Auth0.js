@@ -23,7 +23,11 @@ module.exports = class Auth0 {
   }
 
   // silently refresh every half an hour if app active
-  startRefreshTimer () {}
+  startRefreshTimer () {
+    // todo
+  }
 
-  cancelRefreshTimer () {}
+  cancelRefreshTimer () {
+    // todo
+  }
 }

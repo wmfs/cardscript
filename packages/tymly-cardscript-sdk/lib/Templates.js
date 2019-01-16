@@ -5,6 +5,7 @@ module.exports = class Templates {
   }
 
   persistFromUserQuery (userQuery) {
+    // todo
     // userQuery.templates
     // convert to quasarTemplateString and stuff
     // refer to playpen
@@ -12,13 +13,15 @@ module.exports = class Templates {
   }
 
   loadTemplate (id) {
+    // todo
     // get from indexedDb and put onto store via mutation
     // this.db.templates[id] = { template, toc, lists... }
   }
 
   unloadTemplates () {
+    // todo
     // this.db.templates = {}
   }
 }
 
-// CARD IS INSTANCE OF TEMPLATE
+// CARD IS INSTANCE OF TEMPLATE - therefore maybe we should put current impl. of Cards here instead?
