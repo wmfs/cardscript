@@ -12,8 +12,8 @@ module.exports = class Settings {
   }
 
   async load () {
-    const settings = await this.db.settings.toArray()
-    this.store.commit('app/settings', settings[0].settings)
+    const { settings } = await this.db.settings.get('settings')
+    this.store.commit('app/settings', settings)
   }
 
   async apply () {
