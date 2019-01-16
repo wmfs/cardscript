@@ -22,12 +22,14 @@ const USER_QUERY_KEYS = [
 module.exports = class TymlyClient {
   constructor (options) {
     this.options = options
+    const { indexedDB, IDBKeyRange } = options.globalVars
+    this.db = database({ indexedDB, IDBKeyRange })
+    options.auth.init(this)
+
+    this.logs = new Logs(this)
   }
 
   async init () {
-    const { indexedDB, IDBKeyRange } = this.options.globalVars
-    this.db = database({ indexedDB, IDBKeyRange })
-    this.logs = new Logs(this)
     this.logs.applyPolicy()
 
     this.startables = new Startables(this)
@@ -38,8 +40,6 @@ module.exports = class TymlyClient {
     this.todo = new Todo(this)
     this.watching = new Watching(this)
     this.cards = new Cards(this)
-
-    await this.options.auth.init(this)
 
     await this.requestUserQuery()
 
@@ -66,7 +66,7 @@ module.exports = class TymlyClient {
     const watching = await this.executions.execute({
       stateMachineName: 'tymly_getWatchedBoards_1_0',
       input: {},
-      token: this.options.token
+      token: this.options.auth.token
     })
 
     const remit = await this.executions.execute({
@@ -82,7 +82,7 @@ module.exports = class TymlyClient {
           todos: []
         }
       },
-      token: this.options.token
+      token: this.options.auth.token
     })
 
     return {

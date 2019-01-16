@@ -4,20 +4,16 @@ module.exports = class Auth0 {
   constructor (options) {
     this.options = options
     this.token = null
+    this.timestamp = null
   }
 
-  async init (client) {
+  init (client) {
     this.db = client.db
     this.store = client.options.store
-    this.token = client.options.token
-
-    if (this.token) {
-      await this.storeToken(this.token)
-    }
   }
 
-  async storeToken (token) {
-    await this.db.auth.put({ id: 'token', token })
+  async persistToken () {
+    await this.db.auth.put({ id: 'token', token: this.token })
   }
 
   async loadToken () {
@@ -25,8 +21,12 @@ module.exports = class Auth0 {
     this.store.commit('auth/token', token)
   }
 
-  getToken () {
-    return this.store.state.auth.token
+  async setToken (token) {
+    this.token = token
+    this.timestamp = new Date()
+
+    await this.persistToken()
+    await this.loadToken()
   }
 
   async setTokenFromRequest () {
@@ -41,7 +41,7 @@ module.exports = class Auth0 {
       }
     })
 
-    this.token = data.access_token
+    await this.setToken(data.access_token)
     return this.token
   }
 

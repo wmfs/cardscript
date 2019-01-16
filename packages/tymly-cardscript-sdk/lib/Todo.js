@@ -3,7 +3,7 @@ module.exports = class Todo {
     this.db = client.db
     this.store = client.options.store
     this.executions = client.executions
-    this.token = client.options.token
+    this.token = client.options.auth.token
   }
 
   async persistFromUserQuery (userQuery) {

@@ -2,7 +2,7 @@ module.exports = class Search {
   constructor (client) {
     this.store = client.options.store
     this.executions = client.executions
-    this.token = client.options.token
+    this.token = client.options.auth.token
   }
 
   executeSearch (options) {

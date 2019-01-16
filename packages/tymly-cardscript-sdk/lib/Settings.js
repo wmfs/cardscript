@@ -2,7 +2,7 @@ module.exports = class Settings {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
-    this.token = client.options.token
+    this.token = client.options.auth.token
     this.executions = client.executions
   }
 

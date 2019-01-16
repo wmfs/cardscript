@@ -9,7 +9,24 @@ module.exports = class Executions {
     this._getHash = client._getHash
   }
 
-  async execute ({ stateMachineName, input, token }) {
+  async SendTaskSuccess ({ executionName, output, token }) {
+    const { data } = await axios.put(
+      `${this.tymlyApiUrl}/${executionName}`,
+      {
+        action: 'SendTaskSuccess',
+        output
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    return data
+  }
+
+  async execute ({ stateMachineName, input, token, sendResponse }) {
     const { data } = await axios.post(
       this.tymlyApiUrl,
       {
@@ -20,7 +37,7 @@ module.exports = class Executions {
             appName: this.appName,
             domain: ''
           },
-          sendResponse: 'COMPLETE'
+          sendResponse: sendResponse || 'COMPLETE'
         }
       },
       {
@@ -35,48 +52,6 @@ module.exports = class Executions {
     return data
   }
 
-  // todo:
-  // startExecution - sendResponse: 'AFTER_RESOURCE_CALLBACK.TYPE:awaitingHumanInput' - get execName from ctx
-  // sendTaskSuccess - using execName
-  // waitUntilStoppedRunning - using execName
-
-  sendSuccess (execName) {
-    // todo
-  }
-
-  async sendHeartbeat ({ stateMachineName, input, token }) {
-    // todo
-    // const { data } = await axios.post(
-    //   `${this.tymlyApiUrl}`,
-    //   {
-    //     stateMachineName,
-    //     input: input || {},
-    //     options: {
-    //       instigatingClient: {
-    //         appName: this.appName,
-    //         domain: ''
-    //       },
-    //       sendResponse: 'AFTER_RESOURCE_CALLBACK.TYPE:awaitingHumanInput'
-    //     }
-    //   },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`
-    //     }
-    //   }
-    // )
-    //
-    // await this.storeFromServerRequest(data)
-    //
-    // return data
-  }
-
-  runFromLaunch (launch) {
-    // todo
-    // launch is an object
-    // this.execute()
-  }
-
   async storeFromServerRequest (execDesc) {
     const { ctx, status, executionName } = execDesc
 
@@ -88,10 +63,10 @@ module.exports = class Executions {
     }
 
     if (ctx.hasOwnProperty('awaitingHumanInput')) {
-      res.awaitingHumanInput = ctx.awaitingHumanInput
+      res.requiredHumanInput = ctx.requiredHumanInput
 
-      if (ctx.awaitingHumanInput.hasOwnProperty('data')) {
-        res.originalDataHash = this._getHash(ctx.awaitingHumanInput.data)
+      if (ctx.requiredHumanInput.hasOwnProperty('data')) {
+        res.originalDataHash = this._getHash(ctx.requiredHumanInput.data)
       }
     }
 

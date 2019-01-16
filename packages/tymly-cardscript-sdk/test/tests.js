@@ -15,7 +15,7 @@ const setGlobalVars = require('indexeddbshim')
 const Vuex = require('vuex')
 const Vue = require('vue')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId, execName
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, todoId, watchId, execName, authToken
 
 describe('Set up', function () {
   this.timeout(process.env.TIMEOUT || 5000)
@@ -80,10 +80,6 @@ describe('Set up', function () {
     })
   })
 
-  it('get an auth0 token', async () => {
-    authToken = await auth.setTokenFromRequest()
-  })
-
   it('set up IndexedDB shim', () => {
     const shim = {}
     global.window = global
@@ -105,7 +101,6 @@ describe('Set up', function () {
       tymlyApiUrl: TYMLY_API_URL,
       appName: 'sdk-tests',
       auth,
-      token: authToken, // todo: refactor this out, get from auth class
       globalVars: {
         indexedDB,
         IDBKeyRange,
@@ -114,6 +109,10 @@ describe('Set up', function () {
       },
       store
     })
+  })
+
+  it('get an auth0 token', async () => {
+    authToken = await auth.setTokenFromRequest()
   })
 
   it('initialise the TymlySDK', done => {
@@ -139,10 +138,6 @@ describe('General tests', function () {
     await auth.loadToken()
   })
 
-  it('get the token from the store', () => {
-    expect(auth.getToken()).to.eql(authToken)
-  })
-
   it('check if the vuex store has been populated', () => {
     const {
       startables,
@@ -158,7 +153,6 @@ describe('General tests', function () {
       token
     } = store.state.auth
 
-    expect(token).to.eql(authToken)
     expect(logs.length).to.eql(1)
     expect(cards.length).to.eql(3)
     expect(startables.length).to.eql(3)
@@ -255,10 +249,18 @@ describe('Watching', function () {
   it(`watch 'test_orderPizza_1_0' instance`, async () => {
     const { ctx } = await sdk.watching.watch({
       stateMachineName: 'test_orderPizza_1_0',
-      title: 'Pizza Order XYZ123',
+      title: 'Pizza Order XYZ123', // Get from card
       category: 'Food',
       categoryLabel: 'Food Order',
-      description: 'Pepperoni and Jalapeno Pizza'
+      description: 'Pepperoni and Jalapeno Pizza',
+      launches: [{
+        stateMachineName: 'test_viewPizzaOrder_1_0',
+        input: {
+          boardKeys: {
+            pizzaId: 'XYZ123'
+          }
+        }
+      }]
     })
 
     watchId = ctx.subscriptionId
@@ -314,19 +316,30 @@ describe('Executions', function () {
     expect(execution.executionName).to.eql(execName)
   })
 
-  // hit executions.load()
-  // check vuex store
+  it('start form filling state machine and load as current execution', async () => {
+    const execDesc = await sdk.executions.execute({
+      stateMachineName: 'test_orderPizza_1_0',
+      input: {},
+      sendResponse: 'AFTER_RESOURCE_CALLBACK.TYPE:awaitingHumanInput',
+      token: authToken
+    })
 
-  // remove an execution
-  // check db
+    expect(execDesc.status).to.eql('RUNNING')
+    await sdk.executions.load(execDesc.executionName)
+    execName = execDesc.executionName
+  })
 
-  // hit executions.load()
-  // check vuex store again
+  it('populate some form data', async () => {
+    await sdk.executions.SendTaskSuccess({
+      executionName: execName,
+      output: {
+        code: 'CHEESE_TOMATO'
+      },
+      token: authToken
+    })
 
-  // start a form via executions api
-  // check the execution is in table, with status AWAITING or w/e
-  // progress the execution
-  // try function hasDataChanged()
+    // check data in model in tymly
+  })
 })
 
 describe('Search', function () {
