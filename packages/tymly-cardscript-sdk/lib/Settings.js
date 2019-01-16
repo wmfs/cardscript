@@ -5,14 +5,14 @@ module.exports = class Settings {
     this.executions = client.executions
   }
 
-  persistFromUserQuery (userQuery) {
-    // userQuery.settings
-    // write to this.db in settings table
+  async persistFromUserQuery (userQuery) {
+    const { settings } = userQuery
+    await this.db.settings.put({ id: 'settings', settings })
   }
 
-  load () {
-    // get from this.db
-    // put onto this.store
+  async load () {
+    const settings = await this.db.settings.toArray()
+    this.store.commit('app/settings', settings[0])
   }
 
   apply () {

@@ -15,7 +15,8 @@ const USER_QUERY_KEYS = [
   'startables',
   'todo',
   'cards',
-  'watching'
+  'watching',
+  'settings'
 ]
 
 module.exports = class TymlyClient {

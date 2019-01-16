@@ -7,6 +7,7 @@ module.exports = {
       state: {
         startables: [],
         favourites: [],
+        settings: [],
         watching: [],
         todos: [],
         logs: [],
@@ -21,6 +22,7 @@ module.exports = {
         watching: (state, watching) => { state.watching = watching },
         startables: (state, startables) => { state.startables = startables },
         startable: (state, startable) => Vue.set(state.startables, startable.name, startable),
+        settings: (state, settings) => { state.settings = settings },
         favourites: (state, favourites) => { state.favourites = favourites },
         favourite: (state, startable) => {
           if (!state.favourites.includes(startable)) state.favourites.push(startable)
