@@ -44,7 +44,7 @@ const Vuex = require('vuex')
 const Vue = require('vue')
 const axios = require('axios')
 
-let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId
+let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId, execName
 
 describe('General tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
@@ -279,6 +279,18 @@ describe('General tests', function () {
   it('check the executions store in the db', async () => {
     const data = await sdk.db.executions.toArray()
     expect(data.length).to.eql(11)
+
+    execName = data[0].executionName
+  })
+
+  it('check if valid execution name exists in db', async () => {
+    const exists = await sdk.executions.exists(execName)
+    expect(exists).to.eql(true)
+  })
+
+  it('check if invalid execution name exists in db', async () => {
+    const exists = await sdk.executions.exists('FakeExecutionName')
+    expect(exists).to.eql(false)
   })
 
   // hit executions.load()

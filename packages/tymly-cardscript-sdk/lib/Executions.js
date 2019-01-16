@@ -97,8 +97,9 @@ module.exports = class Executions {
     await this.db.executions.delete(executionName)
   }
 
-  exists (executionName) {
-    // is in db?
+  async exists (executionName) {
+    const data = await this.db.executions.get(executionName)
+    return !!data
   }
 
   load (executionName) {
