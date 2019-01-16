@@ -182,7 +182,8 @@ describe('General tests', function () {
       todos,
       cards,
       logs,
-      favourites
+      favourites,
+      settings
     } = store.state.app
 
     const {
@@ -196,6 +197,7 @@ describe('General tests', function () {
     expect(watching.length).to.eql(0)
     expect(favourites.length).to.eql(0)
     expect(todos.length).to.eql(0)
+    expect(settings.categoryRelevance).to.eql(['food', 'pizza'])
   })
 
   it(`should favourite a startable 'test_orderPizza_1_0'`, async () => {
@@ -256,7 +258,6 @@ describe('General tests', function () {
     const { todos } = store.state.app
     expect(todos.length).to.eql(0)
   })
-
 
   it(`watch 'test_orderPizza_1_0' instance`, async () => {
     const { ctx } = await sdk.watching.watch({
@@ -334,6 +335,19 @@ describe('General tests', function () {
     await sdk.search.search({
       query: 'Kebab'
     })
+  })
+
+  it('adjust the settings', () => {
+    store.commit('app/settings', { categoryRelevance: ['pizza', 'food'] })
+  })
+
+  it('apply the settings', async () => {
+    await sdk.settings.apply()
+  })
+
+  it('check the settings have changed in the db', async () => {
+    const { settings } = await sdk.db.settings.get('settings')
+    expect(settings.categoryRelevance).to.eql([ 'pizza', 'food' ])
   })
 
   it('shutdown Tymly', async () => {
