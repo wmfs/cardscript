@@ -26,7 +26,7 @@ module.exports = class Search {
   }
 
   async search (options) {
-    const result = await this.executeSearch(options)
+    // const result = await this.executeSearch(options)
     // console.log('>>>', result)
     // save to recent searches to db and store
     // make sure to clear store - keep most recent 10
