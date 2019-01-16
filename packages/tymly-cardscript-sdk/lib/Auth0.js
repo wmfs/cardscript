@@ -14,8 +14,8 @@ module.exports = class Auth0 {
   }
 
   async loadToken () {
-    const data = await this.db.auth.toArray()
-    this.store.commit('auth/token', data[0].token)
+    const { token } = await this.db.auth.get('token')
+    this.store.commit('auth/token', token)
   }
 
   getToken () {
