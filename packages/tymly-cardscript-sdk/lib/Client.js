@@ -1,10 +1,3 @@
-/*
-  https://dexie.org
-  https://github.com/axemclion/IndexedDBShim
-  https://github.com/dfahlander/Dexie.js/issues/359
-  https://itnext.io/indexeddb-your-second-step-towards-progressive-web-apps-pwa-dcbcd6cc2076
-*/
-
 const Logs = require('./Logs')
 const Startables = require('./Startables')
 const Executions = require('./Executions')

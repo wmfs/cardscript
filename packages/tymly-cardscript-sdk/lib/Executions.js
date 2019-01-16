@@ -33,8 +33,38 @@ module.exports = class Executions {
     return data
   }
 
-  sendHeartbeat () {
-    // sendTaskHeartbeat
+  // todo:
+  // startExecution - sendResponse: 'AFTER_RESOURCE_CALLBACK.TYPE:awaitingHumanInput' - get execName from ctx
+  // sendTaskSuccess - using execName
+  // waitUntilStoppedRunning - using execName
+
+  sendSuccess (execName) {
+  }
+
+  async sendHeartbeat ({ stateMachineName, input, token }) {
+    // const { data } = await axios.post(
+    //   `${process.env.TYMLY_EXECUTIONS_URL}`,
+    //   {
+    //     stateMachineName,
+    //     input: input || {},
+    //     options: {
+    //       instigatingClient: {
+    //         appName: this.appName,
+    //         domain: ''
+    //       },
+    //       sendResponse: 'AFTER_RESOURCE_CALLBACK.TYPE:awaitingHumanInput'
+    //     }
+    //   },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   }
+    // )
+    //
+    // await this.storeFromServerRequest(data)
+    //
+    // return data
   }
 
   runFromLaunch (launch) {
@@ -43,10 +73,24 @@ module.exports = class Executions {
   }
 
   async storeFromServerRequest (execDesc) {
-    await this.db.executions.put({
-      ...execDesc,
-      shasum: this._getHash(execDesc)
-    })
+    const { ctx, status, executionName } = execDesc
+
+    const res = {
+      status,
+      executionName,
+      locallyCreatedTimestamp: new Date()
+      // other things from ctx
+    }
+
+    if (ctx.hasOwnProperty('awaitingHumanInput')) {
+      res.awaitingHumanInput = ctx.awaitingHumanInput
+
+      if (ctx.awaitingHumanInput.hasOwnProperty('data')) {
+        res.originalDataHash = this._getHash(ctx.awaitingHumanInput.data)
+      }
+    }
+
+    await this.db.executions.put(res)
   }
 
   remove (executionName) {
