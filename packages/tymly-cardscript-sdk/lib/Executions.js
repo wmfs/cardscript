@@ -5,13 +5,13 @@ module.exports = class Executions {
     this.db = client.db
     this.appName = client.options.appName
     this.store = client.options.store
-    this.url = client.options.url
+    this.tymlyApiUrl = client.options.tymlyApiUrl
     this._getHash = client._getHash
   }
 
   async execute ({ stateMachineName, input, token }) {
     const { data } = await axios.post(
-      this.url,
+      this.tymlyApiUrl,
       {
         stateMachineName,
         input: input || {},
@@ -47,7 +47,7 @@ module.exports = class Executions {
   async sendHeartbeat ({ stateMachineName, input, token }) {
     // todo
     // const { data } = await axios.post(
-    //   `${this.url}`,
+    //   `${this.tymlyApiUrl}`,
     //   {
     //     stateMachineName,
     //     input: input || {},

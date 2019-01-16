@@ -1,4 +1,4 @@
 const Auth0 = require('./Auth0')
-const Client = require('./Client')
+const TymlySDK = require('./TymlySDK')
 
-module.exports = { Client, Auth0 }
+module.exports = { TymlySDK, Auth0 }

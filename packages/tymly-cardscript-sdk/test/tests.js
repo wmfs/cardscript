@@ -1,41 +1,12 @@
 /* eslint-env mocha */
 
-/*
-pizza-blueprint
-
-/card-templates
- - pizza-form
- - cancel-form
- - ordered-pizza
-
-/categories
- - pizza
-
-/models
- - orders
- - pizza
-
-/state-machines
- - cancel-order
- - order-pizza
- - update-status
-
-to-dos
- - prepare pizza
- - send pizza
- - cook pizza
- - order ingredients
-
-watched boards
- - ordered pizza (x2)
-*/
-
 'use strict'
 
 const PORT = 3210
-const URL = `http://localhost:${PORT}/executions`
+const TYMLY_API_URL = `http://localhost:${PORT}/executions`
+const LOG_LIMIT = 10
 
-const { Client, Auth0 } = require('../lib')
+const { TymlySDK, Auth0 } = require('../lib')
 const vuexStore = require('./fixtures/store')
 const tymly = require('@wmfs/tymly')
 const path = require('path')
@@ -43,7 +14,6 @@ const expect = require('chai').expect
 const setGlobalVars = require('indexeddbshim')
 const Vuex = require('vuex')
 const Vue = require('vue')
-const axios = require('axios')
 
 let sdk, auth, tymlyServices, indexedDB, IDBKeyRange, store, authToken, todoId, watchId, execName
 
@@ -100,26 +70,19 @@ describe('Set up', function () {
     })
   })
 
-  it('get an auth0 token', async () => {
-    const { data } = await axios.request({
-      method: 'post',
-      url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-      data: {
-        grant_type: 'client_credentials',
-        client_id: process.env.AUTH0_CLIENT_ID,
-        client_secret: process.env.AUTH0_CLIENT_SECRET,
-        audience: process.env.AUTH0_AUDIENCE
-      }
-    })
-
-    authToken = data.access_token
-  })
-
   it('set up Auth', () => {
-    auth = new Auth0()
+    auth = new Auth0({
+      domain: process.env.AUTH0_DOMAIN,
+      grant_type: 'client_credentials',
+      client_id: process.env.AUTH0_CLIENT_ID,
+      client_secret: process.env.AUTH0_CLIENT_SECRET,
+      audience: process.env.AUTH0_AUDIENCE
+    })
   })
 
-  // get token tests
+  it('get an auth0 token', async () => {
+    authToken = await auth.setTokenFromRequest()
+  })
 
   it('set up IndexedDB shim', () => {
     const shim = {}
@@ -136,12 +99,13 @@ describe('Set up', function () {
     store = new Vuex.Store(vuexStore)
   })
 
-  it('set up the SDK Client', () => {
-    sdk = new Client({
-      url: URL,
+  it('set up the TymlySDK', () => {
+    sdk = new TymlySDK({
+      logLimit: LOG_LIMIT,
+      tymlyApiUrl: TYMLY_API_URL,
       appName: 'sdk-tests',
       auth,
-      token: authToken,
+      token: authToken, // todo: refactor this out, get from auth class
       globalVars: {
         indexedDB,
         IDBKeyRange,
@@ -152,7 +116,7 @@ describe('Set up', function () {
     })
   })
 
-  it('initialise the SDK Client', done => {
+  it('initialise the TymlySDK', done => {
     sdk
       .init()
       .then(() => {
@@ -377,6 +341,36 @@ describe('Search', function () {
       query: 'Kebab'
     })
   })
+})
+
+describe('Logs', function () {
+  this.timeout(process.env.TIMEOUT || 5000)
+
+  it(`add ${LOG_LIMIT + 2} logs`, async () => {
+    for (let i = 1; i <= LOG_LIMIT + 2; i++) {
+      await sdk.logs.addLog({
+        type: 'POSITIVE',
+        code: 'TEST',
+        title: `Test ${i}`
+      })
+    }
+  })
+
+  it('load the logs from db to store', async () => {
+    await sdk.logs.loadLogs()
+  })
+
+  it('check the store for the new logs', () => {
+    const { logs } = store.state.app
+    expect(logs.length).to.eql(LOG_LIMIT + 3)
+  })
+
+  it('apply policy on logs', async () => {
+    await sdk.logs.applyPolicy()
+  })
+
+  // loadLogs ()
+  // check store has LOG_LIMIT length
 })
 
 describe('Shut down', function () {

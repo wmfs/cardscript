@@ -2,6 +2,7 @@ module.exports = class Logs {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
+    this.limit = client.options.logLimit
     this.shim = client.options.globalVars.indexedDB
   }
 
@@ -20,7 +21,7 @@ module.exports = class Logs {
 
   applyPolicy () {
     // todo
-    // flush old data, only keep last 200 log entries
+    // flush old data, only keep last this.limit log entries
   }
 }
 

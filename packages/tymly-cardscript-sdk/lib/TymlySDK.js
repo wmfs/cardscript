@@ -49,7 +49,7 @@ module.exports = class TymlyClient {
       type: 'POSITIVE',
       code: 'INIT',
       title: 'Blah',
-      message: 'Blah blah...'
+      body: 'Blah blah...'
     })
   }
 

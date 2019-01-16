@@ -1,4 +1,11 @@
+const axios = require('axios')
+
 module.exports = class Auth0 {
+  constructor (options) {
+    this.options = options
+    this.token = null
+  }
+
   async init (client) {
     this.db = client.db
     this.store = client.options.store
@@ -20,6 +27,22 @@ module.exports = class Auth0 {
 
   getToken () {
     return this.store.state.auth.token
+  }
+
+  async setTokenFromRequest () {
+    const { data } = await axios.request({
+      method: 'post',
+      url: `https://${this.options.domain}/oauth/token`,
+      data: {
+        grant_type: this.options.grant_type,
+        client_id: this.options.client_id,
+        client_secret: this.options.client_secret,
+        audience: this.options.audience
+      }
+    })
+
+    this.token = data.access_token
+    return this.token
   }
 
   // silently refresh every half an hour if app active
