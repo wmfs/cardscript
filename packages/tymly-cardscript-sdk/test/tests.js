@@ -210,8 +210,8 @@ describe('General tests', function () {
   })
 
   it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been added'`, async () => {
-    const favourites = await sdk.db.favourites.toArray()
-    expect(favourites[0].favourites).to.eql(['test_orderPizza_1_0'])
+    const { favourites } = await sdk.db.favourites.get('favourites')
+    expect(favourites).to.eql(['test_orderPizza_1_0'])
   })
 
   it(`should unfavourite a startable 'test_orderPizza_1_0'`, async () => {
@@ -224,8 +224,8 @@ describe('General tests', function () {
   })
 
   it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been removed'`, async () => {
-    const favourites = await sdk.db.favourites.toArray()
-    expect(favourites[0].favourites).to.eql([])
+    const { favourites } = await sdk.db.favourites.get('favourites')
+    expect(favourites).to.eql([])
   })
 
   it('create todo entry for Prepare Pizza', async () => {
