@@ -35,7 +35,7 @@ module.exports = class Watching {
   }
 
   unwatch (cardId) {
-    return this.stateMachine.execute({
+    return this.executions.execute({
       stateMachineName: 'tymly_unwatchBoard_1_0',
       input: cardId,
       token: this.token

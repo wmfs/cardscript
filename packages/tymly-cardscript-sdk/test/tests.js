@@ -294,7 +294,7 @@ describe('General tests', function () {
 
   it('check the executions store in the db', async () => {
     const data = await sdk.db.executions.toArray()
-    expect(data.length).to.eql(11)
+    expect(data.length).to.eql(14)
 
     execName = data[0].executionName
   })
@@ -328,6 +328,12 @@ describe('General tests', function () {
   // check the execution is in table, with status AWAITING or w/e
   // progress the execution
   // try function hasDataChanged()
+
+  it(`attempt to search for 'Kebab'`, async () => {
+    await sdk.search.search({
+      query: 'Kebab'
+    })
+  })
 
   it('shutdown Tymly', async () => {
     await tymlyServices.tymly.shutdown()
