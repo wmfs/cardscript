@@ -33,6 +33,7 @@ watched boards
 'use strict'
 
 const PORT = 3210
+const URL = `http://localhost:${PORT}/executions`
 
 const { Client, Auth0 } = require('../lib')
 const vuexStore = require('./fixtures/store')
@@ -51,7 +52,6 @@ describe('General tests', function () {
 
   before(function () {
     if (!(
-      process.env.TYMLY_EXECUTIONS_URL &&
       process.env.AUTH0_DOMAIN &&
       process.env.AUTH0_CLIENT_ID &&
       process.env.AUTH0_CLIENT_SECRET &&
@@ -138,6 +138,7 @@ describe('General tests', function () {
 
   it('set up the SDK Client', () => {
     sdk = new Client({
+      url: URL,
       appName: 'sdk-tests',
       auth,
       token: authToken,

@@ -16,7 +16,8 @@ module.exports = options => {
     auth: `&id, token`,
     favourites: `&id, favourites`,
     cards: `&id`,
-    executions: `&executionName, status`
+    executions: `&executionName, status`,
+    search: `++, query`
   })
 
   // db.open()
