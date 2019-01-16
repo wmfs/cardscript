@@ -34,7 +34,13 @@ module.exports = class Watching {
     })
   }
 
-  unwatch (cardId) {}
+  unwatch (cardId) {
+    return this.stateMachine.execute({
+      stateMachineName: 'tymly_unwatchBoard_1_0',
+      input: cardId,
+      token: this.token
+    })
+  }
 
   loadWatching () {
     // this would be called from watching page

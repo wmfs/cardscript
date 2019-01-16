@@ -240,6 +240,23 @@ describe('General tests', function () {
     todoId = ctx.idProperties.id
   })
 
+  it('refresh user query, check new todo entry exists', async () => {
+    await sdk.persistUserQuery()
+
+    const { todos } = store.state.app
+    expect(todos.length).to.eql(1)
+    expect(todos[0].id).to.eql(todoId)
+  })
+
+  it('remove the todo entry', async () => {
+    await sdk.todo.remove(todoId)
+    await sdk.persistUserQuery()
+
+    const { todos } = store.state.app
+    expect(todos.length).to.eql(0)
+  })
+
+
   it(`watch 'test_orderPizza_1_0' instance`, async () => {
     const { ctx } = await sdk.watching.watch({
       stateMachineName: 'test_orderPizza_1_0',
@@ -260,20 +277,19 @@ describe('General tests', function () {
     expect(watching[0].subscriptionId).to.eql(watchId)
   })
 
-  it('refresh user query, check new todo entry exists', async () => {
-    await sdk.persistUserQuery()
+  it(`unwatch 'test_orderPizza_1_0' instance`, async () => {
+    const { ctx } = await sdk.watching.unwatch({
+      subscriptionId: watchId
+    })
 
-    const { todos } = store.state.app
-    expect(todos.length).to.eql(1)
-    expect(todos[0].id).to.eql(todoId)
+    expect(ctx.subscriptionId).to.eql(watchId)
   })
 
-  it('remove the todo entry', async () => {
-    await sdk.todo.remove(todoId)
+  it(`refresh user query, check the watching entry exists`, async () => {
     await sdk.persistUserQuery()
 
-    const { todos } = store.state.app
-    expect(todos.length).to.eql(0)
+    const { watching } = store.state.app
+    expect(watching.length).to.eql(0)
   })
 
   it('check the executions store in the db', async () => {
