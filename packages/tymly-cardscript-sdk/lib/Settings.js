@@ -16,7 +16,8 @@ module.exports = class Settings {
     this.store.commit('app/settings', settings)
   }
 
-  async apply () {
+  async apply (newSettings) {
+    this.store.commit('app/settings', newSettings)
     const { settings } = this.store.state.app
     await this.db.settings.put({ id: 'settings', settings })
     await this.executions.execute({

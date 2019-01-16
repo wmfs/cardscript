@@ -42,4 +42,9 @@ module.exports = class Todo {
     // get from this.db
     // add result to vuex this.store
   }
+
+  refreshTodos () {
+    // todo
+    // call state machine
+  }
 }

@@ -33,6 +33,7 @@ module.exports = class Startables {
     if (!favourites.includes(id)) favourites.push(id)
 
     await this.db.favourites.put({ id: 'favourites', favourites })
+    // todo: call state machine too
   }
 
   async unfavourite (id) {
@@ -44,5 +45,6 @@ module.exports = class Startables {
     if (index > -1) favourites.splice(index, 1)
 
     await this.db.favourites.put({ id: 'favourites', favourites })
+    // todo: call state machine too
   }
 }

@@ -204,12 +204,8 @@ describe('Favourites', function () {
 describe('Settings', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  it('adjust the settings', () => {
-    store.commit('app/settings', { categoryRelevance: ['pizza', 'food'] })
-  })
-
-  it('apply the settings', async () => {
-    await sdk.settings.apply()
+  it('apply the adjsuted settings', async () => {
+    await sdk.settings.apply({ categoryRelevance: ['pizza', 'food'] })
   })
 
   it('check the settings have changed in the db', async () => {
@@ -237,7 +233,7 @@ describe('To-dos', function () {
   })
 
   it('refresh user query, check new todo entry exists', async () => {
-    await sdk.persistUserQuery()
+    await sdk.requestUserQuery()
 
     const { todos } = store.state.app
     expect(todos.length).to.eql(1)
@@ -246,7 +242,7 @@ describe('To-dos', function () {
 
   it('remove the todo entry', async () => {
     await sdk.todo.remove(todoId)
-    await sdk.persistUserQuery()
+    await sdk.requestUserQuery()
 
     const { todos } = store.state.app
     expect(todos.length).to.eql(0)
@@ -269,7 +265,7 @@ describe('Watching', function () {
   })
 
   it(`refresh user query, check the watching entry exists`, async () => {
-    await sdk.persistUserQuery()
+    await sdk.requestUserQuery()
 
     const { watching } = store.state.app
     expect(watching.length).to.eql(1)
@@ -285,7 +281,7 @@ describe('Watching', function () {
   })
 
   it(`refresh user query, check the watching entry exists`, async () => {
-    await sdk.persistUserQuery()
+    await sdk.requestUserQuery()
 
     const { watching } = store.state.app
     expect(watching.length).to.eql(0)
