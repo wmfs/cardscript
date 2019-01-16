@@ -93,8 +93,8 @@ module.exports = class Executions {
     await this.db.executions.put(res)
   }
 
-  remove (executionName) {
-    // from db
+  async remove (executionName) {
+    await this.db.executions.delete(executionName)
   }
 
   exists (executionName) {
