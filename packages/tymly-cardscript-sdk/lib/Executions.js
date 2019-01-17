@@ -62,7 +62,7 @@ module.exports = class Executions {
       // other things from ctx
     }
 
-    if (ctx.hasOwnProperty('awaitingHumanInput')) {
+    if (ctx.hasOwnProperty('requiredHumanInput')) {
       res.requiredHumanInput = ctx.requiredHumanInput
 
       if (ctx.requiredHumanInput.hasOwnProperty('data')) {
@@ -88,9 +88,11 @@ module.exports = class Executions {
   }
 
   hasDataChanged (executionName, data) {
-    // todo
-    // calculate hash for data
-    // compare with db original data hash
-    // return boolean
+    // what about executionName?
+    const currentDataHash = this._getHash(data)
+    const { execution } = this.store.state.app // or from db?
+    if (execution.hasOwnProperty('originalDataHash')) {
+      return currentDataHash !== execution.originalDataHash
+    }
   }
 }

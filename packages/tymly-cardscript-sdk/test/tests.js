@@ -349,6 +349,20 @@ describe('Executions', function () {
 
     // check data in model in tymly
   })
+
+  // it('try the hasDataChanged function with same data', async () => {
+  //   const hasDataChanged = sdk.executions.hasDataChanged(execName, {
+  //     code: 'CHEESE_TOMATO'
+  //   })
+  //   expect(hasDataChanged).to.eql(false)
+  // })
+
+  it('try the hasDataChanged function with different data', async () => {
+    const hasDataChanged = sdk.executions.hasDataChanged(execName, {
+      code: 'PEPPERONI'
+    })
+    expect(hasDataChanged).to.eql(true)
+  })
 })
 
 describe('Search', function () {
