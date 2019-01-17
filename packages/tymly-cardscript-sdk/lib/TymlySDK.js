@@ -31,8 +31,8 @@ module.exports = class TymlyClient {
   async init () {
     this.logs.applyPolicy()
 
-    this.startables = new Startables(this)
     this.executions = new Executions(this)
+    this.startables = new Startables(this)
     this.settings = new Settings(this)
     this.templates = new Templates(this)
     this.search = new Search(this)

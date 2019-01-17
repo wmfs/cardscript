@@ -2,6 +2,8 @@ module.exports = class Startables {
   constructor (client) {
     this.db = client.db
     this.store = client.options.store
+    this.executions = client.executions
+    this.token = client.options.auth.token
   }
 
   async persistFromUserQuery (userQuery) {
@@ -33,7 +35,7 @@ module.exports = class Startables {
     if (!favourites.includes(id)) favourites.push(id)
 
     await this.db.favourites.put({ id: 'favourites', favourites })
-    // todo: call state machine too
+    await this.updateFavouritesOnServer(favourites)
   }
 
   async unfavourite (id) {
@@ -45,6 +47,16 @@ module.exports = class Startables {
     if (index > -1) favourites.splice(index, 1)
 
     await this.db.favourites.put({ id: 'favourites', favourites })
-    // todo: call state machine too
+    await this.updateFavouritesOnServer(favourites)
+  }
+
+  updateFavouritesOnServer (favourites) {
+    return this.executions.execute({
+      stateMachineName: 'tymly_setFavouriteStartableNames_1_0',
+      input: {
+        stateMachineNames: favourites
+      },
+      token: this.token
+    })
   }
 }
