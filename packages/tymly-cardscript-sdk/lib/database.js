@@ -1,4 +1,4 @@
-const Dexie = require('dexie')
+const Dexie = require('dexie').default
 
 module.exports = options => {
   const { indexedDB, IDBKeyRange } = options
