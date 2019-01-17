@@ -14,6 +14,7 @@ module.exports = class Auth0 {
 
   async persistToken () {
     await this.db.auth.put({ id: 'token', token: this.token })
+    await this.db.auth.put({ id: 'timestamp', token: this.timestamp })
   }
 
   async loadToken () {
@@ -45,9 +46,9 @@ module.exports = class Auth0 {
     return this.token
   }
 
-  // silently refresh every half an hour if app active
   startRefreshTimer () {
     // todo
+    // this.options.tokenRefresh.seconds
   }
 
   cancelRefreshTimer () {

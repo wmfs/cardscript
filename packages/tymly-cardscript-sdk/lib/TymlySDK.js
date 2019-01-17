@@ -6,7 +6,6 @@ const Templates = require('./Templates')
 const Search = require('./Search')
 const Todo = require('./Todo')
 const Watching = require('./Watching')
-const Cards = require('./Cards')
 const database = require('./database')
 const uuidv1 = require('uuid/v1')
 const shasum = require('shasum')
@@ -14,7 +13,7 @@ const shasum = require('shasum')
 const USER_QUERY_KEYS = [
   'startables',
   'todo',
-  'cards',
+  'templates',
   'watching',
   'settings'
 ]
@@ -39,7 +38,6 @@ module.exports = class TymlyClient {
     this.search = new Search(this)
     this.todo = new Todo(this)
     this.watching = new Watching(this)
-    this.cards = new Cards(this)
 
     await this.requestUserQuery()
 

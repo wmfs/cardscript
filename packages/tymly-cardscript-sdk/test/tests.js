@@ -76,7 +76,12 @@ describe('Set up', function () {
       grant_type: 'client_credentials',
       client_id: process.env.AUTH0_CLIENT_ID,
       client_secret: process.env.AUTH0_CLIENT_SECRET,
-      audience: process.env.AUTH0_AUDIENCE
+      audience: process.env.AUTH0_AUDIENCE,
+      imageUrl: 'https://tymlystorage.blob.core.windows.net/tymly-application/tymly-logo-150x150.png',
+      tokenRefresh: {
+        seconds: 10,
+        mode: 'ONCE' // or REPEAT
+      }
     })
   })
 
@@ -114,6 +119,9 @@ describe('Set up', function () {
   it('get an auth0 token', async () => {
     authToken = await auth.setTokenFromRequest()
   })
+
+  // wait 10 seconds
+  // check token has changed
 
   it('initialise the TymlySDK', done => {
     sdk
@@ -153,6 +161,7 @@ describe('General tests', function () {
       token
     } = store.state.auth
 
+    expect(token).to.not.eql(null)
     expect(logs.length).to.eql(1)
     expect(cards.length).to.eql(3)
     expect(startables.length).to.eql(3)
