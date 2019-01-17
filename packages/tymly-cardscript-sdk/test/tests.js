@@ -189,6 +189,15 @@ describe('Favourites', function () {
     expect(favourites).to.eql(['test_orderPizza_1_0'])
   })
 
+  it(`check the favourites on the server for the added entry`, async () => {
+    const { ctx } = await sdk.executions.execute({
+      stateMachineName: 'tymly_getFavouriteStartableNames_1_0',
+      token: authToken
+    })
+
+    expect(ctx.results).to.eql([ 'test_orderPizza_1_0' ])
+  })
+
   it(`should unfavourite a startable 'test_orderPizza_1_0'`, async () => {
     await sdk.startables.unfavourite('test_orderPizza_1_0')
   })
@@ -201,6 +210,15 @@ describe('Favourites', function () {
   it(`check indexedDB if the favourite startable 'test_orderPizza_1_0 has been removed'`, async () => {
     const { favourites } = await sdk.db.favourites.get('favourites')
     expect(favourites).to.eql([])
+  })
+
+  it(`check the favourites on the server for the removed entry`, async () => {
+    const { ctx } = await sdk.executions.execute({
+      stateMachineName: 'tymly_getFavouriteStartableNames_1_0',
+      token: authToken
+    })
+
+    expect(ctx.results).to.eql([])
   })
 })
 
@@ -304,7 +322,7 @@ describe('Executions', function () {
 
   it('check the executions store in the db', async () => {
     const data = await sdk.db.executions.toArray()
-    expect(data.length).to.eql(17)
+    expect(data.length).to.eql(19)
 
     execName = data[0].executionName
   })

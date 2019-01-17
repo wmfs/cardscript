@@ -49,6 +49,7 @@ module.exports = class Auth0 {
   startRefreshTimer () {
     // todo
     // this.options.tokenRefresh.seconds
+    // https://auth0.com/docs/tokens/refresh-token/current
   }
 
   cancelRefreshTimer () {
