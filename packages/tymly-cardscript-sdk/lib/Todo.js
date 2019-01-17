@@ -44,7 +44,12 @@ module.exports = class Todo {
   }
 
   refreshTodos () {
-    // todo
-    // call state machine
+    return this.executions.execute({
+      stateMachineName: 'tymly_getTodoChanges_1_0',
+      input: {
+        clientTodos: []
+      },
+      token: this.token
+    })
   }
 }
