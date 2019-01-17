@@ -364,6 +364,8 @@ describe('Search', function () {
 describe('Logs', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
+  // clear the logs to start fresh?
+
   it(`add ${LOG_LIMIT + 2} logs`, async () => {
     for (let i = 1; i <= LOG_LIMIT + 2; i++) {
       await sdk.logs.addLog({
@@ -387,8 +389,12 @@ describe('Logs', function () {
     await sdk.logs.applyPolicy()
   })
 
-  // loadLogs ()
-  // check store has LOG_LIMIT length
+  it('load the logs to the store', async () => {
+    await sdk.logs.loadLogs()
+
+    const { logs } = store.state.app
+    expect(logs.length).to.eql(LOG_LIMIT)
+  })
 })
 
 describe('Shut down', function () {

@@ -1,3 +1,5 @@
+const takeRight = require('lodash.takeright')
+
 module.exports = class Logs {
   constructor (client) {
     this.db = client.db
@@ -19,15 +21,21 @@ module.exports = class Logs {
     this.store.commit('app/logs', data)
   }
 
-  applyPolicy () {
-    // todo
-    // flush old data, only keep last this.limit log entries
+  async applyPolicy () {
+    const data = await this.db.logs.toArray()
+    if (data.length > this.limit) {
+      const newData = takeRight(data, this.limit)
+      await this.db.logs.clear()
+      for (const log of newData) {
+        await this.db.logs.put(log)
+      }
+    }
   }
 }
 
 function formatLog ({ type, code, title, body }) {
   return {
     message: body ? `[${type}] ${code}: ${title}\n${body}` : `[${type}] ${code}: ${title}`,
-    date: new Date().getTime()
+    date: new Date()
   }
 }

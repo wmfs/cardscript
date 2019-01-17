@@ -5,6 +5,10 @@ module.exports = class Templates {
   }
 
   async persistFromUserQuery (userQuery) {
+    // todo
+    // convert to quasarTemplateString and stuff
+    // refer to playpen
+    // write quasarTemplateString and stuff to indexedDB
     const { cards } = userQuery.add
 
     await this.db.cards.clear()
@@ -15,30 +19,14 @@ module.exports = class Templates {
   }
 
   async load () {
+    // todo
+    // this.db.templates[id] = { template, toc, lists... }
     const data = await this.db.cards.toArray()
     this.store.commit('app/cards', data)
-  }
-
-  /*
-  persistFromUserQuery (userQuery) {
-    // todo
-    // userQuery.cards
-    // convert to quasarTemplateString and stuff
-    // refer to playpen
-    // write quasarTemplateString and stuff to indexedDB
-  }
-
-  loadTemplate (id) {
-    // todo
-    // get from indexedDb and put onto store via mutation
-    // this.db.templates[id] = { template, toc, lists... }
   }
 
   unloadTemplates () {
     // todo
     // this.db.templates = {}
   }
-  */
 }
-
-// CARD IS INSTANCE OF TEMPLATE - therefore maybe we should put current impl. of Cards here instead?
