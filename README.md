@@ -10,12 +10,12 @@
 <!---     SSS::::::::SS          T:::::T        O:::::O     O:::::O  P::::PPPPPPPPP    !:::! --->
 <!---        SSSSSS::::S         T:::::T        O:::::O     O:::::O  P::::P            !:::! --->
 <!---             S:::::S        T:::::T        O:::::O     O:::::O  P::::P            !!:!! --->
-<!---             S:::::S        T:::::T        O::::::O   O::::::O  P::::P             !!!  --->
-<!--- SSSSSSS     S:::::S      TT:::::::TT      O:::::::OOO:::::::OPP::::::PP                --->
+<!---             S:::::S        T:::::T        O::::::O   O::::::O  P::::P             !!!  ---> 
+<!--- SSSSSSS     S:::::S      TT:::::::TT      O:::::::OOO:::::::OPP::::::PP                ---> 
 <!--- S::::::SSSSSS:::::S      T:::::::::T       OO:::::::::::::OO P::::::::P           !!!  --->
 <!--- S:::::::::::::::SS       T:::::::::T         OO:::::::::OO   P::::::::P          !!:!! --->
 <!---  SSSSSSSSSSSSSSS         TTTTTTTTTTT           OOOOOOOOO     PPPPPPPPPP           !!!  --->
-<!---                                                                                        --->
+<!---                                                                                        ---> 
 <!---            T H I S   R E A D M E . M D   F I L E   I S   G E N E R A T E D !           --->
 <!---                                                                                        --->
 <!---    IF YOU EDIT IT DIRECTLY YOUR CHANGES WILL BE WASHED AWAY THE NEXT TIME THIS FILE    --->
@@ -24,7 +24,6 @@
 
 
 # Cardscript
-### Version `0.0.6`
 
 [![Build Status](https://travis-ci.org/wmfs/cardscript.svg?branch=master)](https://travis-ci.org/wmfs/cardscript) [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/cardscript/badge)](https://www.codefactor.io/repository/github/wmfs/cardscript) [![Known Vulnerabilities](https://snyk.io/test/github/wmfs/cardscript/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wmfs/cardscript?targetFile=package.json) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wmfs/cardscript/blob/master/CONTRIBUTING.md)
 
@@ -40,61 +39,70 @@
 
 ## <a name="toc"></a>Table of Contents
 
-* [Structure of a View](#structure)
-  * [Example: Simple View](#example)
+* [Structure of a Card](#structure)
+  * [Example: Simple Card](#example)
 * [Concepts](#concepts)
-  * [Views](#view)
+  * [Cards](#card)
   * [Apps](#app)
-  * [Widgets](#widget)
-    * [Widget summary](#widget-summary)
-  * [Sets](#set)
+  * [Elements](#element)
+    * [Element summary](#element-summary)
+  * [Containers](#container)
   * [Expressions](#expression)
 * [Reference](#reference)
   * [Top-Level Properties](#top-level)
-  * [Widget Properties](#properties)
-  * [Widget Attributes](#attributes)
-  * [Widget List](#list)
+  * [Element Properties](#properties)
+  * [Element Attributes](#attributes)
+  * [Element List](#list)
 * [License (MIT)](#license)
 * [Appendices](#appendices)
   * [Appendix A: Cardscript Motivation](#motivation)
   * [Appendix B: Cardscript Utilities](#utilities)
 
-## <a name="structure"></a>Structure of a View
+## <a name="structure"></a>Structure of a Card
 
-__In Cardscript, a _view_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
+__In Cardscript, a _card_ is represented by a [JSON Object](https://tools.ietf.org/html/rfc7159#section-4]).__
 
-### <a name="example"></a>Example: Simple View
+### <a name="example"></a>Example: Simple Card
 
-__The content of a [_view_](#view) is specified by configuring one-or-more [_widgets_](#widget), which are represented by JSON objects.__
+__The content of a [_card_](#card) is specified by configuring one-or-more [_elements_](#element), which are represented by JSON objects.__
 
-* In this example, a view is defined that contains two widgets, one that defines a suitable [`header`](#list-header) (with some text and an accompanying image),
-followed by a second [`text`](#text-header)-widget for letting the user enter their name.
+* In this example, a card is defined that contains two elements, one that defines a suitable [`Jumbotron`](#list-Jumbotron) (with some text and an accompanying image),
+followed by a second [`Input.Text`](#list-Input.Text)-element for letting the user enter their name.
 
 ``` json
 {
-  "title": "Simple demo view!",
-  "widgets": [
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "Register!",
-        "desc": "Let's get to know each other a bit better...",
-        "wash": "black",
-        "backgroundImage": "wmfs/happy-people.jpg",
-        "backgroundImageAltText": "Beautiful people smiling around a laptop"
-      }
-    },
+      "type": "Container",
+      "items": [
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/happy-people.jpg",
+          "title": "Register!",
+          "subtitle": "Let's get to know each other a bit better...",
+          "wash": "black"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Name",
+          "wrap": true,
+          "separator": true
+        },
+        {
+          "type": "Input.Text",
+          "id": "name",
+          "placeholder": "e.g. Lucy Smith"
+        }
+      ]
+    }
+  ],
+  "actions": [
     {
-      "id": "name",
-      "type": "text",
-      "attributes": {
-        "heading": "Name",
-        "placeholder": "e.g. Lucy Smith",
-        "mandatory": true,
-        "minCharacters": 1,
-        "maxCharacters": 100,
-        "help": "Enter your full name here"
-      }
+      "type": "Action.Submit",
+      "title": "Submit"
     }
   ]
 }
@@ -104,12 +112,12 @@ followed by a second [`text`](#text-header)-widget for letting the user enter th
 
 __Cardscript is built on a handful of key concepts...__
 
-### <a name="view"></a>Views
+### <a name="card"></a>Cards
 
-The purpose of Cardscript is to define a user interface, referred to as a "__view__".
+The purpose of Cardscript is to define a user interface, referred to as a "__card__".
 
-* In Cardscript, the term "view" refers to the "V" in [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). Views can relate to traditional forms or used to simply display data to the user (like a dashboard or similar).
-* With Cardscript it's possible to configure a view with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
+
+* With Cardscript it's possible to configure a card with structure, validation, conditional content, dynamic values and context-sensitive behaviours (e.g. operating differently with an internet connection as opposed to without).
 * Cardscript definitions are naturally stored in `.json` files (typically one-file-per-view).
 * In certain situations [YAML](https://en.wikipedia.org/wiki/YAML) (itself just a superset of JSON) may offer an interesting alternative to serialising Cardscript definitions (the [cardscript-parser](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-parser) utility supports both)..
 * Please note that a [JSON Schema](http://json-schema.org/) is available [here](https://raw.githubusercontent.com/wmfs/cardscript/master/packages/cardscript-schema/lib/schema.json), which may be used to validate the basic integrity of Cardscript content.
@@ -125,63 +133,46 @@ In this document, such software is referred to an "__app__".
 * Cardscript content can be embedded inside apps with [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), [CLI](https://en.wikipedia.org/wiki/Graphical_user_interface) and even [Voice-User](https://en.wikipedia.org/wiki/Voice_user_interface) interfaces.
 * Please note several utilities are available to help embed Cardscript into apps. Please see [Appendix B: Cardscript Utilities](#utilities) for further information.
 
-### <a name="widget"></a>Widgets
+### <a name="element"></a>Elements
 
-Views are constructed from an ordered list of "__widgets__".
+Cards are constructed from an ordered list of "__elements__".
 
-* To avoid overloading frontend-terms like 'component', Cardscript refers to each object in the `widgets` array as a __widget__.
-* Consider a widget as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
-* As such, widgets can be interactive ([`text`](#list-text), [`number`](#list-number), [`map`](#list-map) etc.) and non-interactive ([`heading`](#list-heading), [`stickyNote`](#list-stickyNote) etc.)
-* The order that `Widget` objects appear within a view definition is important - representing the order users will encounter them.
-* Cardscript is a delightful walled-garden, offering a fixed set of 32 pre-configured widgets. If you need another widget-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Cardscript/blob/master/CONTRIBUTING.md) :blush:
+* To avoid overloading frontend-terms like 'component', Cardscript refers to each object in the `elements` array as an __element__.
+* Consider an element as an area of a view responsible for a particular task: either collecting a specific piece of information from a user or visualising some data.
+* As such, elements can be interactive ([`Input.Text`](#list-Input.Text), [`Input.Number`](#list-Input.Number), etc.) and non-interactive ([`Jumbotron`](#list-Jumbotron), [`Media`](#list-Media) etc.)
+* The order that `Element` objects appear within a view definition is important - representing the order users will encounter them.
+* Cardscript is a delightful walled-garden, offering a fixed set of 15 p re-configured elements. If you need another element-type or an extra attribute... [pull requests are very welcome!](https://github.com/wmfs/Cardscript/blob/master/CONTRIBUTING.md) :blush:
 
-__Ahead of the [Reference](#reference) section, here's a quick summary of the 32 widgets supported in Cardscript `0.0.6`:__
+__Ahead of the [Reference](#reference) section, here's a quick summary of the 15 elements supported in Cardscript:__
 
-#### <a name="widget-summary"></a>Widget summary
+#### <a name="element-summary"></a>Element summary
 
-| Widget Type      | Description |
+| Element Type      | Description |
 | -----------      | ----------- |
-| [`address`](#list-address) | Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar. |
-| [`apiLookup`](#list-apiLookup) | Allows the user to select a specific value from an API endpoint |
-| [`buttonList`](#list-buttonList) | A set of buttons that the user can interact with |
-| [`checkboxList`](#list-checkboxList) | Offer a related set of checkboxes with accompanying labels for the user to switch on and off. |
-| [`currency`](#list-currency) | Just like a `number` widget, but for specifically collecting a monetary value. |
-| [`date`](#list-date) | Allows the user to provide a specific date - without a time portion. |
-| [`dateTime`](#list-dateTime) | Collects a specific date and time from the user. |
-| [`endSet`](#list-endSet) | Marks the end of a set of related widgets - see the [Sets](#set) section for more information. |
-| [`endSubView`](#list-endSubView) | Marks the end of a sub-view - see the [Sets](#set) section for more information. |
-| [`expandableNotice`](#list-expandableNotice) | Expandable Notice field. |
-| [`fileUpload`](#list-fileUpload) | Allows the user to upload a file. |
-| [`header`](#list-header) | A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/). |
-| [`heading`](#list-heading) | Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience. |
-| [`horizontalLine`](#list-horizontalLine) | Renders a horizontal line to help split things up (i.e. like a `</hr>`) |
-| [`image`](#list-image) | Embeds a non-interactive image within the form. |
-| [`map`](#list-map) | Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.) |
-| [`number`](#list-number) | Like a `text` widget, but specifically for collecting numeric content. |
-| [`propertyList`](#list-propertyList) | Displays a list of data provided in form of an array |
-| [`questionnaire`](#list-questionnaire) | Offers the user a question with two or more possible responses on an appropriate scale. |
-| [`radio`](#list-radio) | Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style. |
-| [`richtext`](#list-richtext) | Offers the user a text editor with functionality to format text. |
-| [`select`](#list-select) | Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style. |
-| [`set`](#list-set) | Marks the start of a set of related widgets - see the [Sets](#set) section for more information. |
-| [`signature`](#list-signature) | Allow the collection of a handwritten signature |
-| [`slider`](#list-slider) | For capturing a number along a specified range |
-| [`stickyNote`](#list-stickyNote) | A panel for putting helpful text or other informative text |
-| [`subView`](#list-subView) | Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.) |
-| [`switch`](#list-switch) | Presents a on/off style switch to the user. |
-| [`table`](#list-table) | Presents data in format of a table with specified columns. |
-| [`text`](#list-text) | A bread-and-butter box for collecting textual information from the user. |
-| [`textarea`](#list-textarea) | Collects simple multi-line text input from the user. |
-| [`time`](#list-time) | Allows the user to provide a specific time (without being tied to a particular date) |
+| [`AdaptiveCard`](#list-AdaptiveCard) | Root element in an Adaptive Card. |
+| [`AddressBlock`](#list-AddressBlock) | Displays an address. |
+| [`CardList`](#list-CardList) | A container which opens a modal when clicked on to show a card. |
+| [`Chip`](#list-Chip) | A chip to display some text. |
+| [`Fact`](#list-Fact) | Describes a Fact in a FactSet as a key/value pair. |
+| [`FactSet`](#list-FactSet) | The FactSet element displays a series of facts (i.e. name/value pairs) in a tabular form. |
+| [`Image`](#list-Image) | Displays an image. |
+| [`Jumbotron`](#list-Jumbotron) | An element typically placed at the top of a card to describe its purpose. |
+| [`Map`](#list-Map) | Displays a map. |
+| [`Media`](#list-Media) | Displays a media player for audio or video content. |
+| [`MediaSource`](#list-MediaSource) | Defines a source for a Media element |
+| [`PhaseBanner`](#list-PhaseBanner) | Displays a banner highlighting a phase. |
+| [`Separator`](#list-Separator) | Displays a horizontal line. |
+| [`Table`](#list-Table) | Displays text, allowing control over font sizes, weight, and color. |
+| [`TextBlock`](#list-TextBlock) | Displays text, allowing control over font sizes, weight, and color. |
 
 
-### <a name="set"></a>Sets
+### <a name="container"></a>Containers
 
-All the [widgets](#widget) that define a [view](#view)'s content are specified in a simple array.
+All the [elements](#element) that define a [view](#view)'s content are specified in a simple array.
 This design helps align Cardscript with vertical-scrolling interfaces with very little friction.
 To assist with navigation (especially around larger, more complex content) it might be useful to split a view into more manageable pieces.
 
-* __In Cardscript,  _sets_ allow widgets to be grouped into related chunks.__
+* __In Cardscript,  _containers_ allow elements to be grouped into related chunks.__
 
 __Example JSON__
 
@@ -214,19 +205,19 @@ __Example JSON__
 }
 ```
 
-* In this example, we are declaring that a [`text`](#list-text) widget (with the id `name`) should be rendered within a set (which should appear in a Table of Contents with the heading "_Profile_").
-* The beginning of each set is marked with a [`set`](#list-set) widget and is terminated with an [`endSet`](#list-endSet) widget (just like `<div>` and `</div>`).
-* Nesting of sets is possible and sets are especially powerful when combined with dynamic [expressions](#expression) to conditionally show/hide content.
-* Sets also enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) functionality.
-* Multi-step "wizard" interfaces are also easily achieved via sets.
-* The [`subView`](#list-subView) and [`endSubView`](#list-endSubView) widgets use exactly the same technique to define repeating-groups of widgets.
+* In this example, we are declaring that a [`text`](#list-text) element (with the id `name`) should be rendered within a container (which should appear in a Table of Contents with the heading "_Profile_").
+* The beginning of each container is marked with a [`container`](#container) element.
+* Nesting of containers is possible and containers are especially powerful when combined with dynamic [expressions](#expression) to conditionally show/hide content.
+* Containers also enable apps to offer [progress tracking](https://www.smashingmagazine.com/2010/01/progress-trackers-in-web-design-examples-and-best-design-practices/) functionality.
+* Multi-step "wizard" interfaces are also easily achieved via containers.
+* The [`CardList`](#CardList) element uses exactly the same technique to define repeating-groups of elements.
 
 ### <a name="expression"></a>Expressions
 
 Cardscript uses __expressions__ to deliver dynamic content. Expressions are used to:
 
-* Conditionally show/hide widgets depending on values as they change.
-* Validate view content based on more complex business rules.
+* Conditionally show/hide elements depending on values as they change.
+* Validate card content based on more complex business rules.
 * Affect the contents of enumerated lists.
 * Default dynamic values.
 * Calculate running totals, real-time summaries etc.
@@ -235,49 +226,48 @@ Consider an expression to be something that could be evaluated in a Javascript `
 
 ```json
 {
-  "title": "Simple expression demo!",
-  "widgets": [
+  "type": "AdaptiveCard",
+  "body": [
     {
-      "type": "header",
-      "attributes": {
-        "heading": "All done!",
-        "desc": "We're all done here, we would really appreciate some feedback though!"
-      }
+      "type": "Jumbotron",
+      "backgroundImage": "wmfs/happy-people.jpg",
+      "title": "All done!",
+      "subtitle": "We're all done here, we would really appreciate some feedback though!",
+      "wash": "black"
     },
     {
+      "spacing": "large",
       "id": "userWantsToGiveFeedback",
-      "type": "switch",
-      "attributes": {
-        "default": false,
-        "heading": "I would like to leave some feedback"
-      }
+      "type": "Input.Toggle",
+      "title": "I would like to leave some feedback"
     },
     {
+      "spacing": "large",
       "id": "feedback",
       "showWhen": "data.userWantsToGiveFeedback === true",
-      "type": "textarea",
-      "attributes": {
-        "heading": "Feedback",
-        "desc": "How did you feel using our app?"
-      }
+      "type": "Input.Text",
+      "isMultiline": "true",
+      "placeholder": "Feedback"
     }
-  ]
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
 }
 ```
 
-__In the example above we have three widgets:__
+__In the example above we have three elements:__
 
-1. The first widget is a simple [`header`](#list-header).
-2. The second widget is a simple boolean on/off [`switch`](#list-switch) (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
-3. The third widget is a [`textarea`](#list-textbox) box (with the `id` of `feedback`) for collecting feedback from the user.
+1. The first element is a simple [`jumbotron`](#jumbotron).
+2. The second element is a simple boolean on/off [`Input.Toggle`](#toggle) (with the `id` of `userWantsToGiveFeedback`) which is by default set to `false`.
+3. The third element is an [`Input.Text`](#inputText) box (with the `id` of `feedback`) for collecting feedback from the user.
 
-The `feedback` widget should only show if the `userWantsToGiveFeedback` switch is thrown on (i.e. `true`).
+The `feedback` element should only show if the `userWantsToGiveFeedback` toggle is thrown on (i.e. `true`).
 
 There are a few new things going on here.
-Most types of widget (here the `switch` and `textarea` types) expect an app to read and write their values to an underlying `data` object (using their respective `id` values as keys).
+Most types of element (here the `Toggle` and `Input.Text` types) expect an app to read and write their values to an underlying `data` object (using their respective `id` values as keys).
 It is also expected that any app implementing Cardscript should also make this `data` object available within a safe sandbox while evaluating expressions.
 
-In the previous example we can see the `showWhen` attribute is being used on the `feedback` widget. The string value here is an _expression_, which will control the visibility of the widget (i.e. it should only be shown to the user when the expression evaluates to `true`).
+In the previous example we can see the `showWhen` attribute is being used on the `feedback` element. The string value here is an _expression_, which will control the visibility of the element (i.e. it should only be shown to the user when the expression evaluates to `true`).
 
 #### <a name="sandbox"></a>Expression sandbox
 
@@ -285,7 +275,7 @@ Apps must ensure expressions are evaluated in a safe sandbox context. As such on
 
 | Sandbox object | Description |
 | -------------- | ----------- |
-| `data`         | The current view data being stored. Should be kept fresh in real-time using UI binding techniques. |
+| `data`         | The current card data being stored. Should be kept fresh in real-time using UI binding techniques. |
 | `env`          | Some environmental information, e.g. the user's name, if the app has access to an internet connection etc. |
 
 ##### __`env` object properties__
@@ -299,122 +289,319 @@ Apps are expected to provide the following details via an `env` object when eval
 
 ##  <a name="reference"></a>Reference
 
-### <a name="top-level"></a>Top-Level Properties
+<!--### <a name="top-level"></a>Top-Level Properties-->
 
-The top-level object defining a view comprises of several properties:
+<!--The top-level object defining a card comprises of several properties:-->
 
-| Property         | Type      | Description | Required?   |
-| ---------------- | --------- | ----------- | ----------- |
-| `title` | `string` | A short-as-possible label to associate with the form. | `false` |
-| `version` | `string` | Denotes the current version of the form definition. This will be assigned by whatever tooling and processes conjure your forms. There is a strong preference that form version strings adhere to [Semantic Versioning](http://nodesource.com/blog/semver-a-primer/). | `false` |
-| `widgets` | `array` | The main event, 1 or more `widget` objects which an app should render to produce a form. | `true` |
-| `actions` | `array` | A view can have multiple actions for the user to interact with | `false` |
+<!--| Property         | Type      | Description | Required?   |-->
+<!--| &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; |-->
+<!---->
+<!--| `version` | `string` |  | `true` |-->
+<!---->
+<!--| `fallbackText` | `string` |  | `false` |-->
+<!---->
+<!--| `backgroundImage` | `string` |  | `false` |-->
+<!---->
+<!--| `speak` | `string` |  | `false` |-->
+<!---->
+<!--| `lang` | `string` |  | `false` |-->
+<!---->
 
 
+<!--### <a name="properties"></a>Element Properties-->
 
-### <a name="properties"></a>Widget Properties
+<!--Each `element` object comprise of some properties:-->
 
-Each `widget` object comprise of some properties:
+<!--| Attribute Name | Type | Description |-->
+<!--| &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | -&#45;&#45;&#45;&#45;| -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; |-->
+<!---->
+<!--| `Action.OpenUrl` | `object` |  |-->
+<!---->
+<!--| `Action.ShowCard` | `object` |  |-->
+<!---->
+<!--| `Action.Cancel` | `object` |  |-->
+<!---->
+<!--| `Action.Save` | `object` |  |-->
+<!---->
+<!--| `Action.Submit` | `object` |  |-->
+<!---->
+<!--| `AdaptiveCard` | `object` |  |-->
+<!---->
+<!--| `Input.Choice` | `object` |  |-->
+<!---->
+<!--| `Tab` | `object` |  |-->
+<!---->
+<!--| `Column` | `object` |  |-->
+<!---->
+<!--| `ActionSet` | `object` |  |-->
+<!---->
+<!--| `TabSet` | `object` |  |-->
+<!---->
+<!--| `ColumnSet` | `object` |  |-->
+<!---->
+<!--| `Container` | `object` |  |-->
+<!---->
+<!--| `Fact` | `object` |  |-->
+<!---->
+<!--| `FactSet` | `object` |  |-->
+<!---->
+<!--| `MediaSource` | `object` |  |-->
+<!---->
+<!--| `AddressBlock` | `object` |  |-->
+<!---->
+<!--| `Map` | `object` |  |-->
+<!---->
+<!--| `PhaseBanner` | `object` |  |-->
+<!---->
+<!--| `Separator` | `object` |  |-->
+<!---->
+<!--| `Media` | `object` |  |-->
+<!---->
+<!--| `Image` | `object` |  |-->
+<!---->
+<!--| `ImageSet` | `object` |  |-->
+<!---->
+<!--| `Input.ChoiceSet` | `object` |  |-->
+<!---->
+<!--| `Input.Date` | `object` |  |-->
+<!---->
+<!--| `Input.Number` | `object` |  |-->
+<!---->
+<!--| `Input.Slider` | `object` |  |-->
+<!---->
+<!--| `Input.FileUpload` | `object` |  |-->
+<!---->
+<!--| `Input.Email` | `object` |  |-->
+<!---->
+<!--| `Input.Currency` | `object` |  |-->
+<!---->
+<!--| `Input.Address` | `object` |  |-->
+<!---->
+<!--| `Input.ApiLookup` | `object` |  |-->
+<!---->
+<!--| `Input.Gender` | `object` |  |-->
+<!---->
+<!--| `Input.Name` | `object` |  |-->
+<!---->
+<!--| `Input.Signature` | `object` |  |-->
+<!---->
+<!--| `Input.TelephoneNumber` | `object` |  |-->
+<!---->
+<!--| `Input.DateTime` | `object` |  |-->
+<!---->
+<!--| `Input.Text` | `object` |  |-->
+<!---->
+<!--| `Input.Time` | `object` |  |-->
+<!---->
+<!--| `Input.Toggle` | `object` |  |-->
+<!---->
+<!--| `Table` | `object` |  |-->
+<!---->
+<!--| `TextBlock` | `object` |  |-->
+<!---->
+<!--| `Jumbotron` | `object` |  |-->
+<!---->
+<!--| `Chip` | `object` |  |-->
+<!---->
+<!--| `Collapsible` | `object` |  |-->
+<!---->
+<!--| `CardList` | `object` |  |-->
+<!---->
+<!--| `attributes` | `object` | A key/value object for configuring each element - the content of which is dependent on the element's `type`. |-->
 
-| Attribute Name | Type | Description |
+### <a name="attributes"></a>Card Elements
+
+Cardscript supports a set of 46 common attributes from which elements can be configured.
+Not one element-type requires all these attributes. Attributes are often optional and some element-types don't need an `attributes` object at all.
+
+| Element Name | Type | Description |
 | -------------- | -----| ----------- |
-| `id` | `string` | A unique string which identifies the widget - often used to bind the value being collected by a widget to an underlying data model. Providing an `id` value is very often mandatory (depending on the type of widget involved). Regardless, it is good practice to always provide an `id` because it assists modification (or "_patching_") of form definitions. |
-| `type` | `string` | A mandatory value denoting the type of widget being defined (e.g. `text`, `number` etc.) |
-| `showWhen` | `string` | An expression, that when evaluating to `true` will cause the widget to appear (so the widget will not be shown if evaluated to be `false`). |
-| `attributes` | `object` | A key/value object for configuring each widget - the content of which is dependent on the widget's `type`. |
+| `Action.Cancel` | `object` | Allows to cancel out of a form. |
+| `Action.OpenUrl` | `object` | When invoked, show the given url either by launching it in an external web browser or showing in-situ with embedded web browser. |
+| `Action.Save` | `object` | Allows to save a form to continue later. |
+| `Action.ShowCard` | `object` | Defines an AdaptiveCard which is shown to the user when the button or link is clicked. |
+| `Action.Submit` | `object` | Gathers input fields, merges with optional data field, and sends an event to the client. It is up to the client to determine how this data is processed. For example: With BotFramework bots, the client would send an activity through the messaging medium to the bot. |
+| `ActionSet` | `object` | ActionSet allows actions to be displayed within a card. |
+| `AdaptiveCard` | `object` | Root element in an Adaptive Card. |
+| `AddressBlock` | `object` | Displays an address. |
+| `CardList` | `object` | A container which opens a modal when clicked on to show a card. |
+| `Chip` | `object` | A chip to display some text. |
+| `Collapsible` | `object` | A container which expands when clicked on to show a card. |
+| `Column` | `object` | Defines a container that is part of a ColumnSet. |
+| `ColumnSet` | `object` | ColumnSet divides a region into Columns, allowing elements to sit side-by-side. |
+| `Container` | `object` | Containers group items together. |
+| `Fact` | `object` | Describes a Fact in a FactSet as a key/value pair. |
+| `FactSet` | `object` | The FactSet element displays a series of facts (i.e. name/value pairs) in a tabular form. |
+| `Image` | `object` | Displays an image. |
+| `ImageSet` | `object` | The ImageSet displays a collection of Images similar to a gallery. |
+| `Input.Address` | `object` | Lets a user enter an address. |
+| `Input.ApiLookup` | `object` | Lets a user look up a value via an API. |
+| `Input.Choice` | `object` | Describes a choice for use in a ChoiceSet. |
+| `Input.ChoiceSet` | `object` | Allows a user to input a Choice. |
+| `Input.Currency` | `object` | Lets a user enter a currency value. |
+| `Input.Date` | `object` | Lets a user choose a date. |
+| `Input.DateTime` | `object` | Lets a user enter a telephone number. |
+| `Input.Email` | `object` | Lets a user enter an email. |
+| `Input.FileUpload` | `object` | Lets a user upload a file. |
+| `Input.Gender` | `object` | Lets a user enter a gender. |
+| `Input.Name` | `object` | Lets a user enter a name. |
+| `Input.Number` | `object` | Allows a user to enter a number. |
+| `Input.Signature` | `object` | Lets a user enter a signature. |
+| `Input.Slider` | `object` | Lets a user enter value with a slider. |
+| `Input.TelephoneNumber` | `object` | Lets a user enter a telephone number. |
+| `Input.Text` | `object` | Lets a user enter text. |
+| `Input.Time` | `object` | Lets a user select a time. |
+| `Input.Toggle` | `object` | Lets a user choose between two options. |
+| `Jumbotron` | `object` | An element typically placed at the top of a card to describe its purpose. |
+| `Map` | `object` | Displays a map. |
+| `Media` | `object` | Displays a media player for audio or video content. |
+| `MediaSource` | `object` | Defines a source for a Media element |
+| `PhaseBanner` | `object` | Displays a banner highlighting a phase. |
+| `Separator` | `object` | Displays a horizontal line. |
+| `Tab` | `object` | Defines a container that is part of a TabSet. |
+| `TabSet` | `object` | TabSet allows to display content through various tabs. |
+| `Table` | `object` | Displays text, allowing control over font sizes, weight, and color. |
+| `TextBlock` | `object` | Displays text, allowing control over font sizes, weight, and color. |
 
-### <a name="attributes"></a>Widget Attributes
 
-Cardscript `0.0.6` supports a set of 29 common attributes from which widgets can be configured.
-Not one widget-type requires all these attributes. Attributes are often optional and some widget-types don't need an `attributes` object at all.
+# <a name="ActionList"></a>Actions
 
-| Attribute Name | Type | Description |
-| -------------- | -----| ----------- |
-| `actions` | `array` | An array of objects denoting a set of actions the user can take |
-| `captureHistoric` | `boolean` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
-| `columns` | `array` | An array of objects denoting the columns to be shown on a table |
-| `content` | `string` | Some read only text to display. |
-| `dataPath` | `string` | A path pointing to a key in the data |
-| `default` | `any` | A value to default a widget to if not supplied by other mechanisms. |
-| `defaultBoolean` | `boolean` | A boolean value to default a widget to if not supplied by other mechanisms. |
-| `defaultNumber` | `number` | A numeric value to default a widget to if not supplied by other mechanisms. |
-| `defaultString` | `string` | A string value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enableLocationAssist` | `boolean` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
-| `enableUnknownOption` | `boolean` | Should the widget allow the user to indicate they don't know enough detail to find the most suitable result from a search API? |
-| `enabled` | `boolean` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `futuristicByAtMost` | `string` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `heading` | `string` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `historicByAtLeast` | `string` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `label` | `string` | A short piece of text to help identify what content is required by the user. |
-| `labelPath` | `string` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
-| `mandatory` | `boolean` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxCharacters` | `number` | The maximum length of number of characters a user can specify. |
-| `maximum` | `number` | The maximum numeric value a user can specify. |
-| `minCharacters` | `number` | The minimum length of number of characters a will need to provide. |
-| `minimum` | `number` | The minimum numeric value a user can specify. |
-| `numericValue` | `value` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `placeholder` | `string` | Some example text that can be appear inside a widget ahead of collecting user input.  |
-| `properties` | `array` | An array of objects with a path to data and title describing the property |
-| `resultLimit` | `number` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
-| `titleMap` | `array` | An array of objects denoting a set of values that the user can select from. |
-
-
-# <a name="list"></a>Widget List
-
-Here is the full list of all 32 widgets supported in Cardscript `0.0.6` (please see [Widget summary](#widget-summary) for a handy index).
+Here is the full list of all 5 actions supported in Cardscript (please see [Element summary](#element-summary) for a handy index).
 
 
 <hr>
 
-## The <a name="list-address"></a>`address` widget
+## The <a name="list-Action.Cancel"></a>`Action.Cancel` element
 
-__Allows the user to _select_ a particular postal address from a provided list and store a unique reference to that property, such as a [UPRN](https://www.ordnancesurvey.co.uk/about/governance/policies/addressbase-uprn.html) or similar.__
+__Allows to cancel out of a form.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "patientAddress",
-  "type": "address",
-  "attributes": {
-    "heading": "Where does the patient live?",
-    "desc": "If it's not possible to ascertain an accurate address from the patient then please select 'Unknown'",
-    "mandatory": true,
-    "labelPath": "$.patientAddressLabel",
-    "resultLimit": 20,
-    "enableUnknownOption": true,
-    "enableLocationAssist": false
+  "type": "Action.Cancel",
+  "title": "Cancel"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"Action.Cancel"`. |
+| `title` | string | `Optional` | Label for button or link that represents this action. |
+| `iconUrl` | string | `Optional` | Optional icon to be shown on the action in conjunction with the title |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Action.OpenUrl"></a>`Action.OpenUrl` element
+
+__When invoked, show the given url either by launching it in an external web browser or showing in-situ with embedded web browser.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Action.OpenUrl",
+  "title": "Open Url",
+  "url": "https://github.com/wmfs/cardscript"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"Action.OpenUrl"`. |
+| `title` | string | `Optional` | Label for button or link that represents this action. |
+| `iconUrl` | string | `Optional` | Optional icon to be shown on the action in conjunction with the title |
+| `url` | string | `Required` | The URL to open. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Action.Save"></a>`Action.Save` element
+
+__Allows to save a form to continue later.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Action.Save",
+  "title": "Save"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"Action.Save"`. |
+| `title` | string | `Optional` | Label for button or link that represents this action. |
+| `iconUrl` | string | `Optional` | Optional icon to be shown on the action in conjunction with the title |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Action.ShowCard"></a>`Action.ShowCard` element
+
+__Defines an AdaptiveCard which is shown to the user when the button or link is clicked.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Action.ShowCard",
+  "title": "Action.ShowCard",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "What do you think?"
+      },
+      {
+        "id": "opinion",
+        "type": "Input.Text",
+        "spacing": "large",
+        "default": "Amazing!"
+      }
+    ]
   }
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"address"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
-| `enableUnknownOption` | `boolean` | `No` | Should the widget allow the user to indicate they don't know enough detail to find the most suitable result from a search API? |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `labelPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
+| `type` | string | `Required` | Must be `"Action.ShowCard"`. |
+| `title` | string | `Optional` | Label for button or link that represents this action. |
+| `iconUrl` | string | `Optional` | Optional icon to be shown on the action in conjunction with the title |
+| `card` |  | `Required` |  |
 
 
 
@@ -422,56 +609,85 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-apiLookup"></a>`apiLookup` widget
+## The <a name="list-Action.Submit"></a>`Action.Submit` element
 
-__Allows the user to select a specific value from an API endpoint__
+__Gathers input fields, merges with optional data field, and sends an event to the client. It is up to the client to determine how this data is processed. For example: With BotFramework bots, the client would send an activity through the messaging medium to the bot.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "fireApplianceId",
-  "type": "apiLookup",
-  "attributes": {
-    "apiName": "fleet",
-    "heading": "Fire Appliance",
-    "labelPath": "$.fireApplianceLabel",
-    "desc": "Please select the Fire Appliance involved with this event",
-    "mandatory": true,
-    "resultLimit": 20,
-    "params": {
-      "showCurrentOnly": true,
-      "showOperationalOnly": true
+  "type": "Action.Submit",
+  "title": "Submit",
+  "data": {
+    "x": "y"
+  }
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"Action.Submit"`. |
+| `title` | string | `Optional` | Label for button or link that represents this action. |
+| `iconUrl` | string | `Optional` | Optional icon to be shown on the action in conjunction with the title |
+| `data` | string,object | `Optional` | Initial data that input fields will be combined with. These are essentially 'hidden' properties. |
+
+
+
+
+
+
+<hr>
+
+# <a name="ContainerList"></a>Containers
+
+Here is the full list of all 8 containers supported in Cardscript (please see [Element summary](#element-summary) for a handy index).
+
+
+<hr>
+
+## The <a name="list-ActionSet"></a>`ActionSet` element
+
+__ActionSet allows actions to be displayed within a card.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "ActionSet",
+  "spacing": "large",
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open Url",
+      "url": "https://github.com/wmfs/cardscript"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Submit",
+      "data": {
+        "x": "y"
+      }
     }
-  }
+  ]
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"apiLookup"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `apiName` | `string` | `Yes` | Name of the API endpoint which will be used to get a list of results for the user to select from. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `labelPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where the _label_ associated with an API call should be stored on the data model. The unique key value selected by the user will be associated as normal with a path inferred from `id` - this is an additional path to store the accompanying label-text (such denormalisation may be useful for 'stamping' labels as they were at time of data-collection and to improve subsequent render-times of the data). |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `params` | `object` | `No` | Key/value pairs which will be passed to the API endpoint. As such, contents will vary depending on the API involved. |
-| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
+| `type` | string | `Required` | Must be `"ActionSet"`. |
+| `actions` |  | `Required` | The Actions to show in the card's action bar. |
+| `spacing` |  | `Optional` |  |
 
 
 
@@ -479,27 +695,22 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-buttonList"></a>`buttonList` widget
+## The <a name="list-Collapsible"></a>`Collapsible` element
 
-__A set of buttons that the user can interact with__
+__A container which expands when clicked on to show a card.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "actions",
-  "type": "buttonList",
-  "attributes": {
-    "heading": "Some Actions",
-    "actions": [
+  "type": "Collapsible",
+  "title": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
       {
-        "title": "Edit user"
-      },
-      {
-        "title": "Remove user"
-      },
-      {
-        "title": "Create a new user"
+        "type": "TextBlock",
+        "text": "Hello!"
       }
     ]
   }
@@ -507,23 +718,15 @@ __Example JSON__
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"buttonList"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `actions` | `array` | `No` | An array of objects denoting a set of actions the user can take |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
+| `type` | string | `Required` | Must be `"Collapsible"`. |
+| `title` | string | `Required` | Text to be displayed as label. |
+| `card` |  | `Required` |  |
 
 
 
@@ -531,42 +734,1019 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-checkboxList"></a>`checkboxList` widget
+## The <a name="list-Column"></a>`Column` element
 
-__Offer a related set of checkboxes with accompanying labels for the user to switch on and off.__
+__Defines a container that is part of a ColumnSet.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "limbMovement",
-  "type": "checkboxList",
-  "attributes": {
-    "heading": "Which limbs were seen to move?",
-    "default": [
-      "LEFT_ARM",
-      "RIGHT_ARM",
-      "LEFT_LEG",
-      "RIGHT_LEG"
-    ],
-    "minLimit": 0,
-    "maxLimit": 4,
-    "titleMap": [
+  "type": "Column",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    },
+    {
+      "type": "TextBlock",
+      "text": "col-1"
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `items` |  | `Required` | The card elements to include in the `Column`. |
+| `selectAction` | object | `Optional` | An Action that will be invoked when the `Column` is tapped or selected. `Action.ShowCard` is not supported. |
+| `style` | string | `Optional` | Style hint for `Column`. |
+| `width` | string,number | `Optional` | `"auto"`, `"stretch"`, or a number representing relative width of the column in the column group. |
+| `type` | string | `Optional` | Must be `"Column"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-ColumnSet"></a>`ColumnSet` element
+
+__ColumnSet divides a region into Columns, allowing elements to sit side-by-side.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "ColumnSet",
+  "columns": [
+    {
+      "type": "Column",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "col-1"
+        },
+        {
+          "type": "TextBlock",
+          "text": "col-1"
+        }
+      ]
+    },
+    {
+      "type": "Column",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "col-2"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `columns` | array | `Optional` | The array of `Columns` to divide the region into. |
+| `selectAction` | object | `Optional` | An Action that will be invoked when the `ColumnSet` is tapped or selected. `Action.ShowCard` is not supported. |
+| `type` | string | `Required` | Must be `"ColumnSet"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Container"></a>`Container` element
+
+__Containers group items together.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Container",
+  "color": "accent",
+  "spacing": "large",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Accent!"
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"Container"`. |
+| `color` | string | `Optional` | Controls the color of the Container. |
+| `items` |  | `Required` | The card elements to render inside the `Container`. |
+| `selectAction` | object | `Optional` | An Action that will be invoked when the `Container` is tapped or selected. `Action.ShowCard` is not supported. |
+| `style` | string | `Optional` | Style hint for `Container`. |
+| `verticalContentAlignment` | string | `Optional` | Defines how the content should be aligned vertically within the container. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-ImageSet"></a>`ImageSet` element
+
+__The ImageSet displays a collection of Images similar to a gallery.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "ImageSet",
+  "images": [
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    },
+    {
+      "type": "Image",
+      "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+      "size": "medium"
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `images` | array | `Required` | The array of `Image` elements to show. |
+| `imageSize` |  | `Optional` |  |
+| `type` | string | `Required` | Must be `"ImageSet"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Tab"></a>`Tab` element
+
+__Defines a container that is part of a TabSet.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Tab",
+  "title": "Tab 1",
+  "items": [
+    {
+      "type": "TextBlock",
+      "text": "Tab 1 Content"
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Optional` | Must be `"Tab"`. |
+| `items` |  | `Required` | The card elements to include in the `Tab`. |
+| `title` | string | `Required` | The title of the `Tab`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-TabSet"></a>`TabSet` element
+
+__TabSet allows to display content through various tabs.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "TabSet",
+  "spacing": "large",
+  "tabs": [
+    {
+      "type": "Tab",
+      "title": "Tab 1",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 1 Content"
+        }
+      ]
+    },
+    {
+      "type": "Tab",
+      "title": "Tab 2",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Tab 2 Content"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"TabSet"`. |
+| `tabs` | array | `Optional` | The array of `Tabs` to divide content. |
+
+
+
+
+
+
+<hr>
+
+# <a name="InputList"></a>Inputs
+
+Here is the full list of all 18 inputs supported in Cardscript (please see [Element summary](#element-summary) for a handy index).
+
+
+<hr>
+
+## The <a name="list-Input.Address"></a>`Input.Address` element
+
+__Lets a user enter an address.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "inputAddress",
+  "type": "Input.Address"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Address"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.ApiLookup"></a>`Input.ApiLookup` element
+
+__Lets a user look up a value via an API.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "inputApiLookup",
+  "type": "Input.ApiLookup"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.ApiLookup"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Choice"></a>`Input.Choice` element
+
+__Describes a choice for use in a ChoiceSet.__
+
+__Example JSON__
+
+``` json
+{
+  "title": "Choice 1",
+  "value": "CHOICE_1"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Optional` |  |
+| `title` | string | `Required` | Text to display. |
+| `value` | string | `Required` | The raw value for the choice. **NOTE:** do not use a `,` in the value, since a `ChoiceSet` with `isMultiSelect` set to `true` returns a comma-delimited string of choice values. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.ChoiceSet"></a>`Input.ChoiceSet` element
+
+__Allows a user to input a Choice.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Input.ChoiceSet",
+  "id": "choice",
+  "spacing": "medium",
+  "value": "CHOICE_1",
+  "choices": [
+    {
+      "title": "Choice 1",
+      "value": "CHOICE_1"
+    },
+    {
+      "title": "Choice 2",
+      "value": "CHOICE_2"
+    },
+    {
+      "title": "Choice 3",
+      "value": "CHOICE_3"
+    }
+  ],
+  "style": "expanded"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `choices` | array | `Required` | `Choice` options. |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `isMultiSelect` | boolean | `Optional` | Allow multiple choices to be selected. |
+| `style` |  | `Optional` |  |
+| `type` | string | `Required` | Must be `"Input.ChoiceInput"`. |
+| `value` | string | `Optional` | The initial choice (or set of choices) that should be selected. For multi-select, specify a comma-separated string of values. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Currency"></a>`Input.Currency` element
+
+__Lets a user enter a currency value.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "currency",
+  "type": "Input.Currency",
+  "placeholder": "Input.Currency",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Currency"`. |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no text has been input. |
+| `max` | number | `Optional` | Hint of maximum value (may be ignored by some clients). |
+| `min` | number | `Optional` | Hint of minimum value (may be ignored by some clients). |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Date"></a>`Input.Date` element
+
+__Lets a user choose a date.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "date",
+  "type": "Input.Date",
+  "placeholder": "Input.Date",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `max` | string | `Optional` | Hint of maximum value expressed in ISO-8601 format (may be ignored by some clients). |
+| `min` | string | `Optional` | Hint of minimum value expressed in ISO-8601 format (may be ignored by some clients). |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no selection has been made. |
+| `type` | string | `Required` | Must be `"Input.Date"`. |
+| `value` | string | `Optional` | The initial value for this field expressed in ISO-8601 format. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.DateTime"></a>`Input.DateTime` element
+
+__Lets a user enter a telephone number.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "date",
+  "type": "Input.DateTime",
+  "placeholder": "Input.DateTime",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.DateTime"`. |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no text has been input. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Email"></a>`Input.Email` element
+
+__Lets a user enter an email.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "email",
+  "type": "Input.Email",
+  "placeholder": "Input.Email",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Email"`. |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no text has been input. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.FileUpload"></a>`Input.FileUpload` element
+
+__Lets a user upload a file.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "Input.FileUpload",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.FileUpload"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Gender"></a>`Input.Gender` element
+
+__Lets a user enter a gender.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "inputGender",
+  "type": "Input.Gender",
+  "preferNotToSay": true,
+  "preferToSelfDescribe": true,
+  "includeTransgender": true
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Gender"`. |
+| `term` | string | `Optional` | Whether the gender or sex should be asked. |
+| `preferNotToSay` | boolean | `Optional` | Includes Prefer not to say gender in list. |
+| `preferToSelfDescribe` | boolean | `Optional` | Includes Prefer not to self describe gender in list. |
+| `includeTransgender` | boolean | `Optional` | Includes transgender in list. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Name"></a>`Input.Name` element
+
+__Lets a user enter a name.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "name",
+  "type": "Input.Name",
+  "placeholder": "Input.Name",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Name"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Number"></a>`Input.Number` element
+
+__Allows a user to enter a number.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "number",
+  "type": "Input.Number",
+  "placeholder": "Input.Number",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `max` | number | `Optional` | Hint of maximum value (may be ignored by some clients). |
+| `min` | number | `Optional` | Hint of minimum value (may be ignored by some clients). |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no selection has been made. |
+| `type` | string | `Required` | Must be `"Input.Number"`. |
+| `value` | number | `Optional` | Initial value for this field. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Signature"></a>`Input.Signature` element
+
+__Lets a user enter a signature.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "inputSignature",
+  "type": "Input.Signature",
+  "agreement": "I agree that...",
+  "saveText": "Send",
+  "guidance": "Please enter your signature below..."
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Signature"`. |
+| `agreement` | string | `Optional` | Agreement text to be displayed above the signature pad. |
+| `saveText` | string | `Optional` | Customise the text of the save button. |
+| `guidance` | string | `Optional` | Guidance text to be displayed with the signature button. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Slider"></a>`Input.Slider` element
+
+__Lets a user enter value with a slider.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "slider",
+  "type": "Input.Slider",
+  "spacing": "medium",
+  "min": -20,
+  "max": 20,
+  "step": 4,
+  "value": 3
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.Slider"`. |
+| `min` | number | `Optional` | Minimum value of the model. |
+| `max` | number | `Optional` | Maximum value of the model. |
+| `step` | number | `Optional` | Step amount between values. |
+| `value` | string | `Optional` | The initial value for this field. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.TelephoneNumber"></a>`Input.TelephoneNumber` element
+
+__Lets a user enter a telephone number.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "inputTelephoneNumber",
+  "type": "Input.TelephoneNumber",
+  "placeholder": "Input.TelephoneNumber",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `type` | string | `Required` | Must be `"Input.TelephoneNumber"`. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Text"></a>`Input.Text` element
+
+__Lets a user enter text.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "textEditor",
+  "type": "Input.Text",
+  "placeholder": "Input.Text",
+  "spacing": "medium",
+  "editor": true,
+  "value": "editor: true"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `isMultiline` | boolean | `Optional` | If `true`, allow multiple lines of input. |
+| `maxLength` | number | `Optional` | Hint of maximum length characters to collect (may be ignored by some clients). |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no text has been input. |
+| `style` |  | `Optional` |  |
+| `type` | string | `Required` | Must be `"Input.Text"`. |
+| `value` | string | `Optional` | The initial value for this field. |
+| `editor` | boolean | `Optional` | Whether the field should be a WYSIWYG (“what you see is what you get”) editor, if false then plain text field. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Time"></a>`Input.Time` element
+
+__Lets a user select a time.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "time",
+  "type": "Input.Time",
+  "placeholder": "Input.Time",
+  "spacing": "medium"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `max` | string | `Optional` | Hint of maximum value (may be ignored by some clients). |
+| `min` | string | `Optional` | Hint of minimum value (may be ignored by some clients). |
+| `placeholder` | string | `Optional` | Description of the input desired. Displayed when no time has been selected. |
+| `type` | string | `Required` | Must be `"Input.Time"`. |
+| `value` | string | `Optional` | The initial value for this field expressed in ISO-8601 format. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-Input.Toggle"></a>`Input.Toggle` element
+
+__Lets a user choose between two options.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "toggle",
+  "type": "Input.Toggle",
+  "spacing": "medium",
+  "title": "Input.Toggle"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `id` | string | `Required` | Unique identifier for the value. Used to identify collected input when the Submit action is performed. |
+| `title` | string | `Required` | Title for the toggle |
+| `type` | string | `Required` | Input.Toggle |
+| `value` | string | `Optional` | The current selected value. If the item is selected that "valueOn" will be used, otherwise "valueOff" |
+| `valueOff` | string | `Optional` | The value when toggle is off |
+| `valueOn` | string | `Optional` | The value when toggle is on |
+
+
+
+
+
+
+<hr>
+
+# <a name="ElementList"></a>Other Elements
+
+Here is the full list of all 15 other elements supported in Cardscript (please see [Element summary](#element-summary) for a handy index).
+
+
+<hr>
+
+## The <a name="list-AdaptiveCard"></a>`AdaptiveCard` element
+
+__Root element in an Adaptive Card.__
+
+__Example JSON__
+
+``` json
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Jumbotron",
+          "backgroundImage": "wmfs/happy-people.jpg",
+          "title": "Register!",
+          "subtitle": "Let's get to know each other a bit better...",
+          "wash": "black"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Name",
+          "wrap": true,
+          "separator": true
+        },
+        {
+          "type": "Input.Text",
+          "id": "name",
+          "placeholder": "e.g. Lucy Smith"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"AdaptiveCard"`. |
+| `actions` |  | `Optional` | The Actions to show in the card's action bar. |
+| `body` |  | `Optional` | The card elements to show in the primary card region. |
+| `selectAction` | object | `Optional` | An Action that will be invoked when the card is tapped or selected. `Action.ShowCard` is not supported. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-AddressBlock"></a>`AddressBlock` element
+
+__Displays an address.__
+
+__Example JSON__
+
+``` json
+{
+  "type": "AddressBlock",
+  "dataPath": "addressBlock"
+}
+
+```
+
+
+
+__Properties__
+
+| Name | Type | Required | Description |
+| ---- | -----| -------- | ----------- |
+| `type` | string | `Required` | Must be `"AddressBlock"`. |
+| `title` | string | `Optional` | Title of the AddressBlock. |
+| `dataPath` | string | `Required` | Points to the holding the address. |
+| `multiline` | boolean | `Optional` | Wether the address in multiple lines. |
+| `lineDelimited` | string | `Optional` | The string of character(s) which the address is delimited by. |
+
+
+
+
+
+<hr>
+
+## The <a name="list-CardList"></a>`CardList` element
+
+__A container which opens a modal when clicked on to show a card.__
+
+__Example JSON__
+
+``` json
+{
+  "id": "cardList",
+  "type": "CardList",
+  "editable": true,
+  "instanceTitleTemplate": "You thought: '{{item.opinion}}'.",
+  "addButtonLabel": "Click me!",
+  "card": {
+    "type": "AdaptiveCard",
+    "body": [
       {
-        "value": "LEFT_ARM",
-        "title": "Left arm"
+        "type": "TextBlock",
+        "text": "What do you think?"
       },
       {
-        "value": "RIGHT_ARM",
-        "title": "Right arm"
-      },
-      {
-        "value": "LEFT_LEG",
-        "title": "Left leg"
-      },
-      {
-        "value": "RIGHT_LEG",
-        "title": "Right leg"
+        "id": "opinion",
+        "type": "Input.Text",
+        "spacing": "large",
+        "value": "Amazing!"
       }
     ]
   }
@@ -574,30 +1754,19 @@ __Example JSON__
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"checkboxList"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxLimit` | `number` | `No` | Maximum number of array elements the user should provide |
-| `minLimit` | `number` | `No` | Minimum number of array elements the user should provide |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `titleMap` | `array` | `Yes` | An array of objects denoting a set of values that the user can select from. |
+| `id` | string | `Required` | A unique identifier associated with the element. |
+| `type` | string | `Required` | Must be `"CardList"`. |
+| `addButtonLabel` | string | `Optional` | Text to be displayed as label of button. |
+| `card` |  | `Required` |  |
+| `instanceTitleTemplate` | string | `Optional` | A handlebars-like template for conjuring a title per instance. |
+| `instanceSubtitleTemplate` | string | `Optional` | A handlebars-like template for conjuring a subtitle per instance. |
+| `editable` | boolean | `Optional` | The CardList element can either act as a modal to display a block of Card Elements or as a form which can be completed and pushed to an array. |
 
 
 
@@ -605,46 +1774,30 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-currency"></a>`currency` widget
+## The <a name="list-Chip"></a>`Chip` element
 
-__Just like a `number` widget, but for specifically collecting a monetary value.__
+__A chip to display some text.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "price",
-  "type": "currency",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Purchase price",
-    "desc": "How much did this stock-item cost from the supplier?"
-  }
+  "type": "Chip",
+  "text": "Example",
+  "color": "good"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"currency"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+| `type` | string | `Required` | Must be `"Chip"`. |
+| `text` | string | `Required` | Text to be displayed in chip. |
+| `color` | string | `Optional` | Color of the chip |
 
 
 
@@ -652,49 +1805,29 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-date"></a>`date` widget
+## The <a name="list-Fact"></a>`Fact` element
 
-__Allows the user to provide a specific date - without a time portion.__
+__Describes a Fact in a FactSet as a key/value pair.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "dateOfBirth",
-  "type": "date",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Date of birth",
-    "desc": "Date the employee was born",
-    "historicByAtLeast": "P18Y"
-  }
+  "title": "Hello:",
+  "value": "World"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"date"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `captureHistoric` | `boolean` | `No` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `futuristicByAtMost` | `string` | `No` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `historicByAtLeast` | `string` | `No` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `type` | string | `Optional` |  |
+| `title` | string | `Required` | The title of the fact. |
+| `value` | string | `Required` | The value of the fact. |
 
 
 
@@ -702,50 +1835,37 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-dateTime"></a>`dateTime` widget
+## The <a name="list-FactSet"></a>`FactSet` element
 
-__Collects a specific date and time from the user.__
+__The FactSet element displays a series of facts (i.e. name/value pairs) in a tabular form.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "appointment",
-  "type": "dateTime",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Appointment",
-    "desc": "The date and time this visit is scheduled for",
-    "captureHistoric": false,
-    "futuristicByAtMost": "P3M"
-  }
+  "type": "FactSet",
+  "facts": [
+    {
+      "title": "Hello:",
+      "value": "World"
+    },
+    {
+      "title": "HELLO:",
+      "value": "WORLD"
+    }
+  ]
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"dateTime"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `captureHistoric` | `boolean` | `No` | Can the date/time captured by the widget occur in the past (as starting when the for is submitted)? |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `futuristicByAtMost` | `string` | `No` | A string indicating a period of time that the value supplied by the user should come before, starting from when the form is submitted (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `historicByAtLeast` | `string` | `No` | A string indicating a period of time that the value supplied by the user must equal or be older than (to be in [ISO duration](http://en.wikipedia.org/wiki/ISO_8601#Durations) format). |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
+| `facts` | array | `Required` | The array of `Fact`s. |
+| `type` | string | `Required` | Must be `"FactSet"`. |
 
 
 
@@ -753,91 +1873,35 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-endSet"></a>`endSet` widget
+## The <a name="list-Image"></a>`Image` element
 
-__Marks the end of a set of related widgets - see the [Sets](#set) section for more information.__
-
-__Example JSON__
-
-``` json
-{
-  "type": "endSet"
-}
-
-```
-
-__Properties__
-
-
-__`type`:__ _Required_ (`"endSet"`)
-
-
-
-
-
-<hr>
-
-## The <a name="list-endSubView"></a>`endSubView` widget
-
-__Marks the end of a sub-view - see the [Sets](#set) section for more information.__
+__Displays an image.__
 
 __Example JSON__
 
 ``` json
 {
-  "type": "endSubView"
+  "type": "Image",
+  "url": "https://tymly.io/wp-content/uploads/2017/11/logo-tymly-main-colour.png",
+  "size": "large",
+  "horizontalAlignment": "left"
 }
 
 ```
 
-__Properties__
 
-
-__`type`:__ _Required_ (`"endSubView"`)
-
-
-
-
-
-<hr>
-
-## The <a name="list-expandableNotice"></a>`expandableNotice` widget
-
-__Expandable Notice field.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "privacy notice",
-  "type": "expandableNotice",
-  "attributes": {
-    "heading": "Click to view information",
-    "content": "This is some expandable information you might want to hide"
-  }
-}
-
-```
 
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"expandableNotice"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `content` | `string` | `No` | Some read only text to display. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
+| `altText` | string | `Optional` | Alternate text describing the image. |
+| `horizontalAlignment` |  | `Optional` |  |
+| `selectAction` | object | `Optional` | An Action that will be invoked when the `Image` is tapped or selected. `Action.ShowCard` is not supported. |
+| `size` |  | `Optional` |  |
+| `style` |  | `Optional` |  |
+| `type` | string | `Required` | Must be `"Image"`. |
+| `url` | string | `Required` | The URL to the image. |
 
 
 
@@ -845,56 +1909,34 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-fileUpload"></a>`fileUpload` widget
+## The <a name="list-Jumbotron"></a>`Jumbotron` element
 
-__Allows the user to upload a file.__
+__An element typically placed at the top of a card to describe its purpose.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "photographicEvidence",
-  "type": "fileUpload",
-  "attributes": {
-    "heading": "Any photographic evidence?",
-    "desc": "Upload any digital photographs supporting your observations",
-    "captionPath": "$.evidenceDescription",
-    "formatRestriction": [
-      "jpg",
-      "jpeg"
-    ],
-    "maxFileSize": "15mb",
-    "minNumberOfFiles": 0,
-    "maxNumberOfFiles": 10
-  }
+  "type": "Jumbotron",
+  "backgroundImage": "wmfs/pizza.jpg",
+  "title": "Title",
+  "subtitle": "Subtitle",
+  "wash": "black"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"fileUpload"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `captionPath` | `string` | `No` | A [JSON Path](https://www.npmjs.com/package/jsonpath) string showing where some caption text also provided by the user should be stored on the data model. If this value is not provided, the the widget should not offer captioning of uploads. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `formatRestriction` | `array` | `No` | An array of strings representing a set of file extensions that are allowed to be uploaded, for example: `["jpg", "jpeg"]`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxFileSize` | `string` | `No` | A [human2bytes](https://www.npmjs.com/package/human2bytes) compatible string representing the maximum filesize permitted (e.g. `50mb`). |
-| `maxNumberOfFiles` | `number` | `No` | The maximum number of files that the user is required to upload. |
-| `minNumberOfFiles` | `number` | `No` | The minimum number of files that the user is required to upload. |
+| `type` | string | `Required` | Must be `"Jumbotron"`. |
+| `title` | string | `Required` | Text to be displayed as heading. |
+| `subtitle` | string | `Optional` | Text to be displayed as subheading. |
+| `wash` | string | `Optional` | Type of wash to have over the background. |
+| `backgroundImage` | string | `Optional` | Relative URL to image to be displayed as background. |
 
 
 
@@ -902,43 +1944,26 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-header"></a>`header` widget
+## The <a name="list-Map"></a>`Map` element
 
-__A widget typically placed at the top of a view to describe its purpose. An optional background image makes this widget akin to a [Hero Unit](https://en.wikipedia.org/wiki/Hero_image) or [Jumbotron](https://getbootstrap.com/docs/4.0/components/jumbotron/).__
+__Displays a map.__
 
 __Example JSON__
 
 ``` json
 {
-  "type": "header",
-  "attributes": {
-    "heading": "Patient Report",
-    "desc": "Use this form to provide details of patient care administered at the scene of an incident.",
-    "backgroundImage": "wmfs/casualty-care-background.jpg",
-    "backgroundImageAltText": "Photograph of activity at a Road Traffic Collision"
-  }
+  "type": "Map"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`type`:__ _Required_ (`"header"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `backgroundImage` | `string` | `No` | A path to an image file that should be resolved from the app's base image URL or similar. |
-| `backgroundImageAltText` | `string` | `No` | Text that describes the `backgroundImage` image. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
-| `wash` | `string` | `No` | Whether the background image should have a black or white wash. |
+| `type` | string | `Required` | Must be `"Map"`. |
 
 
 
@@ -946,38 +1971,36 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-heading"></a>`heading` widget
+## The <a name="list-Media"></a>`Media` element
 
-__Use to displays a heading (with optional descriptive text). Not to be confused with [`header`](#list-header), the `heading` widget equates more to a `<h1></h1>` UI experience.__
+__Displays a media player for audio or video content.__
 
 __Example JSON__
 
 ``` json
 {
-  "type": "header",
-  "attributes": {
-    "heading": "Patient Report",
-    "desc": "Use this form to provide details of patient care administered at the scene of an incident."
-  }
+  "type": "Media",
+  "poster": "https://adaptivecards.io/content/poster-video.png",
+  "sources": [
+    {
+      "mimeType": "video/mp4",
+      "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
+    }
+  ]
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`type`:__ _Required_ (`"heading"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `Yes` | Some short, strong, punchy text to identify the widget. |
+| `type` | string | `Required` | Must be `"Media"`. |
+| `sources` | array | `Optional` | Array of media sources to attempt to play. |
+| `poster` | string | `Optional` | URL of an image to display before playing. |
+| `altText` | string | `Optional` | Alternate text describing the audio or video. |
 
 
 
@@ -985,68 +2008,28 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-horizontalLine"></a>`horizontalLine` widget
+## The <a name="list-MediaSource"></a>`MediaSource` element
 
-__Renders a horizontal line to help split things up (i.e. like a `</hr>`)__
-
-__Example JSON__
-
-``` json
-{
-  "type": "horizontalLine"
-}
-
-```
-
-__Properties__
-
-
-__`type`:__ _Required_ (`"horizontalLine"`)
-
-
-
-
-
-<hr>
-
-## The <a name="list-image"></a>`image` widget
-
-__Embeds a non-interactive image within the form.__
+__Defines a source for a Media element__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "numberOfFloors",
-  "type": "image",
-  "attributes": {
-    "image": "wmfs/number-of-floors-diagram.png",
-    "altText": "Indicates ground-floor is referred to as '0' and one above it is referred to as '1': but the total number of floors is 2."
-  }
+  "mimeType": "video/mp4",
+  "url": "https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"image"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `altText` | `string` | `No` | Text that describes the `backgroundImage` image. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `image` | `string` | `Yes` | A path to an image file that should be resolved from the app's base image URL or similar. |
+| `mimeType` | string | `Required` | Mime type of associated media (e.g. `"video/mp4"`). |
+| `url` | string | `Required` | URL to media. |
 
 
 
@@ -1054,71 +2037,28 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-map"></a>`map` widget
+## The <a name="list-PhaseBanner"></a>`PhaseBanner` element
 
-__Displays a map to the user, and can optionally be configured to collect geo-spatial data (points, lines etc.)__
+__Displays a banner highlighting a phase.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "incidentCoordinates",
-  "type": "map",
-  "attributes": {
-    "heading": "Point of ignition",
-    "mandatory": true,
-    "desc": "Please indicate the exact position of where the fire started.",
-    "enableLocationAssist": true,
-    "collectGeometries": [
-      "points"
-    ],
-    "minGeometries": 1,
-    "maxGeometries": 1,
-    "pointIconPalette": [
-      {
-        "file": "wmfs/flame.png",
-        "label": "Flame"
-      }
-    ],
-    "relatedLayers": [
-      {
-        "name": "gaz",
-        "label": "Gazetteer",
-        "visibleByDefault": false
-      }
-    ]
-  }
+  "type": "PhaseBanner",
+  "phase": "alpha"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"map"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `centreLatitudePath` | `string` | `No` | Path indicating which property should be used to infer a latitude value when first centering the map |
-| `centreLongitudePath` | `string` | `No` | Path indicating which property should be used to infer a longitude value when first centering the map |
-| `collectGeometries` | `array` | `No` |  |
-| `enableLocationAssist` | `boolean` | `No` | If supported by the app, should the widget try to find results from a search API by proximity to the user's current location? |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxGeometries` | `number` | `No` | The maximum number of geometries required from the user |
-| `minGeometries` | `number` | `No` | The minimum number of geometries required from the user |
-| `pointIconPalette` | `array` | `No` | An array of icons which the user can select from when adding point geometries |
-| `relatedLayers` | `array` | `No` | An array of layers which the widget should request when rendering maps. |
+| `type` | string | `Required` | Must be `"PhaseBanner"`. |
+| `phase` | string | `Optional` | The phase which the service is in. |
 
 
 
@@ -1126,50 +2066,26 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-number"></a>`number` widget
+## The <a name="list-Separator"></a>`Separator` element
 
-__Like a `text` widget, but specifically for collecting numeric content.__
+__Displays a horizontal line.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "numShocks",
-  "type": "number",
-  "attributes": {
-    "mandatory": true,
-    "default": 2,
-    "minimum": 0,
-    "heading": "How many shocks were delivered?"
-  }
+  "type": "Separator"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"number"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maximum` | `number` | `No` | The maximum numeric value a user can specify. |
-| `minimum` | `number` | `No` | The minimum numeric value a user can specify. |
-| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
+| `type` | string | `Required` | Must be `"Separator"`. |
 
 
 
@@ -1177,52 +2093,39 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-propertyList"></a>`propertyList` widget
+## The <a name="list-Table"></a>`Table` element
 
-__Displays a list of data provided in form of an array__
+__Displays text, allowing control over font sizes, weight, and color.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "contactDetails",
-  "type": "propertyList",
-  "attributes": {
-    "heading": "Contact Details",
-    "properties": [
-      {
-        "dataPath": "firstName",
-        "header": "First Name"
-      },
-      {
-        "dataPath": "lastName",
-        "header": "Last Name"
-      },
-      {
-        "dataPath": "mobileNumber",
-        "header": "Mobile Number"
-      }
-    ]
-  }
+  "type": "Table",
+  "title": "Opinions (Add some via CardList example above to see them appear in Table here)",
+  "arrayPath": "cardList",
+  "columns": [
+    {
+      "title": "Opinion",
+      "field": "opinion"
+    }
+  ],
+  "resultLimit": 5
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"propertyList"`)
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `properties` | `array` | `No` | An array of objects with a path to data and title describing the property |
+| `type` | string | `Required` | Must be `"Table"`. |
+| `title` | string | `Optional` | Title displayed for the `Table`. |
+| `arrayPath` | string | `Required` | Points to the array of data to be displayed. |
+| `columns` | array | `Required` |  |
+| `resultLimit` | integer | `Optional` | Limit the results per page. |
 
 
 
@@ -1230,72 +2133,37 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-questionnaire"></a>`questionnaire` widget
+## The <a name="list-TextBlock"></a>`TextBlock` element
 
-__Offers the user a question with two or more possible responses on an appropriate scale.__
+__Displays text, allowing control over font sizes, weight, and color.__
 
 __Example JSON__
 
 ``` json
 {
-  "id": "painArrival",
-  "type": "questionnaire",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Pain-score on arrival",
-    "desc": "How did the carer assess the patient's pain when they first met?",
-    "default": 1,
-    "numericValue": true,
-    "titleMap": [
-      {
-        "value": 0,
-        "title": "0",
-        "desc": "No pain"
-      },
-      {
-        "value": 1,
-        "title": "1",
-        "desc": "Slight pain"
-      },
-      {
-        "value": 2,
-        "title": "2",
-        "desc": "Moderate pain"
-      },
-      {
-        "value": 3,
-        "title": "3",
-        "desc": "Severe pain"
-      }
-    ]
-  }
+  "type": "TextBlock",
+  "text": "color: good",
+  "color": "good"
 }
 
 ```
 
+
+
 __Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"questionnaire"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
 
 | Name | Type | Required | Description |
 | ---- | -----| -------- | ----------- |
-| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
+| `color` | string | `Optional` | Controls the color of `TextBlock` elements. |
+| `horizontalAlignment` |  | `Optional` |  |
+| `isSubtle` | boolean | `Optional` | If `true`, displays text slightly toned down to appear less prominent. |
+| `maxLines` | number | `Optional` | Specifies the maximum number of lines to display. |
+| `size` | string | `Optional` | Controls size of text. |
+| `text` | string | `Required` | Text to display. |
+| `type` | string | `Required` | Must be `"TextBlock"`. |
+| `weight` | string | `Optional` | Controls the weight of `TextBlock` elements. |
+| `wrap` | boolean | `Optional` | If `true`, allow text to wrap. Otherwise, text is clipped. |
+
 
 
 
@@ -1303,683 +2171,7 @@ __Attributes__
 
 <hr>
 
-## The <a name="list-radio"></a>`radio` widget
 
-__Allows the user to select a value from a set of related options that are rendered in a [Radio Button](https://en.wikipedia.org/wiki/Radio_button) style.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "gender",
-  "type": "radio",
-  "attributes": {
-    "heading": "Patient gender",
-    "mandatory": true,
-    "titleMap": [
-      {
-        "value": "MALE",
-        "title": "Male"
-      },
-      {
-        "value": "FEMALE",
-        "title": "Female"
-      },
-      {
-        "value": "UNKNOWN",
-        "title": "Unknown"
-      }
-    ]
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"radio"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-richtext"></a>`richtext` widget
-
-__Offers the user a text editor with functionality to format text.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "clinicalNotes",
-  "type": "richtext",
-  "attributes": {
-    "heading": "Clinical Notes?",
-    "mandatory": false,
-    "desc": "If you have any clinical notes, please enter them here"
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"richtext"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-select"></a>`select` widget
-
-__Allows the user to select a value from a set of options, which should be rendered in an [HTML Select](https://en.wikipedia.org/wiki/HTML_element) style.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "choking",
-  "type": "select",
-  "attributes": {
-    "heading": "Choking?",
-    "desc": "Was the patient choking, if so what treatment was administered?",
-    "mandatory": true,
-    "default": "NOT_APPLICABLE",
-    "titleMap": [
-      {
-        "value": "NOT_APPLICABLE",
-        "title": "No choking - not applicable"
-      },
-      {
-        "value": "COUGH",
-        "title": "Encourage cough"
-      },
-      {
-        "value": "BACK_SLAPS",
-        "title": "Back slaps"
-      },
-      {
-        "value": "ABDOMINAL_THRUSTS",
-        "title": "Adbominal/Chest thrusts"
-      },
-      {
-        "value": "COMPRESSIONS",
-        "title": "Chest compressions (CPR)"
-      },
-      {
-        "value": "OTHER",
-        "title": "Other"
-      }
-    ]
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"select"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `numericValue` | `value` | `No` | Explicitly assert that the widget receive and store numeric values (usually of use with title-map enumerations). |
-| `titleMap` | `array` | `No` | An array of objects denoting a set of values that the user can select from. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-set"></a>`set` widget
-
-__Marks the start of a set of related widgets - see the [Sets](#set) section for more information.__
-
-__Example JSON__
-
-``` json
-{
-  "type": "set",
-  "attributes": {
-    "tocTitle": "Profile"
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"set"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `tocIcon` | `string` | `No` | An icon to accompany tocTitle. For now, Must be something in [Material.io](https://material.io/icons/), e.g. `local_pizza` |
-| `tocTitle` | `string` | `No` | Should the set feature in a table-of-contents or similar, use this title. Note that if no string is specified, it is assumed the set shouldn't be included in a TOC. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-signature"></a>`signature` widget
-
-__Allow the collection of a handwritten signature__
-
-__Example JSON__
-
-``` json
-{
-  "id": "confirmation",
-  "type": "signature",
-  "attributes": {
-    "heading": "Customer acknowledgement",
-    "desc": "Please sign here to confirm receipt of some service",
-    "help": "Hand the device over to the customer",
-    "mandatory": true
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"signature"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-slider"></a>`slider` widget
-
-__For capturing a number along a specified range__
-
-__Example JSON__
-
-``` json
-{
-  "id": "burnArea",
-  "type": "slider",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Estimated body surface area burnt (%)",
-    "default": 0,
-    "minimum": 0,
-    "maximum": 100,
-    "step": 5
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"slider"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `number` | `No` | A numeric value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maximum` | `number` | `No` | The maximum numeric value a user can specify. |
-| `minimum` | `number` | `No` | The minimum numeric value a user can specify. |
-| `step` | `number` | `No` | The steps/intervals that the slider widget should snap to. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-stickyNote"></a>`stickyNote` widget
-
-__A panel for putting helpful text or other informative text__
-
-__Example JSON__
-
-``` json
-{
-  "id": "info",
-  "type": "stickyNote",
-  "attributes": {
-    "style": "informative",
-    "heading": "Remember!",
-    "desc": "Floor numbering starts with 0 (ground floor)."
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"stickyNote"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `style` | __enum:__<br>`normal`<br>`informative`<br>`danger`<br> | `No` | Some style pointers that the note should take. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-subView"></a>`subView` widget
-
-__Allows the user to enter a number of 'sub forms' (think order-lines or contact details etc.)__
-
-__Example JSON__
-
-``` json
-{
-  "type": "subView",
-  "attributes": {
-    "heading": "Explosions",
-    "desc": "Please provide details of the explosions which occurred.",
-    "minAllowed": 1,
-    "maxAllowed": 10,
-    "showAtLeastOne": true,
-    "singularEntityText": "explosion",
-    "pluralEntityText": "explosions"
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"subView"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `createButtonText` | `string` | `No` | Text to put on a button which will create a new entity. |
-| `default` | `any` | `No` | A value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `instanceDescTemplate` | `string` | `No` | A handlebars-like template for conjuring a title per instance. |
-| `instanceHeadingTemplate` | `string` | `No` | A handlebars-like template for conjuring a title per instance. |
-| `maxAllowed` | `number` | `No` | The maximum number of sub-views that the user can complete. |
-| `minAllowed` | `number` | `No` | The minimum number of sub-views that the user is required to complete. |
-| `showAtLeastOne` | `boolean` | `No` | If `true` and no sub-views have yet been completed, then the app should show an empty sub-view ready for the user to start entering data (especially useful when `minAllowed > 0`). |
-| `singularEntityText` | `string` | `No` | What is _one_ of these forms termed? Consider using it in a sentence such as '_Click here to create a new `${singularEntityText}`._'. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-switch"></a>`switch` widget
-
-__Presents a on/off style switch to the user.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "burns",
-  "type": "switch",
-  "attributes": {
-    "heading": "Did the patient suffer burns?",
-    "default": false
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"switch"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `boolean` | `No` | A boolean value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-table"></a>`table` widget
-
-__Presents data in format of a table with specified columns.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "patientDetails",
-  "type": "table",
-  "attributes": {
-    "heading": "Patient Details",
-    "dataPath": "patients",
-    "columns": [
-      {
-        "title": "Full Name",
-        "dataPath": "name"
-      },
-      {
-        "title": "Phone Number",
-        "dataPath": "number"
-      },
-      {
-        "title": "Address",
-        "dataPath": "address"
-      }
-    ],
-    "resultLimit": 20
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"table"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `columns` | `array` | `No` | An array of objects denoting the columns to be shown on a table |
-| `dataPath` | `string` | `No` | A path pointing to a key in the data |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `resultLimit` | `number` | `No` | For widgets interacting with a search API or similar, configures the maximum number of results that should be returned in any response. |
-
-
-
-
-
-<hr>
-
-## The <a name="list-text"></a>`text` widget
-
-__A bread-and-butter box for collecting textual information from the user.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "handover",
-  "type": "text",
-  "attributes": {
-    "heading": "Who was the patient handed over to?",
-    "desc": "Please provide Emergency service and name of person.",
-    "placeholder": "Service/name",
-    "mandatory": false,
-    "minCharacters": 10
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"text"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxCharacters` | `number` | `No` | The maximum length of number of characters a user can specify. |
-| `minCharacters` | `number` | `No` | The minimum length of number of characters a will need to provide. |
-| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
-
-
-
-
-
-<hr>
-
-## The <a name="list-textarea"></a>`textarea` widget
-
-__Collects simple multi-line text input from the user.__
-
-__Example JSON__
-
-``` json
-{
-  "id": "clinicalNotes",
-  "type": "richtext",
-  "attributes": {
-    "heading": "Clinical Notes?",
-    "mandatory": false,
-    "desc": "If you have any clinical notes, please enter them here"
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"textarea"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `default` | `string` | `No` | A string value to default a widget to if not supplied by other mechanisms. |
-| `desc` | `string` | `No` | Some additional advice (above and beyond the string supplied in `label`) to help define what data is required from the user. |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-| `maxCharacters` | `number` | `No` | The maximum length of number of characters a user can specify. |
-| `minCharacters` | `number` | `No` | The minimum length of number of characters a will need to provide. |
-| `placeholder` | `string` | `No` | Some example text that can be appear inside a widget ahead of collecting user input.  |
-
-
-
-
-
-<hr>
-
-## The <a name="list-time"></a>`time` widget
-
-__Allows the user to provide a specific time (without being tied to a particular date)__
-
-__Example JSON__
-
-``` json
-{
-  "id": "openingTime",
-  "type": "time",
-  "attributes": {
-    "mandatory": true,
-    "heading": "Opening Time",
-    "desc": "What time does the business usually open?"
-  }
-}
-
-```
-
-__Properties__
-
-
-__`id`:__ _Required_
-
-__`type`:__ _Required_ (`"time"`)
-
-__`showWhen`:__ _Optional_
-
-
-
-__Attributes__
-
-| Name | Type | Required | Description |
-| ---- | -----| -------- | ----------- |
-| `enabled` | `boolean` | `No` | Indicates if the user can use the widget to alter the underlying value - default to `true`. |
-| `heading` | `string` | `No` | Some short, strong, punchy text to identify the widget. |
-| `help` | `string` | `No` | More detailed guidance/advice (building on top of `description` content) to help shape what data is collected from the user. |
-| `mandatory` | `boolean` | `No` | Indicates if a value needs to be supplied by the user, or if it's optional. |
-
-
-
-
-
-
-<hr>
 
 # <a name="license"></a>License (MIT)
 
@@ -2051,20 +2243,3 @@ It was becoming evident we didn't have a good fit for what we wanted to do, and 
 
 __Here are some [Node.js](https://nodejs.org/en/)-based utilities to help working with Cardscript:__
 
-| Package | Description | Github | NPM  |
-| ------- | ------------| ------ | ---- |
-| `cardscript-doc-generator` | Produces Cardscript's main README.md file using Cardscript's JSON Schema and other sources. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-doc-generator) | [Here](https://www.npmjs.com/package/cardscript-doc-generator)  |
-| `cardscript-examples` | Example Cardscript JSON files, to help with testing and documentation. Includes loader utility. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-examples) | [Here](https://www.npmjs.com/package/cardscript-examples)  |
-| `cardscript-cleaner` | Cleans Cardscript form data to ensure we only submit the data that we should. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-expressions) | [Here](https://www.npmjs.com/package/cardscript-cleaner)  |
-| `cardscript-extract-defaults` | Extracts sensible defaults from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults) | [Here](https://www.npmjs.com/package/cardscript-extract-defaults)  |
-| `cardscript-extract-lists` | Extracts list objects from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-lists) | [Here](https://www.npmjs.com/package/cardscript-extract-lists)  |
-| `cardscript-parser` | Like JSON.parse(), but for Cardscript. And it supports YAML. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-parser) | [Here](https://www.npmjs.com/package/cardscript-parser)  |
-| `cardscript-quasar-playpen` | Cardscript Playpen | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-quasar-playpen) | [Here](https://www.npmjs.com/package/cardscript-quasar-playpen)  |
-| `cardscript-schema` | Contains a JSON Schema for Cardscript, along with a validation utility. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-schema) | [Here](https://www.npmjs.com/package/cardscript-schema)  |
-| `cardscript-table-of-contents` | Extracts a table-of-contents from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults) | [Here](https://www.npmjs.com/package/cardscript-table-of-contents)  |
-| `cardscript-to-quasar` | Produces a template for use with Quasar from some Cardscript. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-quasar) | [Here](https://www.npmjs.com/package/cardscript-to-quasar)  |
-| `cardscript-to-template` | Takes some Cardscript and transforms it to a template string for use with a frontend framework. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-template) | [Here](https://www.npmjs.com/package/cardscript-to-template)  |
-| `cardscript-to-vuelidate` | Takes in a Cardscript JSON object and attempts to extract validation schema from the widgets. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-validation-schema) | [Here](https://www.npmjs.com/package/cardscript-to-vuelidate)  |
-| `cardscript-vue-component` | A simple Vue component to render dynamic Cardscript content using Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-vue-component) | [Here](https://www.npmjs.com/package/cardscript-vue-component)  |
-| `cardscript-vue-sdk` | An SDK for using Cardscript with Vue/Vuetify | [Here](https://github.com/wmfs/cardscript/tree/master/packages/cardscript-simple-vue) | [Here](https://www.npmjs.com/package/cardscript-vue-sdk)  |
-| `react-jsonschema-form-to-cardscript` | Produces Cardscript converted from react-jsonschema-form file. | [Here](https://github.com/wmfs/cardscript/tree/master/packages/react-jsonschema-form-to-cardscript) | [Here](https://www.npmjs.com/package/react-jsonschema-form-to-cardscript)  |
