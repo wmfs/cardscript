@@ -17,6 +17,7 @@ module.exports = function (ctx) {
     supportIE: true, // TODO:  Might need review?
     build: {
       publicPath: 'cardscript',
+      distDir: 'docs',
       scopeHoisting: true,
       vueRouterMode: 'history',
       vueCompiler: true,
