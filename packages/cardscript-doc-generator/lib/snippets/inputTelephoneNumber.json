@@ -1,6 +1,0 @@
-{
-  "id": "inputTelephoneNumber",
-  "type": "Input.TelephoneNumber",
-  "placeholder": "Input.TelephoneNumber",
-  "spacing": "medium"
-}

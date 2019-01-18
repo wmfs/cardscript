@@ -1,21 +1,40 @@
 {
   "name": "cardscript",
-  "description": "The goal of Cardscript is to provide a JSON-based language to describe User Interfaces (especially those which form part of a digital service).",
-  "version": "0.0.5",
-  "author": "Tim Needham",
-  "devDependencies": {
-    "lerna": "^2.6.0"
-  },
+  "version": "0.0.1",
+  "description": "An extended Adaptive Cards specification for defining user interfaces.",
+  "productName": "Cardscript",
+  "cordovaId": "org.cordova.quasar.app",
+  "author": "West Midlands Fire Service",
+  "private": false,
   "scripts": {
-    "bootstrap": "./node_modules/.bin/lerna bootstrap",
-    "test": "./node_modules/.bin/lerna run test --concurrency 1  --loglevel debug"
+    "test": "echo \"No test specified\" && exit 0",
+    "start": "quasar dev",
+    "build": "quasar build"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wmfs/cardscript"
+  "dependencies": {
+    "brace": "0.11.1",
+    "dottie": "2.0.0",
+    "jsonschema": "1.2.4",
+    "video.js": "7.3.0",
+    "vue-bulma-brace": "0.1.0",
+    "vue-signature-pad": "1.1.6",
+    "vue-template-loader": "1.0.0",
+    "vue-video-player": "5.0.2",
+    "vuelidate": "0.7.4",
+    "yamljs": "0.3.0"
   },
-  "bugs": {
-    "url": "https://github.com/wmfs/cardscript/issues"
-  }
+  "devDependencies": {
+    "quasar-cli": "^0.17.0",
+    "strip-ansi": "=3.0.1"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
 }

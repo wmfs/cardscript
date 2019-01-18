@@ -1,6 +1,0 @@
-{
-  "id": "date",
-  "type": "Input.DateTime",
-  "placeholder": "Input.DateTime",
-  "spacing": "medium"
-}
