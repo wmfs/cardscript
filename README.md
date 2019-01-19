@@ -8,7 +8,8 @@
 
 If you're interested in getting hands-on with Cardscript, be sure to try out the **[Cardscript playpen](https://wmfs.github.io/cardscript/)**! :video_game:
 
-![Screenshot of the Cardscript Playpen](/readme-assets/playpen.png)
+[![Screenshot of the Cardscript Playpen](/readme-assets/playpen.png)](https://wmfs.github.io/cardscript/)
+
 
 ## Features
 
