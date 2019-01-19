@@ -37,4 +37,4 @@ Please visit the **[Cardscript Reference](https://wmfs.github.io/tymly-website/r
 
 ------------
 
-*Built with :heart: at West Midlands Fire Service*
+*Built with* :heart: *at [West Midlands Fire Service](https://www.wmfs.net/)*
