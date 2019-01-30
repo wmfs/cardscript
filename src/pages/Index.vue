@@ -310,7 +310,7 @@
   const extractDefaults = require('@wmfs/cardscript-extract-defaults')
   const extractToc = require('@wmfs/cardscript-table-of-contents')
   const extractLists = require('@wmfs/cardscript-extract-lists')
-  const sdk = require('@wmfs/cardscript-vue-sdk').default
+  const sdk = require('@wmfs/cardscript-vue-sdk')
   const examples = require('@wmfs/cardscript-examples')
   const parser = require('@wmfs/cardscript-parser')
   const validator = require('@wmfs/cardscript-schema').validateForm
@@ -492,7 +492,7 @@
         stopwatch.addTime('Extract lists')
         result.lists = extractLists(cardscript)
         stopwatch.addTime('Calculate starting internals')
-        result.defaultInternals = sdk.getDefaultInternals.default(cardscript)
+        result.defaultInternals = sdk.getDefaultInternals(cardscript)
         result.defaultInternals.cardListDefaults = result.defaultValues.cardLists
         stopwatch.addTime('Generating Vuelidate validations')
         result.validations = vuelidateConverter(cardscript, validators)
