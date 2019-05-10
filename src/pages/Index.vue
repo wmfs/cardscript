@@ -115,7 +115,7 @@
                 <blockquote>
                   This is the underlying data model for the card (default values were inferred from the Cardscript
                   using the
-                  <a href="https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-defaults">cardscript-extract-defaults</a>
+                  <a href="https://github.com/wmfs/cardscript-extract-defaults">cardscript-extract-defaults</a>
                   package).
                   Be sure to check back here as you change input fields to see the model change!
                 </blockquote>
@@ -133,9 +133,9 @@
               <q-tab-pane name="template-tab" class="tab-pane">
                 <blockquote>
                   The content below has been produced using the <a
-                  href="https://github.com/wmfs/cardscript/tree/master/packages/cardscript-to-quasar">cardscript-to-quasar</a>
+                  href="https://github.com/wmfs/cardscript-to-quasar">cardscript-to-quasar</a>
                   and
-                  <a href="https://github.com/wmfs/cardscript/tree/master/packages/cardscript-extract-lists">cardscript-extract-lists</a>
+                  <a href="https://github.com/wmfs/cardscript-extract-lists">cardscript-extract-lists</a>
                   packages. Here we've configured things to output in a Vue.js style, but Angular and React
                   templates
                   can
