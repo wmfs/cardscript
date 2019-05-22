@@ -66,3 +66,12 @@ npm link @wmfs/cardscript-to-quasar
 npm link @wmfs/cardscript-to-vuelidate
 npm link @wmfs/cardscript-vue-sdk
 ```
+
+
+And then build...
+
+```
+npm run build
+```
+
+* Note: Make sure you have git-added any newly generated files.
