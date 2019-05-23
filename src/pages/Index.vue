@@ -37,12 +37,12 @@
         </div>
 
         <div id="instructions" style="padding: 96px; text-align: justify;" v-if="validation.state === 'notValidated'">
-          <div class="q-display-1 text-weight-light">
+          <div class="text-h4 text-weight-light">
             Use the editor to write some Cardscript JSON, then hit the refresh button to turn it into a UI!
           </div>
           <div id="none-mobile">
             <hr class="q-my-lg"/>
-            <div class="q-title text-weight-light q-mt-sm">
+            <div class="text-h6 text-weight-light q-mt-sm">
               Try one of these examples to get started quickly:
             </div>
             <q-btn-dropdown label="Examples" class="q-mr-sm  q-mt-sm" outline>
@@ -50,7 +50,7 @@
                 <q-item
                   v-for="opt in exampleOpts"
                   :key="opt.value"
-                  v-close-overlay
+                  v-close-popup
                   @click.native="setExampleContent(opt.value)"
                 >
                   <q-item-main>
@@ -142,7 +142,7 @@
                   be generated too!
                 </blockquote>
 
-                <div class="q-display-1 q-my-md">Quasar Template</div>
+                <div class="text-h4 q-my-md">Quasar Template</div>
                 <q-input
                   type="textarea"
                   readonly
@@ -153,7 +153,7 @@
                   dark
                 />
 
-                <div class="q-display-1 q-my-md">Lists</div>
+                <div class="text-h4 q-my-md">Lists</div>
                 <q-input
                   type="textarea"
                   readonly
@@ -165,7 +165,7 @@
                 />
               </q-tab-pane>
               <q-tab-pane name="info-tab" class="tab-pane">
-                <div class="q-display-1 q-my-md">Performance</div>
+                <div class="text-h4 q-my-md">Performance</div>
                 <p>
                   This playpen is working with raw Cardscript (parsing, validating and transforming).
                   Most apps wouldn't need to do that kind of heavy lifting in the client.
@@ -192,7 +192,7 @@
                   </q-item>
                 </q-list>
 
-                <div class="q-display-1 q-my-md">Internals</div>
+                <div class="text-h4 q-my-md">Internals</div>
                 <p>
                   Here are some of the internal workings (for managing dialog states and card lists especially)
                 </p>
@@ -220,7 +220,7 @@
               <q-item
                 v-for="opt in exampleOpts"
                 :key="opt.value"
-                v-close-overlay
+                v-close-popup
                 @click.native="setExampleContent(opt.value)"
               >
                 <q-item-main>
