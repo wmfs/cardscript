@@ -2,17 +2,17 @@
 
 module.exports = function (ctx) {
   return {
-    // app plugins (/src/plugins)
-    plugins: [
+    // app boot (/src/boot)
+    boot: [
       'vuelidate'
     ],
     css: [
       'app.styl'
     ],
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
+      'roboto-font',
       'material-icons',
-      'fontawesome'
+      'fontawesome-v5'
     ],
     supportIE: true, // TODO:  Might need review?
     build: {
