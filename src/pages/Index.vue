@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <q-layout-header>
+    <q-header>
       <q-toolbar>
         <img style="max-width: 32px;" src="~assets/tymly-light.svg"/>
         <q-toolbar-title>
@@ -9,7 +9,7 @@
         <q-icon name="fab fa-github" size="18pt" class="cursor-pointer q-mr-md" @click.native="goGithub"/>
         <q-icon name="fab fa-twitter" size="18pt" class="cursor-pointer" @click.native="goTwitter"/>
       </q-toolbar>
-    </q-layout-header>
+    </q-header>
 
     <div class="row" style="max-height: calc(100vh - 100px); min-height: calc(100vh - 100px);">
       <div class="col-xs-12 col-md-6">
@@ -27,13 +27,13 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <div v-if="validation.state === 'invalid'">
-          <q-alert
+          <q-banner
             v-for="(err, idx) in validation.errors"
             :key="idx"
-            type="negative"
+            class="bg-negative"
           >
             {{err}}
-          </q-alert>
+          </q-banner>
         </div>
 
         <div id="instructions" style="padding: 96px; text-align: justify;" v-if="validation.state === 'notValidated'">
@@ -53,9 +53,9 @@
                   v-close-popup
                   @click.native="setExampleContent(opt.value)"
                 >
-                  <q-item-main>
-                    <q-item-tile label>{{opt.label}}</q-item-tile>
-                  </q-item-main>
+                  <q-item-section>
+                    <q-item-label>{{opt.label}}</q-item-label>
+                  </q-item-section>
                 </q-item>
               </q-list>
             </q-btn-dropdown>
@@ -92,13 +92,17 @@
                     @click.native="tocClick(entry.elementId)"
                     class="cursor-pointer"
                   >
-                    <q-item-side left :icon="entry.tocIcon"/>
-                    <q-item-main>{{entry.tocTitle}}</q-item-main>
+                    <q-item-section side left>
+                      <q-icon :name="entry.tocIcon" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{entry.tocTitle}}</q-item-label>
+                    </q-item-section>
                   </q-item>
                 </q-list>
 
                 <q-card class="q-mt-md q-mb-xl">
-                  <q-card-main>
+                  <q-card-section>
                     <cardscript
                       :content="dynamicContent"
                       @OpenURL="onOpenURL"
@@ -107,7 +111,7 @@
                       @InputAddress="onInputAddress"
                       @InputApiLookup="onInputApiLookup"
                     />
-                  </q-card-main>
+                  </q-card-section>
                 </q-card>
 
               </q-tab-pane>
@@ -177,18 +181,26 @@
                     v-for="(time, idx) in dynamicContent.times"
                     :key="idx"
                   >
-                    <q-item-main :label="time.label"/>
-                    <q-item-side right>
-                      <q-item-tile>{{time.duration}}ms</q-item-tile>
-                      <q-item-tile>{{time.percentage}}%</q-item-tile>
-                    </q-item-side>
+                    <q-item-section>
+                      <q-item-label>
+                        {{time.label}}
+                      </q-item-label>
+                    </q-item-section>
+                    <q-item-section side right>
+                      <q-item-label>{{time.duration}}ms</q-item-label>
+                      <q-item-label>{{time.percentage}}%</q-item-label>
+                    </q-item-section>
                   </q-item>
                   <q-item-separator/>
                   <q-item>
-                    <q-item-main label="Total"/>
-                    <q-item-side right>
-                      <q-item-tile>{{dynamicContent.totalTime}}ms</q-item-tile>
-                    </q-item-side>
+                    <q-item-section>
+                      <q-item-label>
+                        Total
+                      </q-item-label>
+                    </q-item-section>
+                    <q-item-section side right>
+                      <q-item-label>{{dynamicContent.totalTime}}ms</q-item-label>
+                    </q-item-section>
                   </q-item>
                 </q-list>
 
@@ -212,7 +224,7 @@
       </div>
     </div>
 
-    <q-layout-footer>
+    <q-footer>
       <q-toolbar>
         <div class="col">
           <q-btn-dropdown label="Examples" class="q-mr-sm" outline text-color="white">
@@ -223,9 +235,9 @@
                 v-close-popup
                 @click.native="setExampleContent(opt.value)"
               >
-                <q-item-main>
-                  <q-item-tile label>{{opt.label}}</q-item-tile>
-                </q-item-main>
+                <q-item-section>
+                  <q-item-label>{{opt.label}}</q-item-label>
+                </q-item-section>
               </q-item>
             </q-list>
           </q-btn-dropdown>
@@ -233,7 +245,7 @@
 
         <div class="col footer-text text-right text-weight-thin">Built with ♡ at West Midlands Fire Service</div>
       </q-toolbar>
-    </q-layout-footer>
+    </q-footer>
 
     <div style="position: fixed; bottom: 18px; right: 18px; text-align: right;">
       <q-btn round color="primary" icon="clear" size="lg" style="bottom: 50px; margin-right: 10px;" @click="clear">
