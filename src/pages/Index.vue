@@ -433,6 +433,7 @@
         this.renderCardscript()
       },
       renderCardscript () {
+        this.tabIndex = 'card-tab'
         this.$q.loading.show()
 
         setTimeout(() => {
