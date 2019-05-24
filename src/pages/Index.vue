@@ -80,12 +80,12 @@
 
           <q-tab-panels v-model="tabIndex">
             <q-tab-panel name="card-tab">
-              <blockquote>
+              <div class="blockquote">
                 This is a simple rendering of the parsed Cardscript. Note that this is only meant to be a basic
                 illustration of typical web usage, your app is free to interpret Cardscript and conjure a UI in
                 any way
                 you see fit!
-              </blockquote>
+              </div>
 
               <q-list
                 v-if="dynamicContent.toc.length > 0"
@@ -121,13 +121,13 @@
               </q-card>
             </q-tab-panel>
             <q-tab-panel name="model-tab">
-              <blockquote>
+              <div class="blockquote">
                 This is the underlying data model for the card (default values were inferred from the Cardscript
                 using the
                 <a href="https://github.com/wmfs/cardscript-extract-defaults">cardscript-extract-defaults</a>
                 package).
                 Be sure to check back here as you change input fields to see the model change!
-              </blockquote>
+              </div>
 
               <q-input
                 type="textarea"
@@ -140,7 +140,7 @@
               />
             </q-tab-panel>
             <q-tab-panel name="template-tab">
-              <blockquote>
+              <div class="blockquote">
                 The content below has been produced using the <a
                 href="https://github.com/wmfs/cardscript-to-quasar">cardscript-to-quasar</a>
                 and
@@ -149,7 +149,7 @@
                 templates
                 can
                 be generated too!
-              </blockquote>
+              </div>
 
               <div class="text-h4 q-my-md">Quasar Template</div>
               <q-input
@@ -181,7 +181,7 @@
                 As such, the rendering times inside the playpen are higher than usual... this is where all the
                 time just went:
               </p>
-              <q-list highlight>
+              <q-list bordered>
                 <q-item
                   v-for="(time, idx) in dynamicContent.times"
                   :key="idx"
