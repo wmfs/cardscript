@@ -1,5 +1,5 @@
 import Vuelidate from 'vuelidate'
 
-export default ({Vue}) => {
+export default ({ Vue }) => {
   Vue.use(Vuelidate)
 }

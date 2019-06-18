@@ -5,10 +5,13 @@
 </template>
 <script>
 import dottie from 'dottie'
-import { openURL } from 'quasar'
+import { openURL, date } from 'quasar'
 import 'video.js/dist/video-js.css'
 import { videoPlayer } from 'vue-video-player'
 import VueSignature from 'vue-signature-pad'
+import QMap from '@wmfs/quasar-map-mapbox'
+
+const { formatDate } = date
 
 export default {
   name: 'Cardscript',
@@ -19,7 +22,12 @@ export default {
     return {
       uiTemplate: {
         template: content.quasarTemplate,
-        components: { videoPlayer, VueSignaturePad: VueSignature },
+        components: {
+          videoPlayer,
+          VueSignaturePad: VueSignature,
+          QMap,
+          ...QMap.components
+        },
         validations: {
           data: content.validations
         },
@@ -31,6 +39,7 @@ export default {
           }
         },
         methods: {
+          formatDate,
           resizeSignatureModal ({ id, dataPath }) {
             this.$refs[`${id}SignaturePad`].resizeCanvas()
             const data = dottie.get(this, `${dataPath}.${id}`)
