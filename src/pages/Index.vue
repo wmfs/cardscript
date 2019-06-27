@@ -455,7 +455,6 @@
               this.dynamicContent.lists = output.lists
               this.dynamicContent.toc = output.toc
               this.dynamicContent.validations = output.validations
-              console.log('Validations', output.validations)
 
               this.validation.state = 'valid'
               this.validation.errors = []
