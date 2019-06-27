@@ -269,8 +269,8 @@
     background-color: #272822 !important;
   }
 
-  .tab-pane {
-    height: 84vh;
+  .q-tab-panel {
+    height: 84vh !important;
     overflow-y: scroll;
   }
 
