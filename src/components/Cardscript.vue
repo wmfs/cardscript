@@ -59,6 +59,9 @@ export default {
             dottie.set(this, `${dataPath}.${id}`, data)
             dottie.set(this, `${dataPath}.${id}OpenModal`, false)
           },
+          parseTemplate (a) {
+            return a
+          },
           openURL,
           createNewCardList (cardListId) {
             this.internals.currentCardListData[cardListId] = this.internals.cardListDefaults[cardListId] || {}

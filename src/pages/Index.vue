@@ -50,6 +50,7 @@
                 <q-item
                   v-for="opt in exampleOpts"
                   :key="opt.value"
+                  clickable
                   v-close-popup
                   @click.native="setExampleContent(opt.value)"
                 >
@@ -236,6 +237,7 @@
               <q-item
                 v-for="opt in exampleOpts"
                 :key="opt.value"
+                clickable
                 v-close-popup
                 @click.native="setExampleContent(opt.value)"
               >
