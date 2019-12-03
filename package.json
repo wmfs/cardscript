@@ -15,7 +15,7 @@
     "@quasar/extras": "1.2.0",
     "@wmfs/quasar-map-mapbox": "1.2.0",
     "brace": "0.11.1",
-    "dottie": "2.0.0",
+    "dottie": "2.0.2",
     "jsonschema": "1.2.4",
     "quasar": "1.0.5",
     "video.js": "7.3.0",
