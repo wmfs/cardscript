@@ -39,6 +39,12 @@ export default {
             invalidFields: {}
           }
         },
+        filters: {
+          replaceWithTitle (value, simpleTitleMap) {
+            if (!value) return ''
+            return simpleTitleMap[value]
+          }
+        },
         methods: {
           formatDate,
           resizeSignatureModal ({ id, dataPath }) {
