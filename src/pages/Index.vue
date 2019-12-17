@@ -117,6 +117,8 @@
                     @ShowCard="onShowCard"
                     @InputAddress="onInputAddress"
                     @InputApiLookup="onInputApiLookup"
+                    @ClearDate="onClearDate"
+                    @ClearListSelection="onClearListSelection"
                   />
                 </q-card-section>
               </q-card>
@@ -368,6 +370,12 @@
       this.editor.session.setValue(this.cardscript)
     },
     methods: {
+      onClearListSelection (dataPath, that) {
+        dottie.set(that, dataPath, [])
+      },
+      onClearDate ({ dataPath }, that) {
+        dottie.set(that, dataPath, null)
+      },
       onInputApiLookup (payload, that) {
         console.log('onInputApiLookup', payload)
       },
@@ -452,7 +460,33 @@
               const output = processCardscript(this.cardscript, stopwatch)
 
               this.dynamicContent.quasarTemplate = output.quasarOutput.template
+
               this.dynamicContent.data = output.defaultValues.rootView
+              this.dynamicContent.data.testData = {
+                actions: [
+                  {
+                    stateMachineName: 'test_stateMachine_1_0',
+                    input: {},
+                    title: 'Click me'
+                  },
+                  {
+                    stateMachineName: 'test_stateMachine_1_0',
+                    input: {},
+                    title: 'Go'
+                  }
+                ],
+                facts: [
+                  { title: 'Red', value: 'red is the colour of fire' },
+                  { title: 'Blue', value: 'blue is the colour of the sky' },
+                  { title: 'Green', value: 'green is the colour of grass' }
+                ],
+                table: [
+                  { name: 'Jim', age: 52 },
+                  { name: 'Jane', age: 28 },
+                  { name: 'Joe', age: 34 }
+                ]
+              }
+
               this.dynamicContent.internals = output.defaultInternals
               this.dynamicContent.lists = output.lists
               this.dynamicContent.toc = output.toc
