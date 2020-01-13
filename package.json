@@ -27,7 +27,7 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
-    "@quasar/app": "1.4.1",
+    "@quasar/app": "1.4.5",
     "@quasar/quasar-app-extension-qmediaplayer": "1.0.15",
     "strip-ansi": "=6.0.0"
   },
