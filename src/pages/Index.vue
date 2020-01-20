@@ -119,6 +119,8 @@
                     @InputApiLookup="onInputApiLookup"
                     @ClearDate="onClearDate"
                     @ClearListSelection="onClearListSelection"
+                    @TreeSelectAll="onTreeSelectAll"
+                    @TreeClearSelection="onTreeClearSelection"
                   />
                 </q-card-section>
               </q-card>
@@ -370,6 +372,24 @@
       this.editor.session.setValue(this.cardscript)
     },
     methods: {
+      onTreeClearSelection (dataPath, that) {
+        dottie.set(that, dataPath, [])
+      },
+      onTreeSelectAll (dataPath, that) {
+        const nodes = dottie.get(that, dataPath)
+        const values = []
+
+        const parseNodes = nodes => {
+          for (const node of nodes) {
+            if (node.value) values.push(node.value)
+            if (node.children) parseNodes(node.children)
+          }
+        }
+
+        parseNodes(nodes)
+
+        dottie.set(that, dataPath + 'Selected', values)
+      },
       onClearListSelection (dataPath, that) {
         dottie.set(that, dataPath, [])
       },
