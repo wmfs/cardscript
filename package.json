@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@quasar/extras": "1.5.1",
-    "@wmfs/quasar-map-mapbox": "1.14.0",
+    "@wmfs/quasar-map-mapbox": "1.14.1",
     "brace": "0.11.1",
     "dottie": "2.0.2",
     "jsonschema": "1.2.5",
