@@ -20,7 +20,7 @@
     "quasar": "1.9.13",
     "video.js": "7.7.5",
     "vue-bulma-brace": "0.1.0",
-    "vue-signature-pad": "2.0.0",
+    "vue-signature-pad": "2.0.2",
     "vue-template-loader": "1.1.0",
     "vue-video-player": "5.0.2",
     "vuelidate": "0.7.5",
