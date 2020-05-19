@@ -94,6 +94,16 @@ export default {
               this.internals.currentCardListData[parentCardListId][cardListId].splice(index, 1)
             }
           },
+          fileUploaded (info) {
+            console.log('fileUploaded', info)
+          },
+          fileUploadGetUrl () {
+            console.log('fileUploadGetUrl')
+          },
+          fileUploadGetHeaders () {
+            console.log('fileUploadGetHeaders')
+            return []
+          },
           action (type, config) {
             that.$emit(type, config, this)
           }
