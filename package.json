@@ -12,12 +12,12 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@quasar/extras": "1.9.4",
-    "@wmfs/quasar-map-mapbox": "1.19.0",
+    "@quasar/extras": "1.9.7",
+    "@wmfs/quasar-map-mapbox": "1.20.0",
     "brace": "0.11.1",
     "dottie": "2.0.2",
-    "jsonschema": "1.2.6",
-    "quasar": "1.9.13",
+    "jsonschema": "1.2.8",
+    "quasar": "1.14.1",
     "video.js": "7.8.4",
     "vue-bulma-brace": "0.1.0",
     "vue-signature-pad": "2.0.2",
@@ -27,8 +27,8 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
-    "@quasar/app": "1.6.1",
-    "@quasar/quasar-app-extension-qmediaplayer": "1.0.28",
+    "@quasar/app": "2.1.1",
+    "@quasar/quasar-app-extension-qmediaplayer": "1.0.29",
     "strip-ansi": "=6.0.0"
   },
   "engines": {
