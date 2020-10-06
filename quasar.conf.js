@@ -14,7 +14,6 @@ module.exports = function (ctx) {
       'material-icons',
       'fontawesome-v5'
     ],
-    supportIE: true, // TODO:  Might need review?
     build: {
       publicPath: 'cardscript',
       distDir: 'docs',
@@ -42,7 +41,20 @@ module.exports = function (ctx) {
       open: true // opens browser window automatically
     },
     // framework: 'all' --- includes everything; for dev only!
-    framework: 'all',
+    framework: {
+      importStrategy: 'all',
+      // Quasar plugins
+      plugins: [
+        'Notify',
+        'Loading',
+        'Dialog',
+        'AddressbarColor',
+        'Screen',
+        'Meta'
+      ]
+      // iconSet: 'material-icons',
+      // lang: 'de' // Quasar language
+    },
     animations: 'all',
     ssr: {
       pwa: false
@@ -60,27 +72,27 @@ module.exports = function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            'src': 'statics/icons/icon-128x128.png',
+            'src': 'icons/icon-128x128.png',
             'sizes': '128x128',
             'type': 'image/png'
           },
           {
-            'src': 'statics/icons/icon-192x192.png',
+            'src': 'icons/icon-192x192.png',
             'sizes': '192x192',
             'type': 'image/png'
           },
           {
-            'src': 'statics/icons/icon-256x256.png',
+            'src': 'icons/icon-256x256.png',
             'sizes': '256x256',
             'type': 'image/png'
           },
           {
-            'src': 'statics/icons/icon-384x384.png',
+            'src': 'icons/icon-384x384.png',
             'sizes': '384x384',
             'type': 'image/png'
           },
           {
-            'src': 'statics/icons/icon-512x512.png',
+            'src': 'icons/icon-512x512.png',
             'sizes': '512x512',
             'type': 'image/png'
           }
