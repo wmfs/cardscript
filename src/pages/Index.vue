@@ -470,14 +470,14 @@
           this.validation.state = 'notValidated'
           this.validation.errors = []
 
-          this.$nextTick(() => {
+          this.$nextTick(async () => {
             try {
               if (this.cardscript.trim().length === 0) {
                 throw new Error('You must enter some data.')
               }
 
               const stopwatch = new Stopwatch()
-              const output = processCardscript(this.cardscript, stopwatch)
+              const output = await processCardscript(this.cardscript, stopwatch)
 
               this.dynamicContent.quasarTemplate = output.quasarOutput.template
 
@@ -546,7 +546,7 @@
     }
   }
 
-  function processCardscript (cardscriptStr, stopwatch) {
+  async function processCardscript (cardscriptStr, stopwatch) {
     const result = {}
     stopwatch.addTime('Parse string into object')
     const parserResult = parser(cardscriptStr)
@@ -559,7 +559,7 @@
       result.validatorOutput = validator(cardscript)
       if (result.validatorOutput.elementsValid) {
         stopwatch.addTime('Extract default values')
-        result.defaultValues = extractDefaults(cardscript)
+        result.defaultValues = await extractDefaults(cardscript)
         stopwatch.addTime('Extract TOC')
         result.toc = extractToc(cardscript)
         stopwatch.addTime('Extract lists')

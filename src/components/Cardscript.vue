@@ -11,6 +11,8 @@ import { videoPlayer } from 'vue-video-player'
 import VueSignature from 'vue-signature-pad'
 import QMap from '@wmfs/quasar-map-mapbox'
 
+import cardscriptQuasarComponents from './cardscript-quasar-components'
+
 const { formatDate } = date
 
 export default {
@@ -26,7 +28,8 @@ export default {
           videoPlayer,
           VueSignaturePad: VueSignature,
           QMap,
-          ...QMap.components
+          ...QMap.components,
+          ...cardscriptQuasarComponents
         },
         validations: {
           data: content.validations
