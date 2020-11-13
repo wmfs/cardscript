@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@quasar/app": "2.0.0",
-    "@quasar/quasar-app-extension-qmediaplayer": "1.0.29",
+    "@quasar/quasar-app-extension-qmediaplayer": "1.1.2",
     "strip-ansi": "=6.0.0"
   },
   "engines": {
