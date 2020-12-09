@@ -370,6 +370,13 @@
     mounted () {
       this.editor = brace.edit('vue-bulma-editor')
       this.editor.session.setValue(this.cardscript)
+
+      if (this.$route.query.example) {
+        const found = this.exampleOpts.find(o => o.value === this.$route.query.example)
+        if (found) {
+          this.setExampleContent(found.value)
+        }
+      }
     },
     methods: {
       onTreeClearSelection (dataPath, that) {
