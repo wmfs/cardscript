@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/node:lts
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+        environment:
+          TZ: "Europe/London"
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: install
+          command: |
+            npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm install
+      - save_cache:
+          key: v1-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build playpen
+          command: npm run build
+      - run:
+          name: Deploy to Github Pages
+          command: |
+            git config --global user.name "$GIT_COMMITTER_NAME"
+            git config --global user.email "$GIT_COMMITTER_EMAIL"
+            git remote set-url origin https://${GIT_COMMITTER_NAME}:${GH_TOKEN}@github.com/wmfs/cardscript.git
+            git checkout master
+            git add docs
+            git commit -m "feat: rebuild Cardscript playpen"
+            git push
+workflows:
+  version: 2
+  build & deploy:
+    jobs:
+    - build:
+        context:
+          - docker-hub-creds
+          - build-env-vars
+        filters:
+          branches:
+            only: master
