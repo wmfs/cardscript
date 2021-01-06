@@ -35,7 +35,7 @@ jobs:
             git remote set-url origin https://${GIT_COMMITTER_NAME}:${GH_TOKEN}@github.com/wmfs/cardscript.git
             git checkout master
             git add docs
-            git commit -m "feat: rebuild Cardscript playpen"
+            git commit -m "feat: rebuild Cardscript playpen [skip ci]"
             git push
 workflows:
   version: 2
