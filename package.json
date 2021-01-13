@@ -20,7 +20,7 @@
     "@wmfs/cardscript-schema": "1.26.0",
     "@wmfs/cardscript-table-of-contents": "1.1.0",
     "@wmfs/cardscript-to-quasar": "1.134.0",
-    "@wmfs/cardscript-to-vuelidate": "1.19.0",
+    "@wmfs/cardscript-to-vuelidate": "1.20.0",
     "@wmfs/cardscript-vue-sdk": "1.2.1",
     "brace": "0.11.1",
     "core-js": "3.8.2",
