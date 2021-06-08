@@ -15,7 +15,7 @@
     "@wmfs/quasar-map-mapbox": "1.21.0",
     "@wmfs/cardscript-examples": "1.22.0",
     "@wmfs/cardscript-extract-defaults": "1.31.0",
-    "@wmfs/cardscript-extract-lists": "1.8.0",
+    "@wmfs/cardscript-extract-lists": "1.10.0",
     "@wmfs/cardscript-parser": "1.3.0",
     "@wmfs/cardscript-schema": "1.29.1",
     "@wmfs/cardscript-table-of-contents": "1.1.0",
