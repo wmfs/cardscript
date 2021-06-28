@@ -11,7 +11,7 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@quasar/extras": "1.10.5",
+    "@quasar/extras": "1.10.8",
     "@wmfs/quasar-map-mapbox": "1.21.0",
     "@wmfs/cardscript-examples": "1.22.0",
     "@wmfs/cardscript-extract-defaults": "1.31.0",
